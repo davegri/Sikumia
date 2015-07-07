@@ -1,0 +1,100 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% block head%}
+<link href="{% static "css/subject.css" %}" rel="stylesheet" type="text/css">
+{% endblock %}
+{% block body %}
+<div class="subject-header {{ subject }}">
+    <h2>{{ hebSubject }}</h2>
+    <p>  {{ sumAmount }} סיכומים על גבי {{summaries.paginator.num_pages}} עמודים </p>
+</div>
+<div class="row">
+    <div class="col-6">
+       <div class="row">
+           {% for summary in summaries.object_list  %}
+                   <div class="col-9">
+            <a href="{% url 'summary' subject summary.pk %}"><h4 class="summary-header">{{ summary.title }}</h4></a>
+            <div class="block">{{ summary.content|safe|striptags|truncatewords:50 }}</div>
+            </div>
+           {% endfor %}
+        </div>
+    </div>
+    
+    <div class="col-3">
+        <div class="row">
+            <div class="col-9">
+                <h4> קישורים ועזרים</h4>
+                <aside>
+                    <ul>
+                        <a href="">
+                            <li>זהו קישור לדוגמא</li>
+                        </a>
+                        <a href="">
+                            <li>זהו קישור לדוגמא</li>
+                        </a>
+                        <a href="">
+                            <li>זהו קישור לדוגמא</li>
+                        </a>
+                        <a href="">
+                            <li>זהו קישור לדוגמא</li>
+                        </a>
+                        <a href="">
+                            <li>זהו קישור לדוגמא</li>
+                        </a>
+                    </ul>
+                </aside>
+            </div>
+                        <div class="col-9">
+                <h4> קישורים ועזרים</h4>
+                <aside>
+                    <ul>
+                        <a href="">
+                            <li>זהו קישור לדוגמא</li>
+                        </a>
+                        <a href="">
+                            <li>זהו קישור לדוגמא</li>
+                        </a>
+                        <a href="">
+                            <li>זהו קישור לדוגמא</li>
+                        </a>
+                        <a href="">
+                            <li>זהו קישור לדוגמא</li>
+                        </a>
+                        <a href="">
+                            <li>זהו קישור לדוגמא</li>
+                        </a>
+                    </ul>
+                </aside>
+            </div>
+        </div>
+    </div>
+    
+</div>
+    
+    <div class="pagination">
+        <ul>
+            {% if summaries.has_previous %}
+                <li><a href="?page={{ summaries.previous_page_number }}">הקודם</a></li>
+                {% else %}
+                <li class="disabled">הקודם</li>
+            {% endif %}
+
+            {% for page in summaries.paginator.page_range  %}
+                {% if page == summaries.number %}
+                    <li><a class="active" href="?page={{ page }}" >{{ page }}</a></li>
+                {% else %}
+                    <li><a href="?page={{ page }}" >{{ page }}</a></li>
+                {% endif %}
+            {% endfor %}
+
+            {% if summaries.has_next %}
+                <li><a href="?page={{ summaries.next_page_number }}">הבא</a></li>
+                {% else %}
+                <li class="disabled">הבא</li>
+            {% endif %}
+
+        </ul>
+    </div>
+    
+
+{% endblock %}

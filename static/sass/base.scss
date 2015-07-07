@@ -1,0 +1,273 @@
+@import 'grid_system';
+@import 'colors';
+@import url(http://fonts.googleapis.com/earlyaccess/opensanshebrew.css);
+/* resets */
+
+input:focus,
+select:focus,
+textarea:focus,
+button:focus {
+    outline: none;
+}
+
+*,*:after,*:before{
+    font-size:12px;
+    font-family: 'Open Sans Hebrew', sans-serif;
+    font-weight:100;
+    box-sizing: border-box;
+}
+
+html {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+*, *:before, *:after {
+  -webkit-box-sizing: inherit;
+  -moz-box-sizing: inherit;
+  box-sizing: inherit;
+        margin: 0px;
+  }
+
+input{
+border: none;
+padding: 0.5em;
+}
+
+/* tag styles */
+
+h2{
+font-size: 3.8em;
+font-weight: 100;
+}
+
+h3{
+font-size: 2.5em;
+font-weight: 100;
+}
+
+h4{
+font-size: 1.8em;
+font-weight: 100;
+}
+
+h5{
+font-size: 1.5em;
+font-weight: 700;
+}
+
+
+input[type="submit"]{
+    color:white;
+    background-color: $dark_blue;
+                padding: 0.5em 1em 0.5em 1em;
+    &:hover{
+    background-color: $dark_blue_highlight;
+    cursor: pointer;
+    }
+}
+
+a{
+border: none;
+    text-decoration: none;
+}
+
+blockquote{
+background: $dark_blue;
+color: white;
+font-size: 1.4em;
+padding: 0.5em;
+    margin: 0.5em 0 0.5em 0;
+}
+
+.block-header{
+background-color: $dark_blue;
+color:white;
+padding: 0.5em;
+}
+
+.block{
+    font-size: 1.166666666666667em;
+    background-color: $grey;
+    padding: 1em;
+    h4{
+    background-color: $light_blue;
+    color:white;
+    padding: 1em;
+    font-size: 1.6em;
+    font-weight: 100;
+    //line-height: 0.8em;
+    }
+}
+
+
+.row{
+    margin-top: $gutter_percent;
+    
+    .row{
+    margin-top: 0;
+}
+}
+
+/* skeleton styles */
+
+
+.container{
+margin: $gutter_percent auto;
+padding: 0 $gutter_percent;
+max-width: 1024px;
+}
+
+
+header{
+color:white;
+background-color: $light_blue;
+    position: relative;
+    padding-right: 2em;
+    height:15em;
+    h1{
+        font-size: 5em;
+        text-indent: 100%;
+        white-space: nowrap;
+        overflow: hidden;
+        background-image: url(../images/logo.png);
+        width: 270px;
+        height:121px;
+        position: absolute;
+        top:50%;
+        margin-top: -60.5px;
+        
+    }
+    
+    
+    .login{
+    background-color: $light_blue_highlight;
+    display: inline-block;
+    position: absolute;
+    top:27%;
+    left:2em;
+    padding: 1.5em;
+    width:35%;
+    min-width: 366px;
+
+        input[type="text"],input[type="password"]{
+            width:35%;
+            margin-left: 0.6em;
+            margin-top: 0.6em;
+        }
+        .lock{
+            width: 37px;
+            height: 52px;
+            background-image: url(../images/lock.png);
+            position: absolute;
+            left: 2.8em;
+            top: -1.05em;;
+        }
+        
+    }
+    
+    
+}
+
+nav{
+        ol{
+            list-style: none;
+            padding: 0px;
+            margin: 0px;
+            a{
+
+                display: table;
+                text-decoration: none;
+                li{
+                    
+                    padding: 0.3em;
+                    text-align: center;
+                    color: white;
+                    font-size: 1.8em;                
+                    font-weight: 400;
+                    display: table-cell;
+                    vertical-align: middle;
+                    padding: 0.5em 0;
+
+                }
+                
+            }
+                        >:nth-child(1){background:$english;}
+            >:nth-child(2){background:$bible;}
+            >:nth-child(3){background:$history;}
+            >:nth-child(4){background:$civics;}
+            >:nth-child(5){background:$language;}
+            >:nth-child(6){background:$literature;}
+
+        }
+        
+    }
+
+.search-box{
+    position: relative;
+border: 3px solid $dark_blue;
+    min-height: 45px;
+    input[type="text"]{
+        width: 80%;
+        font-size: 1.2em;
+        line-height: 1.7em;
+    }
+        input[type="submit"]{
+        width: 20%;
+        max-width: 100px;
+        position: absolute;
+        left: 7px;
+        top: 7px;
+    }
+}
+
+
+footer{
+    color: white;
+background-color: $light_blue;
+    text-align: center;
+    font-size: 1.5em;
+    padding: 1em;
+    margin-top: $gutter_percent;
+    margin-bottom: gutter_percent;
+}
+
+/* colors */
+
+.english{
+    background-color: $english;
+    ol &:hover{
+    background-color: $english_highlight;
+    }
+}
+
+.bible{
+    background-color: $bible;
+    ol &:hover{
+    background-color: $bible_highlight;
+    }
+}
+.history{
+    background-color: $history;
+    ol &:hover{
+    background-color: $history_highlight;
+    }
+}
+.civics{
+    background-color: $civics;
+    ol &:hover{
+    background-color: $civics_highlight;
+    }
+}
+.language{
+    background-color: $language;
+    ol &:hover{
+    background-color: $language_highlight;
+    }
+}
+.literature{
+    background-color: $literature;
+    ol &:hover{
+    background-color: $literature_highlight;
+    }
+}

@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% load widget_tweaks %}
+
+{% block head %}
+<link href="{% static 'css/register.css' %}" rel="stylesheet" type="text/css">
+{%  endblock %}
+
+{% block body %}
+    <div class="row">
+    <div clas="col-6">
+        <div class="block-header">
+            <h2>הרשמה</h2>
+            <h4>הרשם היום ותוכל להתחיל להנות ממגוון הסיכומים באתר</h4>
+        </div>
+        <div class="block">
+            {% if registered %}
+                <h4>נרשמת בהצלחה למערכת</h4>
+            {% else %}
+            <form id="user_form" method="post" action="/register/">
+            {% csrf_token %}
+                <p><label for="id_username"><h5>שם משתמש</h5></label></p>
+                <p>
+                    {{ user_form.username}}
+                    {% if user_form.username.errors %}<span>{{ user_form.username.errors.as_text|cut:"* " }}</span>{% endif %}
+                </p>
+                <p><label for="id_password"><h5>סיסמא</h5></label></p>
+                <p>
+                   {{ user_form.password }}
+                    {% if user_form.password.errors %}<span>{{ user_form.password.errors.as_text|cut:"* " }}</span>{% endif %}
+                </p>
+                <p><label for="id_confirm_password"><h5>אשר סיסמא</h5></label></p>
+                <p>
+                    {{ user_form.confirm_password }}
+                    {% if user_form.confirm_password.errors %}<span>{{ user_form.confirm_password.errors.as_text|cut:"* " }}</span>{% endif %}
+                </p>
+                <p><label for="id_email"><h5>כתובת אימייל</h5></label></p>
+                <p>
+                    {{ user_form.email }}
+                    {% if user_form.email.errors %}<span>{{ user_form.email.errors.as_text|cut:"* " }}</span>{% endif %}
+                </p>
+
+            <input type="submit" name="submit" value="הרשם עכשיו">
+
+            </form>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{%  endblock %}

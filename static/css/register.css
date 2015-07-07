@@ -1,0 +1,47 @@
+.block-header {
+  padding: 1.25%; }
+
+h4, h2 {
+  text-align: center; }
+
+.block form h5 {
+  margin-bottom: 0.5%;
+  font-weight: 600; }
+
+.block form input {
+  margin-bottom: 1.5%;
+  font-size: 1.5em; }
+
+.block form input[type="submit"] {
+  margin-top: 1.5%; }
+
+.invalid {
+  background: #fff url(../images/invalid.png) no-repeat 5% center;
+  border: 1px solid #d45252; }
+
+form p {
+  position: relative; }
+
+form p span {
+  font-weight: 600;
+  font-size: 1.2em;
+  background: #d45252;
+  border-radius: 3px 3px 3px 3px;
+  color: white;
+  margin-left: 8px;
+  padding: 10px 15px;
+  z-index: 999;
+  /* hints stay above all other elements */
+  position: absolute;
+  /* allows proper formatting if hint is two lines */
+  right: 270px;
+  top: 2px; }
+  form p span:before {
+    font-size: 1.5em;
+    content: "\25b6";
+    color: #d45252;
+    position: absolute;
+    top: 3px;
+    right: -12px; }
+
+/*# sourceMappingURL=register.css.map */

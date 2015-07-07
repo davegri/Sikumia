@@ -1,0 +1,11 @@
+@import 'colors';
+@import 'grid_system';
+.block-header{
+margin-top: $gutter_percent;
+padding: $gutter_percent;
+}
+
+.content{
+padding: 2em;
+@import 'summary_content';
+}

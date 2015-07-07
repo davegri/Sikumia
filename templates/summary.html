@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% block head %}
+<link href=" {% static "css/summary.css" %}" rel=stylesheet type="text/css">
+{% endblock %}
+
+
+{% block body %}
+
+<div class="block-header {{ subject }}">
+    <h4>{{ summary.title }}</h4>
+</div>
+
+<div class="block">
+    <div class="content">
+        {{ summary.content|safe}}
+    </div>
+</div>
+
+
+
+
+{% endblock %}

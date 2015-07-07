@@ -1,0 +1,109 @@
+@import 'colors';
+@import 'grid_system';
+@import 'base';
+div[class="subject-header english"] {
+    background: $english url(../images/english.png) no-repeat 3% bottom;
+}
+
+div[class="subject-header bible"] {
+    background: $bible url(../images/bible.png) no-repeat 3% center;
+}
+
+div[class="subject-header civics"] {
+    background: $civics url(../images/civics.png) no-repeat 3% center;
+}
+
+div[class="subject-header history"] {
+    background: $history url(../images/history.png) no-repeat 3% center;
+}
+
+div[class="subject-header language"] {
+    background: $language url(../images/language.png) no-repeat 3% center;
+}
+
+div[class="subject-header literature"] {
+    background: $literature url(../images/literature.png) no-repeat 3% center;
+}
+
+.subject-header {
+    @extend .block-header;
+    margin-top: $gutter_percent;
+    text-align: center;
+    min-height: 60px;
+    h2{
+    margin-bottom: 0.2em;
+    }
+    p{
+    margin-bottom: 0.6em;
+    }
+}
+
+.summary-header {
+    @extend .block-header;
+}
+
+.block {
+    color: dimgrey;
+}
+
+h4 {
+    @extend .block-header;
+    background-color: $light_blue;
+}
+
+aside {
+    @extend .block;
+    ul {
+        background: none;
+        padding: 0;
+        a li {
+            font-size: 1.5em;
+        }
+    }
+}
+
+.col-6 .row .col-9,
+.col-3 .row .col-9 {
+    margin-right: 0;
+    margin-bottom: $gutter_percent*1.5;
+}
+
+//pagination
+
+.pagination ul{
+list-style: none;
+padding: 0;
+color: white;
+    li{
+    display: inline-block;
+    color: white;
+    font-size: 1.5em;
+    background-color: $dark_blue;
+        margin-left: 0.2em;
+        a{
+        border: 3px solid $dark_blue;
+        padding: 0.2em 0.8em;    
+        color: white;
+        font-size: inherit;
+        display: inline-block;
+            &:hover{
+            border: 3px solid $light_blue;
+            }
+        }
+
+    }
+            .disabled{
+            background:white;
+            color: grey;
+            border: 3px solid grey;
+            padding: 0.2em 0.8em;
+        }
+    
+    .active{
+    background-color: $light_blue;
+        border: 3px solid $light_blue;
+    }
+
+    }
+
+
