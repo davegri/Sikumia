@@ -1,2 +1,5 @@
 Sikumim.sublime-workspace
-__pycache__
+.sass-cache
+static/.sass-cache
+__pycache__/
+static/__pycache__/
