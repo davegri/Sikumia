@@ -122,10 +122,11 @@ max-width: 1024px;
 
 
 header{
+
 color:white;
 background-color: $light_blue;
     position: relative;
-    padding-right: 2em;
+    padding: 0em 2em;
     height:15em;
     h1{
         font-size: 5em;
@@ -144,27 +145,27 @@ background-color: $light_blue;
     
     .login{
     background-color: $light_blue_highlight;
-    display: inline-block;
-    position: absolute;
-    top:27%;
-    left:2em;
     padding: 1.5em;
-    width:35%;
-    min-width: 366px;
-
+        height: 96px;
+        position: absolute;
+        top: 50%;
+        margin-top: -46px;
+        left: 46px;
         input[type="text"],input[type="password"]{
-            width:35%;
             margin-left: 0.6em;
             margin-top: 0.6em;
+            width: 120px;
         }
         .lock{
             width: 37px;
             height: 52px;
             background-image: url(../images/lock.png);
             position: absolute;
-            left: 2.8em;
-            top: -1.05em;;
+            left: 1.5em;
+            top: -1.4em;
+
         }
+
         
     }
     
@@ -206,15 +207,18 @@ nav{
 .search-box{
     width: 100%;
     border: 3px solid $dark_blue;
-    font-size: 0;
     height: 50px;
+    padding: 0.5em;
     input[type="text"]{
-        width: 80%;
+        float: right;
         height: 100%;
+        font-size: 1.3em;
     }
     input[type="submit"]{
-        width: 20%;
+        float:left;
         height: 100%;
+        font-size: 1.3em;
+        line-height: 1em;
     }
 }
 

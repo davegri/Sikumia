@@ -417,7 +417,7 @@ header {
   color: white;
   background-color: #1ba1e2;
   position: relative;
-  padding-right: 2em;
+  padding: 0em 2em;
   height: 15em; }
   header h1 {
     font-size: 5em;
@@ -432,24 +432,23 @@ header {
     margin-top: -60.5px; }
   header .login {
     background-color: #34b5e9;
-    display: inline-block;
-    position: absolute;
-    top: 27%;
-    left: 2em;
     padding: 1.5em;
-    width: 35%;
-    min-width: 366px; }
+    height: 96px;
+    position: absolute;
+    top: 50%;
+    margin-top: -46px;
+    left: 46px; }
     header .login input[type="text"], header .login input[type="password"] {
-      width: 35%;
       margin-left: 0.6em;
-      margin-top: 0.6em; }
+      margin-top: 0.6em;
+      width: 120px; }
     header .login .lock {
       width: 37px;
       height: 52px;
       background-image: url(../images/lock.png);
       position: absolute;
-      left: 2.8em;
-      top: -1.05em; }
+      left: 1.5em;
+      top: -1.4em; }
 
 nav ol {
   list-style: none;
@@ -483,14 +482,17 @@ nav ol {
 .search-box {
   width: 100%;
   border: 3px solid #2b5797;
-  font-size: 0;
-  height: 50px; }
+  height: 50px;
+  padding: 0.5em; }
   .search-box input[type="text"] {
-    width: 80%;
-    height: 100%; }
+    float: right;
+    height: 100%;
+    font-size: 1.3em; }
   .search-box input[type="submit"] {
-    width: 20%;
-    height: 100%; }
+    float: left;
+    height: 100%;
+    font-size: 1.3em;
+    line-height: 1em; }
 
 footer {
   color: white;

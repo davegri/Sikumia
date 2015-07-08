@@ -283,7 +283,5 @@
   header .login .lock {
     width: 0px;
     height: 0px; } }
-header .login input[type="text"], header .login input[type="password"] {
-  width: 25%; }
 
 /*# sourceMappingURL=responsive.css.map */
