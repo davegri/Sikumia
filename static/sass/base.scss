@@ -13,7 +13,7 @@ button:focus {
 *,*:after,*:before{
     font-size:12px;
     font-family: 'Open Sans Hebrew', sans-serif;
-    font-weight:100;
+    font-weight:500;
     box-sizing: border-box;
 }
 
@@ -22,6 +22,11 @@ html {
   -moz-box-sizing: border-box;
   box-sizing: border-box;
 }
+
+html,body {
+    height:100%;
+}
+
 *, *:before, *:after {
   -webkit-box-sizing: inherit;
   -moz-box-sizing: inherit;
@@ -48,7 +53,6 @@ font-weight: 100;
 
 h4{
 font-size: 1.8em;
-font-weight: 100;
 }
 
 h5{
@@ -77,7 +81,7 @@ background: $dark_blue;
 color: white;
 font-size: 1.4em;
 padding: 0.5em;
-    margin: 0.5em 0 0.5em 0;
+margin: 0.5em 0 0.5em 0;
 }
 
 .block-header{
@@ -95,8 +99,6 @@ padding: 0.5em;
     color:white;
     padding: 1em;
     font-size: 1.6em;
-    font-weight: 100;
-    //line-height: 0.8em;
     }
 }
 
@@ -175,24 +177,22 @@ nav{
             padding: 0px;
             margin: 0px;
             a{
-
-                display: table;
+                display:table;
                 text-decoration: none;
                 li{
-                    
-                    padding: 0.3em;
                     text-align: center;
                     color: white;
                     font-size: 1.8em;                
                     font-weight: 400;
-                    display: table-cell;
+                    display:table-cell;
                     vertical-align: middle;
-                    padding: 0.5em 0;
+                    height: 50px;
+                    width: 100%;
 
                 }
                 
             }
-                        >:nth-child(1){background:$english;}
+            >:nth-child(1){background:$english;}
             >:nth-child(2){background:$bible;}
             >:nth-child(3){background:$history;}
             >:nth-child(4){background:$civics;}
@@ -204,20 +204,17 @@ nav{
     }
 
 .search-box{
-    position: relative;
-border: 3px solid $dark_blue;
-    min-height: 45px;
+    width: 100%;
+    border: 3px solid $dark_blue;
+    font-size: 0;
+    height: 50px;
     input[type="text"]{
         width: 80%;
-        font-size: 1.2em;
-        line-height: 1.7em;
+        height: 100%;
     }
-        input[type="submit"]{
+    input[type="submit"]{
         width: 20%;
-        max-width: 100px;
-        position: absolute;
-        left: 7px;
-        top: 7px;
+        height: 100%;
     }
 }
 

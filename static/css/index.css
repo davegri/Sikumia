@@ -4,7 +4,7 @@
   min-height: 223px; }
   .slider h2 {
     margin: 0;
-    font-weight: 100;
+    font-weight: 500;
     font-size: 2.2em; }
   .slider a {
     padding: 0.5em;
@@ -13,7 +13,7 @@
     text-align: center;
     display: block;
     font-size: 2.5em;
-    font-weight: 100;
+    font-weight: 600;
     background: #1ba1e2 url(../images/arrow2.png) no-repeat 3% center; }
 
 .ad {
