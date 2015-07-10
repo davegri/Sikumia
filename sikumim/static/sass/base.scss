@@ -1,70 +1,83 @@
+@import 'reset';
 @import 'grid_system';
 @import 'colors';
+
+/* fonts */
+
 @import url(https://fonts.googleapis.com/earlyaccess/opensanshebrew.css);
-/* resets */
+@import url(http://fonts.googleapis.com/css?family=Arimo:400,700,400italic,700italic&subset=hebrew);
 
-input:focus,
-select:focus,
-textarea:focus,
-button:focus {
-    outline: none;
-}
 
-*,*:after,*:before{
-    font-size:12px;
-    font-family: 'Open Sans Hebrew', sans-serif;
-    font-weight:500;
-    box-sizing: border-box;
-}
+/* box sizing */
 
 html {
-  -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
   box-sizing: border-box;
 }
-
-html,body {
-    height:100%;
-}
-
 *, *:before, *:after {
-  -webkit-box-sizing: inherit;
-  -moz-box-sizing: inherit;
   box-sizing: inherit;
-        margin: 0px;
-  }
-
-input{
-border: none;
-padding: 0.5em;
 }
 
-/* tag styles */
+/* typography */
+
+body {
+  color: $dark_grey;
+  font-size: 12px;
+  font-family: 'Arimo', 'sans-serif';
+  font-weight: 400;
+  line-height: 1.6;
+}
+
+h2,h3,h4,h5 {
+    font-family: 'Open Sans Hebrew', 'sans-serif';
+}
 
 h2{
 font-size: 3.8em;
-font-weight: 100;
+font-weight:300;
 }
 
 h3{
-font-size: 2.5em;
-font-weight: 100;
+font-size: 2.7em;
 }
 
 h4{
-font-size: 1.8em;
+font-size: 1.5em;
+font-weight: bold;
 }
 
 h5{
-font-size: 1.5em;
-font-weight: 700;
+font-size: 1.2em;
+font-weight: bold;
+}
+
+
+/* default element styles */
+
+input{
+    padding: 0.5em;
+    border: none;
+    height: 2.5em;
+    font-size: 1.3em;
+    &:focus{
+        outline-offset: 0px;
+        outline: 2px solid $dark_blue_highlight;
+    }
+}
+
+/* fix for an annoying firefox bug */
+
+input::-moz-focus-inner { 
+    border: 0; 
+    padding: 0; 
+    margin-top:-2px; 
+    margin-bottom: -2px; 
 }
 
 
 input[type="submit"]{
     color:white;
     background-color: $dark_blue;
-                padding: 0.5em 1em 0.5em 1em;
+    padding: 0.5em 1em 0.5em 1em;
     &:hover{
     background-color: $dark_blue_highlight;
     cursor: pointer;
@@ -98,7 +111,6 @@ padding: 0.5em;
     background-color: $light_blue;
     color:white;
     padding: 1em;
-    font-size: 1.6em;
     }
 }
 
@@ -146,15 +158,18 @@ background-color: $light_blue;
     .login{
     background-color: $light_blue_highlight;
     padding: 1.5em;
-        height: 96px;
         position: absolute;
         top: 50%;
         margin-top: -46px;
         left: 46px;
+        width: 400px;
         input[type="text"],input[type="password"]{
-            margin-left: 0.6em;
-            margin-top: 0.6em;
-            width: 120px;
+            margin-left: 1.25%;
+            margin-top: 1.25%;
+            width:36.2%;
+        }
+        input[type="submit"]{
+            width: 23%;
         }
         .lock{
             width: 37px;
@@ -183,11 +198,12 @@ nav{
                 li{
                     text-align: center;
                     color: white;
-                    font-size: 1.8em;                
+                    font-family: "open sans hebrew", 'sans-serif';
+                    font-size: 1.9em;                
                     font-weight: 400;
                     display:table-cell;
                     vertical-align: middle;
-                    height: 50px;
+                    height: 2.47em;
                     width: 100%;
 
                 }
@@ -207,16 +223,19 @@ nav{
 .search-box{
     width: 100%;
     border: 3px solid $dark_blue;
-    height: 50px;
     padding: 0.5em;
+    overflow: hidden;
     input[type="text"]{
-        float: right;
-        height: 100%;
+        width: 75%;
         font-size: 1.3em;
+        &:focus{
+            outline: none;
+        }
     }
     input[type="submit"]{
         float:left;
-        height: 100%;
+        width: 25%;
+        max-width: 90px;
         font-size: 1.3em;
         line-height: 1em;
     }

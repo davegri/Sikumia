@@ -165,8 +165,10 @@
   .row .search-box {
     width: 100%;
     margin-right: 0;
-    margin-top: 1.25%; } }
-@media only screen and (max-width: 740px) {
+    margin-top: 1.25%; }
+  .row .slider a {
+    background: #1ba1e2; } }
+@media only screen and (max-width: 795px) {
   .row .col-6 {
     width: 100%; }
 
@@ -186,15 +188,13 @@
       right: 50%;
       margin-right: -135px; }
     header .login {
-      float: none;
-      position: initial;
-      margin-top: 2em;
+      margin-top: 3.75%;
       border-top: 7px solid white;
-      display: block;
-      width: 100%; }
+      width: 100%;
+      position: initial;
+      margin-bottom: 0; }
       header .login .lock {
-        top: 16.7em;
-        left: 1em; } }
+        display: none; } }
 @media only screen and (max-width: 630px) {
   .row .col-3 {
     width: 100%;
@@ -209,7 +209,12 @@
     margin-right: 0; }
 
   .row .col-6 .row > :nth-last-child(-n+3) {
-    margin-top: 1.25%; } }
+    margin-top: 1.25%; }
+
+  body {
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1.6; } }
 @media only screen and (max-width: 570px) {
   .slider a {
     background: #1ba1e2; } }

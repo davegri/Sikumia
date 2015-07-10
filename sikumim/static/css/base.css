@@ -1,4 +1,52 @@
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
 @import url(https://fonts.googleapis.com/earlyaccess/opensanshebrew.css);
+@import url(http://fonts.googleapis.com/css?family=Arimo:400,700,400italic,700italic&subset=hebrew);
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline; }
+
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+  display: block; }
+
+body {
+  line-height: 1; }
+
+ol, ul {
+  list-style: none; }
+
+blockquote, q {
+  quotes: none; }
+
+blockquote:before, blockquote:after,
+q:before, q:after {
+  content: '';
+  content: none; }
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0; }
+
 .row .col-1 {
   float: right;
   margin-right: 1.25%;
@@ -160,52 +208,56 @@
   height: 0;
   visibility: hidden; }
 
-/* resets */
-input:focus,
-select:focus,
-textarea:focus,
-button:focus {
-  outline: none; }
-
-*, *:after, *:before {
-  font-size: 12px;
-  font-family: 'Open Sans Hebrew', sans-serif;
-  font-weight: 500;
-  box-sizing: border-box; }
-
+/* fonts */
+/* box sizing */
 html {
-  -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
   box-sizing: border-box; }
-
-html, body {
-  height: 100%; }
 
 *, *:before, *:after {
-  -webkit-box-sizing: inherit;
-  -moz-box-sizing: inherit;
-  box-sizing: inherit;
-  margin: 0px; }
+  box-sizing: inherit; }
 
-input {
-  border: none;
-  padding: 0.5em; }
+/* typography */
+body {
+  color: #3F3F3F;
+  font-size: 12px;
+  font-family: 'Arimo', 'sans-serif';
+  font-weight: 400;
+  line-height: 1.6; }
 
-/* tag styles */
+h2, h3, h4, h5 {
+  font-family: 'Open Sans Hebrew', 'sans-serif'; }
+
 h2 {
   font-size: 3.8em;
-  font-weight: 100; }
+  font-weight: 300; }
 
 h3 {
-  font-size: 2.5em;
-  font-weight: 100; }
+  font-size: 2.7em; }
 
 h4 {
-  font-size: 1.8em; }
+  font-size: 1.5em;
+  font-weight: bold; }
 
 h5 {
-  font-size: 1.5em;
-  font-weight: 700; }
+  font-size: 1.2em;
+  font-weight: bold; }
+
+/* default element styles */
+input {
+  padding: 0.5em;
+  border: none;
+  height: 2.5em;
+  font-size: 1.3em; }
+  input:focus {
+    outline-offset: 0px;
+    outline: 2px solid #3765a8; }
+
+/* fix for an annoying firefox bug */
+input::-moz-focus-inner {
+  border: 0;
+  padding: 0;
+  margin-top: -2px;
+  margin-bottom: -2px; }
 
 input[type="submit"] {
   color: white;
@@ -238,8 +290,7 @@ blockquote {
   .block h4 {
     background-color: #1ba1e2;
     color: white;
-    padding: 1em;
-    font-size: 1.6em; }
+    padding: 1em; }
 
 .row {
   margin-top: 1.25%; }
@@ -272,15 +323,17 @@ header {
   header .login {
     background-color: #34b5e9;
     padding: 1.5em;
-    height: 96px;
     position: absolute;
     top: 50%;
     margin-top: -46px;
-    left: 46px; }
+    left: 46px;
+    width: 400px; }
     header .login input[type="text"], header .login input[type="password"] {
-      margin-left: 0.6em;
-      margin-top: 0.6em;
-      width: 120px; }
+      margin-left: 1.25%;
+      margin-top: 1.25%;
+      width: 36.2%; }
+    header .login input[type="submit"] {
+      width: 23%; }
     header .login .lock {
       width: 37px;
       height: 52px;
@@ -299,11 +352,12 @@ nav ol {
     nav ol a li {
       text-align: center;
       color: white;
-      font-size: 1.8em;
+      font-family: "open sans hebrew", 'sans-serif';
+      font-size: 1.9em;
       font-weight: 400;
       display: table-cell;
       vertical-align: middle;
-      height: 50px;
+      height: 2.47em;
       width: 100%; }
   nav ol > :nth-child(1) {
     background: #339933; }
@@ -321,15 +375,17 @@ nav ol {
 .search-box {
   width: 100%;
   border: 3px solid #2b5797;
-  height: 50px;
-  padding: 0.5em; }
+  padding: 0.5em;
+  overflow: hidden; }
   .search-box input[type="text"] {
-    float: right;
-    height: 100%;
+    width: 75%;
     font-size: 1.3em; }
+    .search-box input[type="text"]:focus {
+      outline: none; }
   .search-box input[type="submit"] {
     float: left;
-    height: 100%;
+    width: 25%;
+    max-width: 90px;
     font-size: 1.3em;
     line-height: 1em; }
 
