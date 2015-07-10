@@ -404,27 +404,27 @@ h5 {
   font-weight: bold; }
 
 /* default element styles */
-input {
+input, header .login a {
   padding: 0.5em;
   border: none;
   height: 2.5em;
   font-size: 1.3em; }
-  input:focus {
+  input:focus, header .login a:focus {
     outline-offset: 0px;
     outline: 2px solid #3765a8; }
 
 /* fix for an annoying firefox bug */
-input::-moz-focus-inner {
+input::-moz-focus-inner, header .login a::-moz-focus-inner {
   border: 0;
   padding: 0;
   margin-top: -2px;
   margin-bottom: -2px; }
 
-input[type="submit"] {
+input[type="submit"], header .login a {
   color: white;
   background-color: #2b5797;
   padding: 0.5em 1em 0.5em 1em; }
-  input[type="submit"]:hover {
+  input[type="submit"]:hover, header .login a:hover {
     background-color: #3765a8;
     cursor: pointer; }
 
@@ -489,11 +489,11 @@ header {
     margin-top: -46px;
     left: 46px;
     width: 400px; }
-    header .login input[type="text"], header .login input[type="password"] {
+    header .login input[type="text"], header .login a[type="text"], header .login input[type="password"], header .login a[type="password"] {
       margin-left: 1.25%;
       margin-top: 1.25%;
       width: 36.2%; }
-    header .login input[type="submit"] {
+    header .login input[type="submit"], header .login a, header .login a {
       width: 23%; }
     header .login .lock {
       width: 37px;
@@ -502,6 +502,18 @@ header {
       position: absolute;
       left: 1.5em;
       top: -1.4em; }
+    header .login span {
+      font-size: 1.7em;
+      margin-left: 0.8em; }
+    header .login strong {
+      font-weight: 900; }
+    header .login a {
+      display: inline-block;
+      text-align: center;
+      vertical-align: middle;
+      margin-top: -2px;
+      width: auto;
+      margin-right: 1.25%; }
 
 nav ol {
   list-style: none;
@@ -538,12 +550,12 @@ nav ol {
   border: 3px solid #2b5797;
   padding: 0.5em;
   overflow: hidden; }
-  .search-box input[type="text"] {
+  .search-box input[type="text"], .search-box header .login a[type="text"], header .login .search-box a[type="text"] {
     width: 75%;
     font-size: 1.3em; }
-    .search-box input[type="text"]:focus {
+    .search-box input[type="text"]:focus, .search-box header .login a[type="text"]:focus, header .login .search-box a[type="text"]:focus {
       outline: none; }
-  .search-box input[type="submit"] {
+  .search-box input[type="submit"], .search-box header .login a, header .login .search-box a {
     float: left;
     width: 25%;
     max-width: 90px;

@@ -156,8 +156,8 @@ background-color: $light_blue;
     
     
     .login{
-    background-color: $light_blue_highlight;
-    padding: 1.5em;
+        background-color: $light_blue_highlight;
+        padding: 1.5em;
         position: absolute;
         top: 50%;
         margin-top: -46px;
@@ -168,7 +168,7 @@ background-color: $light_blue;
             margin-top: 1.25%;
             width:36.2%;
         }
-        input[type="submit"]{
+        input[type="submit"],a{
             width: 23%;
         }
         .lock{
@@ -179,6 +179,26 @@ background-color: $light_blue;
             left: 1.5em;
             top: -1.4em;
 
+        }
+
+        span{
+            font-size: 1.7em;
+            margin-left: 0.8em;
+        }
+
+        strong{
+            font-weight: 900;
+        }
+
+        a{
+            display: inline-block;
+            text-align: center;
+            @extend input;
+            @extend input[type="submit"];
+            vertical-align: middle;
+            margin-top: -2px;
+            width: auto;
+            margin-right: $gutter_percent;
         }
 
         
