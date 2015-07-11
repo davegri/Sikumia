@@ -34,28 +34,25 @@
     }
 
     header{
-        height: auto;
-        padding: 20px 0px 0px 0px;
-        position: relative;
-        h1{
-        margin: 0px;
-        position: relative;
-        float: none;
-        right: 50%;
-        margin-right: -135px;
+        padding:0;
+        display: block;
+        .logo_wrapper{
+            display: block;
+            padding: 2em;
+            h1{
+            margin: 0 auto;
         }
-    .login{
-        margin-top:$gutter_percent*3;
-        border-top: 7px solid white;
-        width: 100%;
-        position:initial;
-        margin-bottom: 0;
-        .lock{
-            display: none;
         }
-    }
-    }
+        .login{
+            display: block;
+            width:100%;
+            border-top: 10px solid white;
+            form{
+                float:none;
+            }
+        }
 
+}
 }
 
 @media only screen and (max-width: 630px) {

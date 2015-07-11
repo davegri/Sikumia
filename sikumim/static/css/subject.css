@@ -161,10 +161,6 @@
   height: 0;
   visibility: hidden; }
 
-/* http://meyerweb.com/eric/tools/css/reset/ 
-   v2.0 | 20110126
-   License: none (public domain)
-*/
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
 a, abbr, acronym, address, big, cite, code,
@@ -404,29 +400,30 @@ h5 {
   font-weight: bold; }
 
 /* default element styles */
-input, header .login a {
+input, .button, input[type="submit"] {
   padding: 0.5em;
   border: none;
   height: 2.5em;
-  font-size: 1.3em; }
-  input:focus, header .login a:focus {
-    outline-offset: 0px;
-    outline: 2px solid #3765a8; }
+  font-size: 1.3em;
+  vertical-align: middle;
+  display: inline-block; }
+  input:focus, .button:focus {
+    outline: none; }
+
+.button, input[type="submit"], [type="submit"].button {
+  color: white;
+  background-color: #2b5797;
+  padding: 0.5em 1em 0.5em 1em; }
+  .button:hover, input[type="submit"]:hover {
+    background-color: #3765a8;
+    cursor: pointer; }
 
 /* fix for an annoying firefox bug */
-input::-moz-focus-inner, header .login a::-moz-focus-inner {
+input::-moz-focus-inner, .button::-moz-focus-inner, input[type="submit"]::-moz-focus-inner {
   border: 0;
   padding: 0;
   margin-top: -2px;
   margin-bottom: -2px; }
-
-input[type="submit"], header .login a {
-  color: white;
-  background-color: #2b5797;
-  padding: 0.5em 1em 0.5em 1em; }
-  input[type="submit"]:hover, header .login a:hover {
-    background-color: #3765a8;
-    cursor: pointer; }
 
 a {
   border: none;
@@ -465,55 +462,41 @@ blockquote {
   max-width: 1024px; }
 
 header {
+  display: table;
   color: white;
   background-color: #1ba1e2;
-  position: relative;
-  padding: 0em 2em;
-  height: 15em; }
-  header h1 {
-    font-size: 5em;
-    text-indent: 100%;
-    white-space: nowrap;
-    overflow: hidden;
-    background-image: url(../images/logo.png);
-    width: 270px;
-    height: 121px;
-    position: absolute;
-    top: 50%;
-    margin-top: -60.5px; }
+  overflow: hidden;
+  width: 100%;
+  padding: 3em; }
+  header .logo_wrapper {
+    display: table-cell;
+    vertical-align: middle; }
+    header .logo_wrapper h1 {
+      text-indent: 100%;
+      overflow: hidden;
+      background-image: url(../images/logo.png);
+      width: 270px;
+      height: 121px; }
   header .login {
-    background-color: #34b5e9;
-    padding: 1.5em;
-    position: absolute;
-    top: 50%;
-    margin-top: -46px;
-    left: 46px;
-    width: 400px; }
-    header .login input[type="text"], header .login a[type="text"], header .login input[type="password"], header .login a[type="password"] {
-      margin-left: 1.25%;
-      margin-top: 1.25%;
-      width: 36.2%; }
-    header .login input[type="submit"], header .login a, header .login a {
-      width: 23%; }
-    header .login .lock {
-      width: 37px;
-      height: 52px;
-      background-image: url(../images/lock.png);
-      position: absolute;
-      left: 1.5em;
-      top: -1.4em; }
-    header .login span {
-      font-size: 1.7em;
-      margin-left: 0.8em; }
-    header .login strong {
-      font-weight: 900; }
-    header .login a {
-      display: inline-block;
-      text-align: center;
-      vertical-align: middle;
-      margin-top: -2px;
-      width: auto;
-      margin-right: 1.25%; }
+    vertical-align: middle;
+    display: table-cell; }
+    header .login form {
+      float: left;
+      background-color: #34b5e9;
+      padding: 1.5em; }
+      header .login form h4 {
+        margin-bottom: 10px; }
+      header .login form input[type="text"], header .login form [type="text"].button, header .login form input[type="password"], header .login form [type="password"].button {
+        width: 120px;
+        margin-left: 5px; }
+        header .login form input[type="text"]:focus, header .login form [type="text"].button:focus, header .login form input[type="password"]:focus, header .login form [type="password"].button:focus {
+          outline-offset: 0px;
+          outline: 2px solid #3765a8; }
+      header .login form .welcome_message {
+        display: inline-block;
+        vertical-align: middle;
+        margin-left: 10px;
+        margin-bottom: 0; }
 
 nav ol {
   list-style: none;
@@ -550,12 +533,10 @@ nav ol {
   border: 3px solid #2b5797;
   padding: 0.5em;
   overflow: hidden; }
-  .search-box input[type="text"], .search-box header .login a[type="text"], header .login .search-box a[type="text"] {
+  .search-box input[type="text"], .search-box [type="text"].button {
     width: 75%;
     font-size: 1.3em; }
-    .search-box input[type="text"]:focus, .search-box header .login a[type="text"]:focus, header .login .search-box a[type="text"]:focus {
-      outline: none; }
-  .search-box input[type="submit"], .search-box header .login a, header .login .search-box a {
+  .search-box input[type="submit"], .search-box [type="submit"].button {
     float: left;
     width: 25%;
     max-width: 90px;

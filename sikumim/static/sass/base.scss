@@ -58,9 +58,22 @@ input{
     border: none;
     height: 2.5em;
     font-size: 1.3em;
+    vertical-align: middle;
+    display: inline-block;
     &:focus{
-        outline-offset: 0px;
-        outline: 2px solid $dark_blue_highlight;
+            outline: none;
+        }
+}
+
+
+.button{
+    @extend input;
+    color:white;
+    background-color: $dark_blue;
+    padding: 0.5em 1em 0.5em 1em;
+    &:hover{
+    background-color: $dark_blue_highlight;
+    cursor: pointer;
     }
 }
 
@@ -75,13 +88,7 @@ input::-moz-focus-inner {
 
 
 input[type="submit"]{
-    color:white;
-    background-color: $dark_blue;
-    padding: 0.5em 1em 0.5em 1em;
-    &:hover{
-    background-color: $dark_blue_highlight;
-    cursor: pointer;
-    }
+    @extend .button;
 }
 
 a{
@@ -134,77 +141,54 @@ max-width: 1024px;
 
 
 header{
-
+display: table;
 color:white;
 background-color: $light_blue;
-    position: relative;
-    padding: 0em 2em;
-    height:15em;
+overflow: hidden;
+width: 100%;
+padding:3em;
+.logo_wrapper{
+    display: table-cell;
+        vertical-align: middle;
     h1{
-        font-size: 5em;
         text-indent: 100%;
-        white-space: nowrap;
         overflow: hidden;
         background-image: url(../images/logo.png);
         width: 270px;
         height:121px;
-        position: absolute;
-        top:50%;
-        margin-top: -60.5px;
-        
-    }
-    
-    
-    .login{
+    } 
+}
+.login{
+    vertical-align: middle;
+    display: table-cell;
+
+    form{
+        float:left;
         background-color: $light_blue_highlight;
         padding: 1.5em;
-        position: absolute;
-        top: 50%;
-        margin-top: -46px;
-        left: 46px;
-        width: 400px;
+        h4{
+            margin-bottom: 10px;
+        }
         input[type="text"],input[type="password"]{
-            margin-left: 1.25%;
-            margin-top: 1.25%;
-            width:36.2%;
+            width: 120px;
+            margin-left: 5px;
+                &:focus{
+        outline-offset: 0px;
+        outline: 2px solid $dark_blue_highlight;
+    }
         }
         input[type="submit"],a{
-            width: 23%;
         }
-        .lock{
-            width: 37px;
-            height: 52px;
-            background-image: url(../images/lock.png);
-            position: absolute;
-            left: 1.5em;
-            top: -1.4em;
-
-        }
-
-        span{
-            font-size: 1.7em;
-            margin-left: 0.8em;
-        }
-
-        strong{
-            font-weight: 900;
-        }
-
-        a{
+        .welcome_message{
             display: inline-block;
-            text-align: center;
-            @extend input;
-            @extend input[type="submit"];
             vertical-align: middle;
-            margin-top: -2px;
-            width: auto;
-            margin-right: $gutter_percent;
+            margin-left: 10px;
+            margin-bottom:0;
         }
-
         
     }
     
-    
+  }  
 }
 
 nav{
@@ -248,9 +232,6 @@ nav{
     input[type="text"]{
         width: 75%;
         font-size: 1.3em;
-        &:focus{
-            outline: none;
-        }
     }
     input[type="submit"]{
         float:left;

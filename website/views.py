@@ -21,14 +21,14 @@ def index(request):
             if user:
                 if user.is_active:
                     login(request,user)
-                    return redirect('index')
+                    return redirect(request.META.get('HTTP_REFERER'))
                 else:
                     return HttpResponse("Your account is disabled.")
             else:
                 return HttpResponse("invalid login details")
         else:
             logout(request)
-            return redirect('index')
+            return redirect(request.META.get('HTTP_REFERER'))
     else:
         context_dict = {}
         return render(request, 'index.html', context_dict)

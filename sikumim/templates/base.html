@@ -15,15 +15,15 @@
 <body>
     <div class="container">
         <header>
-            <a href="{% url 'index' %}"><h1>סיכומים.נט</h1></a>
-            <div id="login" class="login" name="login">
+            <a href="{% url 'index' %}" class="logo_wrapper"><h1>סיכומים.נט</h1></a>
+            <div class="login">
             {% if user.is_authenticated %}
                 <form id='logout_form' method="post" action="/">
                     {% csrf_token %}
-                    <span>ברוך הבא <strong>{{ user.username }}</strong></span>
-                    <div class='actions'>
-                    <input type="submit" id="logout" name="logout" value="התנתק">{% if user.is_staff %}<a href='/admin'>פאנל ניהול</a>{% endif %}
-                    </div>
+                    <h4 class="welcome_message">ברוך הבא <strong>{{ user.username }}</strong></h4>
+                    <input type="submit" id="logout" name="logout" value="התנתק">
+                    <a href='' class="button">פרופיל</a>
+                    {% if user.is_staff %}<a href='/admin' class="button">פאנל ניהול</a>{% endif %}
                     
                 </form>
                 {% else %}

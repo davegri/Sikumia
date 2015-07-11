@@ -178,23 +178,19 @@
     margin-top: 1.25%; }
 
   header {
-    height: auto;
-    padding: 20px 0px 0px 0px;
-    position: relative; }
-    header h1 {
-      margin: 0px;
-      position: relative;
-      float: none;
-      right: 50%;
-      margin-right: -135px; }
+    padding: 0;
+    display: block; }
+    header .logo_wrapper {
+      display: block;
+      padding: 2em; }
+      header .logo_wrapper h1 {
+        margin: 0 auto; }
     header .login {
-      margin-top: 3.75%;
-      border-top: 7px solid white;
+      display: block;
       width: 100%;
-      position: initial;
-      margin-bottom: 0; }
-      header .login .lock {
-        display: none; } }
+      border-top: 10px solid white; }
+      header .login form {
+        float: none; } }
 @media only screen and (max-width: 630px) {
   .row .col-3 {
     width: 100%;
