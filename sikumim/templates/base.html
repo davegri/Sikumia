@@ -18,7 +18,7 @@
             <a href="{% url 'index' %}" class="logo_wrapper"><h1>סיכומים.נט</h1></a>
             <div class="login">
             {% if user.is_authenticated %}
-                <form id='logout_form' method="post" action="/">
+                <form id='logout_form' method="post" action="{% url 'logout' %}">
                     {% csrf_token %}
                     <h4 class="welcome_message">ברוך הבא <strong>{{ user.username }}</strong></h4>
                     <input type="submit" id="logout" name="logout" value="התנתק">
@@ -26,13 +26,19 @@
                     {% if user.is_staff %}<a href='/admin' class="button">פאנל ניהול</a>{% endif %}
                     
                 </form>
-                {% else %}
-                <form id="login_form" method="post" action='/'>
+            {% else %}
+                <form id="login_form" method="post" action='{% url 'login' %}'>
                 {% csrf_token %}
                     <h4>התחברות משתמשים רשומים</h4>
                     <input type="text" id="login_username" name="login_username" placeholder="משתמש">
                     <input type="password" id="login_password" name="login_password" placeholder="סיסמא">
                     <input type="submit" id="login_submit" name="login_submit" value="התחבר">
+                    {% if messages %}
+                     {% for message in messages %}
+                    <div class='login_error'>{{ message }}</div>
+                    {% endfor %}
+                    {% endif %}
+
                     <div class="lock"></div>
                 </form>
             {% endif %}

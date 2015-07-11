@@ -1,3 +1,5 @@
+@import 'base';
+
 .block-header{
 padding:1.25%;
 }
@@ -27,30 +29,27 @@ margin-bottom: 1.5%;
     border: 1px solid #d45252;
 }
 
-form p{
+.block form p{
 position: relative;
+display: inline-block
 }
 
-form p span{
-    font-weight: 600;
-    font-size: 1.2em;
- background: #d45252;
-    border-radius: 3px 3px 3px 3px;
-    color: white;
+.block form p span{
+    @extend .error;
     margin-left:8px;
-    padding: 10px 15px;
     z-index: 999; /* hints stay above all other elements */
-    position: absolute; /* allows proper formatting if hint is two lines */
-    right: 270px;
-    top:2px;
-    
+    position: relative; /* allows proper formatting if hint is two lines */
+    right: 20px;
     &:before{
-    font-size: 1.5em;
     content: "\25b6";
     color:#d45252;
     position: absolute;
-    top:3px;
+    top:4px;
     right:-12px;
     }
 
+}
+
+.block input[type="submit"]{
+    display:block;
 }

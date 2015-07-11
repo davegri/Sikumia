@@ -7,31 +7,39 @@ from website.models import Summary
 from django.core.paginator import Paginator, InvalidPage, EmptyPage
 from website.forms import UserForm
 from django.template import RequestContext
-from django.contrib.auth import authenticate, login, logout
-
+from django.contrib.auth import authenticate, login as django_login, logout as django_logout
+from django.core.urlresolvers import resolve
+from django.contrib import messages
 
 
 def index(request):
-    #login/logout logic
-    if request.method == 'POST':
-        if 'logout' not in request.POST:
-            username = request.POST.get('login_username')
-            password = request.POST.get('login_password')
-            user = authenticate(username=username, password=password)
-            if user:
-                if user.is_active:
-                    login(request,user)
-                    return redirect(request.META.get('HTTP_REFERER'))
-                else:
-                    return HttpResponse("Your account is disabled.")
-            else:
-                return HttpResponse("invalid login details")
+    context_dict = {}
+    return render(request, 'index.html', context_dict)
+
+
+
+def login(request):
+    if request.POST:
+        username = request.POST.get('login_username')
+        password = request.POST.get('login_password')
+
+        user = authenticate(username=username, password=password)
+
+        if not user:
+            messages.add_message(request, messages.INFO, 'שם משתמש או סיסמא אינם נכונים') 
+        elif not user.is_active:
+            messages.add_message(request, messages.INFO, 'חשבונך נחסם, אם הינך חושב שזאת טעות צור קשר עם מנהל בהקדם.') 
         else:
-            logout(request)
+            django_login(request,user)
             return redirect(request.META.get('HTTP_REFERER'))
-    else:
-        context_dict = {}
-        return render(request, 'index.html', context_dict)
+
+    return redirect(request.META.get('HTTP_REFERER'))
+
+
+def logout(request):
+    django_logout(request)
+    return redirect(request.META.get('HTTP_REFERER'))
+
 
 
 #subject page

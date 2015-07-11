@@ -5,6 +5,11 @@ from django.contrib.auth.models import User
 import django.utils.timezone
 
 
+#monkey patching to make email field unique
+User._meta.get_field('email')._unique = True
+
+
+
 class Summary(models.Model):
     subjects = (
         ('english', 'english'),
