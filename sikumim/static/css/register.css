@@ -238,6 +238,9 @@ h5 {
   font-size: 1.2em;
   font-weight: bold; }
 
+strong {
+  font-weight: bold; }
+
 /* default element styles */
 input, .button, input[type="submit"] {
   padding: 0.5em;
@@ -292,7 +295,7 @@ blockquote {
 
 /* skeleton styles */
 .container {
-  margin: 1.25% auto;
+  margin: 0.625% auto;
   padding: 0 1.25%;
   max-width: 1024px; }
 

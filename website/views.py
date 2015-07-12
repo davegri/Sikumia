@@ -3,13 +3,15 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from django.shortcuts import redirect, get_object_or_404
-from website.models import Summary
+from website.models import Summary, SummaryView
 from django.core.paginator import Paginator, InvalidPage, EmptyPage
 from website.forms import UserForm
 from django.template import RequestContext
 from django.contrib.auth import authenticate, login as django_login, logout as django_logout
 from django.core.urlresolvers import resolve
 from django.contrib import messages
+import datetime
+from django.db.models import Q
 
 
 def index(request):
@@ -42,11 +44,7 @@ def logout(request):
 
 
 
-#subject page
-
-
-def subject(request, subject):
-
+def getSubjectHeb(subject='english'):
     hebSubjects = {
         'english': 'אנגלית',
         'bible': 'תנ"ך',
@@ -55,10 +53,11 @@ def subject(request, subject):
         'language': 'לשון',
         'literature': 'ספרות',
     }
+    return hebSubjects[subject]
 
-    if subject not in hebSubjects:
-        return redirect('/sikumim')
+#subject page
 
+def subject(request, subject):
     summaries_list = Summary.objects.all().filter(subject=subject)
     length = len(summaries_list)
 
@@ -76,7 +75,7 @@ def subject(request, subject):
 
     context_dict = {
         'subject': subject,
-        'hebSubject': hebSubjects[subject],
+        'hebSubject': getSubjectHeb(subject),
         'sumAmount': length,
         'summaries': summaries,
     }
@@ -96,6 +95,13 @@ def summary(request, subject, pk):
         'subject': subject,
         'summary': summary,
         }
+    request.session.save()
+    if not SummaryView.objects.filter(summary=summary, session=request.session.session_key):
+        view = SummaryView(summary=summary,
+                           ip=request.META['REMOTE_ADDR'],
+                           date_created=datetime.datetime.now(),
+                           session=request.session.session_key)
+        view.save()
 
     return render(request, 'summary.html', context_dict)
 
@@ -155,3 +161,34 @@ def register(request):
         'register.html',
         {'user_form': user_form,
          'registered': registered})
+
+def results(request):
+
+    query = request.GET.get('q', 'deafult')
+    summaries_list = Summary.objects.filter(Q(title__icontains=query)| Q(content__icontains=query))
+
+    if not summaries_list:
+        return render(request,'results.html',{})
+
+    length = len(summaries_list)
+
+    #pagination
+    paginator = Paginator(summaries_list, 4)
+
+    #get page number from GET request
+    page_num = request.GET.get('page', 1)
+
+    #get summaries from paginator according to page number
+    try:
+        summaries = paginator.page(page_num)
+    except(EmptyPage, InvalidPage):
+        summaries = paginator.page(paginator.num_pages)
+
+    context_dict = {
+        'sumAmount': length,
+        'summaries': summaries,
+    }
+
+
+
+    return render(request,'results.html', context_dict)

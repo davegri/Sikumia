@@ -39,7 +39,6 @@
                     <div class='login_error'>{{ message }}</div>
                     {% endfor %}
                     {% endif %}
-
                     <div class="lock"></div>
                 </form>
             {% endif %}
@@ -69,8 +68,10 @@
                 </ol>
             </nav>
             <div class="search-box col-3">
-                <input type="text" id="search_box" name="search_box" placeholder="הקלד מילות חיפוש">
-                <input type="submit" value="חפש" id="search_button" name="search_button">
+            <form id="search_form" method="get" action="{% url 'results' %}">
+                <input type="text"  name="q" placeholder="הקלד מילות חיפוש">
+                <input type="submit" value="חפש">
+            </form>
             </div>
         </div>
         {% block body %}{% endblock %}

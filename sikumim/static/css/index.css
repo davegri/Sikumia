@@ -17,6 +17,10 @@
   height: 223px;
   background-image: url(../images/ad_pic.png); }
 
+.block h4 {
+  background-color: #1ba1e2;
+  color: white;
+  padding: 0.5em; }
 .block ul {
   background-color: #2b5797;
   color: white;

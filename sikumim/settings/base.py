@@ -39,6 +39,7 @@ INSTALLED_APPS = (
     'website',
     'ckeditor',
     'widget_tweaks',
+    'website.templatetags.website_extras',
 )
 
 MIDDLEWARE_CLASSES = (

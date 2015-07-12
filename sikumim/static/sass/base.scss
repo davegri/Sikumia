@@ -50,6 +50,10 @@ font-size: 1.2em;
 font-weight: bold;
 }
 
+strong{
+    font-weight: bold;
+}
+
 
 /* default element styles */
 
@@ -129,7 +133,7 @@ padding: 0.5em;
 
 
 .container{
-margin: $gutter_percent auto;
+margin: $gutter_percent/2 auto;
 padding: 0 $gutter_percent;
 max-width: 1024px;
 }
