@@ -163,9 +163,9 @@
   direction: ltr; }
 
 .block-header {
+  text-align: center;
   margin-top: 1.25%;
-  padding: 1.25% 2.5%;
-  line-height: 3.5em; }
+  padding: 1em; }
 
 .content {
   padding: 2em;
@@ -252,6 +252,7 @@
     padding-bottom: 5px !important;
     border-bottom: 1px solid gray !important;
     margin-bottom: 15px !important;
+    margin-top: 30px !important;
     line-height: normal !important;
     text-decoration: none !important; }
   .content * {
@@ -296,13 +297,13 @@
   width: 100%;
   display: table;
   background-color: #34b5e9;
-  padding: 1.25%;
+  padding: 0.5em;
   border: 5px solid #1ba1e2; }
   .options-bar .rating-module, .options-bar .search-module {
     display: table-cell;
     width: 50%; }
     .options-bar .rating-module .button, .options-bar .search-module .button {
-      margin-left: 1.25%;
+      margin-left: 0.5em;
       border: 3px solid #2b5797;
       height: auto; }
     .options-bar .rating-module .selected, .options-bar .search-module .selected {

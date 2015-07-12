@@ -96,7 +96,9 @@ $.ajaxSetup({
 {% block body %}
 
 <div class="block-header {{ subject }}">
-    <h3 lang='eng'>{{ summary.title }}</h3>
+    <h3>{{ summary.title }}</h3>
+    <span>{{ summary.views.count }} צפיות</span>
+    <span>
 </div>
 {% if user.is_authenticated %}
 <div class='options-bar'>

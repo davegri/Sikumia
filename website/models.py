@@ -20,7 +20,6 @@ def confidence(ups, downs):
     phat = float(ups) / n
     return (phat+z*z/(2*n)-z*sqrt((phat*(1-phat)+z*z/(4*n))/n))/(1+z*z/n)
 
-
 class Summary(models.Model):
     subjects = (
         ('english', 'english'),
@@ -36,12 +35,10 @@ class Summary(models.Model):
         (12, 'Grade 12'),
     )
 
-
     title = models.CharField(max_length=128)
     subject = models.CharField(max_length=20, choices=subjects)
     grade = models.IntegerField(choices=grades)
     content = RichTextField(null=True, blank=True)
-    views = models.IntegerField(default=0)
     positive_ratings = models.ManyToManyField(User, blank=True, related_name='summary_positive_ratings')
     negative_ratings = models.ManyToManyField(User, blank=True, related_name='summary_negative_ratings')
     author = models.ForeignKey(User, default=1)
@@ -67,3 +64,9 @@ class Summary(models.Model):
 
         super(Summary, self).save()
 
+
+class SummaryView(models.Model):
+    summary = models.ForeignKey(Summary, related_name='views')
+    ip = models.CharField(max_length=40)
+    session = models.CharField(max_length=40)
+    date_created = models.DateTimeField(default=django.utils.timezone.now)

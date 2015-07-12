@@ -7,9 +7,9 @@
 }
 
 .block-header{
+	text-align:center;
 margin-top: $gutter_percent;
-padding: $gutter_percent $gutter_percent*2;
-line-height:3.5em;
+padding: 1em;
 }
 
 .content{
@@ -23,13 +23,13 @@ padding: 2em;
 width:100%;
 display:table;
 background-color: $light_blue_highlight;
-padding: $gutter_percent;
+padding: 0.5em;
 border: 5px solid $light_blue;
 .rating-module, .search-module{
 	display:table-cell;
 	width: 50%;
 	.button{
-		margin-left: $gutter_percent;
+		margin-left: 0.5em;
 		border: 3px solid $dark_blue;
 		height: auto;
 	}

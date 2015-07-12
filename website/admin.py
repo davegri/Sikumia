@@ -4,8 +4,8 @@ from website import models
 
 
 class SummaryAdmin(admin.ModelAdmin):
-    list_filter = ['date_created','date_edited','subject','views']
+    list_filter = ['date_created','date_edited','subject']
     search_fields = ['title','content']
-    list_display = ['title','subject','views','date_created','date_edited']
+    list_display = ['title','subject', 'date_created','date_edited']
 
 admin.site.register(models.Summary,SummaryAdmin)
