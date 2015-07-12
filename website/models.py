@@ -3,11 +3,22 @@ import datetime
 from ckeditor.fields import RichTextField
 from django.contrib.auth.models import User
 import django.utils.timezone
-
+from math import sqrt
 
 #monkey patching to make email field unique
 User._meta.get_field('email')._unique = True
 
+
+#wilson confidence
+
+ 
+def confidence(ups, downs):
+    if ups == 0:
+        return -downs
+    n = ups + downs
+    z = 1.64485 #1.0 = 85%, 1.6 = 95%
+    phat = float(ups) / n
+    return (phat+z*z/(2*n)-z*sqrt((phat*(1-phat)+z*z/(4*n))/n))/(1+z*z/n)
 
 
 class Summary(models.Model):
@@ -19,13 +30,23 @@ class Summary(models.Model):
         ('language', 'language'),
         ('literature', 'literature'),
     )
+    grades = (
+        (10, 'Grade 10'),
+        (11, 'Grade 11'),
+        (12, 'Grade 12'),
+    )
+
+
     title = models.CharField(max_length=128)
     subject = models.CharField(max_length=20, choices=subjects)
+    grade = models.IntegerField(choices=grades)
     content = RichTextField(null=True, blank=True)
+    views = models.IntegerField(default=0)
+    positive_ratings = models.ManyToManyField(User, blank=True, related_name='summary_positive_ratings')
+    negative_ratings = models.ManyToManyField(User, blank=True, related_name='summary_negative_ratings')
+    author = models.ForeignKey(User, default=1)
     date_created = models.DateTimeField(default=django.utils.timezone.now)
     date_edited = models.DateTimeField(blank=True, null=True)
-    views = models.IntegerField(default=0)
-    author = models.ForeignKey(User, default=1)
 
     class Meta:
         ordering = ['-date_created']

@@ -1,72 +1,477 @@
-/*
-Error: File to import not found or unreadable: susy.
-       Load path: /home/david/sikumim_project/sikumim/static/sass
-        on line 1 of sikumim/static/sass/base.scss
-        from line 1 of sikumim/static/sass/register.scss
+@import url(https://fonts.googleapis.com/earlyaccess/opensanshebrew.css);
+@import url(http://fonts.googleapis.com/css?family=Arimo:400,700,400italic,700italic&subset=hebrew);
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline; }
 
-1: @import 'base';
-2: 
-3: .block-header{
-4: padding:1.25%;
-5: }
-6: 
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+  display: block; }
 
-Backtrace:
-sikumim/static/sass/base.scss:1
-sikumim/static/sass/register.scss:1
-/var/lib/gems/1.9.1/gems/sass-3.4.15/lib/sass/tree/import_node.rb:67:in `rescue in import'
-/var/lib/gems/1.9.1/gems/sass-3.4.15/lib/sass/tree/import_node.rb:45:in `import'
-/var/lib/gems/1.9.1/gems/sass-3.4.15/lib/sass/tree/import_node.rb:28:in `imported_file'
-/var/lib/gems/1.9.1/gems/sass-3.4.15/lib/sass/tree/import_node.rb:37:in `css_import?'
-/var/lib/gems/1.9.1/gems/sass-3.4.15/lib/sass/tree/visitors/perform.rb:311:in `visit_import'
-/var/lib/gems/1.9.1/gems/sass-3.4.15/lib/sass/tree/visitors/base.rb:36:in `visit'
-/var/lib/gems/1.9.1/gems/sass-3.4.15/lib/sass/tree/visitors/perform.rb:158:in `block in visit'
-/var/lib/gems/1.9.1/gems/sass-3.4.15/lib/sass/stack.rb:79:in `block in with_base'
-/var/lib/gems/1.9.1/gems/sass-3.4.15/lib/sass/stack.rb:115:in `with_frame'
-/var/lib/gems/1.9.1/gems/sass-3.4.15/lib/sass/stack.rb:79:in `with_base'
-/var/lib/gems/1.9.1/gems/sass-3.4.15/lib/sass/tree/visitors/perform.rb:158:in `visit'
-/var/lib/gems/1.9.1/gems/sass-3.4.15/lib/sass/tree/visitors/perform.rb:325:in `block (2 levels) in visit_import'
-/var/lib/gems/1.9.1/gems/sass-3.4.15/lib/sass/tree/visitors/perform.rb:325:in `map'
-/var/lib/gems/1.9.1/gems/sass-3.4.15/lib/sass/tree/visitors/perform.rb:325:in `block in visit_import'
-/var/lib/gems/1.9.1/gems/sass-3.4.15/lib/sass/stack.rb:88:in `block in with_import'
-/var/lib/gems/1.9.1/gems/sass-3.4.15/lib/sass/stack.rb:115:in `with_frame'
-/var/lib/gems/1.9.1/gems/sass-3.4.15/lib/sass/stack.rb:88:in `with_import'
-/var/lib/gems/1.9.1/gems/sass-3.4.15/lib/sass/tree/visitors/perform.rb:322:in `visit_import'
-/var/lib/gems/1.9.1/gems/sass-3.4.15/lib/sass/tree/visitors/base.rb:36:in `visit'
-/var/lib/gems/1.9.1/gems/sass-3.4.15/lib/sass/tree/visitors/perform.rb:158:in `block in visit'
-/var/lib/gems/1.9.1/gems/sass-3.4.15/lib/sass/stack.rb:79:in `block in with_base'
-/var/lib/gems/1.9.1/gems/sass-3.4.15/lib/sass/stack.rb:115:in `with_frame'
-/var/lib/gems/1.9.1/gems/sass-3.4.15/lib/sass/stack.rb:79:in `with_base'
-/var/lib/gems/1.9.1/gems/sass-3.4.15/lib/sass/tree/visitors/perform.rb:158:in `visit'
-/var/lib/gems/1.9.1/gems/sass-3.4.15/lib/sass/tree/visitors/base.rb:52:in `block in visit_children'
-/var/lib/gems/1.9.1/gems/sass-3.4.15/lib/sass/tree/visitors/base.rb:52:in `map'
-/var/lib/gems/1.9.1/gems/sass-3.4.15/lib/sass/tree/visitors/base.rb:52:in `visit_children'
-/var/lib/gems/1.9.1/gems/sass-3.4.15/lib/sass/tree/visitors/perform.rb:167:in `block in visit_children'
-/var/lib/gems/1.9.1/gems/sass-3.4.15/lib/sass/tree/visitors/perform.rb:179:in `with_environment'
-/var/lib/gems/1.9.1/gems/sass-3.4.15/lib/sass/tree/visitors/perform.rb:166:in `visit_children'
-/var/lib/gems/1.9.1/gems/sass-3.4.15/lib/sass/tree/visitors/base.rb:36:in `block in visit'
-/var/lib/gems/1.9.1/gems/sass-3.4.15/lib/sass/tree/visitors/perform.rb:186:in `visit_root'
-/var/lib/gems/1.9.1/gems/sass-3.4.15/lib/sass/tree/visitors/base.rb:36:in `visit'
-/var/lib/gems/1.9.1/gems/sass-3.4.15/lib/sass/tree/visitors/perform.rb:157:in `visit'
-/var/lib/gems/1.9.1/gems/sass-3.4.15/lib/sass/tree/visitors/perform.rb:8:in `visit'
-/var/lib/gems/1.9.1/gems/sass-3.4.15/lib/sass/tree/root_node.rb:36:in `css_tree'
-/var/lib/gems/1.9.1/gems/sass-3.4.15/lib/sass/tree/root_node.rb:29:in `render_with_sourcemap'
-/var/lib/gems/1.9.1/gems/sass-3.4.15/lib/sass/engine.rb:378:in `_render_with_sourcemap'
-/var/lib/gems/1.9.1/gems/sass-3.4.15/lib/sass/engine.rb:295:in `render_with_sourcemap'
-/var/lib/gems/1.9.1/gems/sass-3.4.15/lib/sass/plugin/compiler.rb:490:in `update_stylesheet'
-/var/lib/gems/1.9.1/gems/sass-3.4.15/lib/sass/plugin/compiler.rb:215:in `block in update_stylesheets'
-/var/lib/gems/1.9.1/gems/sass-3.4.15/lib/sass/plugin/compiler.rb:209:in `each'
-/var/lib/gems/1.9.1/gems/sass-3.4.15/lib/sass/plugin/compiler.rb:209:in `update_stylesheets'
-/var/lib/gems/1.9.1/gems/sass-3.4.15/lib/sass/plugin/compiler.rb:470:in `on_file_changed'
-/var/lib/gems/1.9.1/gems/sass-3.4.15/lib/sass/plugin/compiler.rb:328:in `block in watch'
-/var/lib/gems/1.9.1/gems/sass-3.4.15/vendor/listen/lib/listen/listener.rb:252:in `call'
-/var/lib/gems/1.9.1/gems/sass-3.4.15/vendor/listen/lib/listen/listener.rb:252:in `on_change'
-/var/lib/gems/1.9.1/gems/sass-3.4.15/vendor/listen/lib/listen/listener.rb:290:in `block in initialize_adapter'
-/var/lib/gems/1.9.1/gems/sass-3.4.15/vendor/listen/lib/listen/adapters/polling.rb:48:in `call'
-/var/lib/gems/1.9.1/gems/sass-3.4.15/vendor/listen/lib/listen/adapters/polling.rb:48:in `poll_changed_directories'
-/var/lib/gems/1.9.1/gems/sass-3.4.15/vendor/listen/lib/listen/adapter.rb:299:in `block in start_poller'
-*/
-body:before {
-  white-space: pre;
-  font-family: monospace;
-  content: "Error: File to import not found or unreadable: susy.\A        Load path: /home/david/sikumim_project/sikumim/static/sass\A         on line 1 of sikumim/static/sass/base.scss\A         from line 1 of sikumim/static/sass/register.scss\A \A 1: @import 'base';\A 2: \A 3: .block-header{\A 4: padding:1.25%;\A 5: }\A 6: "; }
+body {
+  line-height: 1; }
+
+ol, ul {
+  list-style: none; }
+
+blockquote, q {
+  quotes: none; }
+
+blockquote:before, blockquote:after,
+q:before, q:after {
+  content: '';
+  content: none; }
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0; }
+
+.row .col-1 {
+  float: right;
+  margin-right: 1.25%;
+  width: 10%; }
+  .row .col-1 .col-1 {
+    margin-right: 12.5%;
+    width: 100%; }
+  .row .col-1 .col-0 {
+    margin-right: 12.5%;
+    width: -12.5%; }
+.row .col-2 {
+  float: right;
+  margin-right: 1.25%;
+  width: 21.25%; }
+  .row .col-2 .col-1 {
+    margin-right: 5.88235%;
+    width: 47.05882%; }
+.row .col-3 {
+  float: right;
+  margin-right: 1.25%;
+  width: 32.5%; }
+  .row .col-3 .col-1 {
+    margin-right: 3.84615%;
+    width: 30.76923%; }
+  .row .col-3 .col-2 {
+    margin-right: 3.84615%;
+    width: 65.38462%; }
+.row .col-4 {
+  float: right;
+  margin-right: 1.25%;
+  width: 43.75%; }
+  .row .col-4 .col-1 {
+    margin-right: 2.85714%;
+    width: 22.85714%; }
+  .row .col-4 .col-2 {
+    margin-right: 2.85714%;
+    width: 48.57143%; }
+  .row .col-4 .col-3 {
+    margin-right: 2.85714%;
+    width: 74.28571%; }
+.row .col-5 {
+  float: right;
+  margin-right: 1.25%;
+  width: 55%; }
+  .row .col-5 .col-1 {
+    margin-right: 2.27273%;
+    width: 18.18182%; }
+  .row .col-5 .col-2 {
+    margin-right: 2.27273%;
+    width: 38.63636%; }
+  .row .col-5 .col-3 {
+    margin-right: 2.27273%;
+    width: 59.09091%; }
+  .row .col-5 .col-4 {
+    margin-right: 2.27273%;
+    width: 79.54545%; }
+.row .col-6 {
+  float: right;
+  margin-right: 1.25%;
+  width: 66.25%; }
+  .row .col-6 .col-1 {
+    margin-right: 1.88679%;
+    width: 15.09434%; }
+  .row .col-6 .col-2 {
+    margin-right: 1.88679%;
+    width: 32.07547%; }
+  .row .col-6 .col-3 {
+    margin-right: 1.88679%;
+    width: 49.0566%; }
+  .row .col-6 .col-4 {
+    margin-right: 1.88679%;
+    width: 66.03774%; }
+  .row .col-6 .col-5 {
+    margin-right: 1.88679%;
+    width: 83.01887%; }
+.row .col-7 {
+  float: right;
+  margin-right: 1.25%;
+  width: 77.5%; }
+  .row .col-7 .col-1 {
+    margin-right: 1.6129%;
+    width: 12.90323%; }
+  .row .col-7 .col-2 {
+    margin-right: 1.6129%;
+    width: 27.41935%; }
+  .row .col-7 .col-3 {
+    margin-right: 1.6129%;
+    width: 41.93548%; }
+  .row .col-7 .col-4 {
+    margin-right: 1.6129%;
+    width: 56.45161%; }
+  .row .col-7 .col-5 {
+    margin-right: 1.6129%;
+    width: 70.96774%; }
+  .row .col-7 .col-6 {
+    margin-right: 1.6129%;
+    width: 85.48387%; }
+.row .col-8 {
+  float: right;
+  margin-right: 1.25%;
+  width: 88.75%; }
+  .row .col-8 .col-1 {
+    margin-right: 1.40845%;
+    width: 11.26761%; }
+  .row .col-8 .col-2 {
+    margin-right: 1.40845%;
+    width: 23.94366%; }
+  .row .col-8 .col-3 {
+    margin-right: 1.40845%;
+    width: 36.61972%; }
+  .row .col-8 .col-4 {
+    margin-right: 1.40845%;
+    width: 49.29577%; }
+  .row .col-8 .col-5 {
+    margin-right: 1.40845%;
+    width: 61.97183%; }
+  .row .col-8 .col-6 {
+    margin-right: 1.40845%;
+    width: 74.64789%; }
+  .row .col-8 .col-7 {
+    margin-right: 1.40845%;
+    width: 87.32394%; }
+.row .col-9 {
+  float: right;
+  margin-right: 1.25%;
+  width: 100%; }
+  .row .col-9 .col-1 {
+    margin-right: 1.25%;
+    width: 10%; }
+  .row .col-9 .col-2 {
+    margin-right: 1.25%;
+    width: 21.25%; }
+  .row .col-9 .col-3 {
+    margin-right: 1.25%;
+    width: 32.5%; }
+  .row .col-9 .col-4 {
+    margin-right: 1.25%;
+    width: 43.75%; }
+  .row .col-9 .col-5 {
+    margin-right: 1.25%;
+    width: 55.0%; }
+  .row .col-9 .col-6 {
+    margin-right: 1.25%;
+    width: 66.25%; }
+  .row .col-9 .col-7 {
+    margin-right: 1.25%;
+    width: 77.5%; }
+  .row .col-9 .col-8 {
+    margin-right: 1.25%;
+    width: 88.75%; }
+.row > :first-child,
+.row .row > :first-child {
+  margin-right: 0; }
+
+.row:after {
+  clear: both;
+  content: ".";
+  display: block;
+  height: 0;
+  visibility: hidden; }
+
+/* fonts */
+/* box sizing */
+html {
+  box-sizing: border-box; }
+
+*, *:before, *:after {
+  box-sizing: inherit; }
+
+/* typography */
+body {
+  color: #3F3F3F;
+  font-size: 12px;
+  font-family: 'Arimo', 'sans-serif';
+  font-weight: 400;
+  line-height: 1.6; }
+
+h2, h3, h4, h5 {
+  font-family: 'Open Sans Hebrew', 'sans-serif'; }
+
+h2 {
+  font-size: 3.8em;
+  font-weight: 300; }
+
+h3 {
+  font-size: 2.7em; }
+
+h4 {
+  font-size: 1.5em;
+  font-weight: bold; }
+
+h5 {
+  font-size: 1.2em;
+  font-weight: bold; }
+
+/* default element styles */
+input, .button, input[type="submit"] {
+  padding: 0.5em;
+  border: none;
+  height: 2.5em;
+  font-size: 1.3em;
+  vertical-align: middle;
+  display: inline-block; }
+  input:focus, .button:focus {
+    outline: none; }
+
+.button, input[type="submit"], [type="submit"].button {
+  color: white;
+  background-color: #2b5797;
+  padding: 0.5em 1em 0.5em 1em; }
+  .button:hover, input[type="submit"]:hover {
+    background-color: #3765a8;
+    cursor: pointer; }
+
+/* fix for an annoying firefox bug */
+input::-moz-focus-inner, .button::-moz-focus-inner, input[type="submit"]::-moz-focus-inner {
+  border: 0;
+  padding: 0;
+  margin-top: -2px;
+  margin-bottom: -2px; }
+
+a {
+  border: none;
+  text-decoration: none; }
+
+blockquote {
+  background: #2b5797;
+  color: white;
+  font-size: 1.4em;
+  padding: 0.5em;
+  margin: 0.5em 0 0.5em 0; }
+
+.block-header {
+  background-color: #2b5797;
+  color: white;
+  padding: 0.5em; }
+
+.block {
+  font-size: 1.166666666666667em;
+  background-color: #f1f1f1;
+  padding: 1em; }
+
+.row {
+  margin-top: 1.25%; }
+  .row .row {
+    margin-top: 0; }
+
+/* skeleton styles */
+.container {
+  margin: 1.25% auto;
+  padding: 0 1.25%;
+  max-width: 1024px; }
+
+header {
+  display: table;
+  color: white;
+  background-color: #1ba1e2;
+  overflow: hidden;
+  width: 100%;
+  padding: 3em; }
+  header .logo_wrapper {
+    display: table-cell;
+    vertical-align: middle;
+    padding-left: 20px; }
+    header .logo_wrapper h1 {
+      text-indent: 100%;
+      overflow: hidden;
+      background-image: url(../images/logo.png);
+      width: 270px;
+      height: 121px; }
+  header .login {
+    vertical-align: middle;
+    display: table-cell; }
+    header .login form {
+      float: left;
+      background-color: #34b5e9;
+      padding: 1.5em; }
+      header .login form h4 {
+        margin-bottom: 10px; }
+      header .login form input[type="text"], header .login form [type="text"].button, header .login form input[type="password"], header .login form [type="password"].button {
+        width: 120px;
+        margin-left: 5px; }
+        header .login form input[type="text"]:focus, header .login form [type="text"].button:focus, header .login form input[type="password"]:focus, header .login form [type="password"].button:focus {
+          outline-offset: 0px;
+          outline: 2px solid #3765a8; }
+      header .login form .welcome_message {
+        display: inline-block;
+        vertical-align: middle;
+        margin-left: 10px;
+        margin-bottom: 0; }
+
+.error, .login_error, .block form p span {
+  margin-top: 10px;
+  font-weight: 600;
+  font-size: 1.2em;
+  background: #d45252;
+  border-radius: 3px 3px 3px 3px;
+  color: white;
+  padding: 10px 15px; }
+
+.login_error {
+  background: #d45252 url(../images/warning.png) no-repeat 10px 50%;
+  padding-left: 45px; }
+
+nav ol {
+  list-style: none;
+  padding: 0px;
+  margin: 0px; }
+  nav ol a {
+    display: table;
+    text-decoration: none; }
+    nav ol a li {
+      text-align: center;
+      color: white;
+      font-family: "open sans hebrew", 'sans-serif';
+      font-size: 1.9em;
+      font-weight: 400;
+      display: table-cell;
+      vertical-align: middle;
+      height: 2.47em;
+      width: 100%; }
+  nav ol > :nth-child(1) {
+    background: #339933; }
+  nav ol > :nth-child(2) {
+    background: #f29808; }
+  nav ol > :nth-child(3) {
+    background: #a200ff; }
+  nav ol > :nth-child(4) {
+    background: #e61300; }
+  nav ol > :nth-child(5) {
+    background: #8cc026; }
+  nav ol > :nth-child(6) {
+    background: #00aeab; }
+
+.search-box {
+  width: 100%;
+  border: 3px solid #2b5797;
+  padding: 0.5em;
+  overflow: hidden; }
+  .search-box input[type="text"], .search-box [type="text"].button {
+    width: 75%;
+    font-size: 1.3em; }
+  .search-box input[type="submit"], .search-box [type="submit"].button {
+    float: left;
+    width: 25%;
+    max-width: 90px;
+    font-size: 1.3em;
+    line-height: 1em; }
+
+footer {
+  color: white;
+  background-color: #1ba1e2;
+  text-align: center;
+  font-size: 1.5em;
+  padding: 1em;
+  margin-top: 1.25%;
+  margin-bottom: gutter_percent; }
+
+/* colors */
+.english {
+  background-color: #339933; }
+  ol .english:hover {
+    background-color: #3fbf3f; }
+
+.bible {
+  background-color: #f29808; }
+  ol .bible:hover {
+    background-color: #f8ad35; }
+
+.history {
+  background-color: #a200ff; }
+  ol .history:hover {
+    background-color: #b433ff; }
+
+.civics {
+  background-color: #e61300; }
+  ol .civics:hover {
+    background-color: #ff5b4c; }
+
+.language {
+  background-color: #8cc026; }
+  ol .language:hover {
+    background-color: #9cd52a; }
+
+.literature {
+  background-color: #00aeab; }
+  ol .literature:hover {
+    background-color: #00ccc9; }
+
+.block-header {
+  padding: 1.25%; }
+
+h4, h2 {
+  text-align: center; }
+
+.block form h5 {
+  margin-bottom: 0.5%;
+  font-weight: 600; }
+
+.block form input, .block form .button {
+  margin-bottom: 1.5%;
+  font-size: 1.5em; }
+
+.block form input[type="submit"], .block form [type="submit"].button {
+  margin-top: 1.5%; }
+
+.invalid {
+  background: #fff url(../images/invalid.png) no-repeat 5% center;
+  border: 1px solid #d45252; }
+
+.block form p {
+  position: relative;
+  display: inline-block; }
+
+.block form p span {
+  margin-left: 8px;
+  z-index: 999;
+  /* hints stay above all other elements */
+  position: relative;
+  /* allows proper formatting if hint is two lines */
+  right: 20px; }
+  .block form p span:before {
+    content: "\25b6";
+    color: #d45252;
+    position: absolute;
+    top: 4px;
+    right: -12px; }
+
+.block input[type="submit"], .block [type="submit"].button {
+  display: block; }
+
+/*# sourceMappingURL=register.css.map */

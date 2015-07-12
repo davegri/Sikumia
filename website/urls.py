@@ -9,4 +9,5 @@ urlpatterns = [
     url(r'^logout/$', views.logout, name='logout'),
     url(r'^subject/(?P<subject>\w+)/$', views.subject, name='subject'),
     url(r'^subject/(?P<subject>\w+)/(?P<pk>\d+)/$', views.summary, name='summary'),
+    url(r'^rate_summary/$', views.rate_summary, name='rate_summary'),
 ]

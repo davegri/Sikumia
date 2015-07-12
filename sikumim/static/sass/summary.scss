@@ -1,11 +1,56 @@
 @import 'colors';
 @import 'grid_system';
+
+
+*:lang(eng){
+ direction: ltr;
+}
+
 .block-header{
 margin-top: $gutter_percent;
-padding: $gutter_percent;
+padding: $gutter_percent $gutter_percent*2;
+line-height:3.5em;
 }
 
 .content{
 padding: 2em;
 @import 'summary_content';
+}
+
+
+.options-bar{
+	margin-top:5px;
+width:100%;
+display:table;
+background-color: $light_blue_highlight;
+padding: $gutter_percent;
+border: 5px solid $light_blue;
+.rating-module, .search-module{
+	display:table-cell;
+	width: 50%;
+	.button{
+		margin-left: $gutter_percent;
+		border: 3px solid $dark_blue;
+		height: auto;
+	}
+	.selected{
+		background-color: $grey;
+		border: 3px solid $dark_blue;
+		color: $dark_blue;
+		height: auto;
+	}
+	h4{
+		display: inline-block;
+		vertical-align: middle;
+		margin-left: 5%;
+		color: white;
+	}
+}
+
+.search-module{
+	text-align: left;
+	.button{
+		margin:0;
+	}
+}
 }

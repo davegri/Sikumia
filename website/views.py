@@ -2,7 +2,7 @@
 
 from django.shortcuts import render
 from django.http import HttpResponse
-from django.shortcuts import redirect
+from django.shortcuts import redirect, get_object_or_404
 from website.models import Summary
 from django.core.paginator import Paginator, InvalidPage, EmptyPage
 from website.forms import UserForm
@@ -87,7 +87,6 @@ def subject(request, subject):
 
 
 def summary(request, subject, pk):
-
     try:
         summary = Summary.objects.get(pk=pk)
     except Summary.DoesNotExist:
@@ -100,9 +99,43 @@ def summary(request, subject, pk):
 
     return render(request, 'summary.html', context_dict)
 
+
+def rate_summary(request):
+    summary_id = int(request.POST.get('id'))
+    rate_type = request.POST.get('type')
+    rate_action = request.POST.get('action')
+    summary = get_object_or_404(Summary, pk=summary_id)
+    thisUserPositiveRatings = summary.positive_ratings.filter(id=request.user.id).count()
+    thisUserNegativeRatings = summary.negative_ratings.filter(id=request.user.id).count()
+    ratings_to_return = -1
+    if rate_action == 'rate':
+        if thisUserPositiveRatings == 0 and thisUserNegativeRatings == 0:
+            if rate_type == 'positive':
+                summary.positive_ratings.add(request.user)
+                ratings_to_return = summary.positive_ratings.count()
+            elif rate_type == 'negative':
+                summary.negative_ratings.add(request.user)
+                ratings_to_return = summary.negative_ratings.count()
+            else:
+                return HttpResponse("RATING ERROR: rate_type must be either \"positive\" or \"negative\" ")
+        else:
+            return HttpResponse("RATING ERROR: %s has already rated this summary " %request.user.username)
+    elif rate_action == 'undo-rate':
+        if rate_type == 'positive' and thisUserPositiveRatings == 1:
+            summary.positive_ratings.remove(request.user)
+            ratings_to_return = summary.positive_ratings.count()
+        elif rate_type == 'negative' and thisUserNegativeRatings == 1:
+            summary.negative_ratings.remove(request.user)
+            ratings_to_return = summary.negative_ratings.count()
+        else:
+            return HttpResponse("RATING ERROR: unkown rating type OR user hasen't rated this summary")
+    else:
+        return HttpResponse("RATING ERROR: bad rate_action")
+
+
+    return HttpResponse(ratings_to_return)
+
 #register page
-
-
 def register(request):
     registered = False
     if request.method == 'POST':
