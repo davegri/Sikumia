@@ -14,4 +14,3 @@ ALLOWED_HOSTS = ['*']
 
 STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
 
-ADMINS = (('David', 'dgriver@gmail.com'),)
