@@ -341,9 +341,7 @@
   white-space: pre-line;
   /* CSS 3 (and 2.1 as well, actually) */
   word-wrap: break-word;
-  /* IE */
-  -moz-binding: url("xbl.xml#wordwrap");
-  /* Firefox (using XBL) */ }
+  /* IE */ }
   .comment-content p {
     margin: 0px;
     text-align: right; }
