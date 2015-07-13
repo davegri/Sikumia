@@ -6,23 +6,23 @@
         <link href='http://fonts.googleapis.com/css?family=Alef:400,700&subset=latin,hebrew' rel='stylesheet' type='text/css'>
         <LINK href="{% static "css/base.css" %}" rel="stylesheet" type="text/css">
         <script src="{% static "js/jquery.js" %}"></script>
+                <script>
+        $(document).ready(function () {
+        $(".search-panel").hide();
+        $("#search_form [type='text']")
+        .focus(function () {
+        $(".search-panel").slideDown("fast");
+        });
+        $(document).click(function(e) {
+        if( !( $(e.target).is('#search_form *')) ){
+        $(".search-panel").slideUp("fast");
+        }
+        });
+        });
+        </script>
         {% block head %}{% endblock %}
         <LINK href="{% static "css/responsive.css" %}" rel="stylesheet" type="text/css">
         <meta charset="UTF-8">
-        <meta name="viewport" content="target-densitydpi=160">
-        <script>
-        $(document).ready(function() {
-            $( ".search-panel" ).hide();
-            $("#search_form [type='text']")
-            .click(function(){
-                $( ".search-panel" ).slideDown( "fast" );
-            })
-            .focusout(function() {
-                $( ".search-panel" ).slideUp( "fast" );
-            });
-        });
-
-        </script>
     </head>
     <body>
         <div class="container">
@@ -55,41 +55,66 @@
                     {% endif %}
                 </div>
             </header>
-            <div class="row">
-                <nav class="col-6">
-                    <ol class="row">
-                        <a href="{% url 'subject' 'english'%}" class='col-1'>
-                            <li class='english'>אנגלית</li>
-                        </a>
-                        <a href='{% url 'subject' 'bible'%}' class='col-1'>
-                            <li class='bible'>תנך</li>
-                        </a>
-                        <a href='{% url 'subject' 'history'%}' class='col-1'>
-                            <li class='history'>היסטוריה</li>
-                        </a>
-                        <a href='{% url 'subject' 'civics'%}' class='col-1'>
-                            <li class='civics'>אזרחות</li>
-                        </a>
-                        <a href='{% url 'subject' 'language'%}' class='col-1'>
-                            <li class='language'>לשון</li>
-                        </a>
-                        <a href='{% url 'subject' 'literature'%}' class='col-1'>
-                            <li class='literature'>ספרות</li>
-                        </a>
-                    </ol>
-                </nav>
-                <div class="search-box col-3">
-                    <form id="search_form" method="get" action="{% url 'results' %}">
+            <form id="search_form" method="get" action="{% url 'results' %}">
+                <div class="row">
+                    <nav class="col-6">
+                        <ol class="row">
+                            <a href="{% url 'subject' 'english'%}" class='col-1'>
+                                <li class='english'>אנגלית</li>
+                            </a>
+                            <a href='{% url 'subject' 'bible'%}' class='col-1'>
+                                <li class='bible'>תנך</li>
+                            </a>
+                            <a href='{% url 'subject' 'history'%}' class='col-1'>
+                                <li class='history'>היסטוריה</li>
+                            </a>
+                            <a href='{% url 'subject' 'civics'%}' class='col-1'>
+                                <li class='civics'>אזרחות</li>
+                            </a>
+                            <a href='{% url 'subject' 'language'%}' class='col-1'>
+                                <li class='language'>לשון</li>
+                            </a>
+                            <a href='{% url 'subject' 'literature'%}' class='col-1'>
+                                <li class='literature'>ספרות</li>
+                            </a>
+                        </ol>
+                    </nav>
+                    <div class="search-box col-3">
+                        
                         <input type="text"  name="q" placeholder="הקלד מילות חיפוש">
                         <input type="submit" value="חפש">
-                    </form>
+                        
+                    </div>
                 </div>
-            </div>
-                        <div class="row">
-                <div class='col-9 search-panel'>
-                    
+                <div class="row">
+                    <div class='col-9 search-panel'>
+                        <div class="ck-button">
+                            <label>
+                                <input type="checkbox" name="10" value="True" checked><span>כיתה י'</span></input>
+                            </label>
+                        </div>
+                        <div class="ck-button">
+                            <label>
+                                <input type="checkbox" name="11" value="True" checked><span>כיתה יא'</span></input>
+                            </label>
+                        </div>
+                        <div class="ck-button">
+                            <label>
+                                <input type="checkbox" name="12" value="True" checked><span>כיתה יב'</span></input>
+                            </label>
+                        </div>
+                        <select class="dropdown" name="subject" >
+                            <option value="all" selected>בחר מקצוע</option>
+                            <option value="english">אנגלית</option>
+                            <option value="bible">תנ"ך</option>
+                            <option value="history">היסטוריה</option>
+                            <option value="civics">אזרחות</option>
+                            <option value="language">לשון</option>
+                            <option value="literature">ספרות</option>
+                        </select>
+                    </div>
                 </div>
-            </div>
+            </form>
             {% block body %}{% endblock %}
         <footer>2013 © כל הזכויות שמורות לסיכומים.נט</footer>
     </div>

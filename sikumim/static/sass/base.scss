@@ -281,7 +281,45 @@ nav {
 
 .search-panel{
     background-color: $dark_blue;
-    height: 60px;
+    padding: 0.5em;
+    font-size: 1.3em;
+
+}
+
+.ck-button {
+    margin:4px;
+    background-color:#E8E8E8 ;
+    color: #787878 ;
+    border-radius:3px;
+    overflow:auto;
+    display: inline-block;
+    vertical-align: middle;
+    &:hover{
+
+    }
+}
+
+.ck-button label span {
+    text-align:center;
+    display:block;
+    padding: 0.5em 1.5em;
+}
+
+.ck-button label input {
+    position:absolute;
+    top:-50px;
+}
+
+.ck-button input:checked + span {
+    background-color:$light_blue;
+    color:#fff;
+    &:hover{
+        background-color: $light_blue_highlight;
+    }
+}
+
+select{
+    padding: 0.8em 1.5em;
 }
 
 footer {

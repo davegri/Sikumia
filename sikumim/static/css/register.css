@@ -396,7 +396,35 @@ nav ol {
 
 .search-panel {
   background-color: #2b5797;
-  height: 60px; }
+  padding: 0.5em;
+  font-size: 1.3em; }
+
+.ck-button {
+  margin: 4px;
+  background-color: #E8E8E8;
+  color: #787878;
+  border-radius: 3px;
+  overflow: auto;
+  display: inline-block;
+  vertical-align: middle; }
+
+.ck-button label span {
+  text-align: center;
+  display: block;
+  padding: 0.5em 1.5em; }
+
+.ck-button label input, .ck-button label .button {
+  position: absolute;
+  top: -50px; }
+
+.ck-button input:checked + span, .ck-button .button:checked + span {
+  background-color: #1ba1e2;
+  color: #fff; }
+  .ck-button input:checked + span:hover, .ck-button .button:checked + span:hover {
+    background-color: #34b5e9; }
+
+select {
+  padding: 0.8em 1.5em; }
 
 footer {
   color: white;

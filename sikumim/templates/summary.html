@@ -1,124 +1,64 @@
 {% extends 'base.html' %}
 {% load staticfiles %}
 {% block head %}
-<script>
-function getCookie(name) {
-    var cookieValue = null;
-    if (document.cookie && document.cookie != '') {
-        var cookies = document.cookie.split(';');
-        for (var i = 0; i < cookies.length; i++) {
-            var cookie = jQuery.trim(cookies[i]);
-            // Does this cookie string begin with the name we want?
-            if (cookie.substring(0, name.length + 1) == (name + '=')) {
-                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
-                break;
-            }
-        }
-    }
-    return cookieValue;
-}
-
-	var csrftoken = getCookie('csrftoken');
-
-function csrfSafeMethod(method) {
-    // these HTTP methods do not require CSRF protection
-    return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method));
-}
-$.ajaxSetup({
-    beforeSend: function(xhr, settings) {
-        if (!csrfSafeMethod(settings.type) && !this.crossDomain) {
-            xhr.setRequestHeader("X-CSRFToken", csrftoken);
-        }
-    }
-});
-
-	$(document).ready(function() {
-	$('a.positive').click(function(){
+	<link href=" {% static "css/summary.css" %}" rel=stylesheet type="text/css">
+	<script src=" {% static "js/rating-ajax.js" %}"></script>
+	<script>
 		var id = {{ summary.id }};
-		var rate_type = 'positive';
-		if($(this).hasClass('selected')){
-			var rate_action = 'undo-rate';
-			$.post({% url 'rate_summary' %},
-			{id:id, type:rate_type, action:rate_action},
-			function(response){
-				if($.isNumeric(response)){
-					$('a.positive').removeClass('selected')
-					.html('אהבתי  ('+response+')');
-				}
-			});
-		} 
-		else{
-			var rate_action = 'rate';
-			$.post({% url 'rate_summary' %},
-			{id:id, type:rate_type, action:rate_action},
-			function(response){
-				if($.isNumeric(response)){
-					$('a.positive').addClass('selected')
-					.html('אהבתי  ('+response+')');
-				}
-			});
-
-		}
-	});
-		$('a.negative').click(function(){
-		var id = {{ summary.id }};
-		var rate_type = 'negative';
-		if($(this).hasClass('selected')){
-			var rate_action = 'undo-rate';
-			$.post({% url 'rate_summary' %},
-			{id:id, type:rate_type, action:rate_action},
-			function(response){
-				if($.isNumeric(response)){
-					$('a.negative').removeClass('selected')
-					.html('לא משהו  ('+response+')');
-				}
-			});
-		} 
-		else{
-			var rate_action = 'rate';
-			$.post({% url 'rate_summary' %},
-			{id:id, type:rate_type, action:rate_action},
-			function(response){
-				if($.isNumeric(response)){
-					$('a.negative').addClass('selected')
-					.html('לא משהו  ('+response+')');
-				}
-			});
-
-		}
-	});
-});
-</script>
-<link href=" {% static "css/summary.css" %}" rel=stylesheet type="text/css">
+		var url = {% url 'rate_summary' %} ;
+	</script>
 {% endblock %}
-
-
 {% block body %}
+	<div class="block-header {{ subject }}">
+		<h3>{{ summary.title }}</h3>
+		<span>{{ summary.views.count }} צפיות</span>
+		<span>
+		</div>
+		{% if user.is_authenticated %}
+			<div class='options-bar'>
+				<div class="rating-module">
+					<h4>איך הסיכום?</h4>
+					<a class='button positive {% if user in summary.positive_ratings.all %}selected{% endif %} '>אהבתי  ({{ summary.positive_ratings.count }})</a>
+					<a class='button negative {% if user in summary.negative_ratings.all %}selected{% endif %} '>לא משהו  ({{ summary.negative_ratings.count }})</a>
+				</div>
+				<div class="favorites-module">
+					<a class='button'>הוסף למועדפים</a>
+				</div>
+			</div>
+		{% endif %}
+		<div class="block">
+			<div class="content">
+				{{ summary.content|safe}}
+			</div>
+		</div>
+		<div class="block-header"><h3>תגובות</h3></div>
+		<ol class="comments-wrapper">
+		{% for comment in summary.comments.all %}
+			<li>
+				<span class="comment-info">
+					<p class="author">{{ comment.user }}</p>
+					<p class="timestamp">{{ comment.date_created |date:"SHORT_DATETIME_FORMAT"  }}</p>
+				</span>
+				<span class="comment-content">
+					<p>{{ comment.content }}</p>
+				</span>
+			</li>
+		{% endfor %}
+		{% if user.is_authenticated %}
+		<form method="post" action="">
+		{% csrf_token %}
+			<li id="addComment">
+				<span class="comment-info">
+					<p class="author">{{ user.username }}</p>
+					<p class="timestamp" dir="ltr">{% now "SHORT_DATETIME_FORMAT" %}</p>
+				</span>
+				<span class="comment-content">
+					{{ comment_form.content }}
+					<input type="submit" value="הוסף תגובה" name="submitComment">
+				</span>
+			</li>
+		</form>
+		{% endif %}
+		</ol>
 
-<div class="block-header {{ subject }}">
-    <h3>{{ summary.title }}</h3>
-    <span>{{ summary.views.count }} צפיות</span>
-    <span>
-</div>
-{% if user.is_authenticated %}
-<div class='options-bar'>
-	<div class="rating-module">
-			<h4>איך הסיכום?</h4>
-	    	<a class='button positive {% if user in summary.positive_ratings.all %}selected{% endif %} '>אהבתי  ({{ summary.positive_ratings.count }})</a>
-	    	<a class='button negative {% if user in summary.negative_ratings.all %}selected{% endif %} '>לא משהו  ({{ summary.negative_ratings.count }})</a>
-	</div>
-	<div class="search-module">
-	    	<a class='button'>הוסף למועדפים</a>
-	</div> 
-</div>
-	{% endif %}
-<div class="block">
-    <div class="content">
-        {{ summary.content|safe}}
-    </div>
-</div>
-
-
-
-
-{% endblock %}
+	{% endblock %}

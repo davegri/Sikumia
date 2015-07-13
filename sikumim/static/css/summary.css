@@ -316,9 +316,79 @@
       vertical-align: middle;
       margin-left: 5%;
       color: white; }
-  .options-bar .search-module {
+  .options-bar .favorites-module {
     text-align: left; }
-    .options-bar .search-module .button {
+    .options-bar .favorites-module .button {
       margin: 0; }
+
+.comment-content {
+  background-color: #d7e4ed;
+  padding: 20px;
+  width: 50%;
+  display: inline-block;
+  position: relative;
+  margin-right: 20px;
+  white-space: -moz-pre-wrap;
+  /* Mozilla */
+  white-space: -hp-pre-wrap;
+  /* HP printers */
+  white-space: -o-pre-wrap;
+  /* Opera 7 */
+  white-space: -pre-wrap;
+  /* Opera 4-6 */
+  white-space: pre-wrap;
+  /* CSS 2.1 */
+  white-space: pre-line;
+  /* CSS 3 (and 2.1 as well, actually) */
+  word-wrap: break-word;
+  /* IE */
+  -moz-binding: url("xbl.xml#wordwrap");
+  /* Firefox (using XBL) */ }
+  .comment-content p {
+    margin: 0px;
+    text-align: right; }
+
+.comment-content:after {
+  content: "";
+  position: absolute;
+  top: 9px;
+  right: -15px;
+  border-top: 15px solid transparent;
+  border-bottom: 15px solid transparent;
+  border-left: 22.5px solid #d7e4ed;
+  display: block;
+  width: 0;
+  height: 0;
+  z-index: 1; }
+
+.author {
+  margin: 0px;
+  font-size: 22px; }
+
+.timestamp {
+  margin: 0px;
+  font-size: 12px;
+  line-height: 10px;
+  direction: ltr; }
+
+.comment-info {
+  display: inline-block;
+  position: relative;
+  margin-left: 15px;
+  vertical-align: top;
+  min-width: 12%; }
+
+.comments-wrapper li {
+  margin-right: 20px;
+  margin-top: 20px;
+  margin-left: 0px;
+  list-style: none;
+  text-align: right; }
+
+textarea {
+  padding: 10px;
+  resize: none;
+  width: 100%;
+  height: 150px; }
 
 /*# sourceMappingURL=summary.css.map */

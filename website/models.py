@@ -16,7 +16,6 @@ class SummaryManager(models.Manager):
 
 
 class Summary(models.Model):
-
     subjects = (
         ('english', 'english'),
         ('bible', 'bible'),
@@ -82,3 +81,11 @@ class SummaryView(models.Model):
     ip = models.CharField(max_length=40)
     session = models.CharField(max_length=40)
     date_created = models.DateTimeField(default=django.utils.timezone.now)
+
+class Comment(models.Model):
+    summary = models.ForeignKey(Summary, related_name='comments')
+    user = models.ForeignKey(User, related_name='comments')
+    content = models.TextField()
+    date_created = models.DateTimeField(auto_now_add=True)
+    date_edited = models.DateTimeField(auto_now=True)
+

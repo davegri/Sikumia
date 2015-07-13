@@ -3,6 +3,13 @@
 {% load website_extras %}
 {% block head%}
     <link href="{% static "css/results.css" %}" rel="stylesheet" type="text/css">
+    <script type="text/javascript">
+    $(document).ready(function () {
+    $(".search-panel").show();
+    $(".search-panel").off();
+    $(document).off();
+});
+    </script>
 {% endblock %}
 {% block body %}
     {% if summaries %}

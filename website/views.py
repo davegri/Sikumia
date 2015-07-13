@@ -5,9 +5,10 @@ from django.http import HttpResponse
 from django.shortcuts import redirect, get_object_or_404
 from website.models import Summary, SummaryView
 from django.core.paginator import Paginator, InvalidPage, EmptyPage
-from website.forms import UserForm
+from website.forms import UserForm, CommentForm
 from django.template import RequestContext
 from django.contrib.auth import authenticate, login as django_login, logout as django_logout
+from django.contrib.auth.models import User
 from django.core.urlresolvers import resolve
 from django.contrib import messages
 import datetime
@@ -94,10 +95,6 @@ def summary(request, subject, pk):
     except Summary.DoesNotExist:
         summary = "DOES NOT EXIST!"
 
-    context_dict = {
-        'subject': subject,
-        'summary': summary,
-    }
     request.session.save()
     if not SummaryView.objects.filter(summary=summary, session=request.session.session_key):
         view = SummaryView(summary=summary,
@@ -106,6 +103,23 @@ def summary(request, subject, pk):
                            session=request.session.session_key)
         view.save()
 
+    if request.method == 'POST':
+        comment_form = CommentForm(data=request.POST)
+        if comment_form.is_valid():
+            comment = comment_form.save(commit=False)
+            comment.user = User.objects.get(id=request.user.id)
+            comment.summary = summary
+            comment.save()
+        else:
+            print(comment_form.errors)
+    else:
+        comment_form = CommentForm()
+
+    context_dict = {
+        'subject': subject,
+        'summary': summary,
+        'comment_form': comment_form
+    }
     return render(request, 'summary.html', context_dict)
 
 
@@ -169,19 +183,31 @@ def register(request):
          'registered': registered})
 
 
+
 def results(request):
     # get search query from the GET parameter in the url q
-    query = request.GET.get('q', 'deafult')
+    query = request.GET.get('q', '')
+    subject = request.GET.get('subject', '')
     # create a list of words in the query
     querylist = query.split()
-    # if list is not empty find summaries that contain any word on the list in either the title or content, sorted by wilson score
+    # if list is not empty find summaries that contain any word on the list in
+    # either the title or content, sorted by wilson score
     if querylist:
-        summaries_list = Summary.objects.sortedByScore(
-            reduce(operator.or_, ((Q(title__contains=x) | Q(content__contains=x)) for x in querylist)))
+        containsQuery = reduce(operator.or_, ((Q(title__contains=x) | Q(content__contains=x)) for x in querylist))
+        if subject == "all":
+            summaries_list = Summary.objects.sortedByScore(containsQuery)
+        else:   
+            summaries_list = Summary.objects.sortedByScore(containsQuery & Q(subject=subject))
     # if list is empty just returns all summaries sorted by wilson score
     else:
-        summaries_list = Summary.objects.sortedByScore()
-    # if no matches are found render the template with and empty context dictionary
+        if subject == "all":
+            summaries_list = Summary.objects.sortedByScore()
+        else:
+            summaries_list = Summary.objects.sortedByScore(subject=subject)
+
+
+    # if no matches are found render the template with and empty context
+    # dictionary
     if not summaries_list:
         return render(request, 'results.html', {})
 
