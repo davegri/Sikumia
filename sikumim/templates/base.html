@@ -1,83 +1,98 @@
 <!DOCTYPE html>
 <html dir="rtl">
-{% load staticfiles %}
+    {% load staticfiles %}
+    <head>
+        <title>sikumim</title>
+        <link href='http://fonts.googleapis.com/css?family=Alef:400,700&subset=latin,hebrew' rel='stylesheet' type='text/css'>
+        <LINK href="{% static "css/base.css" %}" rel="stylesheet" type="text/css">
+        <script src="{% static "js/jquery.js" %}"></script>
+        {% block head %}{% endblock %}
+        <LINK href="{% static "css/responsive.css" %}" rel="stylesheet" type="text/css">
+        <meta charset="UTF-8">
+        <meta name="viewport" content="target-densitydpi=160">
+        <script>
+        $(document).ready(function() {
+            $( ".search-panel" ).hide();
+            $("#search_form [type='text']")
+            .click(function(){
+                $( ".search-panel" ).slideDown( "fast" );
+            })
+            .focusout(function() {
+                $( ".search-panel" ).slideUp( "fast" );
+            });
+        });
 
-<head>
-    <title>sikumim</title>
-    <link href='http://fonts.googleapis.com/css?family=Alef:400,700&subset=latin,hebrew' rel='stylesheet' type='text/css'>
-    <LINK href="{% static "css/base.css" %}" rel="stylesheet" type="text/css">
-    <script src="{% static "js/jquery.js" %}"></script>
-     {% block head %}{% endblock %}
-    <LINK href="{% static "css/responsive.css" %}" rel="stylesheet" type="text/css">
-    <meta charset="UTF-8">
-
-</head>
-
-<body>
-    <div class="container">
-        <header>
-            <a href="{% url 'index' %}" class="logo_wrapper"><h1>סיכומים.נט</h1></a>
-            <div class="login">
-            {% if user.is_authenticated %}
-                <form id='logout_form' method="post" action="{% url 'logout' %}">
-                    {% csrf_token %}
-                    <h4 class="welcome_message">ברוך הבא <strong>{{ user.username }}</strong></h4>
-                    <input type="submit" id="logout" name="logout" value="התנתק">
-                    <a href='' class="button">פרופיל</a>
-                    {% if user.is_staff %}<a href='/admin' class="button">פאנל ניהול</a>{% endif %}
-                    
-                </form>
-            {% else %}
-                <form id="login_form" method="post" action='{% url 'login' %}'>
-                {% csrf_token %}
-                    <h4>התחברות משתמשים רשומים</h4>
-                    <input type="text" id="login_username" name="login_username" placeholder="משתמש">
-                    <input type="password" id="login_password" name="login_password" placeholder="סיסמא">
-                    <input type="submit" id="login_submit" name="login_submit" value="התחבר">
-                    {% if messages %}
-                     {% for message in messages %}
-                    <div class='login_error'>{{ message }}</div>
-                    {% endfor %}
+        </script>
+    </head>
+    <body>
+        <div class="container">
+            <header>
+                <a href="{% url 'index' %}" class="logo_wrapper"><h1>סיכומים.נט</h1></a>
+                <div class="login">
+                    {% if user.is_authenticated %}
+                        <form id='logout_form' method="post" action="{% url 'logout' %}">
+                            {% csrf_token %}
+                            <h4 class="welcome_message">ברוך הבא <strong>{{ user.username }}</strong></h4>
+                            <input type="submit" id="logout" name="logout" value="התנתק">
+                            <a href='' class="button">פרופיל</a>
+                            {% if user.is_staff %}<a href='/admin' class="button">פאנל ניהול</a>{% endif %}
+                            
+                        </form>
+                    {% else %}
+                        <form id="login_form" method="post" action='{% url 'login' %}'>
+                            {% csrf_token %}
+                            <h4>התחברות משתמשים רשומים</h4>
+                            <input type="text" id="login_username" name="login_username" placeholder="משתמש">
+                            <input type="password" id="login_password" name="login_password" placeholder="סיסמא">
+                            <input type="submit" id="login_submit" name="login_submit" value="התחבר">
+                            {% if messages %}
+                                {% for message in messages %}
+                                    <div class='login_error'>{{ message }}</div>
+                                {% endfor %}
+                            {% endif %}
+                            <div class="lock"></div>
+                        </form>
                     {% endif %}
-                    <div class="lock"></div>
-                </form>
-            {% endif %}
+                </div>
+            </header>
+            <div class="row">
+                <nav class="col-6">
+                    <ol class="row">
+                        <a href="{% url 'subject' 'english'%}" class='col-1'>
+                            <li class='english'>אנגלית</li>
+                        </a>
+                        <a href='{% url 'subject' 'bible'%}' class='col-1'>
+                            <li class='bible'>תנך</li>
+                        </a>
+                        <a href='{% url 'subject' 'history'%}' class='col-1'>
+                            <li class='history'>היסטוריה</li>
+                        </a>
+                        <a href='{% url 'subject' 'civics'%}' class='col-1'>
+                            <li class='civics'>אזרחות</li>
+                        </a>
+                        <a href='{% url 'subject' 'language'%}' class='col-1'>
+                            <li class='language'>לשון</li>
+                        </a>
+                        <a href='{% url 'subject' 'literature'%}' class='col-1'>
+                            <li class='literature'>ספרות</li>
+                        </a>
+                    </ol>
+                </nav>
+                <div class="search-box col-3">
+                    <form id="search_form" method="get" action="{% url 'results' %}">
+                        <input type="text"  name="q" placeholder="הקלד מילות חיפוש">
+                        <input type="submit" value="חפש">
+                    </form>
+                </div>
             </div>
-        </header>
-        <div class="row">
-            <nav class="col-6">
-                <ol class="row">
-                    <a href="{% url 'subject' 'english'%}" class='col-1'>
-                        <li class='english'>אנגלית</li>
-                    </a>
-                    <a href='{% url 'subject' 'bible'%}' class='col-1'>
-                        <li class='bible'>תנך</li>
-                    </a>
-                    <a href='{% url 'subject' 'history'%}' class='col-1'>
-                        <li class='history'>היסטוריה</li>
-                    </a>
-                    <a href='{% url 'subject' 'civics'%}' class='col-1'>
-                        <li class='civics'>אזרחות</li>
-                    </a>
-                    <a href='{% url 'subject' 'language'%}' class='col-1'>
-                        <li class='language'>לשון</li>
-                    </a>
-                    <a href='{% url 'subject' 'literature'%}' class='col-1'>
-                        <li class='literature'>ספרות</li>
-                    </a>
-                </ol>
-            </nav>
-            <div class="search-box col-3">
-            <form id="search_form" method="get" action="{% url 'results' %}">
-                <input type="text"  name="q" placeholder="הקלד מילות חיפוש">
-                <input type="submit" value="חפש">
-            </form>
+                        <div class="row">
+                <div class='col-9 search-panel'>
+                    
+                </div>
             </div>
-        </div>
-        {% block body %}{% endblock %}
+            {% block body %}{% endblock %}
         <footer>2013 © כל הזכויות שמורות לסיכומים.נט</footer>
     </div>
-    </div>
+</div>
 </body>
-
 </html>

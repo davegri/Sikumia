@@ -11,13 +11,15 @@ from django.contrib.auth import authenticate, login as django_login, logout as d
 from django.core.urlresolvers import resolve
 from django.contrib import messages
 import datetime
+import operator
 from django.db.models import Q
+
+from functools import reduce
 
 
 def index(request):
     context_dict = {}
     return render(request, 'index.html', context_dict)
-
 
 
 def login(request):
@@ -26,13 +28,14 @@ def login(request):
         password = request.POST.get('login_password')
 
         user = authenticate(username=username, password=password)
-
         if not user:
-            messages.add_message(request, messages.INFO, 'שם משתמש או סיסמא אינם נכונים') 
+            messages.add_message(
+                request, messages.INFO, 'שם משתמש או סיסמא אינם נכונים')
         elif not user.is_active:
-            messages.add_message(request, messages.INFO, 'חשבונך נחסם, אם הינך חושב שזאת טעות צור קשר עם מנהל בהקדם.') 
+            messages.add_message(
+                request, messages.INFO, 'חשבונך נחסם, אם הינך חושב שזאת טעות צור קשר עם מנהל בהקדם.')
         else:
-            django_login(request,user)
+            django_login(request, user)
             return redirect(request.META.get('HTTP_REFERER'))
 
     return redirect(request.META.get('HTTP_REFERER'))
@@ -41,7 +44,6 @@ def login(request):
 def logout(request):
     django_logout(request)
     return redirect(request.META.get('HTTP_REFERER'))
-
 
 
 def getSubjectHeb(subject='english'):
@@ -55,19 +57,20 @@ def getSubjectHeb(subject='english'):
     }
     return hebSubjects[subject]
 
-#subject page
+# subject page
+
 
 def subject(request, subject):
     summaries_list = Summary.objects.all().filter(subject=subject)
     length = len(summaries_list)
 
-    #pagination
+    # pagination
     paginator = Paginator(summaries_list, 4)
 
-    #get page number from GET request
+    # get page number from GET request
     page_num = request.GET.get('page', 1)
 
-    #get summaries from paginator according to page number
+    # get summaries from paginator according to page number
     try:
         summaries = paginator.page(page_num)
     except(EmptyPage, InvalidPage):
@@ -82,7 +85,7 @@ def subject(request, subject):
 
     return render(request, 'subject.html', context_dict)
 
-#summary page
+# summary page
 
 
 def summary(request, subject, pk):
@@ -94,7 +97,7 @@ def summary(request, subject, pk):
     context_dict = {
         'subject': subject,
         'summary': summary,
-        }
+    }
     request.session.save()
     if not SummaryView.objects.filter(summary=summary, session=request.session.session_key):
         view = SummaryView(summary=summary,
@@ -111,8 +114,10 @@ def rate_summary(request):
     rate_type = request.POST.get('type')
     rate_action = request.POST.get('action')
     summary = get_object_or_404(Summary, pk=summary_id)
-    thisUserPositiveRatings = summary.positive_ratings.filter(id=request.user.id).count()
-    thisUserNegativeRatings = summary.negative_ratings.filter(id=request.user.id).count()
+    thisUserPositiveRatings = summary.positive_ratings.filter(
+        id=request.user.id).count()
+    thisUserNegativeRatings = summary.negative_ratings.filter(
+        id=request.user.id).count()
     ratings_to_return = -1
     if rate_action == 'rate':
         if thisUserPositiveRatings == 0 and thisUserNegativeRatings == 0:
@@ -125,7 +130,7 @@ def rate_summary(request):
             else:
                 return HttpResponse("RATING ERROR: rate_type must be either \"positive\" or \"negative\" ")
         else:
-            return HttpResponse("RATING ERROR: %s has already rated this summary " %request.user.username)
+            return HttpResponse("RATING ERROR: %s has already rated this summary " % request.user.username)
     elif rate_action == 'undo-rate':
         if rate_type == 'positive' and thisUserPositiveRatings == 1:
             summary.positive_ratings.remove(request.user)
@@ -138,10 +143,11 @@ def rate_summary(request):
     else:
         return HttpResponse("RATING ERROR: bad rate_action")
 
-
     return HttpResponse(ratings_to_return)
 
-#register page
+# register page
+
+
 def register(request):
     registered = False
     if request.method == 'POST':
@@ -152,7 +158,7 @@ def register(request):
             user.save()
             registered = True
         else:
-            print (user_form.errors)
+            print(user_form.errors)
     else:
         user_form = UserForm()
 
@@ -162,23 +168,32 @@ def register(request):
         {'user_form': user_form,
          'registered': registered})
 
+
 def results(request):
-
+    # get search query from the GET parameter in the url q
     query = request.GET.get('q', 'deafult')
-    summaries_list = Summary.objects.filter(Q(title__icontains=query)| Q(content__icontains=query))
-
+    # create a list of words in the query
+    querylist = query.split()
+    # if list is not empty find summaries that contain any word on the list in either the title or content, sorted by wilson score
+    if querylist:
+        summaries_list = Summary.objects.sortedByScore(
+            reduce(operator.or_, ((Q(title__contains=x) | Q(content__contains=x)) for x in querylist)))
+    # if list is empty just returns all summaries sorted by wilson score
+    else:
+        summaries_list = Summary.objects.sortedByScore()
+    # if no matches are found render the template with and empty context dictionary
     if not summaries_list:
-        return render(request,'results.html',{})
+        return render(request, 'results.html', {})
 
     length = len(summaries_list)
 
-    #pagination
+    # pagination
     paginator = Paginator(summaries_list, 4)
 
-    #get page number from GET request
+    # get page number from GET request
     page_num = request.GET.get('page', 1)
 
-    #get summaries from paginator according to page number
+    # get summaries from paginator according to page number
     try:
         summaries = paginator.page(page_num)
     except(EmptyPage, InvalidPage):
@@ -189,6 +204,4 @@ def results(request):
         'summaries': summaries,
     }
 
-
-
-    return render(request,'results.html', context_dict)
+    return render(request, 'results.html', context_dict)

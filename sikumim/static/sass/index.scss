@@ -1,46 +1,44 @@
-@import 'colors';
+@import "colors";
 
-.slider{
-padding: 2em;
-background-color: $grey;
-    min-height:223px;
-    a{
+.slider {
+    padding: 2em;
+    background-color: $grey;
+    min-height: 223px;
+
+    a {
         padding: 0.5em;
         color: white;
         text-decoration: none;
         text-align: center;
         display: block;
         font-size: 2.5em;
-        font-weight: 600;   
+        font-weight: 600;
         background: $light_blue url(../images/arrow2.png) no-repeat 3% center;
-    
     }
 }
 
-.ad{
-width: 321px;
-height: 223px;
-background-image: url(../images/ad_pic.png);
+.ad {
+    width: 321px;
+    height: 223px;
+    background-image: url(../images/ad_pic.png);
 }
 
-.block{
-    h4{
+.block {
+    h4 {
         background-color: $light_blue;
         color: white;
         padding: 0.5em;
     }
-    ul{
+
+    ul {
         background-color: $dark_blue;
-        color:white;
-    padding:1.7em;
-    list-style: none;
-    margin: 0px;
-        li{
-        margin-bottom: 0.4em;
+        color: white;
+        padding: 1.7em;
+        list-style: none;
+        margin: 0px;
+
+        li {
+            margin-bottom: 0.4em;
         }
     }
 }
-
-
-
-

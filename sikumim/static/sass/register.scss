@@ -1,55 +1,63 @@
-@import 'base';
+@import "base";
+@import "colors";
 
-.block-header{
-padding:1.25%;
+.block-header {
+    padding: 1.25%;
 }
 
-h4,h2{
-text-align: center;
+h4, h2 {
+    text-align: center;
 }
 
-.block form h5{
-margin-bottom: 0.5%;
-font-weight: 600;
+.block form h5 {
+    margin-bottom: 0.5%;
+    font-weight: 600;
 }
 
-
-
-.block form input{
-margin-bottom: 1.5%;
+.block form input {
+    margin-bottom: 1.5%;
     font-size: 1.5em;
 }
 
-.block form input[type="submit"]{
+.block form input[type="submit"] {
     margin-top: 1.5%;
 }
 
-.invalid{
+.block form input[type="text"],input[type="password"] {
+    border: 1px solid #B3B3B3;
+}
+
+.invalid {
     background: #fff url(../images/invalid.png) no-repeat 5% center;
     border: 1px solid #d45252;
 }
 
-.block form p{
-position: relative;
-display: inline-block
+.block form p {
+    position: relative;
+    display: inline-block;
 }
 
-.block form p span{
+.block form p span {
     @extend .error;
-    margin-left:8px;
-    z-index: 999; /* hints stay above all other elements */
-    position: relative; /* allows proper formatting if hint is two lines */
-    right: 20px;
-    &:before{
-    content: "\25b6";
-    color:#d45252;
-    position: absolute;
-    top:4px;
-    right:-12px;
-    }
 
+    margin-left: 8px;
+    z-index: 999;
+
+    /* hints stay above all other elements */
+    position: relative;
+
+    /* allows proper formatting if hint is two lines */
+    right: 20px;
+
+    &:before {
+        content: "\25b6";
+        color: #d45252;
+        position: absolute;
+        top: 4px;
+        right: -12px;
+    }
 }
 
-.block input[type="submit"]{
-    display:block;
+.block input[type="submit"] {
+    display: block;
 }

@@ -3,6 +3,7 @@ from django.template.defaultfilters import stringfilter
 
 register = template.Library()
 
+
 @register.filter
 @stringfilter
 def toHebrew(subject):
@@ -16,4 +17,3 @@ def toHebrew(subject):
         'literature': 'ספרות',
     }
     return subjectDict[subject]
-

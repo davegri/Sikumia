@@ -1,206 +1,195 @@
-@import 'grid_system';
-@import 'colors';
+@import "grid_system";
+@import "colors";
 
 @media only screen and (max-width: 950px) {
-
     .row {
         nav {
-            width: 100%!important;
+            width: 100% !important;
         }
+
+        .search-box {
+            @include cols(9);
+
+            margin-right: 0;
+            margin-top: $gutter_percent;
+        }
+
+        .slider a {
+            background: $light_blue;
+        }
+    }
+}
+
+@media only screen and (max-width: 865px) {
+    .row .col-6 {
+        width: 100%;
+    }
+
+    .row .ad {
+        width: 100%;
+        margin-right: 0;
+        margin-top: $gutter_percent;
+    }
+
+    header {
+        padding: 0;
+        display: block;
+
+        .logo_wrapper {
+            display: block;
+            padding: 2em;
+
+            h1 {
+                margin: 0 auto;
+            }
+        }
+
+        .login {
+            display: block;
+            width: 100%;
+            border-top: 10px solid white;
+
+            form {
+                float: none;
+            }
+        }
+    }
+}
+
+@media only screen and (max-width: 630px) {
+    .row .col-3 {
+        @include cols(9);
+
+        margin-right: 0;
+        margin-bottom: $gutter_percent;
+    }
+
+    .row .col-6 .col-1 {
+        @include cols(3);
+
+        margin-right: $gutter_percent;
+    }
+
+    .row .col-6 .row > :nth-child(3n+1) {
+        margin-right: 0;
+    }
+
+    .row .col-6 .row > :nth-last-child(-n+3) {
+        margin-top: $gutter_percent;
+    }
+
+    body {
+        font-size: 14px;
+        font-weight: 400;
+        line-height: 1.6;
+    }
+}
+
+@media only screen and (max-width: 570px) {
+    .slider a {
+        background: $light_blue;
+    }
+}
+
+@media only screen and (max-width: 470px) {
+    header .login .lock {
+        width: 0px;
+        height: 0px;
+    }
+}
+
+@media only screen and (max-width: 360px) {
+    header .login input[type="text"], header .login input[type="password"] {
+        width: 25%;
+    }
+}
+
+/* mobile layout */
+
+@media screen and (-webkit-min-device-pixel-ratio: 1.5) and (min-resolution: 144dpi) and (orientation: portrait) {
+        .row {
+        nav {
+            width: 100% !important;
+        }
+
         .search-box {
             @include cols(9);
             margin-right: 0;
             margin-top: $gutter_percent;
-        }
-
-        .slider a{
-            background: $light_blue;
-
-        }
-
-
-    }
-}
-@media only screen and (max-width: 865px) {
-    
-    .row .col-6{
-        width: 100%;
-    }
-    
-    .row .ad{
-    width: 100%;
-        margin-right: 0;
-        margin-top: $gutter_percent;
-    }
-
-    header{
-        padding:0;
-        display: block;
-        .logo_wrapper{
-            display: block;
-            padding: 2em;
-            h1{
-            margin: 0 auto;
-        }
-        }
-        .login{
-            display: block;
-            width:100%;
-            border-top: 10px solid white;
-            form{
-                float:none;
+            input[type="submit"]{
+                width:auto;
             }
         }
 
-}
-}
-
-@media only screen and (max-width: 630px) {
-    .row .col-3{
-         @include cols(9);
-        margin-right: 0; 
-        margin-bottom: $gutter_percent;
-    }
-    
-    .row .col-6 .col-1{
-         @include cols(3);
-        margin-right: $gutter_percent;
-    }
-    
-    .row .col-6 .row > :nth-child(3n+1)
-    {
-       margin-right: 0; 
-    }
-    
-    .row .col-6 .row > :nth-last-child(-n+3) {
-    margin-top: $gutter_percent;
-}   
-    body {
-      font-size: 14px;
-      font-weight: 400;
-      line-height: 1.6;
-}
-
-    
-
-}
-
-@media only screen and (max-width: 570px) {
-    .slider a{
-    background: $light_blue;
-    }  
-
-}
-@media only screen and (max-width: 470px) {
-   header .login .lock{
-    width: 0px;
-        height: 0px;
-    }
-    
-
-
-}
-
-
-@media only screen and (max-width: 360px) {
-
-    header .login input[type="text"],header .login input[type="password"]{
-        width: 25%;
-    }
-
-}
-
-
-/* mobile layout */
-
-@media screen and (-webkit-min-device-pixel-ratio: 1.5), (min-resolution: 144dpi) and (orientation: portrait){ 
-    
-*, *:after, *:before {
-  font-size: 20px;
-}
-    
-        .row {
-        nav {
-            width: 100%!important;
-        }
-        .search-box {
-            width: 100%;
-            margin-right: 0;
-            margin-top: $gutter_percent;
+        .slider a {
+            background: $light_blue;
         }
     }
-
-        .row .col-6{
+        .row .col-6 {
         width: 100%;
     }
-    
-    .row .ad{
-    width: 100%;
+
+    .row .ad {
+        width: 100%;
         margin-right: 0;
         margin-top: $gutter_percent;
     }
 
-    header{
-        height: auto;
-        padding: 20px 0px 0px 0px;
-        position: relative;
-        h1{
-        margin: 0px;
-        position: relative;
-        float: none;
-        right: 50%;
-        margin-right: -135px;
-        }
-    .login{
-        float: none;
-        position: initial;
-        margin-top:2em;
-        border-top: 7px solid white;
+    header {
+        padding: 0;
         display: block;
-        width: 100%;
-        
-        .lock{
-            position: absolute;
-            top:256px;
-            left:25px;
+
+        .logo_wrapper {
+            display: block;
+            padding: 2em;
+
+            h1 {
+                margin: 0 auto;
+            }
+        }
+
+        .login {
+            display: block;
+            width: 100%;
+            border-top: 10px solid white;
+
+            form {
+                float: none;
+            }
         }
     }
-    }
-    
-    .row .col-3{
-         @include cols(9);
-        margin-right: 0; 
+.row .col-3 {
+        @include cols(9);
+
+        margin-right: 0;
         margin-bottom: $gutter_percent;
     }
-    
-    .row .col-6 .col-1{
-         @include cols(3);
+
+    .row .col-6 .col-1 {
+        @include cols(3);
+
         margin-right: $gutter_percent;
     }
-    
-    .row .col-6 .row > :nth-child(3n+1)
-    {
-       margin-right: 0; 
+
+    .row .col-6 .row > :nth-child(3n+1) {
+        margin-right: 0;
+    }
+
+    .row .col-6 .row > :nth-last-child(-n+3) {
+        margin-top: $gutter_percent;
+    }
+
+    body {
+        font-size: 30px;
+        font-weight: 400;
+        line-height: 1.6;
     }
     
-    .row .col-6 .row > :nth-last-child(-n+3) {
-    margin-top: $gutter_percent;
-}   
-.slider a{
-    background: $light_blue;
-    }  
-
 }
+
 @media only screen and (max-width: 470px) {
-   header .login .lock{
-    width: 0px;
+    header .login .lock {
+        width: 0px;
         height: 0px;
     }
-    
-
 }
-
-
-
-    
-

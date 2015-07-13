@@ -1,38 +1,41 @@
-@import 'colors';
+@import "colors";
+
 //pagination
 
-.pagination ul{
-list-style: none;
-padding: 0;
-color: white;
-    li{
-    display: inline-block;
+.pagination ul {
+    list-style: none;
+    padding: 0;
     color: white;
-    font-size: 1.5em;
-    background-color: $dark_blue;
-        margin-left: 0.2em;
-        a{
-        border: 3px solid $dark_blue;
-        padding: 0.2em 0.8em;    
-        color: white;
-        font-size: inherit;
+
+    li {
         display: inline-block;
-            &:hover{
-            border: 3px solid $light_blue;
+        color: white;
+        font-size: 1.5em;
+        background-color: $dark_blue;
+        margin-left: 0.2em;
+
+        a {
+            border: 3px solid $dark_blue;
+            padding: 0.2em 0.8em;
+            color: white;
+            font-size: inherit;
+            display: inline-block;
+
+            &:hover {
+                border: 3px solid $light_blue;
             }
         }
-
     }
-            .disabled{
-            background:white;
-            color: grey;
-            border: 3px solid grey;
-            padding: 0.2em 0.8em;
-        }
-    
-    .active{
-    background-color: $light_blue;
+
+    .disabled {
+        background: white;
+        color: grey;
+        border: 3px solid grey;
+        padding: 0.2em 0.8em;
+    }
+
+    .active {
+        background-color: $light_blue;
         border: 3px solid $light_blue;
     }
-
-    }
+}

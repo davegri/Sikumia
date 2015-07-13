@@ -1,49 +1,46 @@
-$col_number:9;
-$gutter_percent:1.25%;
+$col_number: 9;
+$gutter_percent: 1.25%;
 
-$one_col_width:(100 - ($gutter_percent * ($col_number - 1))) / $col_number;
+$one_col_width: (100 - $gutter_percent * ($col_number - 1)) / $col_number;
 
 @mixin cols($num) {
-    width: ($one_col_width * $num) + ($gutter_percent * ($num - 1));
+    width: $one_col_width * $num + $gutter_percent * ($num - 1);
 }
 
 @mixin sub_cols($num_child, $num_parent) {
-	$parent_size: ($one_col_width * $num_parent) + ($gutter_percent * ($num_parent - 1));
-	$child_size: ($one_col_width * $num_child) + ($gutter_percent * ($num_child - 1));
-	margin-right: ($gutter_percent / $parent_size) * 100%;
-	width: ($child_size / $parent_size) * 100%;
+    $parent_size: $one_col_width * $num_parent + $gutter_percent * ($num_parent - 1);
+    $child_size: $one_col_width * $num_child + $gutter_percent * ($num_child - 1);
+
+    margin-right: $gutter_percent / $parent_size * 100%;
+    width: $child_size / $parent_size * 100%;
 }
 
 .row {
     @for $i from 1 through $col_number {
-        .col-#{$i}      
-        {
-            float:right;
+        .col-#{$i} {
+            float: right;
             margin-right: $gutter_percent;
+
             @include cols($i);
-            @for $j from 1 through ($i - 1) {
-				.col-#{$j} {
-					@include sub_cols($j, $i);
+
+            @for $j from 1 through $i - 1 {
+                .col-#{$j} {
+                    @include sub_cols($j, $i);
                 }
-			}
-            
+            }
         }
     }
-    
-    	> :first-child,
-	.row > :first-child {
-		margin-right: 0;
-	}
+
+    > :first-child,
+    .row > :first-child {
+        margin-right: 0;
+    }
 }
 
 .row:after {
-	clear: both;
-	content: ".";
-	display: block;
-	height: 0;
-	visibility: hidden;
+    clear: both;
+    content: ".";
+    display: block;
+    height: 0;
+    visibility: hidden;
 }
-
-
-
-

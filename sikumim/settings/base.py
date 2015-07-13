@@ -115,11 +115,9 @@ STATICFILES_DIRS = (
 )
 
 CKEDITOR_CONFIGS = {
-'default': {
-'toolbar': 'full',
-'contentsLangDirection': 'rtl',
-'contentsLanguage ': 'heb',
-},
+    'default': {
+        'toolbar': 'full',
+        'contentsLangDirection': 'rtl',
+        'contentsLanguage ': 'heb',
+    },
 }
-
-

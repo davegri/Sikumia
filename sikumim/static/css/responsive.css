@@ -222,16 +222,17 @@
   header .login input[type="text"], header .login input[type="password"] {
     width: 25%; } }
 /* mobile layout */
-@media screen and (-webkit-min-device-pixel-ratio: 1.5), (min-resolution: 144dpi) and (orientation: portrait) {
-  *, *:after, *:before {
-    font-size: 20px; }
-
+@media screen and (-webkit-min-device-pixel-ratio: 1.5) and (min-resolution: 144dpi) and (orientation: portrait) {
   .row nav {
     width: 100% !important; }
   .row .search-box {
     width: 100%;
     margin-right: 0;
     margin-top: 1.25%; }
+    .row .search-box input[type="submit"] {
+      width: auto; }
+  .row .slider a {
+    background: #1ba1e2; }
 
   .row .col-6 {
     width: 100%; }
@@ -242,26 +243,19 @@
     margin-top: 1.25%; }
 
   header {
-    height: auto;
-    padding: 20px 0px 0px 0px;
-    position: relative; }
-    header h1 {
-      margin: 0px;
-      position: relative;
-      float: none;
-      right: 50%;
-      margin-right: -135px; }
-    header .login {
-      float: none;
-      position: initial;
-      margin-top: 2em;
-      border-top: 7px solid white;
+    padding: 0;
+    display: block; }
+    header .logo_wrapper {
       display: block;
-      width: 100%; }
-      header .login .lock {
-        position: absolute;
-        top: 256px;
-        left: 25px; }
+      padding: 2em; }
+      header .logo_wrapper h1 {
+        margin: 0 auto; }
+    header .login {
+      display: block;
+      width: 100%;
+      border-top: 10px solid white; }
+      header .login form {
+        float: none; }
 
   .row .col-3 {
     width: 100%;
@@ -278,8 +272,10 @@
   .row .col-6 .row > :nth-last-child(-n+3) {
     margin-top: 1.25%; }
 
-  .slider a {
-    background: #1ba1e2; } }
+  body {
+    font-size: 30px;
+    font-weight: 400;
+    line-height: 1.6; } }
 @media only screen and (max-width: 470px) {
   header .login .lock {
     width: 0px;

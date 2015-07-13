@@ -1,7 +1,7 @@
-@import 'colors';
-@import 'grid_system';
-@import 'base';
-@import 'pagination';
+@import "colors";
+@import "grid_system";
+@import "base";
+@import "pagination";
 
 div[class="subject-header english"] {
     background: $english url(../images/english.png) no-repeat 3% bottom;
@@ -29,11 +29,13 @@ div[class="subject-header literature"] {
 
 .subject-header {
     @extend .block-header;
+
     margin-top: $gutter_percent;
     text-align: center;
     min-height: 60px;
-    p{
-    margin-bottom: 0.6em;
+
+    p {
+        margin-bottom: 0.6em;
     }
 }
 
@@ -47,14 +49,17 @@ div[class="subject-header literature"] {
 
 .row h4 {
     @extend .block-header;
+
     background-color: $light_blue;
 }
 
 aside {
     @extend .block;
+
     ul {
         background: none;
         padding: 0;
+
         a li {
             font-size: 1.5em;
         }
@@ -64,13 +69,9 @@ aside {
 .col-6 .row .col-9,
 .col-3 .row .col-9 {
     margin-right: 0;
-    margin-bottom: $gutter_percent*1.5;
+    margin-bottom: $gutter_percent * 1.5;
 }
 
-.sidebar{
-    float:left!important;
-
+.sidebar {
+    float: left !important;
 }
-
-
-

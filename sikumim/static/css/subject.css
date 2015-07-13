@@ -487,7 +487,7 @@ header {
       header .login form h4 {
         margin-bottom: 10px; }
       header .login form input[type="text"], header .login form [type="text"].button, header .login form input[type="password"], header .login form [type="password"].button {
-        width: 120px;
+        width: 7em;
         margin-left: 5px; }
         header .login form input[type="text"]:focus, header .login form [type="text"].button:focus, header .login form input[type="password"]:focus, header .login form [type="password"].button:focus {
           outline-offset: 0px;
@@ -552,9 +552,12 @@ nav ol {
   .search-box input[type="submit"], .search-box [type="submit"].button {
     float: left;
     width: 25%;
-    max-width: 90px;
     font-size: 1.3em;
     line-height: 1em; }
+
+.search-panel {
+  background-color: #2b5797;
+  height: 60px; }
 
 footer {
   color: white;

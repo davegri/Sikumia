@@ -2,55 +2,50 @@
 {% load staticfiles %}
 {% load website_extras %}
 {% block head%}
-<link href="{% static "css/results.css" %}" rel="stylesheet" type="text/css">
+    <link href="{% static "css/results.css" %}" rel="stylesheet" type="text/css">
 {% endblock %}
 {% block body %}
-{% if summaries %}
-<div class="block-header">
-    <h2> תוצאות חיפוש עבור <strong>"{{request.GET.q}}"</strong></h2>
-    <p>  {{ sumAmount }} סיכומים על גבי {{summaries.paginator.num_pages}} עמודים </p>
-</div>
-{% for summary in summaries.object_list  %}
-<div class="row">
-    <div class="col-9">
-            <a href="{% url 'subject' summary.subject %}{{ summary.pk }}">
-                <h4 class="summary-header">
-                    {{ summary.title }}
-                    <span class='subject-tag {{summary.subject}}'><span>{{ summary.subject|toHebrew }}</span></span>
-                </h4>
-            </a>
-    </div>
-</div>
-{% endfor %}
-
-     <div class="pagination">
-        <ul>
-            {% if summaries.has_previous %}
-                <li><a href="?page={{ summaries.previous_page_number }}">הקודם</a></li>
+    {% if summaries %}
+        <div class="block-header">
+            <h2> תוצאות חיפוש עבור <strong>"{{request.GET.q}}"</strong></h2>
+            <p>  {{ sumAmount }} סיכומים על גבי {{summaries.paginator.num_pages}} עמודים </p>
+        </div>
+        {% for summary in summaries.object_list  %}
+            <div class="row">
+                <div class="col-9">
+                    <a href="{% url 'subject' summary.subject %}{{ summary.pk }}">
+                        <h4 class="summary-header">
+                        {{ summary.title }}
+                        <span class='subject-tag {{summary.subject}}'><span>{{ summary.subject|toHebrew }}</span></span>
+                        </h4>
+                    </a>
+                </div>
+            </div>
+        {% endfor %}
+        <div class="pagination">
+            <ul>
+                {% if summaries.has_previous %}
+                    <li><a href="?page={{ summaries.previous_page_number }}">הקודם</a></li>
                 {% else %}
-                <li class="disabled">הקודם</li>
-            {% endif %}
-
-            {% for page in summaries.paginator.page_range  %}
-                {% if page == summaries.number %}
-                    <li><a class="active" href="?page={{ page }}" >{{ page }}</a></li>
-                {% else %}
-                    <li><a href="?page={{ page }}" >{{ page }}</a></li>
+                    <li class="disabled">הקודם</li>
                 {% endif %}
-            {% endfor %}
-
-            {% if summaries.has_next %}
-                <li><a href="?page={{ summaries.next_page_number }}">הבא</a></li>
+                {% for page in summaries.paginator.page_range  %}
+                    {% if page == summaries.number %}
+                        <li><a class="active" href="?page={{ page }}" >{{ page }}</a></li>
+                    {% else %}
+                        <li><a href="?page={{ page }}" >{{ page }}</a></li>
+                    {% endif %}
+                {% endfor %}
+                {% if summaries.has_next %}
+                    <li><a href="?page={{ summaries.next_page_number }}">הבא</a></li>
                 {% else %}
-                <li class="disabled">הבא</li>
-            {% endif %}
-
-        </ul>
-    </div>
-{% else %}
-<div class="subject-header">
-    <h2> לא נמצאו תוצאות חיפוש עבור <strong>"{{request.GET.q}}"</strong></h2>
-</div>
-{% endif %}
-
+                    <li class="disabled">הבא</li>
+                {% endif %}
+            </ul>
+        </div>
+    {% else %}
+        <div class="block-header">
+            <h2> לא נמצאו תוצאות חיפוש עבור <strong>"{{request.GET.q}}"</strong></h2>
+        </div>
+    {% endif %}
 {% endblock %}
