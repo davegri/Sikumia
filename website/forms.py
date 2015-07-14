@@ -8,10 +8,14 @@ class UserForm(forms.ModelForm):
     required_message = "שזה זה הינו חובה"
     username_unique_message = "שם המשתמש שבחרת כבר קיים במערכת, בחר שם אחר"
     email_unique_message = "כתובת האמייל שבחרת כבר קיימת במערכת"
-    password = forms.CharField(widget=forms.PasswordInput(),error_messages={'required': required_message},)
-    confirm_password = forms.CharField(widget=forms.PasswordInput(),error_messages={'required': required_message},)
-    username = forms.CharField(error_messages={'unique': username_unique_message,'required': required_message})
-    email = forms.CharField(error_messages={'unique': email_unique_message,'required': required_message})
+    password = forms.CharField(
+        widget=forms.PasswordInput(), error_messages={'required': required_message},)
+    confirm_password = forms.CharField(
+        widget=forms.PasswordInput(), error_messages={'required': required_message},)
+    username = forms.CharField(
+        error_messages={'unique': username_unique_message, 'required': required_message})
+    email = forms.CharField(
+        error_messages={'unique': email_unique_message, 'required': required_message})
 
     def clean_confirm_password(self):
         password1 = self.cleaned_data.get('password')
@@ -31,9 +35,38 @@ class UserForm(forms.ModelForm):
         fields = ('username', 'email', 'password')
 
 
-class CommentForm(forms.ModelForm): 
+class CommentForm(forms.ModelForm):
+
     class Meta:
         model = Comment
         fields = ('content',)
 
-    
+
+class SearchForm(forms.Form):
+
+    subjects = (
+        ('all', "כל המקצועות"),
+        ('english', 'אנגלית'),
+        ('bible', 'תנ"ך'),
+        ('history', 'היסטוריה'),
+        ('civics', 'אזרחות'),
+        ('language', 'לשון'),
+        ('literature', 'ספרות'),
+    )
+    grades = (
+        ('all', "כל הכיתות"),
+        (10, 'כיתה י'),
+        (11, 'כיתה יא'),
+        (12, 'כיתה יב'),
+    )
+    orders = (
+        ("popularity", 'פופולריות'),
+        ("date_added", 'נוסף לאחרונה'),
+        ("date_edited", 'נערך לאחורנה'),
+    )
+
+    query = forms.CharField(max_length=100)
+    subject = forms.ChoiceField(choices=subjects)
+    grade = forms.ChoiceField(choices=grades)
+    order_by = forms.ChoiceField(choices=orders)
+

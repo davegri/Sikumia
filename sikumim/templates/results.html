@@ -14,7 +14,7 @@
 {% block body %}
     {% if summaries %}
         <div class="block-header">
-            <h2> תוצאות חיפוש עבור <strong>"{{request.GET.q}}"</strong></h2>
+            <h2> תוצאות חיפוש עבור <strong>"{{request.GET.query}}"</strong></h2>
             <p>  {{ sumAmount }} סיכומים על גבי {{summaries.paginator.num_pages}} עמודים </p>
         </div>
         {% for summary in summaries.object_list  %}
@@ -52,7 +52,7 @@
         </div>
     {% else %}
         <div class="block-header">
-            <h2> לא נמצאו תוצאות חיפוש עבור <strong>"{{request.GET.q}}"</strong></h2>
+            <h2> לא נמצאו תוצאות חיפוש עבור <strong>"{{request.GET.query}}"</strong></h2>
         </div>
     {% endif %}
 {% endblock %}

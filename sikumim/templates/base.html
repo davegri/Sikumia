@@ -81,37 +81,16 @@
                     </nav>
                     <div class="search-box col-3">
                         
-                        <input type="text"  name="q" placeholder="הקלד מילות חיפוש">
+                        {{ search_form.query }}
                         <input type="submit" value="חפש">
                         
                     </div>
                 </div>
                 <div class="row">
                     <div class='col-9 search-panel'>
-                        <div class="ck-button">
-                            <label>
-                                <input type="checkbox" name="10" value="True" checked><span>כיתה י'</span></input>
-                            </label>
-                        </div>
-                        <div class="ck-button">
-                            <label>
-                                <input type="checkbox" name="11" value="True" checked><span>כיתה יא'</span></input>
-                            </label>
-                        </div>
-                        <div class="ck-button">
-                            <label>
-                                <input type="checkbox" name="12" value="True" checked><span>כיתה יב'</span></input>
-                            </label>
-                        </div>
-                        <select class="dropdown" name="subject" >
-                            <option value="all" selected>בחר מקצוע</option>
-                            <option value="english">אנגלית</option>
-                            <option value="bible">תנ"ך</option>
-                            <option value="history">היסטוריה</option>
-                            <option value="civics">אזרחות</option>
-                            <option value="language">לשון</option>
-                            <option value="literature">ספרות</option>
-                        </select>
+                    {{ search_form.subject }}
+                    {{ search_form.grade }}
+                    {{ search_form.order_by }}
                     </div>
                 </div>
             </form>

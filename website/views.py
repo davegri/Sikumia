@@ -5,7 +5,7 @@ from django.http import HttpResponse
 from django.shortcuts import redirect, get_object_or_404
 from website.models import Summary, SummaryView
 from django.core.paginator import Paginator, InvalidPage, EmptyPage
-from website.forms import UserForm, CommentForm
+from website.forms import UserForm, CommentForm, SearchForm
 from django.template import RequestContext
 from django.contrib.auth import authenticate, login as django_login, logout as django_logout
 from django.contrib.auth.models import User
@@ -183,51 +183,42 @@ def register(request):
          'registered': registered})
 
 
-
 def results(request):
-    # get search query from the GET parameter in the url q
-    query = request.GET.get('q', '')
-    subject = request.GET.get('subject', '')
-    # create a list of words in the query
-    querylist = query.split()
-    # if list is not empty find summaries that contain any word on the list in
-    # either the title or content, sorted by wilson score
-    if querylist:
-        containsQuery = reduce(operator.or_, ((Q(title__contains=x) | Q(content__contains=x)) for x in querylist))
-        if subject == "all":
-            summaries_list = Summary.objects.sortedByScore(containsQuery)
-        else:   
-            summaries_list = Summary.objects.sortedByScore(containsQuery & Q(subject=subject))
-    # if list is empty just returns all summaries sorted by wilson score
+    if request.method != "GET":
+        return HttpResponse("request method needs to be GET")
     else:
-        if subject == "all":
-            summaries_list = Summary.objects.sortedByScore()
-        else:
-            summaries_list = Summary.objects.sortedByScore(subject=subject)
+        bound_search_form = SearchForm(request.GET)
+        query = request.GET['query']
+        subject = request.GET['subject']
+        grade = request.GET['grade']
+        order_by = request.GET['order_by']
+        kwargs = {}
+        args = []
+        if query:
+            query_word_list = query.split()
+            args.append(reduce(operator.or_, ((Q(title__contains=x) | Q(content__contains=x)) for x in query_word_list)))
+        if subject != 'all':
+            kwargs["subject"] = subject
 
+        summaries_list = Summary.objects.sortedByScore(*args, **kwargs)
+        length = len(summaries_list)
 
-    # if no matches are found render the template with and empty context
-    # dictionary
-    if not summaries_list:
-        return render(request, 'results.html', {})
+        # pagination
+        paginator = Paginator(summaries_list, 4)
 
-    length = len(summaries_list)
+        # get page number from GET request
+        page_num = request.GET.get('page', 1)
 
-    # pagination
-    paginator = Paginator(summaries_list, 4)
+        # get summaries from paginator according to page number
+        try:
+            summaries = paginator.page(page_num)
+        except(EmptyPage, InvalidPage):
+            summaries = paginator.page(paginator.num_pages)
 
-    # get page number from GET request
-    page_num = request.GET.get('page', 1)
+        context_dict = {
+            'sumAmount': length,
+            'summaries': summaries,
+            'search_form': bound_search_form,
+        }
 
-    # get summaries from paginator according to page number
-    try:
-        summaries = paginator.page(page_num)
-    except(EmptyPage, InvalidPage):
-        summaries = paginator.page(paginator.num_pages)
-
-    context_dict = {
-        'sumAmount': length,
-        'summaries': summaries,
-    }
-
-    return render(request, 'results.html', context_dict)
+        return render(request, 'results.html', context_dict)

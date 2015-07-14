@@ -39,9 +39,7 @@
 					<p class="author">{{ comment.user }}</p>
 					<p class="timestamp">{{ comment.date_created |date:"SHORT_DATETIME_FORMAT"  }}</p>
 				</span>
-				<span class="comment-content">
-					<p>{{ comment.content }}</p>
-				</span>
+				<span class="comment-content"><p>{{ comment.content }}</p></span>
 			</li>
 		{% endfor %}
 		{% if user.is_authenticated %}
@@ -52,10 +50,7 @@
 					<p class="author">{{ user.username }}</p>
 					<p class="timestamp" dir="ltr">{% now "SHORT_DATETIME_FORMAT" %}</p>
 				</span>
-				<span class="comment-content">
-					{{ comment_form.content }}
-					<input type="submit" value="הוסף תגובה" name="submitComment">
-				</span>
+				<span class="comment-content">{{ comment_form.content }}<input type="submit" value="הוסף תגובה" name="submitComment"></span>			
 			</li>
 		</form>
 		{% endif %}
