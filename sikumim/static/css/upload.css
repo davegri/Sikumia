@@ -1,0 +1,35 @@
+.block-header {
+  text-align: center; }
+
+.block form h5 {
+  margin-bottom: 0.5%;
+  font-weight: 600; }
+
+.block form input {
+  margin-bottom: 1.5%;
+  font-size: 1.5em; }
+
+.block form input[type="submit"] {
+  margin-top: 1.5%; }
+
+.block form input[type="text"], input[type="password"] {
+  border: 1px solid #B3B3B3;
+  width: 100%; }
+
+.invalid {
+  background: #fff url(../images/invalid.png) no-repeat 5% center;
+  border: 1px solid #d45252; }
+
+.block form p {
+  position: relative;
+  display: inline-block; }
+
+.invalid-input {
+  border: 1px solid red !important; }
+
+select {
+  margin-bottom: 1.5%;
+  width: 100%;
+  font-size: 1.3em; }
+
+/*# sourceMappingURL=upload.css.map */

@@ -23,6 +23,9 @@
 				</div>
 				<div class="favorites-module">
 					<a class='button'>הוסף למועדפים</a>
+					{% if user.id == summary.author.id %}
+					<a class='button' href="{% url 'edit_summary' summary.subject summary.id %}">ערוך סיכום</a>
+					{% endif %}
 				</div>
 			</div>
 		{% endif %}

@@ -5,7 +5,7 @@ from django.http import HttpResponse
 from django.shortcuts import redirect, get_object_or_404
 from website.models import Summary, SummaryView
 from django.core.paginator import Paginator, InvalidPage, EmptyPage
-from website.forms import UserForm, CommentForm, SearchForm
+from website.forms import UserForm, CommentForm, SearchForm, SummaryForm, EditSummaryForm
 from django.template import RequestContext
 from django.contrib.auth import authenticate, login as django_login, logout as django_logout
 from django.contrib.auth.models import User
@@ -14,6 +14,7 @@ from django.contrib import messages
 import datetime
 import operator
 from django.db.models import Q
+from django.utils.translation import activate
 
 from functools import reduce
 
@@ -58,7 +59,8 @@ def getSubjectHeb(subject='english'):
     }
     return hebSubjects[subject]
 
-# subject page
+# subject pagefrom django.utils.translation import activate
+    activate('de')
 
 
 def subject(request, subject):
@@ -122,6 +124,21 @@ def summary(request, subject, pk):
     }
     return render(request, 'summary.html', context_dict)
 
+def edit_summary(request, subject, pk):
+    instance = Summary.objects.get(pk=pk)
+    activate('he')
+    if request.method == "POST":
+        summary_form = EditSummaryForm(request.POST, instance=instance)
+        if summary_form.is_valid():
+            summary_form.save()
+            return redirect(instance)
+        else:
+            return HttpResponse(summary_form.errors)
+    else:
+        summary_form = EditSummaryForm(instance=instance)
+    context_dict = {'summary_form':summary_form}
+    return render(request, 'summary_edit.html', context_dict)
+
 
 def rate_summary(request):
     summary_id = int(request.POST.get('id'))
@@ -172,7 +189,7 @@ def register(request):
             user.save()
             registered = True
         else:
-            print(user_form.errors)
+            pass
     else:
         user_form = UserForm()
 
@@ -183,7 +200,7 @@ def register(request):
          'registered': registered})
 
 
-def results(request):
+def search(request):
     if request.method != "GET":
         return HttpResponse("request method needs to be GET")
     else:
@@ -221,4 +238,24 @@ def results(request):
             'search_form': bound_search_form,
         }
 
-        return render(request, 'results.html', context_dict)
+        return render(request, 'search.html', context_dict)
+
+
+def upload(request):
+    activate('he')
+    uploaded = False;
+    if request.method == "POST":
+        summary_form = SummaryForm(request.POST)
+        if summary_form.is_valid():
+            summary = summary_form.save(commit=False)
+            summary.author = User.objects.get(id=request.user.id);
+            summary.save()
+            uploaded = True
+        else:
+            pass
+    else:
+        summary_form = SummaryForm()
+
+    context_dict = {'uploaded':uploaded,'summary_form':summary_form}
+
+    return render(request, 'upload.html', context_dict)

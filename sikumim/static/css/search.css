@@ -26,8 +26,7 @@
     border: 3px solid #1ba1e2; }
 
 .block-header {
-  text-align: center;
-  margin-top: 1em; }
+  text-align: center; }
 
 .summary-header {
   background: #f1f1f1;
@@ -59,4 +58,4 @@
 .pagination {
   margin-top: 1em; }
 
-/*# sourceMappingURL=results.css.map */
+/*# sourceMappingURL=search.css.map */

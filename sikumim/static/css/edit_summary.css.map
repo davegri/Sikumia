@@ -1,0 +1,7 @@
+{
+"version": 3,
+"mappings": "AAAA,iBAAiB;EAChB,KAAK,EAAC,IAAI;EACV,SAAS,EAAE,GAAG",
+"sources": ["../sass/edit_summary.scss"],
+"names": [],
+"file": "edit_summary.css"
+}

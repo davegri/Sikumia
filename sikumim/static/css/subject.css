@@ -558,7 +558,8 @@ nav ol {
 .search-panel {
   background-color: #2b5797;
   padding: 0.5em;
-  font-size: 1.3em; }
+  font-size: 1.3em;
+  margin-bottom: 1.25%; }
 
 .ck-button {
   margin: 4px;
@@ -673,7 +674,6 @@ div[class="subject-header literature"] {
   background: #00aeab url(../images/literature.png) no-repeat 3% center; }
 
 .subject-header {
-  margin-top: 1.25%;
   text-align: center;
   min-height: 60px; }
   .subject-header p {

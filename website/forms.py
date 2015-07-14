@@ -1,7 +1,8 @@
 # -*- coding: UTF-8 -*-
 from django.contrib.auth.models import User
 from django import forms
-from .models import Comment
+from .models import Comment, Summary
+from ckeditor.fields import RichTextField
 
 
 class UserForm(forms.ModelForm):
@@ -41,6 +42,23 @@ class CommentForm(forms.ModelForm):
         model = Comment
         fields = ('content',)
 
+class SummaryForm(forms.ModelForm):
+    class Meta:
+        model = Summary
+        fields = ('title', 'subject','grade', 'content')
+
+    def __init__(self, *args, **kwargs):
+        super(SummaryForm, self).__init__(*args, **kwargs)
+        self.fields['title'].label = "הכנס כותרת לסיכום"
+        self.fields['subject'].label = "בחר מקצוע"
+        self.fields['grade'].label = "בחר כיתה"
+        self.fields['content'].label = "תוכן הסיכום"
+
+
+class EditSummaryForm(forms.ModelForm):
+    class Meta:
+        model = Summary
+        fields = ('title','content')
 
 class SearchForm(forms.Form):
 

@@ -120,5 +120,7 @@ CKEDITOR_CONFIGS = {
         'toolbar': 'full',
         'contentsLangDirection': 'rtl',
         'contentsLanguage ': 'heb',
+        'width': '100%',
+        'extraPlugins': 'autogrow',
     },
 }

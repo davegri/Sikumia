@@ -29,8 +29,6 @@ div[class="subject-header literature"] {
 
 .subject-header {
     @extend .block-header;
-
-    margin-top: $gutter_percent;
     text-align: center;
     min-height: 60px;
 

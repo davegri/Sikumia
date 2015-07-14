@@ -17,17 +17,17 @@ class SummaryManager(models.Manager):
 
 class Summary(models.Model):
     subjects = (
-        ('english', 'english'),
-        ('bible', 'bible'),
-        ('history', 'history'),
-        ('civics', 'civics'),
-        ('language', 'language'),
-        ('literature', 'literature'),
+        ('english', 'אנגלית'),
+        ('bible', 'תנ"ך'),
+        ('history', 'היסטוריה'),
+        ('civics', 'אזרחות'),
+        ('language', 'לשון'),
+        ('literature', 'ספרות'),
     )
     grades = (
-        (10, 'Grade 10'),
-        (11, 'Grade 11'),
-        (12, 'Grade 12'),
+        (10, 'כיתה י\''),
+        (11, 'כיתה יא\''),
+        (12, 'כיתה יב\''),
     )
 
     title = models.CharField(max_length=128)
@@ -40,7 +40,7 @@ class Summary(models.Model):
         User, blank=True, related_name='summaries_rated_negative')
     author = models.ForeignKey(User, related_name='summaries_authored')
     bookmarks = models.ManyToManyField(
-        User, related_name='summaries_bookmarked', null=True, blank=True)
+        User, related_name='summaries_bookmarked', blank=True)
     date_created = models.DateTimeField(default=django.utils.timezone.now)
     date_edited = models.DateTimeField(blank=True, null=True)
 
@@ -59,6 +59,9 @@ class Summary(models.Model):
 
     def __str__(self):
         return self.title
+
+    def get_absolute_url(self):
+        return "/subject/%s/%i/" % (self.subject,self.id)
 
     # custom save model
     def save(self, *args, **kwargs):

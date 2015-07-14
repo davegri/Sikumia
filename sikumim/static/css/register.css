@@ -397,7 +397,8 @@ nav ol {
 .search-panel {
   background-color: #2b5797;
   padding: 0.5em;
-  font-size: 1.3em; }
+  font-size: 1.3em;
+  margin-bottom: 1.25%; }
 
 .ck-button {
   margin: 4px;

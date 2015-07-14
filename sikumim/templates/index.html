@@ -9,7 +9,7 @@
             <h3>נמאס לך לבוא לא מוכן למבחני בגרות?</h3>
         <blockquote>סיכומים.נט הוא המקום האמין ברשת לסיכומיים איכותיים לבגרות</blockquote>
         {% if user.is_authenticated %}
-             <a href='{% url 'index' %}'>העלאת סיכום לאתר</a>
+             <a href='{% url 'upload' %}'>העלאת סיכום לאתר</a>
         {% else %}
             <a href='{% url 'register' %}'>הרשם עכשיו ותתחיל ללמוד</a>
         {% endif %}

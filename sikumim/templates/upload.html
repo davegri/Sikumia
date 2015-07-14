@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% load website_extras %}
+{% block head%}
+    <link href="{% static "css/upload.css" %}" rel="stylesheet" type="text/css">
+{% endblock %}
+{% block body %}
+    <div class="block-header">
+        <h2> הוספת סיכום לאתר</h2>
+        <p></p>
+    </div>
+    <div class="block">
+        {% if uploaded %}
+            <h3>הסיכום שלך נוסף לאתר בהצלחה</h3>
+        {% else %}
+            <form method="post" action="/upload/">
+                {% csrf_token %}
+                {{ summary_form.media }}
+                <h5>{{ summary_form.title.label_tag }}</h5>
+                {{ summary_form.title }}
+                 {% if summary_form.title.errors %}<span class="error">{{ summary_form.title.errors.as_text|cut:"* " }}</span>{% endif %}
+                <div class="row">
+                    <div class="col-2">
+                        <h5>{{ summary_form.subject.label_tag }}</h5>
+                        {{ summary_form.subject }}
+                        {% if summary_form.subject.errors %}<p class="error">{{ summary_form.subject.errors.as_text|cut:"* " }}</p>{% endif %}
+                    </div>
+                    <div class="col-2">
+                        <h5>{{ summary_form.grade.label_tag }}</h5>
+                        {{ summary_form.grade }}
+                        {% if summary_form.grade.errors %}<p class="error">{{ summary_form.grade.errors.as_text|cut:"* " }}</p>{% endif %}
+                    </div>
+                </div>
+                <div class="row">
+                    <h5>{{ summary_form.content.label_tag }}</h5>
+                    {{ summary_form.content }}
+                    {% if summary_form.content.errors %}<p class="error">{{ summary_form.content.errors.as_text|cut:"* " }}</p>{% endif %}
+                </div>
+                <input type="submit" name="submit" value="הוספת סיכום">
+            </form>
+        {% endif %}
+    </div>
+{% endblock %}
