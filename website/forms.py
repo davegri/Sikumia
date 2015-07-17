@@ -45,13 +45,12 @@ class CommentForm(forms.ModelForm):
 class SummaryForm(forms.ModelForm):
     class Meta:
         model = Summary
-        fields = ('title', 'subject','grade', 'content')
+        fields = ('title', 'subject', 'content', 'subject_division')
 
     def __init__(self, *args, **kwargs):
         super(SummaryForm, self).__init__(*args, **kwargs)
         self.fields['title'].label = "הכנס כותרת לסיכום"
         self.fields['subject'].label = "בחר מקצוע"
-        self.fields['grade'].label = "בחר כיתה"
         self.fields['content'].label = "תוכן הסיכום"
 
 
@@ -71,12 +70,6 @@ class SearchForm(forms.Form):
         ('language', 'לשון'),
         ('literature', 'ספרות'),
     )
-    grades = (
-        ('all', "כל הכיתות"),
-        (10, 'כיתה י'),
-        (11, 'כיתה יא'),
-        (12, 'כיתה יב'),
-    )
     orders = (
         ("popularity", 'פופולריות'),
         ("date_added", 'נוסף לאחרונה'),
@@ -85,6 +78,5 @@ class SearchForm(forms.Form):
 
     query = forms.CharField(max_length=100)
     subject = forms.ChoiceField(choices=subjects)
-    grade = forms.ChoiceField(choices=grades)
     order_by = forms.ChoiceField(choices=orders)
 

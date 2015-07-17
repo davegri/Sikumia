@@ -3,7 +3,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from django.shortcuts import redirect, get_object_or_404
-from website.models import Summary, SummaryView
+from website.models import Summary, SummaryView, Subject, SubjectDivision
 from django.core.paginator import Paginator, InvalidPage, EmptyPage
 from website.forms import UserForm, CommentForm, SearchForm, SummaryForm, EditSummaryForm
 from django.template import RequestContext
@@ -17,6 +17,28 @@ from django.db.models import Q
 from django.utils.translation import activate
 
 from functools import reduce
+
+
+from django.utils.http import urlencode
+
+def get_query_string(params, new_params=None, remove=None):
+    if new_params is None: new_params = {}
+    if remove is None: remove = []
+    p = params.copy()
+    for r in remove:
+        for k in p.keys():
+            if k.startswith(r):
+                del p[k]
+                break
+    for k, v in new_params.items():
+        if v is None:
+            if k in p:
+                del p[k]
+        else:
+            p[k] = v
+    return '?%s' % urlencode(p)
+
+
 
 
 def index(request):
@@ -59,16 +81,15 @@ def getSubjectHeb(subject='english'):
     }
     return hebSubjects[subject]
 
-# subject pagefrom django.utils.translation import activate
-    activate('de')
-
 
 def subject(request, subject):
-    summaries_list = Summary.objects.all().filter(subject=subject)
+    summaries_list = Summary.objects.all().filter(subject__name__icontains=subject)
+    subject = get_object_or_404(Subject, name__icontains=subject)
+    subject_divisions_list = subject.subjectdivision_set.filter(parent=None)
     length = len(summaries_list)
 
     # pagination
-    paginator = Paginator(summaries_list, 4)
+    paginator = Paginator(summaries_list, 12)
 
     # get page number from GET request
     page_num = request.GET.get('page', 1)
@@ -81,17 +102,50 @@ def subject(request, subject):
 
     context_dict = {
         'subject': subject,
-        'hebSubject': getSubjectHeb(subject),
+        'hebSubject': subject.hebrew_name,
+        'divisions': subject_divisions_list,
         'sumAmount': length,
         'summaries': summaries,
-    }
+    }    
 
     return render(request, 'subject.html', context_dict)
+
+def division(request, subject, division_name):
+
+    summaries_list = Summary.objects.all().filter(subject_division__name=division_name)
+    subject = get_object_or_404(Subject, name__icontains=subject)
+    subject_divisions_list = subject.subjectdivision_set.filter(parent=None)
+    length = len(summaries_list)
+    subdivisions_list = SubjectDivision.objects.get(name=division_name).subjectdivision_set.all()
+    # pagination
+    paginator = Paginator(summaries_list, 12)
+
+    # get page number from GET request
+    page_num = request.GET.get('page', 1)
+
+    # get summaries from paginator according to page number
+    try:
+        summaries = paginator.page(page_num)
+    except(EmptyPage, InvalidPage):
+        summaries = paginator.page(paginator.num_pages)
+
+
+    context_dict = {
+        'subject': subject,
+        'hebSubject': subject.hebrew_name,
+        'divisions': subject_divisions_list,
+        'subdivisions': subdivisions_list,
+        'current_division': division_name,
+        'sumAmount': length,
+        'summaries': summaries,
+    }   
+    return render(request, 'subject.html', context_dict)
+
 
 # summary page
 
 
-def summary(request, subject, pk):
+def summary(request, subject, division_name, pk):
     try:
         summary = Summary.objects.get(pk=pk)
     except Summary.DoesNotExist:
@@ -145,30 +199,30 @@ def rate_summary(request):
     rate_type = request.POST.get('type')
     rate_action = request.POST.get('action')
     summary = get_object_or_404(Summary, pk=summary_id)
-    thisUserPositiveRatings = summary.positive_ratings.filter(
+    thisUserPositiveRatings = summary.users_rated_positive.filter(
         id=request.user.id).count()
-    thisUserNegativeRatings = summary.negative_ratings.filter(
+    thisUserNegativeRatings = summary.users_rated_negative.filter(
         id=request.user.id).count()
     ratings_to_return = -1
     if rate_action == 'rate':
         if thisUserPositiveRatings == 0 and thisUserNegativeRatings == 0:
             if rate_type == 'positive':
-                summary.positive_ratings.add(request.user)
-                ratings_to_return = summary.positive_ratings.count()
+                summary.users_rated_positive.add(request.user)
+                ratings_to_return = summary.users_rated_positive.count()
             elif rate_type == 'negative':
-                summary.negative_ratings.add(request.user)
-                ratings_to_return = summary.negative_ratings.count()
+                summary.users_rated_negative.add(request.user)
+                ratings_to_return = summary.users_rated_negative.count()
             else:
                 return HttpResponse("RATING ERROR: rate_type must be either \"positive\" or \"negative\" ")
         else:
             return HttpResponse("RATING ERROR: %s has already rated this summary " % request.user.username)
     elif rate_action == 'undo-rate':
         if rate_type == 'positive' and thisUserPositiveRatings == 1:
-            summary.positive_ratings.remove(request.user)
-            ratings_to_return = summary.positive_ratings.count()
+            summary.users_rated_positive.remove(request.user)
+            ratings_to_return = summary.users_rated_positive.count()
         elif rate_type == 'negative' and thisUserNegativeRatings == 1:
-            summary.negative_ratings.remove(request.user)
-            ratings_to_return = summary.negative_ratings.count()
+            summary.users_rated_negative.remove(request.user)
+            ratings_to_return = summary.users_rated_negative.count()
         else:
             return HttpResponse("RATING ERROR: unkown rating type OR user hasen't rated this summary")
     else:
@@ -207,7 +261,6 @@ def search(request):
         bound_search_form = SearchForm(request.GET)
         query = request.GET['query']
         subject = request.GET['subject']
-        grade = request.GET['grade']
         order_by = request.GET['order_by']
         kwargs = {}
         args = []
@@ -218,10 +271,16 @@ def search(request):
             kwargs["subject"] = subject
 
         summaries_list = Summary.objects.sortedByScore(*args, **kwargs)
+
+        # get any current GET queries without the page modifier
+        queries_without_page = request.GET.copy()
+        if 'page' in queries_without_page.keys():
+            del queries_without_page['page']
+
         length = len(summaries_list)
 
         # pagination
-        paginator = Paginator(summaries_list, 4)
+        paginator = Paginator(summaries_list, 15)
 
         # get page number from GET request
         page_num = request.GET.get('page', 1)
@@ -236,6 +295,7 @@ def search(request):
             'sumAmount': length,
             'summaries': summaries,
             'search_form': bound_search_form,
+            'queries' : queries_without_page,
         }
 
         return render(request, 'search.html', context_dict)

@@ -3,30 +3,6 @@
 @import "base";
 @import "pagination";
 
-div[class="subject-header english"] {
-    background: $english url(../images/english.png) no-repeat 3% bottom;
-}
-
-div[class="subject-header bible"] {
-    background: $bible url(../images/bible.png) no-repeat 3% center;
-}
-
-div[class="subject-header civics"] {
-    background: $civics url(../images/civics.png) no-repeat 3% center;
-}
-
-div[class="subject-header history"] {
-    background: $history url(../images/history.png) no-repeat 3% center;
-}
-
-div[class="subject-header language"] {
-    background: $language url(../images/language.png) no-repeat 3% center;
-}
-
-div[class="subject-header literature"] {
-    background: $literature url(../images/literature.png) no-repeat 3% center;
-}
-
 .subject-header {
     @extend .block-header;
     text-align: center;
@@ -37,39 +13,74 @@ div[class="subject-header literature"] {
     }
 }
 
-.summary-header {
-    @extend .block-header;
+.subject-tab{
+    border-top: 12px solid white;
+    padding: 0.5em;
+    text-align: center;
+    color:white;
+    &:hover{
+        cursor: pointer;
+    }
+}
+
+.summaries-block{
+    overflow: auto;
+    border: 6px solid $dark_blue;
+}
+
+.selected{
+    background-color: $dark_blue;
+}
+
+.divisions :last-child{
+    border-left:none;
+}
+
+.summary{
+    .summary-header{
+    background: $grey;
+    text-align: right;
+    color: $dark_blue;
+    padding: 0.5em;
+    font-weight: 400;
+    &:hover {
+        background: $light_blue;
+        color: white;
+        
+}
+
+}
+
+&:hover{
+    border-bottom: 3px solid $dark_blue;
+}
+
+    border-bottom: 3px solid $light_blue;
+    &:last-child{
+        border-bottom: none;
+    }
+}
+
+.subdivisions{
+    background-color: $dark_blue;
+        overflow: auto;
+        border-bottom: 6px solid $dark_blue;
+}
+.subdivision{
+    padding: 0.5em;
+    background-color: $light_blue;
+    color: white;
+    font-size: 1.5em;
+    margin-right: 1em;
+    &:first-child{
+        margin-right:0;
+    }
 }
 
 .block {
     color: dimgrey;
 }
 
-.row h4 {
-    @extend .block-header;
-
-    background-color: $light_blue;
-}
-
-aside {
-    @extend .block;
-
-    ul {
-        background: none;
-        padding: 0;
-
-        a li {
-            font-size: 1.5em;
-        }
-    }
-}
-
-.col-6 .row .col-9,
-.col-3 .row .col-9 {
-    margin-right: 0;
-    margin-bottom: $gutter_percent * 1.5;
-}
-
-.sidebar {
-    float: left !important;
+.pagination{
+    margin-top: 1em;
 }

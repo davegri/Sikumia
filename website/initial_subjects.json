@@ -1,0 +1,56 @@
+[
+  {
+    "model": "website.subject",
+    "pk": 1,
+    "fields": {
+      "name": "English",
+      "hebrew_name": "אנגלית",
+      "color": "339933"
+    }
+  },
+  {
+    "model": "website.subject",
+    "pk": 2,
+    "fields": {
+      "name": "Bible",
+      "hebrew_name": "תנ\"ך",
+      "color": "f29808"
+    }
+  },
+  {
+    "model": "website.subject",
+    "pk": 3,
+    "fields": {
+      "name": "History",
+      "hebrew_name": "היסטוריה",
+      "color": "a200ff"
+    }
+  },
+  {
+    "model": "website.subject",
+    "pk": 4,
+    "fields": {
+      "name": "Civics",
+      "hebrew_name": "אזרחות",
+      "color": "e61300"
+    }
+  },
+  {
+    "model": "website.subject",
+    "pk": 5,
+    "fields": {
+      "name": "Language",
+      "hebrew_name": "לשון",
+      "color": "8cc026"
+    }
+  },
+  {
+    "model": "website.subject",
+    "pk": 6,
+    "fields": {
+      "name": "Literature",
+      "hebrew_name": "ספרות",
+      "color": "00aeab"
+    }
+  },
+]

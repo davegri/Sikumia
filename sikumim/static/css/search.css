@@ -29,7 +29,8 @@
   text-align: center; }
 
 .summary-header {
-  background: #f1f1f1;
+  margin-top: 0.3em;
+  background: #eceff1;
   text-align: right;
   color: #2b5797;
   border-bottom: 3px solid #1ba1e2;

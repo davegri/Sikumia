@@ -40,6 +40,7 @@ INSTALLED_APPS = (
     'ckeditor',
     'widget_tweaks',
     'website.templatetags.website_extras',
+    'adminsortable',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -67,7 +68,9 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
                 'django.core.context_processors.request',
+                'django.core.context_processors.static',
                 'website.context_processors.search_form',
+                'website.context_processors.subjects',
             ],
         },
     },

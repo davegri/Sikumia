@@ -1,12 +1,21 @@
 from django.contrib import admin
 from website import models
+from django.contrib.auth.models import User
+from adminsortable.admin import SortableAdmin, SortableStackedInline, SortableTabularInline
 # Register your models here.
 
 
 class CommentInline(admin.TabularInline):
 	model = models.Comment
 	extra = 0
+admin
+class SummaryInline(admin.TabularInline):
+      model = models.Summary
+      extra = 1
 
+class SubjectDivisionInline(SortableTabularInline):
+    model = models.SubjectDivision
+    extra = 1
 
 class SummaryAdmin(admin.ModelAdmin):
     list_filter = ['date_created','date_edited','subject',]
@@ -22,7 +31,20 @@ class SummaryAdmin(admin.ModelAdmin):
 class CommentAdmin(admin.ModelAdmin):
 	list_display = ['summary','user','content','date_created']
 
+class UserAdmin(admin.ModelAdmin):
+    inlines = [SummaryInline,CommentInline]
+
+class SubjectAdmin(SortableAdmin):
+    inlines = [SubjectDivisionInline]
+
+
+
+
 
 
 admin.site.register(models.Summary,SummaryAdmin)
 admin.site.register(models.Comment,CommentAdmin)
+admin.site.register(models.Subject,SubjectAdmin)
+
+admin.site.unregister(User)
+admin.site.register(User,UserAdmin)

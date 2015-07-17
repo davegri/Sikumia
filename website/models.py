@@ -3,10 +3,30 @@ import datetime
 from ckeditor.fields import RichTextField
 from django.contrib.auth.models import User
 import django.utils.timezone
+from adminsortable.models import Sortable, SortableForeignKey
 from math import sqrt
 
 # monkey patching to make email field unique
 User._meta.get_field('email')._unique = True
+
+class Subject(Sortable):
+    name = models.CharField(max_length=100)
+    hebrew_name = models.CharField(max_length=100)
+    color = models.CharField(max_length=6)
+
+    def __str__(self):
+        return self.hebrew_name
+
+class SubjectDivision(Sortable):
+    name = models.CharField(max_length=100)
+    hebrew_name = models.CharField(max_length=100)
+    parent = models.ForeignKey("self", null=True, blank=True)
+    Subject = SortableForeignKey(Subject)
+    class Meta(Sortable.Meta):
+        pass
+
+    def __str__(self):
+        return self.hebrew_name
 
 
 class SummaryManager(models.Manager):
@@ -14,39 +34,24 @@ class SummaryManager(models.Manager):
         summaries = self.get_queryset().filter(*args, **kwargs)
         return sorted(summaries, key=lambda summary: summary.get_score(),reverse=True)
 
-
 class Summary(models.Model):
-    subjects = (
-        ('english', 'אנגלית'),
-        ('bible', 'תנ"ך'),
-        ('history', 'היסטוריה'),
-        ('civics', 'אזרחות'),
-        ('language', 'לשון'),
-        ('literature', 'ספרות'),
-    )
-    grades = (
-        (10, 'כיתה י\''),
-        (11, 'כיתה יא\''),
-        (12, 'כיתה יב\''),
-    )
-
     title = models.CharField(max_length=128)
-    grade = models.IntegerField(choices=grades)
-    subject = models.CharField(max_length=20, choices=subjects)
+    subject = models.ForeignKey(Subject)
+    subject_division = models.ForeignKey(SubjectDivision, null=True)
     content = RichTextField(null=True, blank=True)
-    positive_ratings = models.ManyToManyField(
+    users_rated_positive = models.ManyToManyField(
         User, blank=True, related_name='summaries_rated_positive')
-    negative_ratings = models.ManyToManyField(
+    users_rated_negative = models.ManyToManyField(
         User, blank=True, related_name='summaries_rated_negative')
     author = models.ForeignKey(User, related_name='summaries_authored')
-    bookmarks = models.ManyToManyField(
+    users_bookmarked = models.ManyToManyField(
         User, related_name='summaries_bookmarked', blank=True)
     date_created = models.DateTimeField(default=django.utils.timezone.now)
     date_edited = models.DateTimeField(blank=True, null=True)
 
     def get_score(self):
-        ups = self.positive_ratings.count()
-        downs = self.negative_ratings.count()
+        ups = self.users_rated_positive.count()
+        downs = self.users_rated_negative.count()
         if ups == 0:
             return -downs
         n = ups + downs
@@ -61,7 +66,7 @@ class Summary(models.Model):
         return self.title
 
     def get_absolute_url(self):
-        return "/subject/%s/%i/" % (self.subject,self.id)
+        return "/subject/%s/%i/" % (self.subject.name,self.id)
 
     # custom save model
     def save(self, *args, **kwargs):
@@ -91,4 +96,7 @@ class Comment(models.Model):
     content = models.TextField()
     date_created = models.DateTimeField(auto_now_add=True)
     date_edited = models.DateTimeField(auto_now=True)
+
+    def get_absolute_url(self):
+        return self.summary.get_absolute_url()+"#%i" %self.id
 

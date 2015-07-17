@@ -1,5 +1,5 @@
-$col_number: 9;
-$gutter_percent: 1.25%;
+$col_number: 16;
+$gutter_percent: 1%;
 
 $one_col_width: (100 - $gutter_percent * ($col_number - 1)) / $col_number;
 
@@ -35,6 +35,15 @@ $one_col_width: (100 - $gutter_percent * ($col_number - 1)) / $col_number;
     .row > :first-child {
         margin-right: 0;
     }
+}
+
+
+@for $i from 1 through 12 {
+        .part-of-#{$i} {
+            margin-right: $gutter_percent;
+            float: right;
+            width: (100 - $gutter_percent * ($i - 1)) / $i;
+        }
 }
 
 .row:after {

@@ -9,7 +9,7 @@
 	</script>
 {% endblock %}
 {% block body %}
-	<div class="block-header {{ subject }}">
+	<div class="block-header {{ subject | lower }}">
 		<h3>{{ summary.title }}</h3>
 		<span>{{ summary.views.count }} צפיות</span>
 		<span>
@@ -18,8 +18,8 @@
 			<div class='options-bar'>
 				<div class="rating-module">
 					<h4>איך הסיכום?</h4>
-					<a class='button positive {% if user in summary.positive_ratings.all %}selected{% endif %} '>אהבתי  ({{ summary.positive_ratings.count }})</a>
-					<a class='button negative {% if user in summary.negative_ratings.all %}selected{% endif %} '>לא משהו  ({{ summary.negative_ratings.count }})</a>
+					<a class='button positive {% if user in summary.users_rated_positive.all %}selected{% endif %} '>אהבתי  ({{ summary.users_rated_positive.count }})</a>
+					<a class='button negative {% if user in summary.users_rated_negative.all %}selected{% endif %} '>לא משהו  ({{ summary.users_rated_negative.count }})</a>
 				</div>
 				<div class="favorites-module">
 					<a class='button'>הוסף למועדפים</a>
@@ -38,12 +38,14 @@
 		<ol class="comments-wrapper">
 		{% for comment in summary.comments.all %}
 			<li>
+			<a name="{{ comment.id }}">
 				<span class="comment-info">
 					<p class="author">{{ comment.user }}</p>
 					<p class="timestamp">{{ comment.date_created |date:"SHORT_DATETIME_FORMAT"  }}</p>
 				</span>
 				<span class="comment-content"><p>{{ comment.content }}</p></span>
 			</li>
+			</a>
 		{% endfor %}
 		{% if user.is_authenticated %}
 		<form method="post" action="">

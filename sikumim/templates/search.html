@@ -32,19 +32,19 @@
         <div class="pagination">
             <ul>
                 {% if summaries.has_previous %}
-                    <li><a href="?page={{ summaries.previous_page_number }}">הקודם</a></li>
+                    <li><a href="?{{queries.urlencode}}&amp;page={{ summaries.previous_page_number }}">הקודם</a></li>
                 {% else %}
                     <li class="disabled">הקודם</li>
                 {% endif %}
                 {% for page in summaries.paginator.page_range  %}
                     {% if page == summaries.number %}
-                        <li><a class="active" href="?page={{ page }}" >{{ page }}</a></li>
+                        <li><a class="active" href="?{{queries.urlencode}}&amp;page={{ page }}" >{{ page }}</a></li>
                     {% else %}
-                        <li><a href="?page={{ page }}" >{{ page }}</a></li>
+                        <li><a href="?{{queries.urlencode}}&amp;page={{ page }}" >{{ page }}</a></li>
                     {% endif %}
                 {% endfor %}
                 {% if summaries.has_next %}
-                    <li><a href="?page={{ summaries.next_page_number }}">הבא</a></li>
+                    <li><a href="?{{queries.urlencode}}&amp;page={{ summaries.next_page_number }}">הבא</a></li>
                 {% else %}
                     <li class="disabled">הבא</li>
                 {% endif %}

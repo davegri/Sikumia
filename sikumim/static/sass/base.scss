@@ -60,9 +60,9 @@ strong {
 input {
     padding: 0.5em;
     border: none;
-    height: 2.5em;
+    height: 35px;
     font-size: 1.3em;
-    vertical-align: middle;
+    vertical-align: top;
     display: inline-block;
 
     &:focus {
@@ -72,14 +72,20 @@ input {
 
 .button {
     @extend input;
-
     color: white;
     background-color: $dark_blue;
     padding: 0.5em 1em 0.5em 1em;
-
+    box-shadow: 0px 5px 0px 0px $dark_blue_shadow;
+    border-radius: 3px;
+    height: 30px;
     &:hover {
         background-color: $dark_blue_highlight;
         cursor: pointer;
+    }
+    &:active{
+        transform: translate(0px, 5px);
+        -webkit-transform: translate(0px, 5px);
+        box-shadow: 0px 0px 0px 0px;
     }
 }
 
@@ -137,14 +143,19 @@ blockquote {
     max-width: 1024px;
 }
 
+.header-container{
+    background-color: $light_blue;
+
+}
+
 header {
+    max-width: 1024px;
     display: table;
     color: white;
-    background-color: $light_blue;
     overflow: hidden;
     width: 100%;
-    padding: 3em;
-
+    padding: 3em 1%;
+    margin: 0 auto;
     .logo_wrapper {
         display: table-cell;
         vertical-align: middle;
@@ -159,14 +170,15 @@ header {
         }
     }
 
-    .login {
+    .panel-wrapper {
         vertical-align: middle;
         display: table-cell;
 
-        form {
-            float: left;
-            background-color: $light_blue_highlight;
+        .panel{
+    background-color: $light_blue_highlight;
+                float: left;
             padding: 1.5em;
+        form {
 
             h4 {
                 margin-bottom: 10px;
@@ -193,6 +205,27 @@ header {
         }
     }
 }
+}
+
+    .search-box {
+    border: 5px solid $dark_blue;
+    height: 62px;
+    padding: 0.5em;
+
+    input{
+
+    }
+    input[type="text"] {
+        width: 80%;
+        height: 100%;
+    }
+
+    input[type="submit"] {
+        height: 90%;
+        float: left;
+        width: 20%;
+    }
+}
 
 .error {
     margin-top: 10px;
@@ -212,6 +245,7 @@ header {
 }
 
 nav {
+                    margin-bottom:5px;
     ol {
         list-style: none;
         padding: 0px;
@@ -220,71 +254,35 @@ nav {
         a {
             display: table;
             text-decoration: none;
+    }
 
             li {
                 text-align: center;
                 color: white;
                 font-family: "open sans hebrew", 'sans-serif';
-                font-size: 1.9em;
+                font-size: 1.7em;
                 font-weight: 400;
                 display: table-cell;
                 vertical-align: middle;
-                height: 2.47em;
+                height: 50px;
                 width: 100%;
-            }
-        }
-
-        > :nth-child(1) {
-            background: $english;
-        }
-
-        > :nth-child(2) {
-            background: $bible;
-        }
-
-        > :nth-child(3) {
-            background: $history;
-        }
-
-        > :nth-child(4) {
-            background: $civics;
-        }
-
-        > :nth-child(5) {
-            background: $language;
-        }
-
-        > :nth-child(6) {
-            background: $literature;
         }
     }
 }
 
-.search-box {
-    width: 100%;
-    border: 3px solid $dark_blue;
-    padding: 0.5em;
-    overflow: hidden;
 
-    input[type="text"] {
-        width: 75%;
-        font-size: 1.3em;
-    }
 
-    input[type="submit"] {
-        float: left;
-        width: 25%;
-        font-size: 1.3em;
-        line-height: 1em;
-    }
-}
 
-.search-panel{
-    background-color: $dark_blue;
-    padding: 0.5em;
-    font-size: 1.3em;
-    margin-bottom: $gutter_percent;
-
+.call-to-action{
+    @extend .button;
+    font-family: 'Open Sans Hebrew', 'sans-serif';
+        padding: 0.5em;
+        color: white;
+        text-decoration: none;
+        text-align: center;
+        font-size: 2em;
+        font-weight: 400;
+        height: 57px;
 }
 
 .ck-button {
@@ -323,62 +321,34 @@ select{
     padding: 0.8em 1.5em;
 }
 
+html, body {
+  height: 100%;
+}
+
+.page-wrap {
+  min-height: 100%;
+  /* equal to footer height */
+  margin-bottom: -60px; 
+}
+.page-wrap:after {
+  content: "";
+  display: block;
+}
+footer, .page-wrap:after {
+  height: 60px; 
+}
+
 footer {
+    display: table;
+    width: 100%;
     color: white;
     background-color: $light_blue;
     text-align: center;
+    span{
     font-size: 1.5em;
-    padding: 1em;
-    margin-top: $gutter_percent;
-    margin-bottom: gutter_percent;
+    display: table-cell;
+    vertical-align: middle;
+    }
 }
 
 /* colors */
-
-.english {
-    background-color: $english;
-
-    ol &:hover {
-        background-color: $english_highlight;
-    }
-}
-
-.bible {
-    background-color: $bible;
-
-    ol &:hover {
-        background-color: $bible_highlight;
-    }
-}
-
-.history {
-    background-color: $history;
-
-    ol &:hover {
-        background-color: $history_highlight;
-    }
-}
-
-.civics {
-    background-color: $civics;
-
-    ol &:hover {
-        background-color: $civics_highlight;
-    }
-}
-
-.language {
-    background-color: $language;
-
-    ol &:hover {
-        background-color: $language_highlight;
-    }
-}
-
-.literature {
-    background-color: $literature;
-
-    ol &:hover {
-        background-color: $literature_highlight;
-    }
-}
