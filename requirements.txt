@@ -1,3 +1,4 @@
+bleach==1.4.1
 dj-database-url==0.3.0
 Django==1.8.3
 django-admin-sortable==1.8.4
@@ -7,6 +8,7 @@ django-compressor==1.5
 django-widget-tweaks==1.4.1
 dodge==0.1.9
 gunicorn==19.3.0
+html5lib==0.999999
 mammoth==0.3.18
 parsimonious==0.5
 psycopg2==2.6.1

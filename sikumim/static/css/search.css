@@ -1,4 +1,5 @@
 .pagination ul {
+  margin-top: 1em;
   list-style: none;
   padding: 0;
   color: white; }
@@ -28,35 +29,7 @@
 .block-header {
   text-align: center; }
 
-.summary-header {
-  margin-top: 0.3em;
-  background: #eceff1;
-  text-align: right;
-  color: #2b5797;
-  border-bottom: 3px solid #1ba1e2;
-  padding: 0.5em;
-  font-weight: 400;
-  position: relative; }
-  .summary-header p {
-    margin-bottom: 0.6em; }
-  .summary-header:hover {
-    background: #1ba1e2;
-    color: white;
-    border-bottom: 3px solid #2b5797; }
-    .summary-header:hover .subject-tag {
-      background: white;
-      color: #2b5797; }
-
-.subject-tag {
-  color: white;
-  font-size: 0.8em;
-  float: left;
-  padding: 0.2em 0.5em; }
-
 .block {
   padding: 0.5em; }
-
-.pagination {
-  margin-top: 1em; }
 
 /*# sourceMappingURL=search.css.map */

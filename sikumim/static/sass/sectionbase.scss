@@ -1,0 +1,148 @@
+@import "colors";
+@import "grid_system";
+@import "base";
+@import "pagination";
+
+.main-header {
+    @extend .block-header;
+    text-align: center;
+    min-height: 60px;
+    padding: 2em;
+    h2{
+        width: 65%
+    }
+
+}
+
+    h2{
+        margin: 0 auto;
+        line-height:1.3em;
+    }
+
+.secondary-header{
+    @extend .block-header;
+}
+
+
+.selected{
+    background-color: $dark_blue;
+}
+
+
+.summary-header {
+    margin-top: 0.3em;
+    background: $grey;
+    text-align: right;
+    color: $dark_blue;
+    border-bottom: 3px solid $light_blue;
+    padding: 0.5em;
+
+    p {
+        margin-bottom: 0.6em;
+    }
+
+    font-weight: 400;
+    position: relative;
+
+    &:hover {
+        background: $light_blue;
+        color: white;
+        border-bottom: 3px solid $dark_blue;
+
+        .subject-tag {
+            background: white;
+            color: $dark_blue;
+        }
+    }
+}
+
+.subject-tag {
+    color: white;
+    font-size: 0.8em;
+    float: left;
+    padding: 0.2em 0.5em;
+}
+
+
+.subsections{
+    background-color: $grey;
+    padding: 2em;
+}
+
+.category{
+padding: 1em;
+    h3{
+        a{
+            display: block;
+            color:$dark_blue;
+            border-bottom: 3px solid $light_blue;
+            margin-bottom: 0.3em;
+            padding: 0.05em 0.3em;
+-webkit-transition: .1s all linear;
+-moz-transition: .1s all linear;
+-o-transition: .1s all linear;
+transition: .1s all linear;     
+            border-radius:10px 10px 0px 0px;
+        &:hover{
+            background-color: $light_blue;
+            color: white;
+        }
+        }
+    }
+
+    li{
+                    padding: 0.5em 0.3em;
+
+        a{
+            color: $dark_blue;
+            font-size: 1.3em;
+            line-height: 1em;
+        }
+        &:hover{
+                        background-color: $light_blue;
+            a{
+            color: white;
+        }
+        }
+    }
+}
+
+.subcategory{
+    a{
+        text-align: center;
+        padding:0.5em;
+        display: block;
+        color:$light_blue;
+        border:3px solid $light_blue;
+-webkit-transition: .1s all linear;
+-moz-transition: .1s all linear;
+-o-transition: .1s all linear;
+transition: .1s all linear;    
+  white-space: -moz-pre-wrap; /* Mozilla */
+  white-space: -hp-pre-wrap; /* HP printers */
+  white-space: -o-pre-wrap; /* Opera 7 */
+  white-space: -pre-wrap; /* Opera 4-6 */
+  white-space: pre-wrap; /* CSS 2.1 */
+  white-space: pre-line; /* CSS 3 (and 2.1 as well, actually) */
+  word-wrap: break-word; /* IE */
+        &:hover{
+            background-color: $light_blue;
+            border: 3px solid $light_blue_highlight;
+            color: white;
+        }
+    }
+}
+
+
+
+.block {
+    color: dimgrey;
+}
+
+.pagination{
+    margin-top: 1em;
+}
+
+
+
+

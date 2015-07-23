@@ -120,10 +120,18 @@ STATICFILES_DIRS = (
 
 CKEDITOR_CONFIGS = {
     'default': {
-        'toolbar': 'full',
+         'toolbar': [[ 'Cut','Copy','Paste','PasteText','PasteFromWord','-','Undo','Redo' ],
+                    [ 'Bold','Italic','Underline','Strike','Subscript','Superscript','-','RemoveFormat' ],
+                    [ 'NumberedList','BulletedList','-','Outdent','Indent','-','Blockquote','CreateDiv','-','JustifyLeft','JustifyCenter','JustifyRight','JustifyBlock','-','BidiLtr','BidiRtl' ],
+                    [ 'Image','Table','HorizontalRule','Smiley','SpecialChar','PageBreak' ],
+                    [ 'Styles','Format','Font','FontSize' ],
+                    [ 'TextColor','BGColor' ]],
         'contentsLangDirection': 'rtl',
         'contentsLanguage ': 'heb',
         'width': '100%',
         'extraPlugins': 'autogrow',
     },
 }
+
+#login
+LOGIN_REDIRECT_URL = '/s'

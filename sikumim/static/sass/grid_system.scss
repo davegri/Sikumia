@@ -1,4 +1,4 @@
-$col_number: 16;
+$col_number: 24;
 $gutter_percent: 1%;
 
 $one_col_width: (100 - $gutter_percent * ($col_number - 1)) / $col_number;
@@ -39,10 +39,28 @@ $one_col_width: (100 - $gutter_percent * ($col_number - 1)) / $col_number;
 
 
 @for $i from 1 through 12 {
-        .part-of-#{$i} {
-            margin-right: $gutter_percent;
-            float: right;
-            width: (100 - $gutter_percent * ($i - 1)) / $i;
+    .part-of-#{$i} {
+        margin-right: $gutter_percent;
+        float: right;
+        width: (100 - $gutter_percent * ($i - 1)) / $i;
+    }
+}
+
+.part-of-1{
+            &:nth-of-type(1n+1){
+        margin-right: 0;
+        }
+        &:nth-of-type(n+2){
+        margin-top:$gutter_percent;;
+        }
+}
+
+.part-of-2{
+            &:nth-of-type(2n+1){
+        margin-right: 0;
+        }
+        &:nth-of-type(n+3){
+        margin-top:$gutter_percent;;
         }
 }
 

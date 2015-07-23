@@ -1,172 +1,70 @@
-html {
-  color: #000;
-  background: #FFF; }
+/*
+Error: Undefined variable: "$dark_grey".
+        on line 180 of sikumim/static/sass/summary_content.scss
 
-body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, h2 *, h3 *, h4 *, h5 *, h6 *, pre, code, form, fieldset, legend, input, textarea, p, blockquote, th, td {
-  margin: 0;
-  padding: 0; }
+175:     color: rgb(0, 0, 0) !important;
+176:     background-color: rgb(249, 249, 249) !important;
+177: }
+178: 
+179: body {
+180:     color: $dark_grey;
+181:     font-size: 12px;
+182:     font-family: 'Arimo', 'sans-serif';
+183:     font-weight: 400;
+184:     line-height: 1.6;
+185: }
 
-table {
-  border-collapse: collapse;
-  border-spacing: 0; }
-
-fieldset, img {
-  border: 0; }
-
-address, caption, cite, code, dfn, em, strong, th, var {
-  font-style: normal;
-  font-weight: normal; }
-
-ol, ul {
-  list-style: none; }
-
-caption, th {
-  text-align: left; }
-
-h1, h2, h3, h4, h5, h6, h2 *, h3 *, h4 *, h5 *, h6 * {
-  font-size: 100%;
-  font-weight: normal; }
-
-q:before, q:after {
-  content: ''; }
-
-abbr, acronym {
-  border: 0;
-  font-variant: normal; }
-
-sup {
-  vertical-align: text-top; }
-
-sub {
-  vertical-align: text-bottom; }
-
-input, textarea, select {
-  font-family: inherit;
-  font-size: inherit;
-  font-weight: inherit;
-  *font-size: 100%; }
-
-legend {
-  color: #000; }
-
-#yui3-css-stamp.cssreset {
-  display: none; }
-
-html, body, div, span, applet, object, iframe,
-h1, h2, h3, h4, h5, h6, h2 *, h3 *, h4 *, h5 *, h6 *, p, blockquote, pre,
-a, abbr, acronym, address, big, cite, code,
-del, dfn, em, font, img, ins, kbd, q, s, samp,
-small, strike, strong, sub, sup, tt, var,
-b, u, i, center,
-dl, dt, dd, ol, ul, li,
-fieldset, form, label, legend,
-table, caption, tbody, tfoot, thead, tr, th, td {
-  margin: 0;
-  padding: 0;
-  border: 0;
-  outline: 0;
-  font-size: 100%;
-  vertical-align: baseline;
-  background: transparent; }
-
-body {
-  line-height: 1; }
-
-ol, ul {
-  list-style: none; }
-
-blockquote, q {
-  quotes: none; }
-
-blockquote:before, blockquote:after,
-q:before, q:after {
-  content: '';
-  content: none; }
-
-/* remember to define focus styles! */
-:focus {
-  outline: 0; }
-
-/* remember to highlight inserts somehow! */
-ins {
-  text-decoration: none; }
-
-del {
-  text-decoration: line-through; }
-
-/* tables still need 'cellspacing="0"' in the markup */
-table {
-  border-collapse: collapse;
-  border-spacing: 0; }
-
-h2, h3, h4, h5, h6, h2 *, h3 *, h4 *, h5 *, h6 * {
-  font-weight: normal !important;
-  font-size: 22px !important;
-  padding-bottom: 5px !important;
-  border-bottom: 1px solid gray !important;
-  margin-bottom: 15px !important;
-  margin-top: 30px !important;
-  line-height: normal !important;
-  text-decoration: none !important; }
-
-* {
-  font-family: "Segoe UI", Frutiger, "Frutiger Linotype", "Dejavu Sans", "Helvetica Neue", Arial, sans-serif !important; }
-
-td {
-  padding: 15px !important;
-  vertical-align: middle !important; }
-
-tr:nth-child(odd) {
-  background-color: #f9f9f9 !important; }
-
-tr:nth-child(even) {
-  background-color: #e0dfdf !important; }
-
-table {
-  width: 100% !important; }
-
-th {
-  background-color: #3765a8 !important; }
-
-li {
-  line-height: 2em !important;
-  margin-right: 16px; }
-
-ul {
-  list-style-type: square !important; }
-
-pre {
-  margin-top: 1em;
-  margin-bottom: 1em;
-  white-space: pre-wrap;
-  /* CSS 3 */
-  white-space: -moz-pre-wrap;
-  /* Mozilla, since 1999 */
-  white-space: -pre-wrap;
-  /* Opera 4-6 */
-  white-space: -o-pre-wrap;
-  /* Opera 7 */
-  word-wrap: break-word;
-  /* Internet Explorer 5.5+ */
-  border-style: solid !important;
-  border-width: 1px !important;
-  line-height: 1.8em !important;
-  padding: 1em !important;
-  border: 1px dashed #2f6fab !important;
-  color: black !important;
-  background-color: #f9f9f9 !important; }
-
-strong {
-  font-weight: normal; }
-
-img {
-  -webkit-box-shadow: inset 0 0 2px black, inset 0 2px 0 rgba(255, 255, 255, 0.3), inset 0 -1px 0 rgba(0, 0, 0, 0.5), 0 1px 3px rgba(0, 0, 0, 0.4);
-  -moz-box-shadow: inset 0 0 2px black, inset 0 2px 0 rgba(255, 255, 255, 0.3), inset 0 -1px 0 rgba(0, 0, 0, 0.5), 0 1px 3px rgba(0, 0, 0, 0.4);
-  box-shadow: inset 0 0 2px black, inset 0 2px 0 rgba(255, 255, 255, 0.3), inset 0 -1px 0 rgba(0, 0, 0, 0.5), 0 1px 3px rgba(0, 0, 0, 0.4); }
-
-a {
-  color: black !important;
-  pointer-events: none !important;
-  cursor: default !important; }
-
-/*# sourceMappingURL=summary_content.css.map */
+Backtrace:
+sikumim/static/sass/summary_content.scss:180
+/home/david/.rvm/gems/ruby-2.2.1/gems/sass-3.4.16/lib/sass/script/tree/variable.rb:49:in `_perform'
+/home/david/.rvm/gems/ruby-2.2.1/gems/sass-3.4.16/lib/sass/script/tree/node.rb:50:in `perform'
+/home/david/.rvm/gems/ruby-2.2.1/gems/sass-3.4.16/lib/sass/tree/visitors/perform.rb:394:in `visit_prop'
+/home/david/.rvm/gems/ruby-2.2.1/gems/sass-3.4.16/lib/sass/tree/visitors/base.rb:36:in `visit'
+/home/david/.rvm/gems/ruby-2.2.1/gems/sass-3.4.16/lib/sass/tree/visitors/perform.rb:158:in `block in visit'
+/home/david/.rvm/gems/ruby-2.2.1/gems/sass-3.4.16/lib/sass/stack.rb:79:in `block in with_base'
+/home/david/.rvm/gems/ruby-2.2.1/gems/sass-3.4.16/lib/sass/stack.rb:115:in `with_frame'
+/home/david/.rvm/gems/ruby-2.2.1/gems/sass-3.4.16/lib/sass/stack.rb:79:in `with_base'
+/home/david/.rvm/gems/ruby-2.2.1/gems/sass-3.4.16/lib/sass/tree/visitors/perform.rb:158:in `visit'
+/home/david/.rvm/gems/ruby-2.2.1/gems/sass-3.4.16/lib/sass/tree/visitors/perform.rb:430:in `block (2 levels) in visit_rule'
+/home/david/.rvm/gems/ruby-2.2.1/gems/sass-3.4.16/lib/sass/tree/visitors/perform.rb:430:in `map'
+/home/david/.rvm/gems/ruby-2.2.1/gems/sass-3.4.16/lib/sass/tree/visitors/perform.rb:430:in `block in visit_rule'
+/home/david/.rvm/gems/ruby-2.2.1/gems/sass-3.4.16/lib/sass/tree/visitors/perform.rb:179:in `with_environment'
+/home/david/.rvm/gems/ruby-2.2.1/gems/sass-3.4.16/lib/sass/tree/visitors/perform.rb:428:in `visit_rule'
+/home/david/.rvm/gems/ruby-2.2.1/gems/sass-3.4.16/lib/sass/tree/visitors/base.rb:36:in `visit'
+/home/david/.rvm/gems/ruby-2.2.1/gems/sass-3.4.16/lib/sass/tree/visitors/perform.rb:158:in `block in visit'
+/home/david/.rvm/gems/ruby-2.2.1/gems/sass-3.4.16/lib/sass/stack.rb:79:in `block in with_base'
+/home/david/.rvm/gems/ruby-2.2.1/gems/sass-3.4.16/lib/sass/stack.rb:115:in `with_frame'
+/home/david/.rvm/gems/ruby-2.2.1/gems/sass-3.4.16/lib/sass/stack.rb:79:in `with_base'
+/home/david/.rvm/gems/ruby-2.2.1/gems/sass-3.4.16/lib/sass/tree/visitors/perform.rb:158:in `visit'
+/home/david/.rvm/gems/ruby-2.2.1/gems/sass-3.4.16/lib/sass/tree/visitors/base.rb:52:in `block in visit_children'
+/home/david/.rvm/gems/ruby-2.2.1/gems/sass-3.4.16/lib/sass/tree/visitors/base.rb:52:in `map'
+/home/david/.rvm/gems/ruby-2.2.1/gems/sass-3.4.16/lib/sass/tree/visitors/base.rb:52:in `visit_children'
+/home/david/.rvm/gems/ruby-2.2.1/gems/sass-3.4.16/lib/sass/tree/visitors/perform.rb:167:in `block in visit_children'
+/home/david/.rvm/gems/ruby-2.2.1/gems/sass-3.4.16/lib/sass/tree/visitors/perform.rb:179:in `with_environment'
+/home/david/.rvm/gems/ruby-2.2.1/gems/sass-3.4.16/lib/sass/tree/visitors/perform.rb:166:in `visit_children'
+/home/david/.rvm/gems/ruby-2.2.1/gems/sass-3.4.16/lib/sass/tree/visitors/base.rb:36:in `block in visit'
+/home/david/.rvm/gems/ruby-2.2.1/gems/sass-3.4.16/lib/sass/tree/visitors/perform.rb:186:in `visit_root'
+/home/david/.rvm/gems/ruby-2.2.1/gems/sass-3.4.16/lib/sass/tree/visitors/base.rb:36:in `visit'
+/home/david/.rvm/gems/ruby-2.2.1/gems/sass-3.4.16/lib/sass/tree/visitors/perform.rb:157:in `visit'
+/home/david/.rvm/gems/ruby-2.2.1/gems/sass-3.4.16/lib/sass/tree/visitors/perform.rb:8:in `visit'
+/home/david/.rvm/gems/ruby-2.2.1/gems/sass-3.4.16/lib/sass/tree/root_node.rb:36:in `css_tree'
+/home/david/.rvm/gems/ruby-2.2.1/gems/sass-3.4.16/lib/sass/tree/root_node.rb:29:in `render_with_sourcemap'
+/home/david/.rvm/gems/ruby-2.2.1/gems/sass-3.4.16/lib/sass/engine.rb:378:in `_render_with_sourcemap'
+/home/david/.rvm/gems/ruby-2.2.1/gems/sass-3.4.16/lib/sass/engine.rb:295:in `render_with_sourcemap'
+/home/david/.rvm/gems/ruby-2.2.1/gems/sass-3.4.16/lib/sass/plugin/compiler.rb:490:in `update_stylesheet'
+/home/david/.rvm/gems/ruby-2.2.1/gems/sass-3.4.16/lib/sass/plugin/compiler.rb:215:in `block in update_stylesheets'
+/home/david/.rvm/gems/ruby-2.2.1/gems/sass-3.4.16/lib/sass/plugin/compiler.rb:209:in `each'
+/home/david/.rvm/gems/ruby-2.2.1/gems/sass-3.4.16/lib/sass/plugin/compiler.rb:209:in `update_stylesheets'
+/home/david/.rvm/gems/ruby-2.2.1/gems/sass-3.4.16/lib/sass/plugin/compiler.rb:470:in `on_file_changed'
+/home/david/.rvm/gems/ruby-2.2.1/gems/sass-3.4.16/lib/sass/plugin/compiler.rb:328:in `block in watch'
+/home/david/.rvm/gems/ruby-2.2.1/gems/sass-3.4.16/vendor/listen/lib/listen/listener.rb:252:in `call'
+/home/david/.rvm/gems/ruby-2.2.1/gems/sass-3.4.16/vendor/listen/lib/listen/listener.rb:252:in `on_change'
+/home/david/.rvm/gems/ruby-2.2.1/gems/sass-3.4.16/vendor/listen/lib/listen/listener.rb:290:in `block in initialize_adapter'
+/home/david/.rvm/gems/ruby-2.2.1/gems/sass-3.4.16/vendor/listen/lib/listen/adapters/polling.rb:48:in `call'
+/home/david/.rvm/gems/ruby-2.2.1/gems/sass-3.4.16/vendor/listen/lib/listen/adapters/polling.rb:48:in `poll_changed_directories'
+/home/david/.rvm/gems/ruby-2.2.1/gems/sass-3.4.16/vendor/listen/lib/listen/adapter.rb:299:in `block in start_poller'
+*/
+body:before {
+  white-space: pre;
+  font-family: monospace;
+  content: "Error: Undefined variable: \"$dark_grey\".\A         on line 180 of sikumim/static/sass/summary_content.scss\A \A 175:     color: rgb(0, 0, 0) !important;\A 176:     background-color: rgb(249, 249, 249) !important;\A 177: }\A 178: \A 179: body {\A 180:     color: $dark_grey;\A 181:     font-size: 12px;\A 182:     font-family: 'Arimo', 'sans-serif';\A 183:     font-weight: 400;\A 184:     line-height: 1.6;\A 185: }"; }

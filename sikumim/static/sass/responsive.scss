@@ -1,195 +1,102 @@
 @import "grid_system";
 @import "colors";
 
-@media only screen and (max-width: 950px) {
-    .row {
-        nav {
-            width: 100% !important;
+@media only screen and (max-width: 930px) {
+    .row{
+        nav{
+            margin-top: 0;
+            ol{
+                li{
+                    width: $one_col_width * 6 + $gutter_percent * (6 - 1)!important;
+                    &:nth-of-type(4n+1){
+                    margin-right: 0!important;
+                    }
+                    &:nth-of-type(n+5){
+                    margin-top:1em!important;
+                    }
+                }
+            }
         }
-
-        .search-box {
-            @include cols(9);
-
-            margin-right: 0;
-            margin-top: $gutter_percent;
+        .call-to-action{
+            width: $one_col_width * 12 + $gutter_percent * (12 - 1)!important;
         }
-
-        .slider a {
-            background: $light_blue;
+        .search-box{
+            width: $one_col_width * 12 + $gutter_percent * (12 - 1)!important;
         }
     }
+
+}
+@media only screen and (max-width: 835px) {
+
+.part-of-4{
+        margin-right: $gutter_percent;
+        float: right;
+        width: (100 - $gutter_percent * (2 - 1)) / 2;
+                    &:nth-of-type(2n+1){
+        margin-right: 0;
+        }
+        &:nth-of-type(n+3){
+        margin-top:$gutter_percent;;
+        }
 }
 
-@media only screen and (max-width: 865px) {
-    .row .col-6 {
-        width: 100%;
-    }
-
-    .row .ad {
-        width: 100%;
-        margin-right: 0;
-        margin-top: $gutter_percent;
-    }
-
-    header {
-        padding: 0;
-        display: block;
-
-        .logo_wrapper {
+}
+@media only screen and (max-width: 790px) {
+    header{
+        padding:0;
+        padding-top: 1em;
+        .logo_wrapper{
             display: block;
-            padding: 2em;
-
-            h1 {
+            
+            h1{
                 margin: 0 auto;
             }
+            margin-bottom: 2em;
         }
-
-        .login {
+        .panel-wrapper{
+            border-top: 0.6em solid white;
             display: block;
-            width: 100%;
-            border-top: 10px solid white;
-
-            form {
-                float: none;
+            overflow: auto;
+            .panel{
+                width: 100%;
             }
         }
     }
+
 }
 
-@media only screen and (max-width: 630px) {
-    .row .col-3 {
-        @include cols(9);
-
-        margin-right: 0;
-        margin-bottom: $gutter_percent;
-    }
-
-    .row .col-6 .col-1 {
-        @include cols(3);
-
+@media only screen and (max-width: 600px) {
+.part-of-4,.part-of-3,.part-of-5,.part-of-6{
         margin-right: $gutter_percent;
-    }
-
-    .row .col-6 .row > :nth-child(3n+1) {
+        float: right;
+        width: (100 - $gutter_percent * (1 - 1)) / 1;
+                    &:nth-of-type(1n+1){
         margin-right: 0;
-    }
-
-    .row .col-6 .row > :nth-last-child(-n+3) {
-        margin-top: $gutter_percent;
-    }
-
-    body {
-        font-size: 14px;
-        font-weight: 400;
-        line-height: 1.6;
-    }
+        }
+        &:nth-of-type(n+2){
+        margin-top:$gutter_percent;;
+        }
 }
 
-@media only screen and (max-width: 570px) {
-    .slider a {
-        background: $light_blue;
-    }
-}
-
-@media only screen and (max-width: 470px) {
-    header .login .lock {
-        width: 0px;
-        height: 0px;
-    }
-}
-
-@media only screen and (max-width: 360px) {
-    header .login input[type="text"], header .login input[type="password"] {
-        width: 25%;
-    }
 }
 
 /* mobile layout */
 
 @media screen and (-webkit-min-device-pixel-ratio: 1.5) and (min-resolution: 144dpi) and (orientation: portrait) {
-        .row {
-        nav {
-            width: 100% !important;
-        }
-
-        .search-box {
-            @include cols(9);
-            margin-right: 0;
-            margin-top: $gutter_percent;
-            input[type="submit"]{
-                width:auto;
-            }
-        }
-
-        .slider a {
-            background: $light_blue;
-        }
-    }
-        .row .col-6 {
-        width: 100%;
-    }
-
-    .row .ad {
-        width: 100%;
-        margin-right: 0;
-        margin-top: $gutter_percent;
-    }
-
-    header {
-        padding: 0;
-        display: block;
-
-        .logo_wrapper {
-            display: block;
-            padding: 2em;
-
-            h1 {
-                margin: 0 auto;
-            }
-        }
-
-        .login {
-            display: block;
-            width: 100%;
-            border-top: 10px solid white;
-
-            form {
-                float: none;
-            }
-        }
-    }
-.row .col-3 {
-        @include cols(9);
-
-        margin-right: 0;
-        margin-bottom: $gutter_percent;
-    }
-
-    .row .col-6 .col-1 {
-        @include cols(3);
-
+     .part-of-4,.part-of-3,.part-of-5,.part-of-6{
         margin-right: $gutter_percent;
-    }
-
-    .row .col-6 .row > :nth-child(3n+1) {
+        float: right;
+        width: (100 - $gutter_percent * (1 - 1)) / 1;
+                    &:nth-of-type(1n+1){
         margin-right: 0;
-    }
-
-    .row .col-6 .row > :nth-last-child(-n+3) {
-        margin-top: $gutter_percent;
-    }
-
-    body {
-        font-size: 30px;
-        font-weight: 400;
-        line-height: 1.6;
-    }
+        }
+        &:nth-of-type(n+2){
+        margin-top:$gutter_percent;;
+        }
+}
     
 }
 
 @media only screen and (max-width: 470px) {
-    header .login .lock {
-        width: 0px;
-        height: 0px;
-    }
+
 }

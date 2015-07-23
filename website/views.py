@@ -3,11 +3,12 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from django.shortcuts import redirect, get_object_or_404
-from website.models import Summary, SummaryView, Subject, SubjectDivision
+from website.models import Summary, View, Subject, Category, Subcategory
 from django.core.paginator import Paginator, InvalidPage, EmptyPage
 from website.forms import UserForm, CommentForm, SearchForm, SummaryForm, EditSummaryForm
 from django.template import RequestContext
 from django.contrib.auth import authenticate, login as django_login, logout as django_logout
+from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.core.urlresolvers import resolve
 from django.contrib import messages
@@ -16,14 +17,20 @@ import operator
 from django.db.models import Q
 from django.utils.translation import activate
 
+from django.core import serializers
+import json
+
 from functools import reduce
 
 
 from django.utils.http import urlencode
 
+
 def get_query_string(params, new_params=None, remove=None):
-    if new_params is None: new_params = {}
-    if remove is None: remove = []
+    if new_params is None:
+        new_params = {}
+    if remove is None:
+        remove = []
     p = params.copy()
     for r in remove:
         for k in p.keys():
@@ -39,8 +46,6 @@ def get_query_string(params, new_params=None, remove=None):
     return '?%s' % urlencode(p)
 
 
-
-
 def index(request):
     context_dict = {}
     return render(request, 'index.html', context_dict)
@@ -54,10 +59,10 @@ def login(request):
         user = authenticate(username=username, password=password)
         if not user:
             messages.add_message(
-                request, messages.INFO, 'שם משתמש או סיסמא אינם נכונים')
+                request, messages.ERROR, 'שם משתמש או סיסמא אינם נכונים', extra_tags='login')
         elif not user.is_active:
             messages.add_message(
-                request, messages.INFO, 'חשבונך נחסם, אם הינך חושב שזאת טעות צור קשר עם מנהל בהקדם.')
+                request, messages.ERROR, 'חשבונך נחסם, אם הינך חושב שזאת טעות צור קשר עם מנהל בהקדם.', extra_tags='login')
         else:
             django_login(request, user)
             return redirect(request.META.get('HTTP_REFERER'))
@@ -70,22 +75,103 @@ def logout(request):
     return redirect(request.META.get('HTTP_REFERER'))
 
 
-def getSubjectHeb(subject='english'):
-    hebSubjects = {
-        'english': 'אנגלית',
-        'bible': 'תנ"ך',
-        'history': 'היסטוריה',
-        'civics': 'אזרחות',
-        'language': 'לשון',
-        'literature': 'ספרות',
+def profile(request, user_pk):
+    user = get_object_or_404(User,pk=user_pk)
+    summaries_list = user.summaries_authored.all()
+    positive_karma = sum([summary.users_rated_positive.count() for summary in summaries_list])
+    negative_karma = sum([summary.users_rated_negative.count() for summary in summaries_list])
+    karma = positive_karma - negative_karma
+
+    # pagination
+    paginator = Paginator(summaries_list, 12)
+
+    # get page number from GET request
+    page_num = request.GET.get('page', 1)
+
+    # get summaries from paginator according to page number
+    try:
+        summaries = paginator.page(page_num)
+    except(EmptyPage, InvalidPage):
+        summaries = paginator.page(paginator.num_pages)
+
+
+    context_dict = {
+            'profile_user':user,
+            'karma':karma,
+            'summaries': summaries,
     }
-    return hebSubjects[subject]
+    return render(request, 'profile.html', context_dict)
 
 
 def subject(request, subject):
-    summaries_list = Summary.objects.all().filter(subject__name__icontains=subject)
+    summaries_list = Summary.objects.all().filter(
+        subject__name__icontains=subject)
     subject = get_object_or_404(Subject, name__icontains=subject)
-    subject_divisions_list = subject.subjectdivision_set.filter(parent=None)
+    category_list = subject.category_set.filter()
+    length = len(summaries_list)
+    categories_per_line = len(category_list)
+    if subject.name == 'history_a':
+        categories_per_line = 1
+    # pagination
+    paginator = Paginator(summaries_list, 12)
+
+    # get page number from GET request
+    page_num = request.GET.get('page', 1)
+
+    # get summaries from paginator according to page number
+    try:
+        summaries = paginator.page(page_num)
+    except(EmptyPage, InvalidPage):
+        summaries = paginator.page(paginator.num_pages)
+
+    context_dict = {
+        'subject': subject,
+        'categories': category_list,
+        'sumAmount': length,
+        'summaries': summaries,
+        'categories_per_line': categories_per_line,
+    }
+
+    return render(request, 'subject.html', context_dict)
+
+def category(request, subject, category):
+    summaries_list = Summary.objects.all().filter(
+        category__name__icontains=category)
+    subject = get_object_or_404(Subject, name__icontains=subject)
+    length = len(summaries_list)
+    category = get_object_or_404(Category,name=category)
+    subcategory_list = category.subcategory_set.all()
+    subcategories_per_line = len(subcategory_list)
+    if subject.name == 'history_a':
+        subcategories_per_line = 1
+    # pagination
+    paginator = Paginator(summaries_list, 12)
+
+    # get page number from GET request
+    page_num = request.GET.get('page', 1)
+
+    # get summaries from paginator according to page number
+    try:
+        summaries = paginator.page(page_num)
+    except(EmptyPage, InvalidPage):
+        summaries = paginator.page(paginator.num_pages)
+
+    context_dict = {
+        'category':category,
+        'subcategories': subcategory_list,
+        'subject': subject,
+        'sumAmount': length,
+        'summaries': summaries,
+        'subcategories_per_line': subcategories_per_line,
+    }
+
+    return render(request, 'category.html', context_dict)
+
+def subcategory(request, subject, category, subcategory):
+    summaries_list = Summary.objects.all().filter(
+        subcategory__name__icontains=subcategory)
+    subject = get_object_or_404(Subject, name__icontains=subject)
+    subcategory = get_object_or_404(Subcategory, name=subcategory)
     length = len(summaries_list)
 
     # pagination
@@ -102,58 +188,27 @@ def subject(request, subject):
 
     context_dict = {
         'subject': subject,
-        'hebSubject': subject.hebrew_name,
-        'divisions': subject_divisions_list,
+        'subcategory': subcategory,
         'sumAmount': length,
         'summaries': summaries,
-    }    
+    }
 
-    return render(request, 'subject.html', context_dict)
+    return render(request, 'subcategory.html', context_dict)
 
-def division(request, subject, division_name):
-
-    summaries_list = Summary.objects.all().filter(subject_division__name=division_name)
-    subject = get_object_or_404(Subject, name__icontains=subject)
-    subject_divisions_list = subject.subjectdivision_set.filter(parent=None)
-    length = len(summaries_list)
-    subdivisions_list = SubjectDivision.objects.get(name=division_name).subjectdivision_set.all()
-    # pagination
-    paginator = Paginator(summaries_list, 12)
-
-    # get page number from GET request
-    page_num = request.GET.get('page', 1)
-
-    # get summaries from paginator according to page number
-    try:
-        summaries = paginator.page(page_num)
-    except(EmptyPage, InvalidPage):
-        summaries = paginator.page(paginator.num_pages)
-
-
-    context_dict = {
-        'subject': subject,
-        'hebSubject': subject.hebrew_name,
-        'divisions': subject_divisions_list,
-        'subdivisions': subdivisions_list,
-        'current_division': division_name,
-        'sumAmount': length,
-        'summaries': summaries,
-    }   
-    return render(request, 'subject.html', context_dict)
 
 
 # summary page
 
 
-def summary(request, subject, division_name, pk):
+def summary(request, subject, category, summary_id):
     try:
-        summary = Summary.objects.get(pk=pk)
+        summary = Summary.objects.get(pk=summary_id)
     except Summary.DoesNotExist:
         summary = "DOES NOT EXIST!"
 
     request.session.save()
-    if not SummaryView.objects.filter(summary=summary, session=request.session.session_key):
-        view = SummaryView(summary=summary,
+    if not View.objects.filter(summary=summary, session=request.session.session_key):
+        view = View(summary=summary,
                            ip=request.META['REMOTE_ADDR'],
                            date_created=datetime.datetime.now(),
                            session=request.session.session_key)
@@ -178,19 +233,24 @@ def summary(request, subject, division_name, pk):
     }
     return render(request, 'summary.html', context_dict)
 
-def edit_summary(request, subject, pk):
-    instance = Summary.objects.get(pk=pk)
+
+def edit_summary(request, subject, category, summary_id):
+    instance = Summary.objects.get(pk=summary_id)
+    if not request.user.pk == instance.author.pk:
+        messages.add_message(request, messages.ERROR, 'אין לך הרשאות לבצע פעולה זו. אם הינך חושב שזאת טעות צור קשר עם הנהלת האתר')
+        return redirect(instance)
     activate('he')
     if request.method == "POST":
         summary_form = EditSummaryForm(request.POST, instance=instance)
         if summary_form.is_valid():
             summary_form.save()
+            messages.add_message(request, messages.SUCCESS, 'הסיכום שלך נערך בהצלחה!')
             return redirect(instance)
         else:
             return HttpResponse(summary_form.errors)
     else:
         summary_form = EditSummaryForm(instance=instance)
-    context_dict = {'summary_form':summary_form}
+    context_dict = {'summary_form': summary_form}
     return render(request, 'summary_edit.html', context_dict)
 
 
@@ -260,15 +320,12 @@ def search(request):
     else:
         bound_search_form = SearchForm(request.GET)
         query = request.GET['query']
-        subject = request.GET['subject']
-        order_by = request.GET['order_by']
         kwargs = {}
         args = []
         if query:
             query_word_list = query.split()
-            args.append(reduce(operator.or_, ((Q(title__contains=x) | Q(content__contains=x)) for x in query_word_list)))
-        if subject != 'all':
-            kwargs["subject"] = subject
+            args.append(reduce(operator.or_, ((
+                Q(title__contains=x) | Q(content__contains=x)) for x in query_word_list)))
 
         summaries_list = Summary.objects.sortedByScore(*args, **kwargs)
 
@@ -295,27 +352,52 @@ def search(request):
             'sumAmount': length,
             'summaries': summaries,
             'search_form': bound_search_form,
-            'queries' : queries_without_page,
+            'queries': queries_without_page,
         }
 
         return render(request, 'search.html', context_dict)
 
+def get_categories(request, subject_id):
+    subject = Subject.objects.get(pk=subject_id)
+    categories = subject.category_set.all()
+    html_string=""
+    for cat in categories:
+        html_string += '<option value="%s">%s</option>' % (cat.pk, cat.hebrew_name)
+
+    return HttpResponse(html_string, content_type="html")
+def get_subcategories(request, category_id):
+    category = Category.objects.get(pk=category_id)
+    subcategories = category.subcategory_set.all()
+    html_string=""
+    for subcat in subcategories:
+        html_string += '<option value="%s">%s</option>' % (subcat.pk, subcat.hebrew_name)
+    return HttpResponse(html_string, content_type="html")
+
 
 def upload(request):
+
+    if not request.user.is_authenticated():
+        messages.add_message(request, messages.ERROR, 'עליך להיות מחובר כדי לבצע פעולה זו!')
+        return redirect('/')
+    if request.is_ajax():
+        subject = list(request.POST.values())[0]
+
+        categories = Subject.objects.get(pk=subject).category_set.all().values('hebrew_name','id')
+        return HttpResponse(json.dumps(list(categories)))
     activate('he')
-    uploaded = False;
     if request.method == "POST":
         summary_form = SummaryForm(request.POST)
         if summary_form.is_valid():
             summary = summary_form.save(commit=False)
-            summary.author = User.objects.get(id=request.user.id);
+            summary.author = User.objects.get(id=request.user.id)
             summary.save()
-            uploaded = True
+            messages.add_message(request, messages.SUCCESS, 'הסיכום שלך נוסף לאתר בהצלחה!')
+            return redirect(summary)
         else:
             pass
     else:
         summary_form = SummaryForm()
 
-    context_dict = {'uploaded':uploaded,'summary_form':summary_form}
+    context_dict = {'summary_form': summary_form}
 
     return render(request, 'upload.html', context_dict)

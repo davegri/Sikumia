@@ -1,7 +1,7 @@
 # -*- coding: UTF-8 -*-
 from django.contrib.auth.models import User
 from django import forms
-from .models import Comment, Summary
+from .models import Comment, Summary, Category, Subcategory
 from ckeditor.fields import RichTextField
 
 
@@ -43,15 +43,24 @@ class CommentForm(forms.ModelForm):
         fields = ('content',)
 
 class SummaryForm(forms.ModelForm):
+
     class Meta:
         model = Summary
-        fields = ('title', 'subject', 'content', 'subject_division')
+        fields = ('title', 'subject', 'content', 'category', 'subcategory')
+
 
     def __init__(self, *args, **kwargs):
         super(SummaryForm, self).__init__(*args, **kwargs)
         self.fields['title'].label = "הכנס כותרת לסיכום"
+        self.fields['title'].error_messages = {'required': 'עליך לבחור כותרת לסיכום!'}
         self.fields['subject'].label = "בחר מקצוע"
+        self.fields['subject'].error_messages = {'required': 'בחר מקצוע!'}
         self.fields['content'].label = "תוכן הסיכום"
+        self.fields['category'].label = "בחר נושא"
+        self.fields['category'].error_messages = {'required': 'עליך לבחור נושא רלוונטי!'}
+        self.fields['subcategory'].label = "בחר תת נושא"
+        self.fields['subcategory'].error_messages = {'required': 'עליך לבחור תת נושא רלוונטי!'}
+
 
 
 class EditSummaryForm(forms.ModelForm):

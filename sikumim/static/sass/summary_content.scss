@@ -123,20 +123,6 @@ table {
     border-spacing: 0;
 }
 
-h2, h3, h4, h5, h6 {
-    font-weight: normal !important;
-    font-size: 22px !important;
-    padding-bottom: 5px !important;
-    border-bottom: 1px solid gray !important;
-    margin-bottom: 15px !important;
-    margin-top: 30px !important;
-    line-height: normal !important;
-    text-decoration: none !important;
-
-    & * {
-        @extend h6;
-    }
-}
 
 * {
     font-family: "Segoe UI", Frutiger, "Frutiger Linotype", "Dejavu Sans", "Helvetica Neue", Arial, sans-serif !important;
@@ -190,18 +176,46 @@ pre {
     background-color: rgb(249, 249, 249) !important;
 }
 
+body {
+    color: $dark_grey;
+    font-size: 12px;
+    font-family: 'Arimo', 'sans-serif';
+    font-weight: 400;
+    line-height: 1.6;
+}
+
+h1,h2, h3, h4, h5 {
+    font-family: 'Open Sans Hebrew', 'sans-serif'!important;
+}
+
+p,h1,h2, h3, h4, h5,table{
+        margin-bottom: 0.5em;
+
+}
+
+h1{
+    font-size: 2em;
+    font-weight: 700;
+    border-bottom: 1px solid $dark_grey;
+}
+
+h2 {
+    font-size: 1.5em;
+    font-weight: 700;
+}
+
+h3 {
+    font-size: 1.2em;
+    font-weight: 700;
+}
+
+
 strong {
-    font-weight: normal;
+    font-weight: bold;
 }
 
 img {
     -webkit-box-shadow: inset 0 0 2px rgba(0, 0, 0, 1), inset 0 2px 0 rgba(255, 255, 255, 0.3), inset 0 -1px 0 rgba(0, 0, 0, 0.5), 0 1px 3px rgba(0, 0, 0, 0.4);
     -moz-box-shadow: inset 0 0 2px rgba(0, 0, 0, 1), inset 0 2px 0 rgba(255, 255, 255, 0.3), inset 0 -1px 0 rgba(0, 0, 0, 0.5), 0 1px 3px rgba(0, 0, 0, 0.4);
     box-shadow: inset 0 0 2px rgba(0, 0, 0, 1), inset 0 2px 0 rgba(255, 255, 255, 0.3), inset 0 -1px 0 rgba(0, 0, 0, 0.5), 0 1px 3px rgba(0, 0, 0, 0.4);
-}
-
-a {
-    color: black !important;
-    pointer-events: none !important;
-    cursor: default !important;
 }

@@ -1,15 +1,15 @@
 <!DOCTYPE html>
 <html dir="rtl">
-    {% load staticfiles %}
-    <head>
-        <title>sikumim</title>
-        <link href='http://fonts.googleapis.com/css?family=Alef:400,700&subset=latin,hebrew' rel='stylesheet' type='text/css'>
-        <LINK href="{% static "css/base.css" %}" rel="stylesheet" type="text/css">
+{% load staticfiles %}
+<head>
+    <title>sikumim</title>
+    <link href='http://fonts.googleapis.com/css?family=Alef:400,700&subset=latin,hebrew' rel='stylesheet' type='text/css'>
+    <LINK href="{% static "css/base.css" %}" rel="stylesheet" type="text/css">
         <script src="{% static "js/jquery.js" %}"></script>
         <script>
 
 
-function ColorLuminance(hex, lum) {
+            function ColorLuminance(hex, lum) {
     // validate hex string
     hex = String(hex).replace(/[^0-9a-f]/gi, '');
     if (hex.length < 6) {
@@ -26,7 +26,7 @@ function ColorLuminance(hex, lum) {
     return rgb;
 }
 
-    function hexc(colorval) {
+function hexc(colorval) {
     var parts = colorval.match(/^rgb\((\d+),\s*(\d+),\s*(\d+)\)$/);
     delete(parts[0]);
     for (var i = 1; i <= 3; ++i) {
@@ -37,27 +37,45 @@ function ColorLuminance(hex, lum) {
 
     return color;
 }
-        $(document).ready(function () {
-            $('.nav-button').each(function(index){
-                var color = $(this).css('background-color');
-                var hexcolor = hexc(color);
-                var newcolor = ColorLuminance(hexcolor,-0.2);
-                $(this).css('box-shadow','0px 5px 0px 0px '+newcolor+' ');
-            });
-        });
-        </script>
-        <style>
-        .nav-button:active{
+$(document).ready(function () {
+    $('.nav-button').each(function(index){
+        var color = $(this).css('background-color');
+        var hexcolor = hexc(color);
+        var newcolor = ColorLuminance(hexcolor,-0.2);
+        $(this).css('box-shadow','0px 5px 0px 0px '+newcolor+' ');
+        $(this).hover(function(){
+            $(this).css('background-color',ColorLuminance(hexcolor,0.2));
+            $(this).css('box-shadow','0px 5px 0px 0px '+ColorLuminance(hexcolor,0.0)+' ');
+
+        }, function(){
+            $(this).css('background-color',ColorLuminance(hexcolor,0.0));
+            $(this).css('box-shadow','0px 5px 0px 0px '+ColorLuminance(hexcolor,-0.2)+' ');
+        }
+        );
+    });
+});
+</script>
+<style>
+    .nav-button:active{
         transform: translate(0px, 5px)!important;
         -webkit-transform: translate(0px, 5px)!important;
         box-shadow: 0px 0px 0px 0px!important;
-        }
-        </style>
-        {% block head %}{% endblock %}
-        <LINK href="{% static "css/responsive.css" %}" rel="stylesheet" type="text/css">
-        <meta charset="UTF-8">
-    </head>
-    <body>
+    }
+</style>
+{% block head %}{% endblock %}
+<LINK href="{% static "css/responsive.css" %}" rel="stylesheet" type="text/css">
+    <meta charset="UTF-8">
+</head>
+<body>
+{% if messages %}
+<ul class="messages">
+    {% for message in messages %}
+    {% if not 'login' in message.tags %}
+    <li{% if message.tags %} class="message {{ message.tags }}"{% endif %}>{{ message }}</li>
+    {% endif %}
+    {% endfor %}
+</ul>
+{% endif %}
     <div class="page-wrap">
         <div class="header-container">
             <header>
@@ -65,28 +83,30 @@ function ColorLuminance(hex, lum) {
                 <div class="panel-wrapper">
                     <div class="panel">
                         {% if user.is_authenticated %}
-                            <form id='logout_form' method="post" action="{% url 'logout' %}">
-                                {% csrf_token %}
-                                <h4 class="welcome_message">ברוך הבא <strong>{{ user.username }}</strong></h4>
-                                <input type="submit" id="logout" name="logout" value="התנתק">
-                                <a href='' class="button">פרופיל</a>
-                                {% if user.is_staff %}<a href='/admin' class="button">פאנל ניהול</a>{% endif %}
-                                
-                            </form>
+                        <form id='logout_form' method="post" action="{% url 'logout' %}">
+                            {% csrf_token %}
+                            <h4 class="welcome_message">ברוך הבא <strong>{{ user.username }}</strong></h4>
+                            <input type="submit" id="logout" name="logout" value="התנתק">
+                            <a href='{% url 'profile' user.pk %}' class="button">פרופיל</a>
+                            {% if user.is_staff %}<a href='/admin' class="button">פאנל ניהול</a>{% endif %}
+                            
+                        </form>
                         {% else %}
-                            <form id="login_form" method="post" action='{% url 'login' %}'>
-                                {% csrf_token %}
-                                <h4>התחברות משתמשים רשומים</h4>
-                                <input type="text" id="login_username" name="login_username" placeholder="משתמש">
-                                <input type="password" id="login_password" name="login_password" placeholder="סיסמא">
-                                <input type="submit" id="login_submit" name="login_submit" value="התחבר">
-                                {% if messages %}
-                                    {% for message in messages %}
-                                        <div class='login_error'>{{ message }}</div>
-                                    {% endfor %}
-                                {% endif %}
-                                <div class="lock"></div>
-                            </form>
+                        <form id="login_form" method="post" action='{% url 'login' %}'>
+                            {% csrf_token %}
+                            <h4>התחברות משתמשים רשומים</h4>
+                            <input type="text" id="login_username" name="login_username" placeholder="משתמש">
+                            <input type="password" id="login_password" name="login_password" placeholder="סיסמא">
+                            <input type="submit" id="login_submit" name="login_submit" value="התחבר">
+                            {% if messages %}
+                            {% for message in messages %}
+                            {% if 'login' in message.tags %}
+                            <div class='login_error'>{{ message }}</div>
+                            {% endif %}
+                            {% endfor %}
+                            {% endif %}
+                            <div class="lock"></div>
+                        </form>
                         {% endif %}
                     </div>
                 </div>
@@ -95,45 +115,45 @@ function ColorLuminance(hex, lum) {
         <div class="container">
             <form id="search_form" method="get" action="{% url 'search' %}">
                 <div class="row">
-                        {% if user.is_authenticated %}
+                    {% if user.is_authenticated %}
                     <a class="call-to-action col-6" href="{% url 'upload' %}">
                         הוספת סיכום לאתר
                     </a>
-                                        <div class="search-box col-10">
+                    <div class="search-box col-18">
                         {{ search_form.query }}
                         <input type="submit" value="חפש">
                     </div>
 
-        {% else %}
+                    {% else %}
 
-                                <a class="call-to-action col-4" href="{% url 'register' %}">
+                    <a class="call-to-action col-6" href="{% url 'register' %}">
                         הרשם עכשיו <strong>בחינם</strong>
                     </a>
 
-                            <a class="call-to-action col-6" href="{% url 'upload' %}">
+                    <a class="call-to-action col-7" href="{% url 'upload' %}">
                         התחבר באמצעות פייסבוק
                     </a>
-                                        <div class="search-box col-6">
+                    <div class="search-box col-11">
                         {{ search_form.query }}
                         <input type="submit" value="חפש">
                     </div>
-        {% endif %}
+                    {% endif %}
 
                 </div>
                 <div class="row">
-                    <nav class="col-16">
+                    <nav class="col-24">
                         <ol class="row">
                             {% for subject in subjects  %}
-                                <a href="{% url 'subject' subject.name%}" class='col-2'>
-                                    <li style="background-color: #{{subject.color}}" class="nav-button">{{ subject.hebrew_name }}</li>
-                                </a>
+                            <li class='col-3'>
+                                <a  href="{% url 'subject' subject.name%}"  style="background-color: #{{subject.color}}" class="nav-button">{{ subject.hebrew_name }}</a>
+                            </li>
                             {% endfor %}
                         </ol>
                     </nav>
                 </div>
             </form>
             {% block body %}{% endblock %}
-    </div>
+        </div>
     </div>
     <footer><span>2013 © כל הזכויות שמורות לסיכומים.נט</span></footer>
 </body>

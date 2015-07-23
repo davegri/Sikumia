@@ -1,0 +1,14 @@
+@import 'colors';
+
+.profile-header{
+}
+
+.stat-block{
+	background-color: $light_blue;
+	text-align:center;
+	padding: 1em;
+	h3{
+		font-size: 1.3em;
+		color: white;
+	}
+}

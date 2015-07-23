@@ -1,0 +1,104 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% load website_extras %}
+{% block head%}
+    <style>
+    .categories h3{
+    border-bottom: 2px solid #{{ subject.color }};
+    }
+    .categories h3 a{
+    color: #{{ subject.color }};
+    }
+    .categories h3:hover{
+    border-radius:6px;
+    background-color: #{{ subject.color }};
+    }
+    .categories h3:hover a{
+    color:white;
+    }
+    .subject-tag{
+    background-color: #{{ subject.color }};
+    }
+    </style>
+    <link href="{% static "css/sectionbase.css" %}" rel="stylesheet" type="text/css">
+    <script src="{% static "js/jquery.inflateText.js" %}"></script>
+    <script>
+    function shrinkToLines(el,lines){
+    var lineHeight = parseFloat(el.css('line-height'));
+    while(el.height()> lineHeight*lines){
+    lineHeight = parseFloat(el.css('line-height'));
+    var fontSize = parseFloat(el.css("font-size"));
+    fontSize = fontSize - 1 + "px";
+    el.css({'font-size':fontSize});
+    }
+    }
+    var subject_color = "#{{ subject.color }}";
+    $(document).ready(function(){
+
+    $('.main-header h2').each(function() {
+    shrinkToLines($(this),2);
+    });
+    shrinkToLines($('.secondary-header h3'),1);
+    
+    });
+    </script>
+{% endblock %}
+{% block body %}
+    <div class="row">
+        <div class="main-header" style="background: #{{subject.color}}
+            url(/../static/images/{{subject.name}}.png) no-repeat 3%{% if  subject.name == 'english' %}
+                bottom
+            {% endif %};">
+            <h2>
+            {% block main-header %}
+            {% endblock main-header %}
+            </h2>
+        </div>
+    </div>
+    <div class="row subsections">
+        {% block subsections %}
+        {% endblock subsections %}
+    </div>
+    <div class="row">
+        <div class="secondary-header" style="background: #{{subject.color}}">
+            <h3>
+            {% block secondary-header %}
+            {% endblock secondary-header %}
+            </h3>
+            <p>  {{ sumAmount }} סיכומים על גבי {{summaries.paginator.num_pages}} עמודים </p>
+        </div>
+    </div>
+    <div class="summaries-block">
+        {% for summary in summaries.object_list  %}
+                <div class="col-24">
+                    <a href="{{summary.get_absolute_url}}">
+                        <h4 class="summary-header">
+                        {{ summary.title }} - <span class="summary-info">נוסף ע"י {{ summary.author }} {{ summary.date_created | timesince_human }}</span>
+                        <span class='tag' style="background-color:#{{summary.subject.color}};"><span>{{ summary.subject }}</span></span>
+                        </h4>
+                    </a>
+                </div>
+        {% endfor %}
+    </div>
+    <div class="pagination">
+        <ul>
+            {% if summaries.has_previous %}
+                <li><a href="?page={{ summaries.previous_page_number }}">הקודם</a></li>
+            {% else %}
+                <li class="disabled">הקודם</li>
+            {% endif %}
+            {% for page in summaries.paginator.page_range  %}
+                {% if page == summaries.number %}
+                    <li><a class="active" href="?page={{ page }}" >{{ page }}</a></li>
+                {% else %}
+                    <li><a href="?page={{ page }}" >{{ page }}</a></li>
+                {% endif %}
+            {% endfor %}
+            {% if summaries.has_next %}
+                <li><a href="?page={{ summaries.next_page_number }}">הבא</a></li>
+            {% else %}
+                <li class="disabled">הבא</li>
+            {% endif %}
+        </ul>
+    </div>
+{% endblock %}

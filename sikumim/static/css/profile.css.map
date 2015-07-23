@@ -1,0 +1,7 @@
+{
+"version": 3,
+"mappings": "AAKA,WAAW;EACV,gBAAgB,ECHL,OAAO;EDIlB,UAAU,EAAC,MAAM;EACjB,OAAO,EAAE,GAAG;EACZ,cAAE;IACD,SAAS,EAAE,KAAK;IAChB,KAAK,EAAE,KAAK",
+"sources": ["../sass/profile.scss","../sass/colors.scss"],
+"names": [],
+"file": "profile.css"
+}

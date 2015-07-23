@@ -1,73 +1,23 @@
-{% extends 'base.html' %}
+{% extends 'section_base.html' %}
 {% load staticfiles %}
-{% block head%}
-    <style>
-    .subject-tab{
-        background-color: #{{subject.color}};
-    }
-    </style>
-    <link href="{% static "css/subject.css" %}" rel="stylesheet" type="text/css">
-    <script src="{% static "js/subject-tabs.js" %}"></script>
-    <script>
-        var subject_color = "#{{ subject.color }}";
-    </script>
-{% endblock %}
-{% block body %}
-    <div class="row">
-        <div class="subject-header" style="background: #{{subject.color}}
-         url(/../static/images/{{subject.name}}.png) no-repeat 3%{% if  subject.name == 'english' %}
-             bottom
-         {% endif %};">
-            <h2>{{ hebSubject }}</h2>
-            <p>  {{ sumAmount }} סיכומים על גבי {{summaries.paginator.num_pages}} עמודים </p>
-        </div>
-    <div class="divisions row">
-            {% for division in divisions %}
-                <a href="{% url 'division' subject.name division.name %}"class="subject-tab part-of-{{divisions|length}} {% if division.name == current_division %}selected{% endif %}">
-                <h4>{{ division.hebrew_name }}</h4>
-            </a>
-        {% endfor %}
-    </div>
-</div>
-<div class="summaries-block">
-<!--<div class="subdivisions">
-{% for subdivision in subdivisions %}
-    <a class="subdivision part-of-{{subdivisions|length}}">{{ subdivision.hebrew_name }}</a>
-{% endfor %}
-</div> -->
-{% for summary in summaries.object_list  %}
-        <div class="col-9 summary">
-            <a href="{% url 'summary' subject.name summary.subject_division.name summary.pk %}">
-                <h4 class="summary-header">
-                {{ summary.title }}
-                </h4>
-            </a>
-        </div>
-        {% endfor %}
-</div>
 
-<div class="pagination">
-    <ul>
-        {% if summaries.has_previous %}
-            <li><a href="?page={{ summaries.previous_page_number }}">הקודם</a></li>
-        {% else %}
-            <li class="disabled">הקודם</li>
-        {% endif %}
-        {% for page in summaries.paginator.page_range  %}
-            {% if page == summaries.number %}
-                <li><a class="active" href="?page={{ page }}" >{{ page }}</a></li>
-            {% else %}
-                <li><a href="?page={{ page }}" >{{ page }}</a></li>
-            {% endif %}
-        {% endfor %}
-        {% if summaries.has_next %}
-            <li><a href="?page={{ summaries.next_page_number }}">הבא</a></li>
-        {% else %}
-            <li class="disabled">הבא</li>
-        {% endif %}
-    </ul>
-</div>
+{% block script %}
+{% endblock script %}
+{% block main-header %}
+    נושאים <strong>ב{{ subject }}</strong> לבגרות
+{% endblock main-header %}
 
-{% endblock %}
+{% block subsections %}
+    {% for category in categories  %}
+        <ul class="part-of-{{ categories_per_line }} category">
+            <h3><a href="{{ category.get_absolute_url }}">{{ category }}</a></h3>
+            {% for subcategory in category.subcategory_set.all  %}
+                <li><a href="{{ subcategory.get_absolute_url }}">{{ subcategory }}</a></li>
+            {% endfor %}
+        </ul>
+    {% endfor %}
+{% endblock subsections %}
 
-
+{% block secondary-header %}
+    כל הסיכומים ב<strong>{{ subject }}</strong>
+{% endblock secondary-header %}

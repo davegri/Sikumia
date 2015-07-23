@@ -13,8 +13,11 @@ class SummaryInline(admin.TabularInline):
       model = models.Summary
       extra = 1
 
-class SubjectDivisionInline(SortableTabularInline):
-    model = models.SubjectDivision
+class CateogryInline(SortableTabularInline):
+    model = models.Category
+    extra = 1
+class SubcateogryInline(SortableTabularInline):
+    model = models.Subcategory
     extra = 1
 
 class SummaryAdmin(admin.ModelAdmin):
@@ -35,7 +38,10 @@ class UserAdmin(admin.ModelAdmin):
     inlines = [SummaryInline,CommentInline]
 
 class SubjectAdmin(SortableAdmin):
-    inlines = [SubjectDivisionInline]
+    inlines = [CateogryInline]
+
+class CategoryAdmin(SortableAdmin):
+    inlines = [SubcateogryInline]
 
 
 
@@ -45,6 +51,7 @@ class SubjectAdmin(SortableAdmin):
 admin.site.register(models.Summary,SummaryAdmin)
 admin.site.register(models.Comment,CommentAdmin)
 admin.site.register(models.Subject,SubjectAdmin)
+admin.site.register(models.Category,CategoryAdmin)
 
 admin.site.unregister(User)
 admin.site.register(User,UserAdmin)

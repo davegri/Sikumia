@@ -7,9 +7,14 @@
 		var id = {{ summary.id }};
 		var url = {% url 'rate_summary' %} ;
 	</script>
+	<style type="text/css">
+	.block-header{
+		background-color: #{{summary.subject.color}};
+	}
+	</style>
 {% endblock %}
 {% block body %}
-	<div class="block-header {{ subject | lower }}">
+	<div class="block-header">
 		<h3>{{ summary.title }}</h3>
 		<span>{{ summary.views.count }} צפיות</span>
 		<span>
@@ -22,9 +27,8 @@
 					<a class='button negative {% if user in summary.users_rated_negative.all %}selected{% endif %} '>לא משהו  ({{ summary.users_rated_negative.count }})</a>
 				</div>
 				<div class="favorites-module">
-					<a class='button'>הוסף למועדפים</a>
 					{% if user.id == summary.author.id %}
-					<a class='button' href="{% url 'edit_summary' summary.subject summary.id %}">ערוך סיכום</a>
+					<a class='button' href="{% url 'edit_summary' summary.subject.name summary.category.name summary.id %}">ערוך סיכום</a>
 					{% endif %}
 				</div>
 			</div>

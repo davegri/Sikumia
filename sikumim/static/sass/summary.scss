@@ -22,17 +22,22 @@
     width: 100%;
     display: table;
     background-color: $light_blue_highlight;
-    padding: 0.5em;
+    padding: 1em;
     border: 5px solid $light_blue;
 
-    .rating-module, .search-module {
+    .button{
+    border: 3px solid $dark_blue;
+    height: auto;
+    vertical-align: middle;
+    }
+
+    .rating-module, .favorites-module {
         display: table-cell;
         width: 50%;
+        vertical-align: top;
 
         .button {
             margin-left: 0.5em;
-            border: 3px solid $dark_blue;
-            height: auto;
         }
 
         .selected {
