@@ -41,7 +41,6 @@ INSTALLED_APPS = (
     'widget_tweaks',
     'website.templatetags.website_extras',
     'adminsortable',
-    'nested_admin',
 )
 
 MIDDLEWARE_CLASSES = (
