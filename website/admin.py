@@ -16,6 +16,7 @@ class SummaryInline(admin.TabularInline):
 class CateogryInline(SortableTabularInline):
     model = models.Category
     extra = 1
+    
 class SubcateogryInline(SortableTabularInline):
     model = models.Subcategory
     extra = 1
