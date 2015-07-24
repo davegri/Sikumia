@@ -20,5 +20,4 @@ urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
     url(r'^', include('website.urls')),
     url(r'^ckeditor/', include('ckeditor.urls')),
-    url(r'^nested_admin/', include('nested_admin.urls')),
 ]
