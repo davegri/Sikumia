@@ -2315,7 +2315,7 @@ header {
   height: 62px;
   padding: 0.5em; }
   .search-box input[type="text"], .search-box [type="text"].button, .search-box [type="text"].call-to-action {
-    width: 65%;
+    width: 80%;
     height: 100%; }
   .search-box input[type="submit"], .search-box [type="submit"].button, .search-box [type="submit"].call-to-action {
     height: 90%;
@@ -2512,7 +2512,7 @@ h2 {
       background-color: #1ba1e2;
       color: white; }
   .category li {
-    padding: 0.5em 0.3em; }
+    padding: 0.6em 0.3em 0.3em 0.3em; }
     .category li a {
       color: #2b5797;
       font-size: 1.3em;

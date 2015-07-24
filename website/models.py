@@ -15,7 +15,7 @@ class Subject(Sortable):
     name = models.CharField(max_length=100)
     hebrew_name = models.CharField(max_length=100)
     color = models.CharField(max_length=6)
-
+    categories_per_line = models.IntegerField(default=4)
     class Meta(Sortable.Meta):
         pass
 

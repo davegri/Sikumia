@@ -8,7 +8,7 @@
 {% block body %}
 
 <div class="row">
-<div class="block-header profile-header"><h3><strong>{{ profile_user.username }}</strong></h3></div>
+<div class="block-header profile-header"><h3>הסטטיסטיקה של <strong>{{ profile_user.username }}</strong></h3></div>
 </div>
 <div class="row">
 <div class="stat-block col-8"><h3><strong>{{ profile_user.summaries_authored.count }}</strong> סיכומים</h3></div>
@@ -16,7 +16,7 @@
 <div class="stat-block col-8"><h3><strong>{{ profile_user.comments.count }}</strong> תגובות</h3></div>
 </div>
 <div class="row">
-<div class="block-header"><h3>סיכומים</h3></div>
+<div class="block-header"><h3>הסיכומים של <strong>{{ profile_user.username }}</strong></h3></div>
 </div>
         {% for summary in summaries.object_list  %}
                 <div class="col-24">

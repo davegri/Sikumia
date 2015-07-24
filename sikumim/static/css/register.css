@@ -1304,7 +1304,7 @@ header {
   height: 62px;
   padding: 0.5em; }
   .search-box input[type="text"], .search-box [type="text"].button, .search-box [type="text"].call-to-action {
-    width: 65%;
+    width: 80%;
     height: 100%; }
   .search-box input[type="submit"], .search-box [type="submit"].button, .search-box [type="submit"].call-to-action {
     height: 90%;

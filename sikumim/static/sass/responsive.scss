@@ -1,6 +1,12 @@
 @import "grid_system";
 @import "colors";
+@media only screen and (max-width: 1050px) {
 
+header{
+    padding: 3em;
+}
+
+}
 @media only screen and (max-width: 930px) {
     .row{
         nav{
@@ -21,27 +27,14 @@
             width: $one_col_width * 12 + $gutter_percent * (12 - 1)!important;
         }
         .search-box{
-            width: $one_col_width * 12 + $gutter_percent * (12 - 1)!important;
+            width: $one_col_width * 24 + $gutter_percent * (24 - 1)!important;
+            margin-right: 0;
+            margin-top: $gutter_percent*2;
         }
     }
 
 }
 @media only screen and (max-width: 835px) {
-
-.part-of-4{
-        margin-right: $gutter_percent;
-        float: right;
-        width: (100 - $gutter_percent * (2 - 1)) / 2;
-                    &:nth-of-type(2n+1){
-        margin-right: 0;
-        }
-        &:nth-of-type(n+3){
-        margin-top:$gutter_percent;;
-        }
-}
-
-}
-@media only screen and (max-width: 790px) {
     header{
         padding:0;
         padding-top: 1em;
@@ -62,8 +55,20 @@
             }
         }
     }
-
+    .part-of-4{
+        margin-right: $gutter_percent;
+        float: right;
+        width: (100 - $gutter_percent * (2 - 1)) / 2;
+                    &:nth-of-type(2n+1){
+        margin-right: 0;
+        }
+        &:nth-of-type(n+3){
+        margin-top:$gutter_percent;;
+        }
 }
+}
+
+
 
 @media only screen and (max-width: 600px) {
 .part-of-4,.part-of-3,.part-of-5,.part-of-6{
