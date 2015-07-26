@@ -3,9 +3,9 @@ from __future__ import unicode_literals
 
 from django.db import models, migrations
 import adminsortable.fields
+import django.utils.timezone
 import ckeditor.fields
 from django.conf import settings
-import django.utils.timezone
 
 
 class Migration(migrations.Migration):
@@ -18,7 +18,7 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='Category',
             fields=[
-                ('id', models.AutoField(verbose_name='ID', serialize=False, primary_key=True, auto_created=True)),
+                ('id', models.AutoField(serialize=False, auto_created=True, verbose_name='ID', primary_key=True)),
                 ('order', models.PositiveIntegerField(default=1, db_index=True, editable=False)),
                 ('name', models.CharField(max_length=100)),
                 ('hebrew_name', models.CharField(max_length=100)),
@@ -31,7 +31,7 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='Comment',
             fields=[
-                ('id', models.AutoField(verbose_name='ID', serialize=False, primary_key=True, auto_created=True)),
+                ('id', models.AutoField(serialize=False, auto_created=True, verbose_name='ID', primary_key=True)),
                 ('content', models.TextField(max_length=1000)),
                 ('date_created', models.DateTimeField(auto_now_add=True)),
                 ('date_edited', models.DateTimeField(auto_now=True)),
@@ -40,7 +40,7 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='Subcategory',
             fields=[
-                ('id', models.AutoField(verbose_name='ID', serialize=False, primary_key=True, auto_created=True)),
+                ('id', models.AutoField(serialize=False, auto_created=True, verbose_name='ID', primary_key=True)),
                 ('order', models.PositiveIntegerField(default=1, db_index=True, editable=False)),
                 ('name', models.CharField(max_length=100)),
                 ('hebrew_name', models.CharField(max_length=100)),
@@ -54,7 +54,7 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='Subject',
             fields=[
-                ('id', models.AutoField(verbose_name='ID', serialize=False, primary_key=True, auto_created=True)),
+                ('id', models.AutoField(serialize=False, auto_created=True, verbose_name='ID', primary_key=True)),
                 ('order', models.PositiveIntegerField(default=1, db_index=True, editable=False)),
                 ('name', models.CharField(max_length=100)),
                 ('hebrew_name', models.CharField(max_length=100)),
@@ -69,18 +69,18 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='Summary',
             fields=[
-                ('id', models.AutoField(verbose_name='ID', serialize=False, primary_key=True, auto_created=True)),
+                ('id', models.AutoField(serialize=False, auto_created=True, verbose_name='ID', primary_key=True)),
                 ('title', models.CharField(max_length=128)),
-                ('content', ckeditor.fields.RichTextField(null=True, blank=True)),
+                ('content', ckeditor.fields.RichTextField(blank=True, null=True)),
                 ('date_created', models.DateTimeField(default=django.utils.timezone.now)),
-                ('date_edited', models.DateTimeField(null=True, blank=True)),
-                ('author', models.ForeignKey(related_name='summaries_authored', to=settings.AUTH_USER_MODEL)),
+                ('date_edited', models.DateTimeField(blank=True, null=True)),
+                ('author', models.ForeignKey(to=settings.AUTH_USER_MODEL, related_name='summaries_authored')),
                 ('category', models.ForeignKey(to='website.Category')),
                 ('subcategory', models.ForeignKey(to='website.Subcategory')),
                 ('subject', models.ForeignKey(to='website.Subject')),
-                ('users_bookmarked', models.ManyToManyField(to=settings.AUTH_USER_MODEL, blank=True, related_name='summaries_bookmarked')),
-                ('users_rated_negative', models.ManyToManyField(to=settings.AUTH_USER_MODEL, blank=True, related_name='summaries_rated_negative')),
-                ('users_rated_positive', models.ManyToManyField(to=settings.AUTH_USER_MODEL, blank=True, related_name='summaries_rated_positive')),
+                ('users_bookmarked', models.ManyToManyField(blank=True, related_name='summaries_bookmarked', to=settings.AUTH_USER_MODEL)),
+                ('users_rated_negative', models.ManyToManyField(blank=True, related_name='summaries_rated_negative', to=settings.AUTH_USER_MODEL)),
+                ('users_rated_positive', models.ManyToManyField(blank=True, related_name='summaries_rated_positive', to=settings.AUTH_USER_MODEL)),
             ],
             options={
                 'ordering': ['-date_created'],
@@ -89,22 +89,22 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='View',
             fields=[
-                ('id', models.AutoField(verbose_name='ID', serialize=False, primary_key=True, auto_created=True)),
+                ('id', models.AutoField(serialize=False, auto_created=True, verbose_name='ID', primary_key=True)),
                 ('ip', models.CharField(max_length=40)),
                 ('session', models.CharField(max_length=40)),
                 ('date_created', models.DateTimeField(default=django.utils.timezone.now)),
-                ('summary', models.ForeignKey(related_name='views', to='website.Summary')),
+                ('summary', models.ForeignKey(to='website.Summary', related_name='views')),
             ],
         ),
         migrations.AddField(
             model_name='comment',
             name='summary',
-            field=models.ForeignKey(related_name='comments', to='website.Summary'),
+            field=models.ForeignKey(to='website.Summary', related_name='comments'),
         ),
         migrations.AddField(
             model_name='comment',
             name='user',
-            field=models.ForeignKey(related_name='comments', to=settings.AUTH_USER_MODEL),
+            field=models.ForeignKey(to=settings.AUTH_USER_MODEL, related_name='comments'),
         ),
         migrations.AddField(
             model_name='category',
