@@ -1,7 +1,7 @@
 # -*- coding: UTF-8 -*-
 from django.contrib.auth.models import User
 from django import forms
-from .models import Comment, Summary, Category, Subcategory
+from .models import Comment, Summary, Category, Subcategory, Subject
 from ckeditor.fields import RichTextField
 
 
@@ -69,23 +69,12 @@ class EditSummaryForm(forms.ModelForm):
         fields = ('title','content')
 
 class SearchForm(forms.Form):
-
-    subjects = (
-        ('all', "כל המקצועות"),
-        ('english', 'אנגלית'),
-        ('bible', 'תנ"ך'),
-        ('history', 'היסטוריה'),
-        ('civics', 'אזרחות'),
-        ('language', 'לשון'),
-        ('literature', 'ספרות'),
-    )
-    orders = (
-        ("popularity", 'פופולריות'),
-        ("date_added", 'נוסף לאחרונה'),
-        ("date_edited", 'נערך לאחורנה'),
-    )
-
+    subject_queryset = Subject.objects.all()
     query = forms.CharField(max_length=100)
-    subject = forms.ChoiceField(choices=subjects)
-    order_by = forms.ChoiceField(choices=orders)
+    subject = forms.ModelChoiceField(queryset=subject_queryset, empty_label='כל המקצועות', to_field_name='name')
+
+
+
+class PasswordResetRequestForm(forms.Form):
+    email_or_username = forms.CharField(label=("הכנס שם משתמש או כתובת אימייל"), max_length=254)
 

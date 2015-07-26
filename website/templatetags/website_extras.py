@@ -40,9 +40,9 @@ def humanize_timesince(date):
     if (delta.days > 0):
         return "לפני %d ימים" %delta.days
     num_hours = delta.seconds / 3600
-    if (num_hours > 0):
+    if (int(num_hours) > 0):
         return "לפני %d שעות" %num_hours
     num_minutes = delta.seconds / 60
-    if (num_minutes > 0):
+    if (int(num_minutes) > 0):
         return "לפני %d דקות" %num_minutes
-    return "just a few seconds ago"
+    return "לפני כמה שניות"

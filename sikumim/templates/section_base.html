@@ -35,6 +35,10 @@
     var subject_color = "#{{ subject.color }}";
     $(document).ready(function(){
 
+    $('[name=subject] option').filter(function() { 
+    return ($(this).val() == '{{ subject.name }}');
+    }).prop('selected', true);
+
     $('.main-header h2').each(function() {
     shrinkToLines($(this),2);
     });

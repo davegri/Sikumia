@@ -1,10 +1,22 @@
 {% extends 'base.html' %}
 {% load staticfiles %}
+{% block head %}
 
+<script>
+    $(document).ready(function(){
+
+    $('[name=subject] option').filter(function() { 
+    return ($(this).val() == '{{ subject.name }}');
+    }).prop('selected', true);
+    
+    });
+</script>
+    
+{% endblock head %}
 {% block body %}
        <div class="row">
         <div class="block-header" style="background: #{{subject.color}}">
-            <h2>
+            <h2 {% if subject.name == 'english' %}dir="ltr"{% endif %} >
             {{ subcategory }}
             </h2>
             <p>  {{ sumAmount }} סיכומים על גבי {{summaries.paginator.num_pages}} עמודים </p>

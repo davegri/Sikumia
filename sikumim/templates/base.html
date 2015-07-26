@@ -106,6 +106,7 @@ $(document).ready(function () {
                             {% endfor %}
                             {% endif %}
                             <div class="lock"></div>
+                            <a href="{% url 'password_reset' %}" class="forgot-password-link">שכחת את הסיסמא?</a>
                         </form>
                         {% endif %}
                     </div>
@@ -121,11 +122,11 @@ $(document).ready(function () {
                     </a>
                     <div class="search-box col-18">
                         {{ search_form.query }}
-                        <input type="submit" value="חפש">
+                                                <input type="submit" value="חפש">
+                        {{ search_form.subject }}
                     </div>
 
                     {% else %}
-
                     <a class="call-to-action col-6" href="{% url 'register' %}">
                         הרשם עכשיו <strong>בחינם</strong>
                     </a>
@@ -138,7 +139,7 @@ $(document).ready(function () {
                         <input type="submit" value="חפש">
                     </div>
                     {% endif %}
-
+            </form>
                 </div>
                 <div class="row">
                     <nav class="col-24">
@@ -151,7 +152,6 @@ $(document).ready(function () {
                         </ol>
                     </nav>
                 </div>
-            </form>
             {% block body %}{% endblock %}
         </div>
     </div>

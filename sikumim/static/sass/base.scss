@@ -283,8 +283,13 @@ header {
                 }
             }
 
-            input[type="submit"], a {}
-
+            input[type="submit"]{
+                margin-bottom: 10px;
+            }
+            .forgot-password-link{
+                color: white;
+                font-size: 1.2em;
+            }
             .welcome_message {
                 display: inline-block;
                 vertical-align: middle;
@@ -305,8 +310,14 @@ header {
 
     }
     input[type="text"] {
-        width: 80%;
+        width: 55%;
         height: 100%;
+    }
+
+    select{
+        width: 145px;
+        float: left;
+        margin-left: 0.5em;
     }
 
     input[type="submit"] {
