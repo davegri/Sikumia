@@ -12,6 +12,8 @@
                     <h4>הרשם היום ותוכל להתחיל להנות ממגוון הסיכומים באתר</h4>
                 </div>
                 <div class="block">
+                 <div class="row">
+                     <div class="col-12">
                     {% if registered %}
                         <h4>נרשמת בהצלחה למערכת</h4>
                     {% else %}
@@ -40,6 +42,12 @@
                             <input type="submit" name="submit" value="הרשם עכשיו">
                         </form>
                     {% endif %}
+                     </div>
+                     <div class="col-12">
+                         <a href="/accounts/google/login" class="button">הרשמה מהירה עם גוגל</a>
+                         <a href="/accounts/facebook/login" class="button">הרשמה מהירה עם פייסבוק</a>
+                     </div>
+                 </div>
                 </div>
             </div>
         </div>
