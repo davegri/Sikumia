@@ -4,6 +4,11 @@ from django import forms
 from .models import Comment, Summary, Category, Subcategory, Subject
 from ckeditor.fields import RichTextField
 
+from allauth.socialaccount.forms import SignupForm
+
+from django.utils.translation import activate
+
+
 
 class UserForm(forms.ModelForm):
     required_message = "שזה זה הינו חובה"
@@ -77,4 +82,14 @@ class SearchForm(forms.Form):
 
 class PasswordResetRequestForm(forms.Form):
     email_or_username = forms.CharField(label=("הכנס שם משתמש או כתובת אימייל"), max_length=254)
+
+
+class CustomSignupForm(SignupForm):
+
+    def __init__(self, *args, **kwargs):
+        activate('he')
+        super(CustomSignupForm, self).__init__(*args, **kwargs)
+
+    def raise_duplicate_email_error(self):
+        raise forms.ValidationError("שם משתמש כבר קיים עם כתובת אימייל זאת, נסה להתחבר בראש האתר.")
 

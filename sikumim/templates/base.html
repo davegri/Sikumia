@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html dir="rtl">
 {% load staticfiles %}
+{% load socialaccount %}
 <head>
     <title>sikumim</title>
     <link href='http://fonts.googleapis.com/css?family=Alef:400,700&subset=latin,hebrew' rel='stylesheet' type='text/css'>
@@ -107,6 +108,8 @@ $(document).ready(function () {
                             {% endif %}
                             <div class="lock"></div>
                             <a href="{% url 'password_reset' %}" class="forgot-password-link">שכחת את הסיסמא?</a>
+                            <a href="{% provider_login_url "google" %}" >התחבר עם גוגל</a>
+                            <a href="{% provider_login_url "google" %}" >התחבר עם פייסבוק</a>
                         </form>
                         {% endif %}
                     </div>

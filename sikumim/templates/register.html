@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 {% load staticfiles %}
 {% load widget_tweaks %}
+{% load socialaccount %}
 {% block head %}
     <link href="{% static 'css/register.css' %}" rel="stylesheet" type="text/css">
     {%  endblock %}
@@ -44,7 +45,7 @@
                     {% endif %}
                      </div>
                      <div class="col-12">
-                         <a href="/accounts/google/login" class="button">הרשמה מהירה עם גוגל</a>
+                         <a href="{% provider_login_url "google" %}" class="button">הרשמה מהירה עם גוגל</a>
                          <a href="/accounts/facebook/login" class="button">הרשמה מהירה עם פייסבוק</a>
                      </div>
                  </div>

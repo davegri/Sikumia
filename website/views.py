@@ -5,7 +5,7 @@ from django.http import HttpResponse
 from django.shortcuts import redirect, get_object_or_404
 from website.models import Summary, View, Subject, Category, Subcategory
 from django.core.paginator import Paginator, InvalidPage, EmptyPage
-from website.forms import UserForm, CommentForm, SearchForm, SummaryForm, EditSummaryForm
+from website.forms import UserForm, CommentForm, SearchForm, SummaryForm, EditSummaryForm, CustomSignupForm
 from django.contrib.auth import authenticate, login as django_login, logout as django_logout
 from django.contrib.auth.models import User
 from django.contrib import messages
@@ -413,3 +413,4 @@ def upload(request):
     context_dict = {'summary_form': summary_form}
 
     return render(request, 'upload.html', context_dict)
+

@@ -1,7 +1,9 @@
 bleach==1.4.1
+defusedxml==0.4.1
 dj-database-url==0.3.0
 Django==1.8.3
 django-admin-sortable==1.8.4
+django-allauth==0.22.0
 django-appconf==1.0.1
 django-ckeditor==4.5.0
 django-compressor==1.5
@@ -10,8 +12,12 @@ dodge==0.1.9
 gunicorn==19.3.0
 html5lib==0.999999
 mammoth==0.3.18
+oauthlib==1.0.0
 parsimonious==0.5
 psycopg2==2.6.1
+python3-openid==3.0.5
+requests==2.7.0
+requests-oauthlib==0.5.0
 six==1.9.0
 wheel==0.24.0
 whitenoise==2.0.2
