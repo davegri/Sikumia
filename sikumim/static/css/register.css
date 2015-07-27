@@ -1295,14 +1295,30 @@ header {
           outline: 2px solid #3765a8; }
       header .panel-wrapper .panel form input[type="submit"], header .panel-wrapper .panel form [type="submit"].button, header .panel-wrapper .panel form [type="submit"].call-to-action {
         margin-bottom: 10px; }
+      header .panel-wrapper .panel form .social-logins {
+        margin-top: 13px;
+        margin-bottom: 13px; }
+        header .panel-wrapper .panel form .social-logins .google-login {
+          border-radius: 3px;
+          color: white;
+          background: url(../images/google.svg) no-repeat 5% center;
+          background-color: #d34836;
+          background-size: 25px 25px;
+          padding: 1em 1em 1em 3em; }
+        header .panel-wrapper .panel form .social-logins .facebook-login {
+          border-radius: 3px;
+          color: white;
+          background: url(../images/facebook.svg) no-repeat 5% center;
+          background-color: #3b5998;
+          background-size: 25px 25px;
+          padding: 1em 1em 1em 3em; }
       header .panel-wrapper .panel form .forgot-password-link {
         color: white;
         font-size: 1.2em; }
       header .panel-wrapper .panel form .welcome_message {
-        display: inline-block;
-        vertical-align: middle;
+        display: block;
         margin-left: 10px;
-        margin-bottom: 0; }
+        margin-bottom: 10px; }
 
 .search-box {
   border: 5px solid #2b5797;

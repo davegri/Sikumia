@@ -286,15 +286,36 @@ header {
             input[type="submit"]{
                 margin-bottom: 10px;
             }
+            .social-logins{
+                margin-top: 13px;
+                margin-bottom: 13px;
+                .google-login{
+                    border-radius:3px;
+                    color: white;
+                    background: url(../images/google.svg) no-repeat 5% center;
+                    background-color: #d34836;
+                    background-size: 25px 25px;
+                    padding: 1em 1em 1em 3em;
+                }
+                .facebook-login{
+                    border-radius:3px;
+                    color: white;
+                    background: url(../images/facebook.svg) no-repeat 5% center;
+                    background-color: #3b5998;
+                    background-size: 25px 25px;
+                    padding: 1em 1em 1em 3em;
+                }
+            }
+
+
             .forgot-password-link{
                 color: white;
                 font-size: 1.2em;
             }
             .welcome_message {
-                display: inline-block;
-                vertical-align: middle;
+                display: block;
                 margin-left: 10px;
-                margin-bottom: 0;
+                margin-bottom: 10px;
             }
         }
     }

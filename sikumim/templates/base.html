@@ -4,6 +4,7 @@
 {% load socialaccount %}
 <head>
     <title>sikumim</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href='http://fonts.googleapis.com/css?family=Alef:400,700&subset=latin,hebrew' rel='stylesheet' type='text/css'>
     <LINK href="{% static "css/base.css" %}" rel="stylesheet" type="text/css">
         <script src="{% static "js/jquery.js" %}"></script>
@@ -107,9 +108,11 @@ $(document).ready(function () {
                             {% endfor %}
                             {% endif %}
                             <div class="lock"></div>
+                            <div class="social-logins">
+                            <a href="{% provider_login_url 'google' %}" class="google-login" >התחבר עם חשבון גוגל</a>
+                            <a href="{% provider_login_url 'facebook' %}" class="facebook-login" >התחבר עם פייסבוק</a>
+                            </div>
                             <a href="{% url 'password_reset' %}" class="forgot-password-link">שכחת את הסיסמא?</a>
-                            <a href="{% provider_login_url "google" %}" >התחבר עם גוגל</a>
-                            <a href="{% provider_login_url "google" %}" >התחבר עם פייסבוק</a>
                         </form>
                         {% endif %}
                     </div>
