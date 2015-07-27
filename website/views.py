@@ -6,18 +6,14 @@ from django.shortcuts import redirect, get_object_or_404
 from website.models import Summary, View, Subject, Category, Subcategory
 from django.core.paginator import Paginator, InvalidPage, EmptyPage
 from website.forms import UserForm, CommentForm, SearchForm, SummaryForm, EditSummaryForm
-from django.template import RequestContext
 from django.contrib.auth import authenticate, login as django_login, logout as django_logout
-from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
-from django.core.urlresolvers import resolve
 from django.contrib import messages
 import datetime
 import operator
 from django.db.models import Q
 from django.utils.translation import activate
 
-from django.core import serializers
 import json
 
 from functools import reduce
@@ -76,10 +72,12 @@ def logout(request):
 
 
 def profile(request, user_pk):
-    user = get_object_or_404(User,pk=user_pk)
+    user = get_object_or_404(User, pk=user_pk)
     summaries_list = user.summaries_authored.all()
-    positive_karma = sum([summary.users_rated_positive.count() for summary in summaries_list])
-    negative_karma = sum([summary.users_rated_negative.count() for summary in summaries_list])
+    positive_karma = sum(
+        [summary.users_rated_positive.count() for summary in summaries_list])
+    negative_karma = sum(
+        [summary.users_rated_negative.count() for summary in summaries_list])
     karma = positive_karma - negative_karma
 
     # pagination
@@ -94,11 +92,10 @@ def profile(request, user_pk):
     except(EmptyPage, InvalidPage):
         summaries = paginator.page(paginator.num_pages)
 
-
     context_dict = {
-            'profile_user':user,
-            'karma':karma,
-            'summaries': summaries,
+        'profile_user': user,
+        'karma': karma,
+        'summaries': summaries,
     }
     return render(request, 'profile.html', context_dict)
 
@@ -134,12 +131,13 @@ def subject(request, subject):
 
     return render(request, 'subject.html', context_dict)
 
+
 def category(request, subject, category):
     summaries_list = Summary.objects.all().filter(
         category__name__icontains=category)
     subject = get_object_or_404(Subject, name__icontains=subject)
     length = len(summaries_list)
-    category = get_object_or_404(Category,name=category)
+    category = get_object_or_404(Category, name=category)
     subcategory_list = category.subcategory_set.all()
     subcategories_per_line = len(subcategory_list)
     if subject.name == 'history_a':
@@ -157,7 +155,7 @@ def category(request, subject, category):
         summaries = paginator.page(paginator.num_pages)
 
     context_dict = {
-        'category':category,
+        'category': category,
         'subcategories': subcategory_list,
         'subject': subject,
         'sumAmount': length,
@@ -166,6 +164,7 @@ def category(request, subject, category):
     }
 
     return render(request, 'category.html', context_dict)
+
 
 def subcategory(request, subject, category, subcategory):
     summaries_list = Summary.objects.all().filter(
@@ -196,7 +195,6 @@ def subcategory(request, subject, category, subcategory):
     return render(request, 'subcategory.html', context_dict)
 
 
-
 # summary page
 
 
@@ -209,9 +207,9 @@ def summary(request, subject, category, summary_id):
     request.session.save()
     if not View.objects.filter(summary=summary, session=request.session.session_key):
         view = View(summary=summary,
-                           ip=request.META['REMOTE_ADDR'],
-                           date_created=datetime.datetime.now(),
-                           session=request.session.session_key)
+                    ip=request.META['REMOTE_ADDR'],
+                    date_created=datetime.datetime.now(),
+                    session=request.session.session_key)
         view.save()
 
     if request.method == 'POST':
@@ -237,14 +235,16 @@ def summary(request, subject, category, summary_id):
 def edit_summary(request, subject, category, summary_id):
     instance = Summary.objects.get(pk=summary_id)
     if not request.user.pk == instance.author.pk:
-        messages.add_message(request, messages.ERROR, 'אין לך הרשאות לבצע פעולה זו. אם הינך חושב שזאת טעות צור קשר עם הנהלת האתר')
+        messages.add_message(
+            request, messages.ERROR, 'אין לך הרשאות לבצע פעולה זו. אם הינך חושב שזאת טעות צור קשר עם הנהלת האתר')
         return redirect(instance)
     activate('he')
     if request.method == "POST":
         summary_form = EditSummaryForm(request.POST, instance=instance)
         if summary_form.is_valid():
             summary_form.save()
-            messages.add_message(request, messages.SUCCESS, 'הסיכום שלך נערך בהצלחה!')
+            messages.add_message(
+                request, messages.SUCCESS, 'הסיכום שלך נערך בהצלחה!')
             return redirect(instance)
         else:
             return HttpResponse(summary_form.errors)
@@ -320,12 +320,16 @@ def search(request):
     else:
         bound_search_form = SearchForm(request.GET)
         query = request.GET['query']
+        subject = request.GET['subject']
         kwargs = {}
         args = []
         if query:
             query_word_list = query.split()
             args.append(reduce(operator.or_, ((
                 Q(title__contains=x) | Q(content__contains=x)) for x in query_word_list)))
+
+        if subject:
+            kwargs['subject__name'] = subject
 
         summaries_list = Summary.objects.sortedByScore(*args, **kwargs)
 
@@ -357,32 +361,39 @@ def search(request):
 
         return render(request, 'search.html', context_dict)
 
+
 def get_categories(request, subject_id):
     subject = Subject.objects.get(pk=subject_id)
     categories = subject.category_set.all()
-    html_string=""
+    html_string = ""
     for cat in categories:
-        html_string += '<option value="%s">%s</option>' % (cat.pk, cat.hebrew_name)
+        html_string += '<option value="%s">%s</option>' % (
+            cat.pk, cat.hebrew_name)
 
     return HttpResponse(html_string, content_type="html")
+
+
 def get_subcategories(request, category_id):
     category = Category.objects.get(pk=category_id)
     subcategories = category.subcategory_set.all()
-    html_string=""
+    html_string = ""
     for subcat in subcategories:
-        html_string += '<option value="%s">%s</option>' % (subcat.pk, subcat.hebrew_name)
+        html_string += '<option value="%s">%s</option>' % (
+            subcat.pk, subcat.hebrew_name)
     return HttpResponse(html_string, content_type="html")
 
 
 def upload(request):
 
     if not request.user.is_authenticated():
-        messages.add_message(request, messages.ERROR, 'עליך להיות מחובר כדי לבצע פעולה זו!')
+        messages.add_message(
+            request, messages.ERROR, 'עליך להיות מחובר כדי לבצע פעולה זו!')
         return redirect('/')
     if request.is_ajax():
         subject = list(request.POST.values())[0]
 
-        categories = Subject.objects.get(pk=subject).category_set.all().values('hebrew_name','id')
+        categories = Subject.objects.get(
+            pk=subject).category_set.all().values('hebrew_name', 'id')
         return HttpResponse(json.dumps(list(categories)))
     activate('he')
     if request.method == "POST":
@@ -391,7 +402,8 @@ def upload(request):
             summary = summary_form.save(commit=False)
             summary.author = User.objects.get(id=request.user.id)
             summary.save()
-            messages.add_message(request, messages.SUCCESS, 'הסיכום שלך נוסף לאתר בהצלחה!')
+            messages.add_message(
+                request, messages.SUCCESS, 'הסיכום שלך נוסף לאתר בהצלחה!')
             return redirect(summary)
         else:
             pass

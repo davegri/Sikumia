@@ -2304,6 +2304,11 @@ header {
         header .panel-wrapper .panel form input[type="text"]:focus, header .panel-wrapper .panel form [type="text"].button:focus, header .panel-wrapper .panel form [type="text"].call-to-action:focus, header .panel-wrapper .panel form input[type="password"]:focus, header .panel-wrapper .panel form [type="password"].button:focus, header .panel-wrapper .panel form [type="password"].call-to-action:focus {
           outline-offset: 0px;
           outline: 2px solid #3765a8; }
+      header .panel-wrapper .panel form input[type="submit"], header .panel-wrapper .panel form [type="submit"].button, header .panel-wrapper .panel form [type="submit"].call-to-action {
+        margin-bottom: 10px; }
+      header .panel-wrapper .panel form .forgot-password-link {
+        color: white;
+        font-size: 1.2em; }
       header .panel-wrapper .panel form .welcome_message {
         display: inline-block;
         vertical-align: middle;
@@ -2315,8 +2320,12 @@ header {
   height: 62px;
   padding: 0.5em; }
   .search-box input[type="text"], .search-box [type="text"].button, .search-box [type="text"].call-to-action {
-    width: 80%;
+    width: 55%;
     height: 100%; }
+  .search-box select {
+    width: 145px;
+    float: left;
+    margin-left: 0.5em; }
   .search-box input[type="submit"], .search-box [type="submit"].button, .search-box [type="submit"].call-to-action {
     height: 90%;
     float: left;
