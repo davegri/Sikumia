@@ -1,10 +1,13 @@
 from django.conf.urls import url, include
 from django.contrib.auth import views as auth_views
 
+
+from django.views.generic import TemplateView
 from . import views
 
 urlpatterns = [
     url(r'^$', views.index, name='index'),
+    url(r'^accounts/', include('allauth.urls')),
     url(r'^register/$', views.register, name='register'),
     url(r'^login/$', views.login, name='login'),
     url(r'^logout/$', views.logout, name='logout'),
@@ -27,4 +30,5 @@ urlpatterns = [
     url(r'^upload/$', views.upload, name='upload'),
     url(r'^get_categories/(?P<subject_id>\d+)/$', views.get_categories, name='get_categories'),
     url(r'^get_subcategories/(?P<category_id>\d+)/$', views.get_subcategories, name='get_subcategories'),
+    url(r'^robots\.txt$', TemplateView.as_view(template_name="robots.txt")),
 ]
