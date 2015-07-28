@@ -14,17 +14,25 @@
 	</style>
 {% endblock %}
 {% block body %}
-	<div class="block-header">
+	<div class="block-header row">
 		<h3>{{ summary.title }}</h3>
 		<span>{{ summary.views.count }} צפיות</span>
 		<span>
-		</div>
+	</div>
 		{% if user.is_authenticated %}
 			<div class='options-bar'>
 				<div class="rating-module">
 					<h4>איך הסיכום?</h4>
-					<a class='button positive {% if user in summary.users_rated_positive.all %}selected{% endif %} '>אהבתי  ({{ summary.users_rated_positive.count }})</a>
-					<a class='button negative {% if user in summary.users_rated_negative.all %}selected{% endif %} '>לא משהו  ({{ summary.users_rated_negative.count }})</a>
+					{% with summary.users_rated_positive.all as users_rated_positive  %}
+					<a class='button positive {% if user in users_rated_positive %}selected{% endif %} '>
+					אהבתי  ({{ users_rated_positive | length }})
+					</a>					    
+					{% endwith %}
+					{% with summary.users_rated_negative.all as users_rated_negative  %}
+					<a class='button negative {% if user in users_rated_negative %}selected{% endif %} '>
+					לא משהו  ({{ users_rated_negative | length }})
+					</a>
+					{% endwith %}
 				</div>
 				<div class="favorites-module">
 					{% if user.id == summary.author.id %}
@@ -40,7 +48,7 @@
 		</div>
 		<div class="block-header"><h3>תגובות</h3></div>
 		<ol class="comments-wrapper">
-		{% for comment in summary.comments.all %}
+		{% for comment in summary.comments.all.select_related.all %}
 			<li>
 			<a name="{{ comment.id }}">
 				<span class="comment-info">

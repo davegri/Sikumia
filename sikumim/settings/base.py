@@ -49,6 +49,7 @@ INSTALLED_APPS = (
     # Login via Google
     'allauth.socialaccount.providers.google',
     'allauth.socialaccount.providers.facebook',
+    'debug_toolbar',
 )
 
 SITE_ID = 1

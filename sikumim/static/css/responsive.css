@@ -936,71 +936,109 @@
   margin-right: 1%;
   float: right;
   width: 100%; }
+  .part-of-1:nth-of-type(1n+1) {
+    margin-right: 0; }
+  .part-of-1:nth-of-type(n+2) {
+    margin-top: 1%; }
 
 .part-of-2 {
   margin-right: 1%;
   float: right;
   width: 49.5%; }
+  .part-of-2:nth-of-type(2n+1) {
+    margin-right: 0; }
+  .part-of-2:nth-of-type(n+3) {
+    margin-top: 1%; }
 
 .part-of-3 {
   margin-right: 1%;
   float: right;
   width: 32.66667%; }
+  .part-of-3:nth-of-type(3n+1) {
+    margin-right: 0; }
+  .part-of-3:nth-of-type(n+4) {
+    margin-top: 1%; }
 
 .part-of-4 {
   margin-right: 1%;
   float: right;
   width: 24.25%; }
+  .part-of-4:nth-of-type(4n+1) {
+    margin-right: 0; }
+  .part-of-4:nth-of-type(n+5) {
+    margin-top: 1%; }
 
 .part-of-5 {
   margin-right: 1%;
   float: right;
   width: 19.2%; }
+  .part-of-5:nth-of-type(5n+1) {
+    margin-right: 0; }
+  .part-of-5:nth-of-type(n+6) {
+    margin-top: 1%; }
 
 .part-of-6 {
   margin-right: 1%;
   float: right;
   width: 15.83333%; }
+  .part-of-6:nth-of-type(6n+1) {
+    margin-right: 0; }
+  .part-of-6:nth-of-type(n+7) {
+    margin-top: 1%; }
 
 .part-of-7 {
   margin-right: 1%;
   float: right;
   width: 13.42857%; }
+  .part-of-7:nth-of-type(7n+1) {
+    margin-right: 0; }
+  .part-of-7:nth-of-type(n+8) {
+    margin-top: 1%; }
 
 .part-of-8 {
   margin-right: 1%;
   float: right;
   width: 11.625%; }
+  .part-of-8:nth-of-type(8n+1) {
+    margin-right: 0; }
+  .part-of-8:nth-of-type(n+9) {
+    margin-top: 1%; }
 
 .part-of-9 {
   margin-right: 1%;
   float: right;
   width: 10.22222%; }
+  .part-of-9:nth-of-type(9n+1) {
+    margin-right: 0; }
+  .part-of-9:nth-of-type(n+10) {
+    margin-top: 1%; }
 
 .part-of-10 {
   margin-right: 1%;
   float: right;
   width: 9.1%; }
+  .part-of-10:nth-of-type(10n+1) {
+    margin-right: 0; }
+  .part-of-10:nth-of-type(n+11) {
+    margin-top: 1%; }
 
 .part-of-11 {
   margin-right: 1%;
   float: right;
   width: 8.18182%; }
+  .part-of-11:nth-of-type(11n+1) {
+    margin-right: 0; }
+  .part-of-11:nth-of-type(n+12) {
+    margin-top: 1%; }
 
 .part-of-12 {
   margin-right: 1%;
   float: right;
   width: 7.41667%; }
-
-.part-of-1:nth-of-type(1n+1) {
-  margin-right: 0; }
-.part-of-1:nth-of-type(n+2) {
-  margin-top: 1%; }
-
-.part-of-2:nth-of-type(2n+1) {
-  margin-right: 0; }
-.part-of-2:nth-of-type(n+3) {
-  margin-top: 1%; }
+  .part-of-12:nth-of-type(12n+1) {
+    margin-right: 0; }
+  .part-of-12:nth-of-type(n+13) {
+    margin-top: 1%; }
 
 .row:after {
   clear: both;
@@ -1022,7 +1060,7 @@
       .row nav ol li:nth-of-type(n+5) {
         margin-top: 1em !important; }
   .row .call-to-action {
-    width: 49.5% !important; }
+    width: 100% !important; }
   .row .search-box {
     width: 100% !important;
     margin-right: 0;
@@ -1041,7 +1079,35 @@
       display: block;
       overflow: auto; }
       header .panel-wrapper .panel {
-        width: 100%; }
+        width: 100%;
+        padding: 2em !important; }
+        header .panel-wrapper .panel form {
+          width: 57.91667%;
+          display: inline-block; }
+          header .panel-wrapper .panel form input[type="text"], header .panel-wrapper .panel form input[type="password"] {
+            margin: 0;
+            margin-right: 1.72662%;
+            width: 34.60432%;
+            float: right; }
+          header .panel-wrapper .panel form input[type="text"] {
+            margin-right: 0; }
+          header .panel-wrapper .panel form input[type="submit"] {
+            margin-right: 1.72662%;
+            width: 27.33813%; }
+          header .panel-wrapper .panel form .lock {
+            background-repeat: no-repeat;
+            width: 22.2px !important;
+            height: 31.2px !important;
+            background-size: 22.2px 31.2px; }
+      header .panel-wrapper .social-logins {
+        width: 32.66667%;
+        float: left;
+        margin: 0 !important; }
+        header .panel-wrapper .social-logins .facebook-login, header .panel-wrapper .social-logins .google-login {
+          display: block;
+          width: 100%; }
+        header .panel-wrapper .social-logins .google-login {
+          margin-bottom: 1em; }
 
   .part-of-4 {
     margin-right: 1%;
@@ -1061,14 +1127,23 @@
     .part-of-4:nth-of-type(n+2), .part-of-3:nth-of-type(n+2), .part-of-5:nth-of-type(n+2), .part-of-6:nth-of-type(n+2) {
       margin-top: 1%; } }
 /* mobile layout */
-@media screen and (-webkit-min-device-pixel-ratio: 1.5) and (min-resolution: 144dpi) and (orientation: portrait) {
-  .part-of-4, .part-of-3, .part-of-5, .part-of-6 {
-    margin-right: 1%;
-    float: right;
-    width: 100%; }
-    .part-of-4:nth-of-type(1n+1), .part-of-3:nth-of-type(1n+1), .part-of-5:nth-of-type(1n+1), .part-of-6:nth-of-type(1n+1) {
-      margin-right: 0; }
-    .part-of-4:nth-of-type(n+2), .part-of-3:nth-of-type(n+2), .part-of-5:nth-of-type(n+2), .part-of-6:nth-of-type(n+2) {
-      margin-top: 1%; } }
+/* @media screen and (-webkit-min-device-pixel-ratio: 1.5) and (min-resolution: 144dpi) and (orientation: portrait) {
+     .part-of-4,.part-of-3,.part-of-5,.part-of-6{
+        margin-right: $gutter_percent;
+        float: right;
+        width: (100 - $gutter_percent * (1 - 1)) / 1;
+                    &:nth-of-type(1n+1){
+        margin-right: 0;
+        }
+        &:nth-of-type(n+2){
+        margin-top:$gutter_percent;;
+        }
+}
+    
+}
+
+@media only screen and (max-width: 470px) {
+
+} */
 
 /*# sourceMappingURL=responsive.css.map */

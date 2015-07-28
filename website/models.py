@@ -29,7 +29,7 @@ class Subject(Sortable):
 class Category(Sortable):
     name = models.CharField(max_length=100)
     hebrew_name = models.CharField(max_length=100)
-    subject = SortableForeignKey(Subject)
+    subject = SortableForeignKey(Subject, related_name='categories')
 
     class Meta(Sortable.Meta):
         pass

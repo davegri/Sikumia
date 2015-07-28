@@ -101,10 +101,10 @@ def profile(request, user_pk):
 
 
 def subject(request, subject):
-    summaries_list = Summary.objects.all().filter(
-        subject__name__icontains=subject)
-    subject = get_object_or_404(Subject, name__icontains=subject)
-    category_list = subject.category_set.filter()
+    summaries_list = Summary.objects.select_related().filter(
+        subject__name=subject)
+    subject = get_object_or_404(Subject.objects.prefetch_related('categories'), name=subject)
+    category_list = subject.categories.prefetch_related('subcategory_set').all()
     length = len(summaries_list)
     categories_per_line = len(category_list)
     if subject.name == 'history_a':

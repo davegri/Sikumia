@@ -8,30 +8,18 @@
 <form method="post" action="" >
 {% csrf_token %}
 {{ summary_form.media }}
-	<div class="block-header {{ subject }}">
+	<div class="block-header {{ subject }} row">
 		<span class="edit-title">{{ summary_form.title }}</span>
 		<span>
 		</div>
-			<div class='options-bar'>
+		<div class="block">
+				{{ summary_form.content }}
+		</div>
+					<div class='options-bar'>
 				<div class="favorites-module">
 					<input type='submit' name="submit" value="שמור">
 				</div>
 			</div>
-		<div class="block">
-				{{ summary_form.content }}
-		</div>
-		<div class="block-header"><h3>תגובות</h3></div>
-		<ol class="comments-wrapper">
-		{% for comment in summary.comments.all %}
-			<li>
-				<span class="comment-info">
-					<p class="author">{{ comment.user }}</p>
-					<p class="timestamp">{{ comment.date_created |date:"SHORT_DATETIME_FORMAT"  }}</p>
-				</span>
-				<span class="comment-content"><p>{{ comment.content }}</p></span>
-			</li>
-		{% endfor %}
-		</ol>
 </form>
 
 	{% endblock %}
