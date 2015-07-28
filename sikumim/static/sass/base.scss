@@ -456,6 +456,7 @@ footer, .page-wrap:after {
 }
 
 footer {
+    margin-top: $gutter_percent*2;
     display: table;
     width: 100%;
     color: white;

@@ -2507,6 +2507,7 @@ footer, .page-wrap:after {
   height: 60px; }
 
 footer {
+  margin-top: 2%;
   display: table;
   width: 100%;
   color: white;

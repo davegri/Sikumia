@@ -1,5 +1,8 @@
 {% extends 'base.html' %}
 {% load staticfiles %}
+{% block title %}
+	סיכומים ב{{ subject }} לבגרות | {{ summary.category }} | הסיכומיה
+{% endblock title %}
 {% block head %}
 	<link href=" {% static "css/summary.css" %}" rel=stylesheet type="text/css">
 	<script src=" {% static "js/rating-ajax.js" %}"></script>

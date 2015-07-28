@@ -1,5 +1,6 @@
 from django.conf.urls import url, include
 from django.contrib.auth import views as auth_views
+from django.http import HttpResponse
 
 
 from django.views.generic import TemplateView
@@ -31,4 +32,6 @@ urlpatterns = [
     url(r'^get_categories/(?P<subject_id>\d+)/$', views.get_categories, name='get_categories'),
     url(r'^get_subcategories/(?P<category_id>\d+)/$', views.get_subcategories, name='get_subcategories'),
     url(r'^robots\.txt$', TemplateView.as_view(template_name="robots.txt")),
+    url(r'^google2ddce39a89b448a8.html$', lambda r: HttpResponse("google-site-verification: google2ddce39a89b448a8.html", content_type="text/plain")),
+
 ]

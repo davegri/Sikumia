@@ -204,6 +204,8 @@ def summary(request, subject, category, summary_id):
     except Summary.DoesNotExist:
         summary = "DOES NOT EXIST!"
 
+    subject = Subject.objects.get(name=subject)
+
     request.session.save()
     if not View.objects.filter(summary=summary, session=request.session.session_key):
         view = View(summary=summary,
