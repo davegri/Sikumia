@@ -117,7 +117,7 @@ blockquote {
 }
 
 .block-header {
-    background-color: $dark_blue;
+    background-color: $light_blue_highlight;
     color: white;
     padding: 1em;
     text-align: center;
@@ -131,7 +131,7 @@ blockquote {
 
 .block {
     font-size: 1.166666666666667em;
-    background-color: $grey;
+    background-color: $light_grey;
     padding: 1em;
 }
 
@@ -145,7 +145,7 @@ blockquote {
 
 .summary-header {
     margin-top: 0.3em;
-    background: $grey;
+    background: $light_grey;
     text-align: right;
     color: $dark_blue;
     border-bottom: 3px solid $light_blue;
@@ -202,19 +202,19 @@ blockquote {
     box-shadow:         0 0 2px black;
     font-size: 1.3em;
     padding: 0.5em;
-    -webkit-transform: translateY(-70px);
+    -webkit-transform: translateY(-55.6px);
     -webkit-animation: slideDown 2.5s 1 ease forwards;
-    -moz-transform:    translateY(-70px);
+    -moz-transform:    translateY(-55.6px);
     -moz-animation:    slideDown 2.5s 1 ease forwards;
 }
 
 @-webkit-keyframes slideDown {
-    0%, 100% { -webkit-transform: translateY(-70px); }
-    10%, 90% { -webkit-transform: translateY(-10px); }
+    0%, 100% { -webkit-transform: translateY(-55.6px); }
+    10%, 90% { -webkit-transform: translateY(0px); }
 }
 @-moz-keyframes slideDown {
-    0%, 100% { -moz-transform: translateY(-70px); }
-    10%, 90% { -moz-transform: translateY(-10px); }
+    0%, 100% { -moz-transform: translateY(-55.6px); }
+    10%, 90% { -moz-transform: translateY(0px); }
 }
 
 

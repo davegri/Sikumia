@@ -1212,7 +1212,7 @@
     .options-bar .rating-module .button, .options-bar .favorites-module .button {
       margin-left: 0.5em; }
     .options-bar .rating-module .selected, .options-bar .favorites-module .selected {
-      background-color: #eceff1;
+      background-color: #607D8B;
       border: 3px solid #2b5797;
       color: #2b5797;
       height: auto; }

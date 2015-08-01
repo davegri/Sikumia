@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 from .base import *
 
-DEBUG = True
 
 EMAIL_HOST = 'localhost'
 EMAIL_PORT = 1025
