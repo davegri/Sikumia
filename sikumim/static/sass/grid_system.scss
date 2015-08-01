@@ -24,7 +24,7 @@ $one_col_width: (100 - $gutter_percent * ($col_number - 1)) / $col_number;
         margin-right: 0;
         }
         &:nth-of-type(n+#{($num+1)}){
-        margin-top:$gutter_percent;;
+        margin-top:$gutter_percent;
         }
 }
 

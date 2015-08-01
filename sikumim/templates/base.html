@@ -141,7 +141,7 @@
                                     {% endif %}
                                 </form>
                                 <div class="social-logins">
-                                    <a href="{% provider_login_url 'google' %}" class="google-login" >התחבר עם חשבון גוגל</a>
+                                    <a href="{% provider_login_url 'google' %}" class="google-login" >התחבר עם גוגל</a>
                                     <a href="{% provider_login_url 'facebook' %}" class="facebook-login" >התחבר עם פייסבוק</a>
                                 </div>
                                 <a href="{% url 'password_reset' %}" class="forgot-password-link">שכחת את הסיסמא?</a>
@@ -175,7 +175,7 @@
                     <nav class="col-24">
                         <ol class="row">
                             {% for subject in subjects  %}
-                                <li class='col-3'>
+                                <li class='part-of-{{ subjects | length }}'>
                                     <a  href="{% url 'subject' subject.name%}"  style="background-color: #{{subject.color}}" class="nav-button">{{ subject.hebrew_name }}</a>
                                 </li>
                             {% endfor %}
