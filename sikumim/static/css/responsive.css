@@ -1061,8 +1061,6 @@
         margin-right: 0; }
       .row nav ol li:nth-of-type(n+5) {
         margin-top: 1%; }
-  .row .col-6 {
-    width: 100% !important; }
   .row .search-box {
     width: 100% !important;
     margin-right: 0;
@@ -1145,6 +1143,21 @@
       margin-right: 0; }
     .row .feature-block:nth-of-type(n+2) {
       margin-top: 3%; } }
+@media only screen and (max-width: 775px) {
+  .regular-register {
+    width: 100% !important; }
+
+  .divider {
+    height: 50px !important;
+    width: 100% !important; }
+    .divider .line {
+      height: 1px !important;
+      width: 100% !important;
+      left: 0 !important;
+      top: 50% !important; }
+
+  .social-register {
+    width: 100% !important; } }
 @media only screen and (max-width: 700px) {
   .karma-bar .call-to-action-text {
     display: block;
