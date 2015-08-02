@@ -7,6 +7,7 @@ from adminsortable.models import Sortable, SortableForeignKey
 from math import sqrt
 import bleach
 
+
 # monkey patching to make email field unique
 User._meta.get_field('email')._unique = True
 
@@ -140,3 +141,17 @@ class Comment(models.Model):
 
     def get_absolute_url(self):
         return self.summary.get_absolute_url() + "#%i" % self.id
+
+
+# add get karma to auth user class
+
+def karma(self):
+    summaries_list = self.summaries_authored.all()
+    positive_karma = sum(
+        [summary.users_rated_positive.count() for summary in summaries_list])
+    negative_karma = sum(
+        [summary.users_rated_negative.count() for summary in summaries_list])
+    return positive_karma - negative_karma
+
+
+User.add_to_class('karma', karma)

@@ -16,7 +16,7 @@ $one_col_width: (100 - $gutter_percent * ($col_number - 1)) / $col_number;
 }
 
 
-@mixin part_of($num){
+@mixin part_of($num, $gutter_percent: $gutter_percent){
         margin-right: $gutter_percent;
         float: right;
         width: (100 - $gutter_percent * ($num - 1)) / $num;

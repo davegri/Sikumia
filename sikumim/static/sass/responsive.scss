@@ -25,10 +25,15 @@ header{
             margin-right: 0;
             margin-top: $gutter_percent*2;
         }
+
+        .col-16{
+            width:100% !important;
+        }
     }
 
 }
 @media only screen and (max-width: 835px) {
+
     header{
         padding:0;
         padding-top: 1em;
@@ -105,6 +110,12 @@ header{
 }
 
 
+.row{
+    .feature-block{
+        @include part_of(1);
+        min-height: 0px;
+    }
+}
 
 }
 
@@ -160,6 +171,13 @@ header{
             }
         }
 }
+
+.title-block{
+    h3:before{
+        display:none;
+    }
+}
+
 }
 
 

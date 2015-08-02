@@ -9,6 +9,7 @@
 	<script>
 		var id = {{ summary.id }};
 		var url = {% url 'rate_summary' %} ;
+
 	</script>
 	<style type="text/css">
 	.block-header{
@@ -28,12 +29,12 @@
 					<h4>איך הסיכום?</h4>
 					{% with summary.users_rated_positive.all as users_rated_positive  %}
 					<a class='button positive {% if user in users_rated_positive %}selected{% endif %} '>
-					אהבתי  ({{ users_rated_positive | length }})
+					<img class="svg" height="25" width="25" src="{% static "images/positive.svg" %}">אהבתי  ({{ users_rated_positive | length }})
 					</a>					    
 					{% endwith %}
 					{% with summary.users_rated_negative.all as users_rated_negative  %}
 					<a class='button negative {% if user in users_rated_negative %}selected{% endif %} '>
-					לא משהו  ({{ users_rated_negative | length }})
+					<img class="svg" height="25" width="25" src="{% static "images/negative.svg" %}">לא משהו  ({{ users_rated_negative | length }})
 					</a>
 					{% endwith %}
 				</div>

@@ -4,11 +4,13 @@
 }
 
 .stat-block{
-	background-color: $light_blue;
+	background-color: $light_grey;
+	color: $dark_grey;
 	text-align:center;
 	padding: 1em;
+	border: 1px solid $grey;
 	h3{
 		font-size: 1.3em;
-		color: white;
+		color: $dark_grey;
 	}
 }

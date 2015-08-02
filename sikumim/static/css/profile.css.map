@@ -1,6 +1,6 @@
 {
 "version": 3,
-"mappings": "AAKA,WAAW;EACV,gBAAgB,ECFL,OAAO;EDGlB,UAAU,EAAC,MAAM;EACjB,OAAO,EAAE,GAAG;EACZ,cAAE;IACD,SAAS,EAAE,KAAK;IAChB,KAAK,EAAE,KAAK",
+"mappings": "AAKA,WAAW;EACV,gBAAgB,ECNL,OAAO;EDOlB,KAAK,ECLK,OAAO;EDMjB,UAAU,EAAC,MAAM;EACjB,OAAO,EAAE,GAAG;EACZ,MAAM,EAAE,iBAAe;EACvB,cAAE;IACD,SAAS,EAAE,KAAK;IAChB,KAAK,ECXI,OAAO",
 "sources": ["../sass/profile.scss","../sass/colors.scss"],
 "names": [],
 "file": "profile.css"

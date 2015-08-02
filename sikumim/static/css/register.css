@@ -1128,8 +1128,12 @@ html {
 *, *:before, *:after {
   box-sizing: inherit; }
 
+* {
+  border-radius: 2px; }
+
 /* typography */
 body {
+  background: url(../images/bg.png);
   color: #37474f;
   font-size: 12px;
   font-family: 'Arimo', 'sans-serif';
@@ -1213,7 +1217,8 @@ blockquote {
 
 .block {
   font-size: 1.166666666666667em;
-  background-color: #eceff1;
+  background-color: #EAEEF0;
+  border: 1px solid #BBBEC0;
   padding: 1em; }
 
 .row {
@@ -1223,7 +1228,8 @@ blockquote {
 
 .summary-header {
   margin-top: 0.3em;
-  background: #eceff1;
+  background: #EAEEF0;
+  border: 1px solid #BBBEC0;
   text-align: right;
   color: #2b5797;
   border-bottom: 3px solid #1ba1e2;
@@ -1235,6 +1241,7 @@ blockquote {
   .summary-header:hover {
     background: #1ba1e2;
     color: white;
+    border: 1px solid #1ba1e2;
     border-bottom: 3px solid #2b5797; }
     .summary-header:hover .tag {
       background: white !important;
@@ -1374,12 +1381,42 @@ header {
         font-size: 1.2em;
         font-weight: bold; }
 
+.karma-bar {
+  background-color: #EAEEF0;
+  padding: 1em;
+  display: table;
+  width: 100%;
+  text-align: left;
+  border: 1px solid #BBBEC0; }
+  .karma-bar .call-to-action-text {
+    text-align: right;
+    display: table-cell;
+    vertical-align: middle;
+    color: #2b5797;
+    padding-right: 0.4em; }
+  .karma-bar .call-to-action {
+    height: 100%;
+    display: block;
+    padding: 0.3em; }
+    .karma-bar .call-to-action:first-of-type {
+      color: white;
+      background-color: #1ba1e2;
+      box-shadow: 0px 5px 0px 0px #1681B5;
+      margin-bottom: 10px; }
+      .karma-bar .call-to-action:first-of-type:hover {
+        background-color: #34b5e9; }
+      .karma-bar .call-to-action:first-of-type:active {
+        box-shadow: 0px 0px 0px 0px #1681B5; }
+    .karma-bar .call-to-action:last-of-type {
+      font-size: 1rem;
+      margin-bottom: 5px; }
+
 .search-box {
   border: 5px solid #2b5797;
   height: 62px;
   padding: 0.5em; }
   .search-box .search-input {
-    width: calc(100% - 250px);
+    width: calc(100% - 220px);
     float: right;
     height: 100%; }
     .search-box .search-input input[type="text"], .search-box .search-input [type="text"].button, .search-box .search-input [type="text"].call-to-action {
@@ -1387,7 +1424,8 @@ header {
       width: 100%;
       height: 100%; }
   .search-box select {
-    width: 145px;
+    padding: 0 0.4em;
+    height: 40px;
     float: left;
     margin-left: 0.5em; }
   .search-box input[type="submit"], .search-box [type="submit"].button, .search-box [type="submit"].call-to-action {

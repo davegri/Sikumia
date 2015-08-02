@@ -19,9 +19,14 @@ html {
     box-sizing: inherit;
 }
 
+*{
+        border-radius:2px;
+}
+
 /* typography */
 
 body {
+    background: url(../images/bg.png);
     color: $dark_grey;
     font-size: 12px;
     font-family: 'Arimo', 'sans-serif';
@@ -132,6 +137,7 @@ blockquote {
 .block {
     font-size: 1.166666666666667em;
     background-color: $light_grey;
+    border: 1px solid $grey;
     padding: 1em;
 }
 
@@ -146,6 +152,7 @@ blockquote {
 .summary-header {
     margin-top: 0.3em;
     background: $light_grey;
+    border: 1px solid $grey;
     text-align: right;
     color: $dark_blue;
     border-bottom: 3px solid $light_blue;
@@ -161,6 +168,7 @@ blockquote {
     &:hover {
         background: $light_blue;
         color: white;
+        border: 1px solid $light_blue;
         border-bottom: 3px solid $dark_blue;
 
         .tag {
@@ -340,6 +348,47 @@ header {
 }
 }
 
+.karma-bar{
+    background-color: $light_grey;
+    padding: 1em;
+    display: table;
+    width: 100%;
+    text-align: left;
+    border: 1px solid $grey;
+    .call-to-action-text{
+        text-align: right;
+        display: table-cell;
+        vertical-align: middle;
+        color: $dark_blue;
+        padding-right: 0.4em;
+
+        h4{
+            
+        }
+    }
+    .call-to-action{
+        height: 100%;
+        display: block;
+        padding: 0.3em;
+        &:first-of-type{
+            color: white;
+            background-color: $light_blue;
+            box-shadow: 0px 5px 0px 0px $light_blue_shadow;
+            &:hover{
+                background-color: $light_blue_highlight;
+            }
+            &:active{
+                box-shadow: 0px 0px 0px 0px $light_blue_shadow;
+            }
+            margin-bottom: 10px;
+        }
+        &:last-of-type{
+                    font-size: 1rem;
+            margin-bottom: 5px;
+        }
+    }
+}
+
     .search-box {
     border: 5px solid $dark_blue;
     height: 62px;
@@ -349,7 +398,7 @@ header {
 
     }
     .search-input{
-    width: calc(100% - 250px);
+    width: calc(100% - 220px);
     float:right;
     height: 100%;
     input[type="text"] {
@@ -359,7 +408,8 @@ header {
     }
 }
     select{
-        width: 145px;
+        padding: 0 0.4em;
+        height:40px;
         float: left;
         margin-left: 0.5em;
     }

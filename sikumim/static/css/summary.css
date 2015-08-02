@@ -1210,9 +1210,16 @@
     width: 50%;
     vertical-align: top; }
     .options-bar .rating-module .button, .options-bar .favorites-module .button {
-      margin-left: 0.5em; }
+      margin-left: 0.5em;
+      line-height: 20px; }
+      .options-bar .rating-module .button img, .options-bar .favorites-module .button img {
+        display: inline-block;
+        vertical-align: middle;
+        margin-left: 1em; }
+      .options-bar .rating-module .button svg, .options-bar .favorites-module .button svg {
+        transform: scale(20px, 20px); }
     .options-bar .rating-module .selected, .options-bar .favorites-module .selected {
-      background-color: #607D8B;
+      background-color: #EAEEF0;
       border: 3px solid #2b5797;
       color: #2b5797;
       height: auto; }

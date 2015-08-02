@@ -27,7 +27,7 @@
 .invalid-input {
   border: 1px solid red !important; }
 
-select {
+.block select {
   margin-bottom: 1.5%;
   width: 100%;
   font-size: 1.3em; }

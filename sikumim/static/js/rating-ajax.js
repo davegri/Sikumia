@@ -29,7 +29,17 @@ $.ajaxSetup({
 });
 
 	$(document).ready(function() {
+		if($('a.negative').hasClass('selected')){
+			$('a.negative img').attr("src", '/static/images/negative_selected.svg');
+		}
+		else if($('a.positive').hasClass('selected')){
+			$('a.positive img').attr("src", '/static/images/positive_selected.svg');
+		}
+
 	$('a.positive').click(function(){
+		if($('a.negative').hasClass('selected')){
+			$( "a.negative" ).trigger( "click" );
+		}
 		var rate_type = 'positive';
 		if($(this).hasClass('selected')){
 			var rate_action = 'undo-rate';
@@ -38,7 +48,7 @@ $.ajaxSetup({
 			function(response){
 				if($.isNumeric(response)){
 					$('a.positive').removeClass('selected')
-					.html('אהבתי  ('+response+')');
+					.html('<img height="25" width="25" src="/static/images/positive.svg" %}">אהבתי  ('+response+')');
 				}
 			});
 		} 
@@ -49,13 +59,16 @@ $.ajaxSetup({
 			function(response){
 				if($.isNumeric(response)){
 					$('a.positive').addClass('selected')
-					.html('אהבתי  ('+response+')');
+					.html('<img height="25" width="25" src="/static/images/positive_selected.svg">אהבתי  ('+response+')');
 				}
 			});
 
 		}
 	});
 		$('a.negative').click(function(){
+		if($('a.positive').hasClass('selected')){
+			$( "a.positive" ).trigger( "click" );
+		}
 		var rate_type = 'negative';
 		if($(this).hasClass('selected')){
 			var rate_action = 'undo-rate';
@@ -64,7 +77,7 @@ $.ajaxSetup({
 			function(response){
 				if($.isNumeric(response)){
 					$('a.negative').removeClass('selected')
-					.html('לא משהו  ('+response+')');
+					.html('<img height="25" width="25" src="/static/images/negative.svg" %}">לא משהו  ('+response+')');
 				}
 			});
 		} 
@@ -75,7 +88,7 @@ $.ajaxSetup({
 			function(response){
 				if($.isNumeric(response)){
 					$('a.negative').addClass('selected')
-					.html('לא משהו  ('+response+')');
+					.html('<img height="25" width="25" src="/static/images/negative_selected.svg" %}">לא משהו  ('+response+')');
 				}
 			});
 

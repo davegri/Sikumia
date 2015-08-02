@@ -267,17 +267,15 @@ def rate_summary(request):
         id=request.user.id).count()
     ratings_to_return = -1
     if rate_action == 'rate':
-        if thisUserPositiveRatings == 0 and thisUserNegativeRatings == 0:
-            if rate_type == 'positive':
-                summary.users_rated_positive.add(request.user)
-                ratings_to_return = summary.users_rated_positive.count()
-            elif rate_type == 'negative':
-                summary.users_rated_negative.add(request.user)
-                ratings_to_return = summary.users_rated_negative.count()
-            else:
-                return HttpResponse("RATING ERROR: rate_type must be either \"positive\" or \"negative\" ")
+        if rate_type == 'positive':
+            summary.users_rated_positive.add(request.user)
+            ratings_to_return = summary.users_rated_positive.count()
+        elif rate_type == 'negative':
+            summary.users_rated_negative.add(request.user)
+            ratings_to_return = summary.users_rated_negative.count()
         else:
-            return HttpResponse("RATING ERROR: %s has already rated this summary " % request.user.username)
+            return HttpResponse("RATING ERROR: rate_type must be either \"positive\" or \"negative\" ")
+
     elif rate_action == 'undo-rate':
         if rate_type == 'positive' and thisUserPositiveRatings == 1:
             summary.users_rated_positive.remove(request.user)
@@ -366,7 +364,7 @@ def search(request):
 
 def get_categories(request, subject_id):
     subject = Subject.objects.get(pk=subject_id)
-    categories = subject.category_set.all()
+    categories = subject.categories.all()
     html_string = ""
     for cat in categories:
         html_string += '<option value="%s">%s</option>' % (

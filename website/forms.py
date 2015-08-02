@@ -76,7 +76,7 @@ class EditSummaryForm(forms.ModelForm):
 class SearchForm(forms.Form):
     subject_queryset = Subject.objects.all()
     query = forms.CharField(max_length=100)
-    subject = forms.ModelChoiceField(queryset=subject_queryset, empty_label='כל המקצועות', to_field_name='name')
+    subject = forms.ModelChoiceField(queryset=subject_queryset, empty_label='הכל', to_field_name='name')
 
 
 

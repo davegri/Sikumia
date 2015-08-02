@@ -32,13 +32,26 @@
 
         .button {
             margin-left: 0.5em;
+            line-height: 20px;
+            img{
+                display: inline-block;
+                vertical-align: middle;
+                margin-left: 1em;
+            }
+
+            svg{
+            transform: scale(20px,20px);
+}
         }
 
         .selected {
-            background-color: $grey;
+            background-color: $light_grey;
             border: 3px solid $dark_blue;
             color: $dark_blue;
             height: auto;
+            img{
+
+            }
         }
 
         h4 {

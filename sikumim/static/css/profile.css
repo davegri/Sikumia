@@ -1,9 +1,11 @@
 .stat-block {
-  background-color: #1ba1e2;
+  background-color: #EAEEF0;
+  color: #37474f;
   text-align: center;
-  padding: 1em; }
+  padding: 1em;
+  border: 1px solid #BBBEC0; }
   .stat-block h3 {
     font-size: 1.3em;
-    color: white; }
+    color: #37474f; }
 
 /*# sourceMappingURL=profile.css.map */
