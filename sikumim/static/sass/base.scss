@@ -113,6 +113,10 @@ a {
     text-decoration: none;
 }
 
+p{
+    margin-bottom: 1em;
+}
+
 blockquote {
     background: $dark_blue;
     color: white;
@@ -126,12 +130,6 @@ blockquote {
     color: white;
     padding: 1em;
     text-align: center;
-        h3, h2{
-        margin-bottom: 0.2em;
-    }
-        p {
-        margin-bottom: 0.6em;
-    }
 }
 
 .block {
@@ -142,7 +140,7 @@ blockquote {
 }
 
 .row {
-    margin-top: $gutter_percent*2;
+    margin-top: 1rem;
 
     .row {
         margin-top: 0;
@@ -317,22 +315,9 @@ header {
             font-size: 1.2em;
                 margin-top: 18px;
                 margin-bottom: 13px;
+
                 .google-login{
-                    border-radius:3px;
-                    color: white;
-                    background: url(../images/google.svg) no-repeat 7% center;
-                    background-color: #d34836;
-                    background-size: 28px 28px;
-                    padding: 1em 2em 1em 3.5em;
-                    margin-left: 8px;
-                }
-                .facebook-login{
-                    border-radius:3px;
-                    color: white;
-                    background: url(../images/facebook.svg) no-repeat 7% center;
-                    background-color: #3b5998;
-                    background-size: 28px 28px;
-                    padding: 1em 2em 1em 3.5em;
+                                        margin-left: 8px;
                 }
             }
 
@@ -347,6 +332,23 @@ header {
     }
 }
 }
+
+                .google-login{
+                    border-radius:3px;
+                    color: white;
+                    background: url(../images/google.svg) no-repeat 7% center;
+                    background-color: #d34836;
+                    background-size: 28px 28px;
+                    padding: 1em 2em 1em 3.5em;
+                }
+                .facebook-login{
+                    border-radius:3px;
+                    color: white;
+                    background: url(../images/facebook.svg) no-repeat 7% center;
+                    background-color: #3b5998;
+                    background-size: 28px 28px;
+                    padding: 1em 2em 1em 3.5em;
+                }
 
 .karma-bar{
     background-color: $light_grey;
@@ -390,26 +392,24 @@ header {
 }
 
     .search-box {
-    border: 5px solid $dark_blue;
-    height: 62px;
+    border: 1px solid $grey;
+    background-color: white;
     padding: 0.5em;
-
+    height: 60px;
     input{
 
     }
-    .search-input{
+    input[type="text"] {
     width: calc(100% - 220px);
     float:right;
     height: 100%;
-    input[type="text"] {
-        display: inline-block;
-        width: 100%;
-        height: 100%;
+    display: inline-block;
+    height: 100%;
     }
-}
+
     select{
         padding: 0 0.4em;
-        height:40px;
+        height:100%;
         float: left;
         margin-left: 0.5em;
     }
@@ -417,7 +417,13 @@ header {
         height: 90%;
         float: left;
         min-width: 90px;
+        margin-bottom: 5px;
     }
+}
+
+.focused{
+    border: 1px solid white;
+    outline: 3px solid $dark_blue;
 }
 
 .error {
@@ -476,7 +482,7 @@ nav {
 .call-to-action{
     @extend .button;
     font-family: 'Open Sans Hebrew', 'sans-serif';
-        padding: 0.5em;
+        padding: 0.5em 1em;
         color: white;
         text-decoration: none;
         text-align: center;
@@ -508,7 +514,7 @@ footer, .page-wrap:after {
 }
 
 footer {
-    margin-top: $gutter_percent*2;
+    margin-top: $gutter_percent*4;
     display: table;
     width: 100%;
     color: white;

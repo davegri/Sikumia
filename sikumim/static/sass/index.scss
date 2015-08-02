@@ -3,6 +3,7 @@
 
 .title-block{
     h3{
+            margin-top: 1em;
         color: $light_blue;
         text-align: center;
         position: relative;
@@ -38,4 +39,16 @@
     border: 1px solid $grey;
     min-height: 223px;
 }
+
+.block{
+
+}
+
+.register{
+    margin-top: 3rem;
+    text-align: center;
+.call-to-action{
+    text-align: center;
+}
+} 
 

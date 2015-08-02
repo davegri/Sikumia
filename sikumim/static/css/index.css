@@ -1048,6 +1048,7 @@
   visibility: hidden; }
 
 .title-block h3 {
+  margin-top: 1em;
   color: #1ba1e2;
   text-align: center;
   position: relative; }
@@ -1080,5 +1081,11 @@ p {
     margin-right: 0; }
   .feature-block:nth-of-type(n+4) {
     margin-top: 3%; }
+
+.register {
+  margin-top: 3rem;
+  text-align: center; }
+  .register .call-to-action {
+    text-align: center; }
 
 /*# sourceMappingURL=index.css.map */

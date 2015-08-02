@@ -43,4 +43,13 @@
             </p>
         </div>
     </div>
+        {% if user.is_authenticated == False %}
+    <div class="row register">
+    <a class="call-to-action" href="{% url 'register' %}">
+        הרשם עכשיו <strong>בחינם</strong>
+    </a>
+    </div>
+    {% endif %}
+
+
     {% endblock %}

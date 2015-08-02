@@ -1,7 +1,7 @@
 @import url(https://fonts.googleapis.com/earlyaccess/opensanshebrew.css);
 @import url(http://fonts.googleapis.com/css?family=Arimo:400,700,400italic,700italic&subset=hebrew);
 html, body, div, span, applet, object, iframe,
-h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+h1, h2, h3, h4, h5, .block form label, h6, p, blockquote, pre,
 a, abbr, acronym, address, big, cite, code,
 del, dfn, em, img, ins, kbd, q, s, samp,
 small, strike, strong, sub, sup, tt, var,
@@ -1140,7 +1140,7 @@ body {
   font-weight: 400;
   line-height: 1.6; }
 
-h2, h3, h4, h5 {
+h2, h3, h4, h5, .block form label {
   font-family: 'Open Sans Hebrew', 'sans-serif'; }
 
 h2 {
@@ -1154,7 +1154,7 @@ h4 {
   font-size: 1.5em;
   font-weight: bold; }
 
-h5 {
+h5, .block form label {
   font-size: 1.2em;
   font-weight: bold; }
 
@@ -1198,6 +1198,9 @@ a {
   border: none;
   text-decoration: none; }
 
+p {
+  margin-bottom: 1em; }
+
 blockquote {
   background: #2b5797;
   color: white;
@@ -1210,10 +1213,6 @@ blockquote {
   color: white;
   padding: 1em;
   text-align: center; }
-  .block-header h3, .block-header h2 {
-    margin-bottom: 0.2em; }
-  .block-header p {
-    margin-bottom: 0.6em; }
 
 .block {
   font-size: 1.166666666666667em;
@@ -1222,7 +1221,7 @@ blockquote {
   padding: 1em; }
 
 .row {
-  margin-top: 2%; }
+  margin-top: 1rem; }
   .row .row {
     margin-top: 0; }
 
@@ -1360,26 +1359,29 @@ header {
         margin-top: 18px;
         margin-bottom: 13px; }
         header .panel-wrapper .panel .social-logins .google-login {
-          border-radius: 3px;
-          color: white;
-          background: url(../images/google.svg) no-repeat 7% center;
-          background-color: #d34836;
-          background-size: 28px 28px;
-          padding: 1em 2em 1em 3.5em;
           margin-left: 8px; }
-        header .panel-wrapper .panel .social-logins .facebook-login {
-          border-radius: 3px;
-          color: white;
-          background: url(../images/facebook.svg) no-repeat 7% center;
-          background-color: #3b5998;
-          background-size: 28px 28px;
-          padding: 1em 2em 1em 3.5em; }
       header .panel-wrapper .panel .forgot-password-link {
         margin-top: 0.2em;
         color: white;
         display: block;
         font-size: 1.2em;
         font-weight: bold; }
+
+.google-login {
+  border-radius: 3px;
+  color: white;
+  background: url(../images/google.svg) no-repeat 7% center;
+  background-color: #d34836;
+  background-size: 28px 28px;
+  padding: 1em 2em 1em 3.5em; }
+
+.facebook-login {
+  border-radius: 3px;
+  color: white;
+  background: url(../images/facebook.svg) no-repeat 7% center;
+  background-color: #3b5998;
+  background-size: 28px 28px;
+  padding: 1em 2em 1em 3.5em; }
 
 .karma-bar {
   background-color: #EAEEF0;
@@ -1412,28 +1414,32 @@ header {
       margin-bottom: 5px; }
 
 .search-box {
-  border: 5px solid #2b5797;
-  height: 62px;
-  padding: 0.5em; }
-  .search-box .search-input {
+  border: 1px solid #BBBEC0;
+  background-color: white;
+  padding: 0.5em;
+  height: 60px; }
+  .search-box input[type="text"], .search-box [type="text"].button, .search-box [type="text"].call-to-action {
     width: calc(100% - 220px);
     float: right;
+    height: 100%;
+    display: inline-block;
     height: 100%; }
-    .search-box .search-input input[type="text"], .search-box .search-input [type="text"].button, .search-box .search-input [type="text"].call-to-action {
-      display: inline-block;
-      width: 100%;
-      height: 100%; }
   .search-box select {
     padding: 0 0.4em;
-    height: 40px;
+    height: 100%;
     float: left;
     margin-left: 0.5em; }
   .search-box input[type="submit"], .search-box [type="submit"].button, .search-box [type="submit"].call-to-action {
     height: 90%;
     float: left;
-    min-width: 90px; }
+    min-width: 90px;
+    margin-bottom: 5px; }
 
-.error, .login_error, .block form p span {
+.focused {
+  border: 1px solid white;
+  outline: 3px solid #2b5797; }
+
+.error, .login_error {
   margin-top: 10px;
   font-weight: 600;
   font-size: 1.2em;
@@ -1472,7 +1478,7 @@ nav {
 
 .call-to-action {
   font-family: 'Open Sans Hebrew', 'sans-serif';
-  padding: 0.5em;
+  padding: 0.5em 1em;
   color: white;
   text-decoration: none;
   text-align: center;
@@ -1499,7 +1505,7 @@ footer, .page-wrap:after {
   height: 60px; }
 
 footer {
-  margin-top: 2%;
+  margin-top: 4%;
   display: table;
   width: 100%;
   color: white;
@@ -1511,15 +1517,49 @@ footer {
     vertical-align: middle; }
 
 /* colors */
+.social-register {
+  height: 100%;
+  background-color: white;
+  border: 1px solid #BBBEC0;
+  padding: 1em; }
+  .social-register a {
+    display: block;
+    font-size: 1.3em; }
+    .social-register a:first-of-type {
+      margin-bottom: 1rem; }
+
 .block-header {
   padding: 1.25%; }
 
 h4, h2 {
   text-align: center; }
 
-.block form h5 {
-  margin-bottom: 0.5%;
-  font-weight: 600; }
+.block {
+  padding: 2em; }
+
+.divider {
+  position: relative;
+  height: 400px; }
+  .divider .line {
+    position: absolute;
+    left: 49%;
+    top: 0;
+    bottom: 0;
+    width: 1px;
+    background: #ccc;
+    z-index: 1; }
+  .divider h6 {
+    text-align: center;
+    height: 12px;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 50%;
+    margin-top: -12px;
+    z-index: 2; }
+    .divider h6 span {
+      padding: 9px;
+      background: #EAEEF0; }
 
 .block form input, .block form .button, .block form .call-to-action {
   margin-bottom: 1.5%;
@@ -1529,30 +1569,26 @@ h4, h2 {
   margin-top: 1.5%; }
 
 .block form input[type="text"], .block form [type="text"].button, .block form [type="text"].call-to-action, input[type="password"], [type="password"].button, [type="password"].call-to-action, input[type="email"], [type="email"].button, [type="email"].call-to-action {
-  border: 1px solid #B3B3B3; }
+  border: 1px solid #B3B3B3;
+  width: 100%; }
 
 .invalid {
   background: #fff url(../images/invalid.png) no-repeat 5% center;
-  border: 1px solid #d45252; }
+  border: 1px solid #d45252 !important;
+  display: block; }
+  .invalid + span {
+    font-size: 1.3em;
+    padding: 0.4em 0.7em;
+    background: #FBE3E4;
+    color: #D12F19;
+    border: 1px solid #FBC2C4;
+    display: inline-block;
+    margin-top: 0.2em;
+    width: 100%; }
 
 .block form p {
   position: relative;
-  display: inline-block; }
-
-.block form p span {
-  top: 12px;
-  margin-left: 8px;
-  z-index: 999;
-  /* hints stay above all other elements */
-  position: relative;
-  /* allows proper formatting if hint is two lines */
-  right: 20px; }
-  .block form p span:before {
-    content: "\25b6";
-    color: #d45252;
-    position: absolute;
-    top: 4px;
-    right: -12px; }
+  margin-bottom: 4%; }
 
 .block input[type="submit"], .block [type="submit"].button, .block [type="submit"].call-to-action {
   display: block; }

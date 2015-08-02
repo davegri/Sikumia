@@ -3,7 +3,7 @@ $gutter_percent: 1%;
 
 $one_col_width: (100 - $gutter_percent * ($col_number - 1)) / $col_number;
 
-@mixin cols($num) {
+@mixin cols($num, $gutter_percent: $gutter_percent) {
     width: $one_col_width * $num + $gutter_percent * ($num - 1);
 }
 

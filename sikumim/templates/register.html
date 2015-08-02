@@ -17,13 +17,13 @@
                 </div>
                 <div class="block">
                  <div class="row">
-                     <div class="col-12">
+                     <div class="col-8 regular-register">
                     {% if registered %}
                         <h4>נרשמת בהצלחה למערכת</h4>
                     {% else %}
                         <form id="user_form" method="post" action="/register/">
                             {% csrf_token %}
-                            <p><label for="id_username"><h5>שם משתמש</h5></label></p>
+                            <p><label for="id_username">שם משתמש</label></p>
                             <p>
                                 {{ user_form.username}}
                                 {% if user_form.username.errors %}<span>{{ user_form.username.errors.as_text|cut:"* " }}</span>{% endif %}
@@ -47,9 +47,15 @@
                         </form>
                     {% endif %}
                      </div>
-                     <div class="col-12">
-                         <a href="{% provider_login_url "google" %}" class="button">הרשמה מהירה עם גוגל</a>
-                         <a href="/accounts/facebook/login" class="button">הרשמה מהירה עם פייסבוק</a>
+                     <div class="col-6 divider">
+                     <div class="line"></div>
+                         <h6><span>או</span></h6>
+                     </div>
+                     <div class="col-10 social-register">
+                     <h5>הרשמה מהירה באמצעות חשבון חיצוני</h5>
+                     <p>לעולם לא נפרסם לכם שום דבר, מבטיחים!</p>
+                         <a href="{% provider_login_url "google" %}" class="google-login">הרשמה מהירה עם גוגל</a>
+                         <a href="/accounts/facebook/login" class="facebook-login">הרשמה מהירה עם פייסבוק</a>
                      </div>
                  </div>
                 </div>

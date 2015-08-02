@@ -58,6 +58,13 @@
         return color;
         }
         $(document).ready(function () {
+
+         $(".search-box input, .search-box select").focus(function(){
+           $(this).parent().addClass("focused");
+          }).blur(function(){
+            $(this).parent().removeClass("focused");
+          });
+
         $('.nav-button').each(function(index){
         var color = $(this).css('background-color');
         var hexcolor = hexc(color);
@@ -151,7 +158,7 @@
                 </header>
             </div>
             <div class="container">
-                            {% if user.is_authenticated %}
+        {% if user.is_authenticated %}
                 <div class="row col-24 karma-bar">
                 <div class="call-to-action-text">
                 <h3>כרגע יש לך <strong>{{ user.karma }}</strong> קארמה</h3>
@@ -177,30 +184,13 @@
                     </nav>
                 </div>
                 <form id="search_form" method="get" action="{% url 'search' %}">
-
                     <div class="row">
-                        {% if user.is_authenticated == False %}
-                            <a class="call-to-action col-6" href="{% url 'register' %}">
-                                הרשם עכשיו <strong>בחינם</strong>
-                            </a>
-
-                        <div class="search-box col-18">
-                        <div class="search-input">
-                            {{ search_form.query }}
-                        </div>
-                            <input type="submit" value="חפש">
-                            {{ search_form.subject }}
-                        </div>
-                        {% else %}
-
                         <div class="search-box col-24">
-                        <div class="search-input">
                             {{ search_form.query }}
-                        </div>
                             <input type="submit" value="חפש">
                             {{ search_form.subject }}
                         </div>
-                        {% endif %}
+
                     </form>
                 </div>
                 {% block body %}{% endblock %}

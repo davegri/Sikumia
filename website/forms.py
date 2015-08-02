@@ -75,7 +75,7 @@ class EditSummaryForm(forms.ModelForm):
 
 class SearchForm(forms.Form):
     subject_queryset = Subject.objects.all()
-    query = forms.CharField(max_length=100)
+    query = forms.CharField(max_length=100, widget=forms.TextInput(attrs={'placeholder': 'הקלד מילות חיפוש, לדוגמא - "הזכות להליך הוגן"'}))
     subject = forms.ModelChoiceField(queryset=subject_queryset, empty_label='הכל', to_field_name='name')
 
 

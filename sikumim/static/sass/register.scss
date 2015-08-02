@@ -1,6 +1,24 @@
 @import "base";
 @import "colors";
 
+
+
+.social-register{
+    height: 100%;
+    background-color: white;
+    border: 1px solid $grey;
+    padding: 1em;
+    a{
+        display: block;
+        font-size: 1.3em;
+
+        &:first-of-type{
+            margin-bottom: 1rem;
+        }
+    }
+}
+
+
 .block-header {
     padding: 1.25%;
 }
@@ -9,9 +27,42 @@ h4, h2 {
     text-align: center;
 }
 
-.block form h5 {
-    margin-bottom: 0.5%;
-    font-weight: 600;
+.block{
+    padding: 2em;
+}
+
+
+.divider{
+    position: relative;
+    height: 400px;
+    .line {
+    position: absolute;
+    left: 49%;
+    top: 0;
+    bottom: 0;
+    width: 1px;
+    background: #ccc;
+    z-index: 1;
+}
+    h6{
+    text-align: center;
+    height: 12px;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 50%;
+    margin-top: -12px;
+    z-index: 2;
+        span{
+    padding: 9px;
+    background: $light_grey;
+        }
+
+    }
+}
+
+.block form label {
+    @extend h5;
 }
 
 .block form input {
@@ -25,38 +76,30 @@ h4, h2 {
 
 .block form input[type="text"],input[type="password"],input[type="email"] {
     border: 1px solid #B3B3B3;
+    width: 100%;
 }
 
 .invalid {
     background: #fff url(../images/invalid.png) no-repeat 5% center;
-    border: 1px solid #d45252;
+    border: 1px solid #d45252!important;
+    display: block;
+    & + span{
+        font-size: 1.3em;
+        padding: 0.4em 0.7em;
+        background: #FBE3E4;
+        color: #D12F19;
+        border: 1px solid #FBC2C4;
+        display: inline-block;
+        margin-top: 0.2em;
+        width:100%;
+    }
 }
 
 .block form p {
     position: relative;
-    display: inline-block;
+    margin-bottom: 4%;
 }
 
-.block form p span {
-    @extend .error;
-    top:12px;
-    margin-left: 8px;
-    z-index: 999;
-
-    /* hints stay above all other elements */
-    position: relative;
-
-    /* allows proper formatting if hint is two lines */
-    right: 20px;
-
-    &:before {
-        content: "\25b6";
-        color: #d45252;
-        position: absolute;
-        top: 4px;
-        right: -12px;
-    }
-}
 
 .block input[type="submit"] {
     display: block;
