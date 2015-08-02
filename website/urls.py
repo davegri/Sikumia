@@ -29,6 +29,7 @@ urlpatterns = [
     url(r'^rate_summary/$', views.rate_summary, name='rate_summary'),
     url(r'^search/$', views.search, name='search'),
     url(r'^upload/$', views.upload, name='upload'),
+    url(r'^leaderboard/$', views.leaderboard, name='leaderboard'),
     url(r'^get_categories/(?P<subject_id>\d+)/$', views.get_categories, name='get_categories'),
     url(r'^get_subcategories/(?P<category_id>\d+)/$', views.get_subcategories, name='get_subcategories'),
     url(r'^robots\.txt$', TemplateView.as_view(template_name="robots.txt")),

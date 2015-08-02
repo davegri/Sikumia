@@ -414,3 +414,10 @@ def upload(request):
 
     return render(request, 'upload.html', context_dict)
 
+
+def leaderboard(request):
+
+    user_list = User.objects.all()[:10]
+    user_list = sorted(user_list, key=lambda o: o.karma(), reverse=True)[:10]
+    context_dict = {'user_list': user_list}
+    return render(request, 'leaderboard.html', context_dict)    

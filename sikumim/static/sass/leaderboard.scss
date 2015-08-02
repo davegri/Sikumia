@@ -1,0 +1,32 @@
+@import 'colors';
+@import "grid_system";
+@import 'pagination';
+
+
+
+table{
+width: 100%;
+
+tr{
+	&:nth-of-type(even){
+		background-color: $light_grey_shadow;
+	}
+
+
+}
+
+
+td, th {
+	padding:1em;
+}
+
+td{
+	text-align: right;
+}
+
+th{
+	font-weight: bold;
+	text-align: right;
+	border-bottom: 3px solid $light_blue_shadow;
+}
+}

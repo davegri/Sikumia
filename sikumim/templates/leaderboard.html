@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% block title %}
+טבלת המובילים | סיכומים לבגרות | הסיכומיה
+{% endblock title %}
+{% block head%}
+    <link href="{% static "css/leaderboard.css" %}" rel="stylesheet" type="text/css">
+{% endblock %}
+{% block body %}
+    <div class="row block-header">
+        <h2>טבלת המובילים</h2>
+    </div>
+    <table class="block">
+    <tr>
+        <th>מקום</th>
+        <th>משתמש</th>
+        <th>סיכומים</th>
+        <th>קארמה</th>
+    </tr>
+            {% for user in user_list  %}
+                <tr>
+                <td>#{{ forloop.counter }}</td>
+                <td><a href="{% url 'profile' user.pk %}">{{ user.username }}</a></td>
+                <td>{{ user.summaries_authored.count}}</td>
+                <td><span dir="ltr">{{ user.karma }}</span></td>
+                </tr>
+            {% endfor %}
+    </table>
+{% endblock %}
