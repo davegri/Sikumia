@@ -1,0 +1,25 @@
+@import "colors";
+@import "grid_system";
+@import "forms";
+
+.title{
+  margin-bottom: 1em;
+    text-align: center;
+    position: relative;
+    span{
+        background: $light_grey;
+        padding: 0 15px;
+        position: relative;
+        z-index: 1;
+    }
+
+    &:before{
+    background: $grey;
+      content: "";
+      display: block;
+      height: 1px;
+      position: absolute;
+    top: 50%;
+      width: 100%;
+    }
+}

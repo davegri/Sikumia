@@ -1,6 +1,6 @@
 @import "base";
 @import "colors";
-
+@import 'forms';
 
 
 .social-register{
@@ -16,16 +16,22 @@
             margin-bottom: 1rem;
         }
     }
+
+    p{
+        margin-bottom: 1em;
+    }
 }
 
 
 .block-header {
     padding: 1.25%;
-}
 
-h4, h2 {
+    h4, h2 {
     text-align: center;
 }
+}
+
+
 
 .block{
     padding: 2em;
@@ -61,46 +67,9 @@ h4, h2 {
     }
 }
 
-.block form label {
-    @extend h5;
-}
-
-.block form input {
-    margin-bottom: 1.5%;
-    font-size: 1.5em;
-}
-
-.block form input[type="submit"] {
-    margin-top: 1.5%;
-}
-
-.block form input[type="text"],input[type="password"],input[type="email"] {
-    border: 1px solid #B3B3B3;
-    width: 100%;
-}
-
-.invalid {
-    background: #fff url(../images/invalid.png) no-repeat 5% center;
-    border: 1px solid #d45252!important;
-    display: block;
-    & + span{
-        font-size: 1.3em;
-        padding: 0.4em 0.7em;
-        background: #FBE3E4;
-        color: #D12F19;
-        border: 1px solid #FBC2C4;
-        display: inline-block;
-        margin-top: 0.2em;
+.block form{
+    input{
         width:100%;
     }
 }
 
-.block form p {
-    position: relative;
-    margin-bottom: 4%;
-}
-
-
-.block input[type="submit"] {
-    display: block;
-}

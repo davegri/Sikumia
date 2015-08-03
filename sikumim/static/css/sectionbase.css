@@ -2230,6 +2230,7 @@ input, .button, input[type="submit"], .call-to-action {
   line-height: 1.5em; }
   .button:hover, input[type="submit"]:hover, .call-to-action:hover {
     background-color: #3765a8;
+    color: white;
     cursor: pointer; }
   .button:active, input[type="submit"]:active, .call-to-action:active {
     transform: translate(0px, 5px);
@@ -2249,9 +2250,6 @@ a {
   color: #1ba1e2; }
   a:hover {
     color: #1681B5; }
-
-p {
-  margin-bottom: 1em; }
 
 blockquote {
   background: #2b5797;
@@ -2327,9 +2325,9 @@ blockquote {
   font-size: 1.3em;
   padding: 0.5em;
   -webkit-transform: translateY(-55.6px);
-  -webkit-animation: slideDown 2.5s 1 ease forwards;
+  -webkit-animation: slideDown 5s 1 ease forwards;
   -moz-transform: translateY(-55.6px);
-  -moz-animation: slideDown 2.5s 1 ease forwards; }
+  -moz-animation: slideDown 5s 1 ease forwards; }
 
 @-webkit-keyframes slideDown {
   0%, 100% {
@@ -2413,7 +2411,8 @@ header {
         header .panel-wrapper .panel .social-logins .google-login {
           margin-left: 8px; }
       header .panel-wrapper .panel .forgot-password-link {
-        margin-top: 0.2em;
+        margin-top: 1rem;
+        display: block;
         color: white;
         display: block;
         font-size: 1.2em;
@@ -2426,6 +2425,9 @@ header {
   background-color: #d34836;
   background-size: 28px 28px;
   padding: 1em 2em 1em 3.5em; }
+  .google-login:hover {
+    background-color: #d75a4a;
+    color: white; }
 
 .facebook-login {
   border-radius: 3px;
@@ -2434,6 +2436,9 @@ header {
   background-color: #3b5998;
   background-size: 28px 28px;
   padding: 1em 2em 1em 3.5em; }
+  .facebook-login:hover {
+    background-color: #4f6aa2;
+    color: white; }
 
 .karma-bar {
   background-color: #EAEEF0;
@@ -2492,7 +2497,6 @@ header {
   outline: 3px solid #2b5797; }
 
 .error, .login_error {
-  margin-top: 10px;
   font-weight: 600;
   font-size: 1.2em;
   background: #d45252;
@@ -2501,6 +2505,7 @@ header {
   padding: 10px 15px; }
 
 .login_error {
+  margin-top: 10px;
   background: #d45252 url(../images/warning.png) no-repeat 10px 50%;
   padding-left: 45px; }
 

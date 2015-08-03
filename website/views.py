@@ -3,16 +3,18 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from django.shortcuts import redirect, get_object_or_404
-from website.models import Summary, View, Subject, Category, Subcategory
+from website.models import Summary, View, Subject, Category, Subcategory, UserProfile
 from django.core.paginator import Paginator, InvalidPage, EmptyPage
-from website.forms import UserForm, CommentForm, SearchForm, SummaryForm, EditSummaryForm, CustomSignupForm
+from website.forms import UserForm, CommentForm, SearchForm, SummaryForm, EditSummaryForm, CustomSignupForm, ChangePasswordForm, ChangeEmailForm
 from django.contrib.auth import authenticate, login as django_login, logout as django_logout
 from django.contrib.auth.models import User
+from django.contrib.auth import update_session_auth_hash
 from django.contrib import messages
 import datetime
 import operator
 from django.db.models import Q
 from django.utils.translation import activate
+
 
 import json
 
@@ -74,12 +76,8 @@ def logout(request):
 def profile(request, user_pk):
     user = get_object_or_404(User, pk=user_pk)
     summaries_list = user.summaries_authored.all()
-    positive_karma = sum(
-        [summary.users_rated_positive.count() for summary in summaries_list])
-    negative_karma = sum(
-        [summary.users_rated_negative.count() for summary in summaries_list])
-    karma = positive_karma - negative_karma
-
+    users_by_karma = sorted(UserProfile.objects.all(), key=lambda a: a.karma, reverse=True)
+    rank = [i+1 for i,x in enumerate(users_by_karma) if x.pk == user.pk][0]
     # pagination
     paginator = Paginator(summaries_list, 12)
 
@@ -94,11 +92,52 @@ def profile(request, user_pk):
 
     context_dict = {
         'profile_user': user,
-        'karma': karma,
+        'rank': rank,
         'summaries': summaries,
     }
     return render(request, 'profile.html', context_dict)
 
+def settings(request, user_pk):
+    activate('he')
+    if request.user.pk != int(user_pk):
+        messages.add_message(
+            request, messages.ERROR, 'אין לך הרשאות לבצע פעולה זו. אם הינך חושב שזאת טעות צור קשר עם הנהלת האתר')
+        try:
+            return redirect(request.META['HTTP_REFERER'])
+        except KeyError:
+            return redirect('index')
+
+    if request.method == 'POST':
+        if 'change_password' in request.POST:
+            change_password_form = ChangePasswordForm(user=request.user, data=request.POST)
+            if change_password_form.is_valid():
+                user = get_object_or_404(User,pk=user_pk)
+                user.set_password(change_password_form.cleaned_data.get('password'))
+                user.save()
+                messages.add_message(
+                request, messages.SUCCESS, 'סיסמתך שונתה בהצלחה!')
+                update_session_auth_hash(request,user)
+                return redirect('settings',user_pk=user_pk)
+            else:
+                pass
+        elif 'change_email' in request.POST:
+            change_email_form = ChangeEmailForm(data=request.POST)
+            if change_email_form.is_valid():
+                user = get_object_or_404(User,pk=user_pk)
+                user.email = change_email_form.cleaned_data.get('email')
+                user.save()
+                messages.add_message(
+                request, messages.SUCCESS, 'כתובת אימייל עודכנה בהצלחה!')
+                return redirect('settings',user_pk=user_pk)
+    else:
+        change_password_form = ChangePasswordForm(user=request.user)
+        change_email_form = ChangeEmailForm(data={'email':request.user.email})
+
+    context_dict = {
+    'change_password_form': change_password_form,
+    'change_email_form': change_email_form,
+    }
+    return render(request, 'settings.html', context_dict)
 
 def subject(request, subject):
     summaries_list = Summary.objects.select_related().filter(
@@ -391,7 +430,6 @@ def upload(request):
         return redirect('/')
     if request.is_ajax():
         subject = list(request.POST.values())[0]
-
         categories = Subject.objects.get(
             pk=subject).category_set.all().values('hebrew_name', 'id')
         return HttpResponse(json.dumps(list(categories)))
@@ -400,7 +438,13 @@ def upload(request):
         summary_form = SummaryForm(request.POST)
         if summary_form.is_valid():
             summary = summary_form.save(commit=False)
-            summary.author = User.objects.get(id=request.user.id)
+            if summary_form.cleaned_data['new_user'] != None:
+                if request.user.is_staff:
+                    summary.author, created = User.objects.get_or_create(
+                        username=summary_form.cleaned_data['new_user'],
+                        defaults={'email':'%s@gmail.com' % summary_form.cleaned_data['new_user'],'password':'test123'})
+            else:
+                summary.author = User.objects.get(id=request.user.id)
             summary.save()
             messages.add_message(
                 request, messages.SUCCESS, 'הסיכום שלך נוסף לאתר בהצלחה!')
@@ -416,8 +460,6 @@ def upload(request):
 
 
 def leaderboard(request):
-
-    user_list = User.objects.all()[:10]
-    user_list = sorted(user_list, key=lambda o: o.karma(), reverse=True)[:10]
+    user_list = sorted(User.objects.all(), key=lambda a: a.profile.karma, reverse=True)[:10]
     context_dict = {'user_list': user_list}
     return render(request, 'leaderboard.html', context_dict)    

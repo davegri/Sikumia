@@ -35,8 +35,8 @@ class SummaryAdmin(admin.ModelAdmin):
 class CommentAdmin(admin.ModelAdmin):
 	list_display = ['summary','user','content','date_created']
 
-class UserAdmin(admin.ModelAdmin):
-    inlines = [SummaryInline,CommentInline]
+class UserProfileAdmin(admin.ModelAdmin):
+    pass
 
 class SubjectAdmin(SortableAdmin):
     inlines = [CateogryInline]
@@ -53,6 +53,4 @@ admin.site.register(models.Summary,SummaryAdmin)
 admin.site.register(models.Comment,CommentAdmin)
 admin.site.register(models.Subject,SubjectAdmin)
 admin.site.register(models.Category,CategoryAdmin)
-
-admin.site.unregister(User)
-admin.site.register(User,UserAdmin)
+admin.site.register(models.UserProfile,UserProfileAdmin)

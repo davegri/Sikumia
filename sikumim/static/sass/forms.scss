@@ -1,0 +1,54 @@
+@import "colors";
+@import 'base';
+.block{
+    padding: 2em;
+}
+
+
+.block form label {
+    @extend h5;
+    display:block;
+    margin-bottom: 0.2em;
+}
+
+.block form input {
+    margin-bottom: 1.5%;
+    font-size: 1.5em;
+}
+
+.block form input[type="submit"] {
+    margin-top: 1.5%;
+}
+
+.block form input[type="text"],input[type="password"],input[type="email"] {
+    border: 1px solid #B3B3B3;
+}
+
+.invalid {
+    background: #fff url(../images/invalid.png) no-repeat 5% center;
+    border: 1px solid #d45252!important;
+    display: block;
+    & + span{
+        font-size: 1.3em;
+        padding: 0.4em 0.7em;
+        background: #FBE3E4;
+        color: #D12F19;
+        border: 1px solid #FBC2C4;
+        display: inline-block;
+        margin-top: 0.2em;
+        width:100%;
+    }
+}
+
+.block form p {
+    position: relative;
+}
+
+.field{
+    margin-bottom: 1rem;
+
+}
+
+.block input[type="submit"] {
+    display: block;
+}

@@ -29,7 +29,125 @@
         <meta name="msapplication-config" content="{% static "favicons/browserconfig.xml" %}">
         <meta name="theme-color" content="#ffffff">
 
-        <script src="{% static "js/jquery.js" %}"></script>
+        <style>
+        .nav-button:active{
+        transform: translate(0px, 5px)!important;
+        -webkit-transform: translate(0px, 5px)!important;
+        box-shadow: 0px 0px 0px 0px!important;
+        }
+        </style>
+        {% block head %}{% endblock %}
+        <LINK href="{% static "css/responsive.css" %}" rel="stylesheet" type="text/css">
+        <meta charset="UTF-8">
+        {# Google Analytics Tracking Script #}
+        <script>
+          (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+          (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+          })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+          ga('create', 'UA-65698931-1', 'auto');
+          ga('send', 'pageview');
+
+        </script>
+        {# End Script #}
+    </head>
+    <body>
+        {% if messages %}
+            <ul class="messages">
+                {% for message in messages %}
+                    {% if not 'login' in message.tags %}
+                        <li{% if message.tags %} class="message {{ message.tags }}"{% endif %}>{{ message }}</li>
+                    {% endif %}
+                {% endfor %}
+            </ul>
+        {% endif %}
+        <div class="page-wrap">
+            <div class="header-container">
+                <header>
+                    <a href="{% url 'index' %}" class="logo_wrapper"><h1>הסיכומיה   </h1></a>
+                    <div class="panel-wrapper">
+                        <div class="panel">
+                            {% if user.is_authenticated %}
+                                <form id='logout_form' method="post" action="{% url 'logout' %}">
+                                    {% csrf_token %}
+                                    <h4 class="welcome_message">ברוך הבא <strong>{{ user.username }}</strong></h4>
+                                    <input type="submit" id="logout" name="logout" value="התנתק">
+                                    <a href='{% url 'profile' user.pk %}' class="button">פרופיל</a>
+                                    <a href='{% url 'settings' user.pk %}' class="button">הגדרות</a>
+                                    {% if user.is_staff %}<a href='/admin' class="button">פאנל ניהול</a>{% endif %}
+                                    
+                                </form>
+                            {% else %}
+                                <form id="login_form" method="post" action='{% url 'login' %}'>
+                                    {% csrf_token %}
+                                    <h4>
+                                                                    <div class="lock"></div>
+                                    התחברות משתמשים רשומים
+                                    </h4>
+                                    <input type="text" id="login_username" name="login_username" placeholder="משתמש">
+                                    <input type="password" id="login_password" name="login_password" placeholder="סיסמא">
+                                    <input type="submit" id="login_submit" name="login_submit" value="התחבר">
+                                    {% if messages %}
+                                        {% for message in messages %}
+                                            {% if 'login' in message.tags %}
+                                                <div class='login_error'>{{ message }}</div>
+                                            {% endif %}
+                                        {% endfor %}
+                                    {% endif %}
+                                </form>
+                                <div class="social-logins">
+                                    <a href="{% provider_login_url 'google' %}" class="google-login" >התחבר עם גוגל</a>
+                                    <a href="{% provider_login_url 'facebook' %}" class="facebook-login" >התחבר עם פייסבוק</a>
+                                </div>
+                                <a href="{% url 'password_reset' %}" class="forgot-password-link">שכחת את הסיסמא?</a>
+                            {% endif %}
+                        </div>
+                    </div>
+                </header>
+            </div>
+            <div class="container">
+        {% if user.is_authenticated %}
+                <div class="row col-24 karma-bar">
+                <div class="call-to-action-text">
+                <h3>כרגע יש לך <strong>{{ user.profile.karma }}</strong> קארמה</h3>
+                <h4>הוסף סיכומים איכותיים לאתר והגדל את הקארמה שלך</h4>
+                </div>
+                    <a class="call-to-action" href="{% url 'upload' %}">
+                        הוספת סיכום לאתר
+                    </a>
+                    <a class="call-to-action" href="{% url 'leaderboard' %}">
+                        טבלת המובילים
+                    </a>
+                </div>
+                {% endif %}
+                            <div class="row">
+                    <nav class="col-24">
+                        <ol class="row">
+                            {% for subject in subjects  %}
+                                <li class='part-of-{{ subjects | length }}'>
+                                    <a  href="{% url 'subject' subject.name%}"  style="background-color: #{{subject.color}}" class="nav-button">{{ subject.hebrew_name }}</a>
+                                </li>
+                            {% endfor %}
+                        </ol>
+                    </nav>
+                </div>
+                <form id="search_form" method="get" action="{% url 'search' %}">
+                    <div class="row">
+                        <div class="search-box col-24">
+                            {{ search_form.query }}
+                            <input type="submit" value="חפש">
+                            {{ search_form.subject }}
+                        </div>
+
+                    </form>
+                </div>
+                <script src="{% static "js/jquery.js" %}"></script>
+                {% block body %}{% endblock %}
+            </div>
+        </div>
+        <footer><span>2013 © כל הזכויות שמורות לסיכומים.נט</span></footer>
+
         <script>
         function ColorLuminance(hex, lum) {
         // validate hex string
@@ -81,122 +199,7 @@
         });
         });
         </script>
-        <style>
-        .nav-button:active{
-        transform: translate(0px, 5px)!important;
-        -webkit-transform: translate(0px, 5px)!important;
-        box-shadow: 0px 0px 0px 0px!important;
-        }
-        </style>
-        {% block head %}{% endblock %}
-        <LINK href="{% static "css/responsive.css" %}" rel="stylesheet" type="text/css">
-        <meta charset="UTF-8">
-        {# Google Analytics Tracking Script #}
-        <script>
-          (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-          (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-          })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-          ga('create', 'UA-65698931-1', 'auto');
-          ga('send', 'pageview');
-
-        </script>
-        {# End Script #}
-    </head>
-    <body>
-        {% if messages %}
-            <ul class="messages">
-                {% for message in messages %}
-                    {% if not 'login' in message.tags %}
-                        <li{% if message.tags %} class="message {{ message.tags }}"{% endif %}>{{ message }}</li>
-                    {% endif %}
-                {% endfor %}
-            </ul>
-        {% endif %}
-        <div class="page-wrap">
-            <div class="header-container">
-                <header>
-                    <a href="{% url 'index' %}" class="logo_wrapper"><h1>הסיכומיה   </h1></a>
-                    <div class="panel-wrapper">
-                        <div class="panel">
-                            {% if user.is_authenticated %}
-                                <form id='logout_form' method="post" action="{% url 'logout' %}">
-                                    {% csrf_token %}
-                                    <h4 class="welcome_message">ברוך הבא <strong>{{ user.username }}</strong></h4>
-                                    <input type="submit" id="logout" name="logout" value="התנתק">
-                                    <a href='{% url 'profile' user.pk %}' class="button">פרופיל</a>
-                                    {% if user.is_staff %}<a href='/admin' class="button">פאנל ניהול</a>{% endif %}
-                                    
-                                </form>
-                            {% else %}
-                                <form id="login_form" method="post" action='{% url 'login' %}'>
-                                    {% csrf_token %}
-                                    <h4>
-                                                                    <div class="lock"></div>
-                                    התחברות משתמשים רשומים
-                                    </h4>
-                                    <input type="text" id="login_username" name="login_username" placeholder="משתמש">
-                                    <input type="password" id="login_password" name="login_password" placeholder="סיסמא">
-                                    <input type="submit" id="login_submit" name="login_submit" value="התחבר">
-                                    {% if messages %}
-                                        {% for message in messages %}
-                                            {% if 'login' in message.tags %}
-                                                <div class='login_error'>{{ message }}</div>
-                                            {% endif %}
-                                        {% endfor %}
-                                    {% endif %}
-                                </form>
-                                <div class="social-logins">
-                                    <a href="{% provider_login_url 'google' %}" class="google-login" >התחבר עם גוגל</a>
-                                    <a href="{% provider_login_url 'facebook' %}" class="facebook-login" >התחבר עם פייסבוק</a>
-                                </div>
-                                <a href="{% url 'password_reset' %}" class="forgot-password-link">שכחת את הסיסמא?</a>
-                            {% endif %}
-                        </div>
-                    </div>
-                </header>
-            </div>
-            <div class="container">
-        {% if user.is_authenticated %}
-                <div class="row col-24 karma-bar">
-                <div class="call-to-action-text">
-                <h3>כרגע יש לך <strong>{{ user.karma }}</strong> קארמה</h3>
-                <h4>הוסף סיכומים איכותיים לאתר והגדל את הקארמה שלך</h4>
-                </div>
-                    <a class="call-to-action" href="{% url 'upload' %}">
-                        הוספת סיכום לאתר
-                    </a>
-                    <a class="call-to-action" href="{% url 'leaderboard' %}">
-                        טבלת המובילים
-                    </a>
-                </div>
-                {% endif %}
-                            <div class="row">
-                    <nav class="col-24">
-                        <ol class="row">
-                            {% for subject in subjects  %}
-                                <li class='part-of-{{ subjects | length }}'>
-                                    <a  href="{% url 'subject' subject.name%}"  style="background-color: #{{subject.color}}" class="nav-button">{{ subject.hebrew_name }}</a>
-                                </li>
-                            {% endfor %}
-                        </ol>
-                    </nav>
-                </div>
-                <form id="search_form" method="get" action="{% url 'search' %}">
-                    <div class="row">
-                        <div class="search-box col-24">
-                            {{ search_form.query }}
-                            <input type="submit" value="חפש">
-                            {{ search_form.subject }}
-                        </div>
-
-                    </form>
-                </div>
-                {% block body %}{% endblock %}
-            </div>
-        </div>
-        <footer><span>2013 © כל הזכויות שמורות לסיכומים.נט</span></footer>
     </body>
 
 </html>
+

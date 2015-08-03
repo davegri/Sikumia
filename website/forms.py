@@ -47,11 +47,46 @@ class CommentForm(forms.ModelForm):
         model = Comment
         fields = ('content',)
 
-class SummaryForm(forms.ModelForm):
+class ChangePasswordForm(forms.ModelForm):
+
+    old_password = forms.CharField(widget=forms.PasswordInput())
+    password = forms.CharField(widget=forms.PasswordInput())
+    confirm_password = forms.CharField(widget=forms.PasswordInput())
 
     class Meta:
+        model = User
+        fields = ('password',)
+
+    def __init__(self, user, data=None):
+        self.user = user
+        super(ChangePasswordForm, self).__init__(data=data)
+
+    def clean_old_password(self):
+        password = self.cleaned_data.get('old_password')
+        if not self.user.check_password(password):
+            raise forms.ValidationError('סיסמא נוכחית שגויה, נסה שוב')
+
+    def clean_confirm_password(self):
+        password1 = self.cleaned_data.get('password')
+        password2 = self.cleaned_data.get('confirm_password')
+
+        if password1 != password2:
+            raise forms.ValidationError('הסיסמאות שהכנסת איתן תואמות')
+
+    def is_valid(self):
+        ret = forms.Form.is_valid(self)
+        for f in self.errors:
+            self.fields[f].widget.attrs.update({'class': 'invalid'})
+        return ret
+
+class ChangeEmailForm(forms.Form):
+    email = forms.EmailField()
+
+class SummaryForm(forms.ModelForm):
+    new_user = forms.CharField(max_length=30, required=False, label="add as a new user")
+    class Meta:
         model = Summary
-        fields = ('title', 'subject', 'content', 'category', 'subcategory')
+        fields = ('title','subject', 'content', 'category', 'subcategory')
 
 
     def __init__(self, *args, **kwargs):

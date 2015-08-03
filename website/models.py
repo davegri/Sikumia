@@ -6,6 +6,10 @@ import django.utils.timezone
 from adminsortable.models import Sortable, SortableForeignKey
 from math import sqrt
 import bleach
+from django.dispatch import receiver
+from django.db.models.signals import post_save
+from django.db.models.signals import pre_delete
+
 
 
 # monkey patching to make email field unique
@@ -154,4 +158,29 @@ def karma(self):
     return positive_karma - negative_karma
 
 
-User.add_to_class('karma', karma)
+class UserProfile(models.Model):
+    user = models.OneToOneField(User, primary_key=True, related_name='profile')
+    rank = models.IntegerField(null=True,blank=True)
+
+    @property
+    def karma(self):
+        summaries_list = self.user.summaries_authored.all()
+        positive_karma = sum(
+            [summary.users_rated_positive.count() for summary in summaries_list])
+        negative_karma = sum(
+            [summary.users_rated_negative.count() for summary in summaries_list])
+        return positive_karma - negative_karma
+
+    def __str__(self):
+        return self.user.username
+
+@receiver(post_save, sender=User)
+def create_profile_for_user(sender, instance=None, created=False, **kwargs):
+    if created:
+        UserProfile.objects.get_or_create(user=instance)
+
+@receiver(pre_delete, sender=User)
+def delete_profile_for_user(sender, instance=None, **kwargs):
+    if instance:
+        user_profile = UserProfile.objects.get(user=instance)
+        user_profile.delete()

@@ -10,3 +10,11 @@ $light_blue_shadow: #1681B5;
 $dark_blue:#2b5797;
 $dark_blue_highlight:#3765a8;
 $dark_blue_shadow:#224679;
+
+@function tint($color, $percentage) {
+  @return mix($color, white, $percentage);
+}
+ 
+@function shade($color, $percentage) {
+  @return mix($color, black, $percentage);
+}

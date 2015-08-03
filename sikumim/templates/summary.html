@@ -5,12 +5,6 @@
 {% endblock title %}
 {% block head %}
 	<link href=" {% static "css/summary.css" %}" rel=stylesheet type="text/css">
-	<script src=" {% static "js/rating-ajax.js" %}"></script>
-	<script>
-		var id = {{ summary.id }};
-		var url = {% url 'rate_summary' %} ;
-
-	</script>
 	<style type="text/css">
 	.block-header{
 		background-color: #{{summary.subject.color}};
@@ -76,5 +70,10 @@
 		</form>
 		{% endif %}
 		</ol>
+	<script src=" {% static "js/rating-ajax.js" %}"></script>
+	<script>
+		var id = {{ summary.id }};
+		var url = {% url 'rate_summary' %} ;
 
+	</script>
 	{% endblock %}

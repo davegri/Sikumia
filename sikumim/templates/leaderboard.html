@@ -22,7 +22,7 @@
                 <td>#{{ forloop.counter }}</td>
                 <td><a href="{% url 'profile' user.pk %}">{{ user.username }}</a></td>
                 <td>{{ user.summaries_authored.count}}</td>
-                <td><span dir="ltr">{{ user.karma }}</span></td>
+                <td><span dir="ltr">{{ user.profile.karma }}</span></td>
                 </tr>
             {% endfor %}
     </table>

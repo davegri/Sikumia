@@ -86,6 +86,7 @@ input {
     line-height: 1.5em;
     &:hover {
         background-color: $dark_blue_highlight;
+        color:white;
         cursor: pointer;
     }
     &:active{
@@ -117,9 +118,6 @@ a {
     }
 }
 
-p{
-    margin-bottom: 1em;
-}
 
 blockquote {
     background: $dark_blue;
@@ -213,9 +211,9 @@ blockquote {
     font-size: 1.3em;
     padding: 0.5em;
     -webkit-transform: translateY(-55.6px);
-    -webkit-animation: slideDown 2.5s 1 ease forwards;
+    -webkit-animation: slideDown 5s 1 ease forwards;
     -moz-transform:    translateY(-55.6px);
-    -moz-animation:    slideDown 2.5s 1 ease forwards;
+    -moz-animation:    slideDown 5s 1 ease forwards;
 }
 
 @-webkit-keyframes slideDown {
@@ -327,7 +325,8 @@ header {
 
 
             .forgot-password-link{
-                margin-top: 0.2em;
+                margin-top: 1rem;
+                display: block;
                 color: white;
                 display: block;
                 font-size: 1.2em;
@@ -344,6 +343,10 @@ header {
                     background-color: #d34836;
                     background-size: 28px 28px;
                     padding: 1em 2em 1em 3.5em;
+                    &:hover{
+                    background-color: tint(#d34836, 90%);
+                    color:white;
+                    }
                 }
                 .facebook-login{
                     border-radius:3px;
@@ -352,6 +355,10 @@ header {
                     background-color: #3b5998;
                     background-size: 28px 28px;
                     padding: 1em 2em 1em 3.5em;
+                                        &:hover{
+                    background-color: tint(#3b5998, 90%);
+                    color:white;
+                    }
                 }
 
 .karma-bar{
@@ -431,7 +438,6 @@ header {
 }
 
 .error {
-    margin-top: 10px;
     font-weight: 600;
     font-size: 1.2em;
     background: #d45252;
@@ -442,7 +448,7 @@ header {
 
 .login_error {
     @extend .error;
-
+    margin-top: 10px;
     background: #d45252 url(../images/warning.png) no-repeat 10px 50%;
     padding-left: 45px;
 }

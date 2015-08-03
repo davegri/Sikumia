@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% load website_extras %}
+{% block head %}
+	<link href="{% static "css/settings.css" %}" rel="stylesheet" type="text/css">
+{% endblock head %}
+
+{% block body %}
+
+<div class="row">
+<div class="block-header profile-header"><h3>הגדרות משתמש</h3></div>
+</div>
+<div class="row">
+    <div class="block col-12">
+        <h4 class="title"><span>שינוי סיסמא</span></h4>
+        <form id="change_password_form" method="post" action="/settings/{{ user.pk }}">
+	        {% csrf_token %}
+	        <div class="field">
+	        <label for="id_old_password">הכנס סיסמא נוכחית</label>
+	        <p>
+	            {{ change_password_form.old_password}}
+	            {% if change_password_form.old_password.errors %}<span>{{ change_password_form.old_password.errors.as_text|cut:"* " }}</span>{% endif %}
+	        </p>
+	        </div>	        
+	        <div class="field">
+	        <label for="id_password">הכנס סיסמא חדשה</label>
+	        <p>
+	            {{ change_password_form.password}}
+	            {% if change_password_form.password.errors %}<span>{{ change_password_form.password.errors.as_text|cut:"* " }}</span>{% endif %}
+	        </p>
+	        </div>
+	        <div class="field">            
+	        <label for="id_confirm_password">אשר סיסמא חדשה</label>
+	        <p>
+	            {{ change_password_form.confirm_password }}
+	            {% if change_password_form.confirm_password.errors %}<span>{{ change_password_form.confirm_password.errors.as_text|cut:"* " }}</span>{% endif %}
+	        </p>
+	        </div>
+	       <input type="submit" name="change_password" value="שנה סיסמא">
+    </form>
+    </div>
+    <div class="block col-12">
+        <h4 class="title"><span>עדכון כתובת אימייל</span></h4>
+        <form id="change_email_form" method="post" action="/settings/{{ user.pk }}">
+	        {% csrf_token %}
+	        <div class="field">
+	        <label for="id_email">כתובת אימייל</label>
+	        <p>
+	            {{ change_email_form.email}}
+	            {% if change_email_form.email.errors %}<span>{{ change_email_form.email.errors.as_text|cut:"* " }}</span>{% endif %}
+	        </p>
+	        </div>	        
+	       <input type="submit" name="change_email" value="עדכן כתובת אימייל">
+    </form>
+    </div>
+</div>
+
+{% endblock body %}

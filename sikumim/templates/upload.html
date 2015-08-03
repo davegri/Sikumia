@@ -3,69 +3,6 @@
 {% load website_extras %}
 {% block head%}
 <link href="{% static "css/upload.css" %}" rel="stylesheet" type="text/css">
-<script type="text/javascript">
-    function getCookie(name) {
-        var cookieValue = null;
-        if (document.cookie && document.cookie != '') {
-            var cookies = document.cookie.split(';');
-            for (var i = 0; i < cookies.length; i++) {
-                var cookie = jQuery.trim(cookies[i]);
-            // Does this cookie string begin with the name we want?
-            if (cookie.substring(0, name.length + 1) == (name + '=')) {
-                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
-                break;
-            }
-        }
-    }
-    return cookieValue;
-}
-
-var csrftoken = getCookie('csrftoken');
-
-function csrfSafeMethod(method) {
-    // these HTTP methods do not require CSRF protection
-    return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method));
-}
-$.ajaxSetup({
-    beforeSend: function(xhr, settings) {
-        if (!csrfSafeMethod(settings.type) && !this.crossDomain) {
-            xhr.setRequestHeader("X-CSRFToken", csrftoken);
-        }
-    }
-});
-$(document).ready(function(){
-    $('select[name=category]').empty();
-    $('select[name=subcategory]').empty();
-    $('select[name=subject]').change(function(){
-        $('select[name=subcategory]').empty();
-        subject_id = $(this).val();
-        request_url = '/get_categories/' + subject_id + '/';
-        $.ajax({
-            url: request_url,
-            dataType: "html",
-            success: function(data){
-                    $('select[name=category]').html(data)
-                    $('select[name=category]').trigger("change");
-
-            }
-        })
-    });
-        $('select[name=category]').change(function(){
-        category_id = $(this).val();
-        request_url = '/get_subcategories/' + category_id + '/';
-        $.ajax({
-            url: request_url,
-            dataType: "html",
-            success: function(data){
-                    $('select[name=subcategory]').html(data)
-
-            }
-        })
-    });
-});
-
-</script>
-
 {% endblock %}
 {% block body %}
 <div class="block-header row">
@@ -93,7 +30,7 @@ $(document).ready(function(){
                 {{ summary_form.category }}
                 {% if summary_form.category.errors %}<p class="error">{{ summary_form.category.errors.as_text|cut:"* " }}</p>{% endif %}
             </div>
-                        <div class="col-10">
+                <div class="col-10">
                 <h5>{{ summary_form.subcategory.label_tag }}</h5>
                 {{ summary_form.subcategory }}
                 {% if summary_form.subcategory.errors %}<p class="error">{{ summary_form.subcategory.errors.as_text|cut:"* " }}</p>{% endif %}
@@ -104,8 +41,17 @@ $(document).ready(function(){
             {{ summary_form.content }}
             {% if summary_form.content.errors %}<p class="error">{{ summary_form.content.errors.as_text|cut:"* " }}</p>{% endif %}
         </div>
+        {% if user.is_staff %}
+            <div class="row">
+            <h5>{{ summary_form.new_user.label_tag |cut:":"}}</h5>
+            {{ summary_form.new_user }}
+            {% if summary_form.new_user.errors %}<p class="error">{{ summary_form.new_user.errors.as_text|cut:"* " }}</p>{% endif %}
+        </div>
+        {% endif %}
         <input type="submit" name="submit" value="הוספת סיכום">
     </form>
     {% endif %}
 </div>
+<script src="{% static "js/upload.js" %}">
+</script>
 {% endblock %}
