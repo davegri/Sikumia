@@ -21,31 +21,6 @@
     }
     </style>
     <link href="{% static "css/sectionbase.css" %}" rel="stylesheet" type="text/css">
-    <script src="{% static "js/jquery.inflateText.js" %}"></script>
-    <script>
-    function shrinkToLines(el,lines){
-    var lineHeight = parseFloat(el.css('line-height'));
-    while(el.height()> lineHeight*lines){
-    lineHeight = parseFloat(el.css('line-height'));
-    var fontSize = parseFloat(el.css("font-size"));
-    fontSize = fontSize - 1 + "px";
-    el.css({'font-size':fontSize});
-    }
-    }
-    var subject_color = "#{{ subject.color }}";
-    $(document).ready(function(){
-
-    $('[name=subject] option').filter(function() { 
-    return ($(this).val() == '{{ subject.name }}');
-    }).prop('selected', true);
-
-    $('.main-header h2').each(function() {
-    shrinkToLines($(this),2);
-    });
-    shrinkToLines($('.secondary-header h3'),1);
-    
-    });
-    </script>
 {% endblock %}
 {% block body %}
     <div class="row">
@@ -105,4 +80,29 @@
             {% endif %}
         </ul>
     </div>
+        <script>
+    function shrinkToLines(el,lines){
+    var lineHeight = parseFloat(el.css('line-height'));
+    while(el.height()> lineHeight*lines){
+    lineHeight = parseFloat(el.css('line-height'));
+    var fontSize = parseFloat(el.css("font-size"));
+    fontSize = fontSize - 1 + "px";
+    el.css({'font-size':fontSize});
+    }
+    }
+    var subject_color = "#{{ subject.color }}";
+    $(document).ready(function(){
+
+    $('[name=subject] option').filter(function() { 
+    return ($(this).val() == '{{ subject.name }}');
+    }).prop('selected', true);
+
+    $('.main-header h2').each(function() {
+    shrinkToLines($(this),2);
+    });
+    shrinkToLines($('.secondary-header h3'),1);
+    
+    });
+    </script>
+
 {% endblock %}

@@ -14,3 +14,43 @@
 		color: $dark_grey;
 	}
 }
+
+.bad{
+    background-color: $red;
+    border: 1px solid shade($red,80%);
+    h3{
+    color: white;
+}
+}
+
+.good{
+    background-color: $green;
+    border: 1px solid shade($green,80%);
+    h3{
+    color: shade($green,40%);
+}
+}
+
+.first-place{
+	background-color: $gold;
+    border: 1px solid shade($gold,80%);
+    h3{
+    color: shade($gold,40%);
+}
+}
+
+.second-place{
+	background-color: $silver;
+    border: 1px solid shade($silver,80%);
+    h3{
+    color: shade($gold,40%);
+}
+}
+
+.third-place{
+	background-color: $bronze;
+    border: 1px solid shade($bronze,80%);
+    h3{
+    color: shade($bronze,40%);
+}
+}

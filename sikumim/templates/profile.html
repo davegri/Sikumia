@@ -11,8 +11,12 @@
 <div class="block-header profile-header"><h3>הסטטיסטיקה של <strong>{{ profile_user.username }}</strong></h3></div>
 </div>
 <div class="row">
-<div class="stat-block col-6"><h3>מקום <strong>#{{ rank }}</strong></h3></div>
-<div class="stat-block col-6"><h3><strong>{{ profile_user.profile.karma }}</strong> קארמה</h3></div>
+
+
+<div class="stat-block col-6{% if rank == 1 %} first-place{% endif %}{% if rank == 2 %} second-place{% endif %}{% if rank == 3 %} third-place{% endif %}"><h3>מקום <strong>#{{ rank }}</strong></h3></div>
+{% with profile_user.profile.karma as karma  %}
+<div class="stat-block col-6{% if karma < 1 %} bad{% else %} good{% endif %}"><h3><strong dir="ltr">{{ karma }}</strong> קארמה</h3></div>
+{% endwith %}
 <div class="stat-block col-6"><h3><strong>{{ profile_user.summaries_authored.count }}</strong> סיכומים</h3></div>
 <div class="stat-block col-6"><h3><strong>{{ profile_user.comments.count }}</strong> תגובות</h3></div>
 </div>

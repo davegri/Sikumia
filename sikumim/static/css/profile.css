@@ -8,4 +8,34 @@
     font-size: 1.3em;
     color: #37474f; }
 
+.bad {
+  background-color: #d45252;
+  border: 1px solid #aa4242; }
+  .bad h3 {
+    color: white; }
+
+.good {
+  background-color: #5cd053;
+  border: 1px solid #4aa642; }
+  .good h3 {
+    color: #255321; }
+
+.first-place {
+  background-color: #f3b215;
+  border: 1px solid #c28e11; }
+  .first-place h3 {
+    color: #614708; }
+
+.second-place {
+  background-color: #C0C0C0;
+  border: 1px solid #9a9a9a; }
+  .second-place h3 {
+    color: #614708; }
+
+.third-place {
+  background-color: #CD7F32;
+  border: 1px solid #a46628; }
+  .third-place h3 {
+    color: #523314; }
+
 /*# sourceMappingURL=profile.css.map */

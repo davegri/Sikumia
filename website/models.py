@@ -169,7 +169,8 @@ class UserProfile(models.Model):
             [summary.users_rated_positive.count() for summary in summaries_list])
         negative_karma = sum(
             [summary.users_rated_negative.count() for summary in summaries_list])
-        return positive_karma - negative_karma
+        summary_karma = len(summaries_list) * 5
+        return (positive_karma - negative_karma) + summary_karma
 
     def __str__(self):
         return self.user.username

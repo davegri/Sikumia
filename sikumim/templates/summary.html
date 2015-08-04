@@ -33,8 +33,9 @@
 					{% endwith %}
 				</div>
 				<div class="favorites-module">
+				<a href="#comments" class="secondary-button" >לתגובות</a>
 					{% if user.id == summary.author.id %}
-					<a class='button' href="{% url 'edit_summary' summary.subject.name summary.category.name summary.id %}">ערוך סיכום</a>
+					<a class='secondary-button' href="{% url 'edit_summary' summary.subject.name summary.category.name summary.id %}">ערוך סיכום</a>
 					{% endif %}
 				</div>
 			</div>
@@ -44,18 +45,19 @@
 				{{ summary.content|safe}}
 			</div>
 		</div>
+		<a name="comments"></a>
 		<div class="block-header"><h3>תגובות</h3></div>
 		<ol class="comments-wrapper">
 		{% for comment in summary.comments.all.select_related.all %}
 			<li>
 			<a name="{{ comment.id }}">
+			</a>
 				<span class="comment-info">
 					<p class="author">{{ comment.user }}</p>
 					<p class="timestamp">{{ comment.date_created |date:"SHORT_DATETIME_FORMAT"  }}</p>
 				</span>
 				<span class="comment-content"><p>{{ comment.content }}</p></span>
 			</li>
-			</a>
 		{% endfor %}
 		{% if user.is_authenticated %}
 		<form method="post" action="">

@@ -2237,6 +2237,14 @@ input, .button, input[type="submit"], .call-to-action {
     -webkit-transform: translate(0px, 5px);
     box-shadow: 0px 0px 0px 0px; }
 
+.secondary-button {
+  padding: 0.5em 1em 0.5em 1em;
+  background-color: #0e5171;
+  color: white;
+  font-size: 1.3em; }
+  .secondary-button:hover {
+    background-color: #106188; }
+
 /* fix for an annoying firefox bug */
 input::-moz-focus-inner, .button::-moz-focus-inner, input[type="submit"]::-moz-focus-inner, .call-to-action::-moz-focus-inner {
   border: 0;
@@ -2246,10 +2254,7 @@ input::-moz-focus-inner, .button::-moz-focus-inner, input[type="submit"]::-moz-f
 
 a {
   border: none;
-  text-decoration: none;
-  color: #1ba1e2; }
-  a:hover {
-    color: #1681B5; }
+  text-decoration: none; }
 
 blockquote {
   background: #2b5797;
@@ -2618,6 +2623,7 @@ h2 {
 
 .subsections {
   background-color: #EAEEF0;
+  border: 1px solid #BBBEC0;
   padding: 2em; }
 
 .category {

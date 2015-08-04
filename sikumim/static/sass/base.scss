@@ -96,6 +96,16 @@ input {
     }
 }
 
+.secondary-button{
+    padding: 0.5em 1em 0.5em 1em;
+    background-color: shade($light_blue, 50%);
+    color: white;
+    font-size: 1.3em;
+    &:hover{
+        background-color: shade($light_blue, 60%);
+    }
+}
+
 /* fix for an annoying firefox bug */
 
 input::-moz-focus-inner {
@@ -112,11 +122,9 @@ input[type="submit"] {
 a {
     border: none;
     text-decoration: none;
-    color: $light_blue;
-    &:hover{
-        color:$light_blue_shadow;
-    }
 }
+
+
 
 
 blockquote {
@@ -228,7 +236,7 @@ blockquote {
 
 .success{
     color: white;
-    background: #5cd053 url(../images/success.svg) no-repeat 1% center;
+    background: $green url(../images/success.svg) no-repeat 1% center;
     background-size: 40px 40px; 
 }
 
@@ -440,7 +448,7 @@ header {
 .error {
     font-weight: 600;
     font-size: 1.2em;
-    background: #d45252;
+    background: $red;
     border-radius: 3px 3px 3px 3px;
     color: white;
     padding: 10px 15px;
@@ -449,7 +457,7 @@ header {
 .login_error {
     @extend .error;
     margin-top: 10px;
-    background: #d45252 url(../images/warning.png) no-repeat 10px 50%;
+    background: $red url(../images/warning.png) no-repeat 10px 50%;
     padding-left: 45px;
 }
 

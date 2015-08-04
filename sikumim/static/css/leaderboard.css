@@ -1075,6 +1075,11 @@
     background-color: #1ba1e2;
     border: 3px solid #1ba1e2; }
 
+a {
+  color: #1ba1e2; }
+  a:hover {
+    color: #1681B5; }
+
 table {
   width: 100%; }
   table tr:nth-of-type(even) {
@@ -1087,5 +1092,23 @@ table {
     font-weight: bold;
     text-align: right;
     border-bottom: 3px solid #1681B5; }
+
+.first-place {
+  background-color: #f3b215;
+  border: 1px solid #c28e11; }
+  .first-place h3 {
+    color: #614708; }
+
+.second-place {
+  background-color: #C0C0C0;
+  border: 1px solid #9a9a9a; }
+  .second-place h3 {
+    color: #614708; }
+
+.third-place {
+  background-color: #CD7F32;
+  border: 1px solid #a46628; }
+  .third-place h3 {
+    color: #523314; }
 
 /*# sourceMappingURL=leaderboard.css.map */
