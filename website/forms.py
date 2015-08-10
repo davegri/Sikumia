@@ -8,6 +8,8 @@ from allauth.socialaccount.forms import SignupForm
 
 from django.utils.translation import activate
 
+from django.contrib.auth.forms import PasswordResetForm
+
 
 
 class UserForm(forms.ModelForm):
@@ -65,6 +67,7 @@ class ChangePasswordForm(forms.ModelForm):
         password = self.cleaned_data.get('old_password')
         if not self.user.check_password(password):
             raise forms.ValidationError('סיסמא נוכחית שגויה, נסה שוב')
+        return password
 
     def clean_confirm_password(self):
         password1 = self.cleaned_data.get('password')
@@ -72,6 +75,7 @@ class ChangePasswordForm(forms.ModelForm):
 
         if password1 != password2:
             raise forms.ValidationError('הסיסמאות שהכנסת איתן תואמות')
+        return password2
 
     def is_valid(self):
         ret = forms.Form.is_valid(self)
@@ -84,6 +88,8 @@ class ChangeEmailForm(forms.Form):
 
 class SummaryForm(forms.ModelForm):
     new_user = forms.CharField(max_length=30, required=False, label="add as a new user")
+    category = forms.ModelChoiceField(queryset=Category.objects.none(), empty_label="בחר מקצוע כדי לבחור נושא")
+    subcategory = forms.ModelChoiceField(queryset=Subcategory.objects.none(), empty_label="בחר נושא כדי לבחור תת נושא")
     class Meta:
         model = Summary
         fields = ('title','subject', 'content', 'category', 'subcategory')
@@ -114,17 +120,24 @@ class SearchForm(forms.Form):
     subject = forms.ModelChoiceField(queryset=subject_queryset, empty_label='הכל', to_field_name='name')
 
 
-
-class PasswordResetRequestForm(forms.Form):
-    email_or_username = forms.CharField(label=("הכנס שם משתמש או כתובת אימייל"), max_length=254)
-
-
 class CustomSignupForm(SignupForm):
 
     def __init__(self, *args, **kwargs):
-        activate('he')
         super(CustomSignupForm, self).__init__(*args, **kwargs)
 
     def raise_duplicate_email_error(self):
         raise forms.ValidationError("שם משתמש כבר קיים עם כתובת אימייל זאת, נסה להתחבר בראש האתר.")
 
+
+
+class CustomPasswordResetForm(PasswordResetForm):
+    def is_valid(self):
+        ret = forms.Form.is_valid(self)
+        for f in self.errors:
+            self.fields[f].widget.attrs.update({'class': 'invalid'})
+        return ret
+    def clean_email(self):
+        email = self.cleaned_data.get('email')
+        if not User.objects.filter(email=email).exists():
+            raise forms.ValidationError('כתובת אימייל זאת לא קיימת במערכת!')
+        return email

@@ -2,6 +2,7 @@
 <html dir="rtl">
     {% load staticfiles %}
     {% load socialaccount %}
+    {% load i18n %}
     <head>
     <title>{% block title %}סיכומים לבגרות | הסיכומיה{% endblock title %}</title>
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -53,6 +54,7 @@
         {# End Script #}
     </head>
     <body>
+    {% language 'he' %}
         {% if messages %}
             <ul class="messages">
                 {% for message in messages %}
@@ -199,6 +201,7 @@
         });
         });
         </script>
+        {% endlanguage %}
     </body>
 
 </html>

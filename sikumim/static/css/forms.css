@@ -1207,6 +1207,7 @@ a {
   border: none;
   text-decoration: none; }
 
+/* clearfix */
 blockquote {
   background: #2b5797;
   color: white;
@@ -1219,12 +1220,22 @@ blockquote {
   color: white;
   padding: 1em;
   text-align: center; }
+  .block-header + .block {
+    border-top: none;
+    border-top-left-radius: 0px;
+    border-top-right-radius: 0px; }
 
 .block {
   font-size: 1.166666666666667em;
   background-color: #EAEEF0;
   border: 1px solid #BBBEC0;
   padding: 1em; }
+  .block:after {
+    clear: both;
+    content: ".";
+    display: block;
+    height: 0;
+    visibility: hidden; }
 
 .row {
   margin-top: 1rem; }
@@ -1238,19 +1249,33 @@ blockquote {
   text-align: right;
   color: #2b5797;
   border-bottom: 3px solid #1ba1e2;
-  padding: 0.5em;
   font-weight: 400;
-  position: relative; }
+  position: relative;
+  display: table;
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0.5em; }
   .summary-header p {
     font-size: 0.8em; }
+  .summary-header .summary-text {
+    display: table-cell;
+    width: 100%; }
   .summary-header:hover {
     background: #1ba1e2;
     color: white;
     border: 1px solid #1ba1e2;
     border-bottom: 3px solid #2b5797; }
-    .summary-header:hover .tag {
+    .summary-header:hover .tag span {
       background: white !important;
       color: #2b5797; }
+  .summary-header .tag {
+    display: table-cell;
+    vertical-align: middle; }
+    .summary-header .tag span {
+      color: white;
+      font-size: 0.8em;
+      padding: 0.2em 0.5em;
+      margin-right: 1em; }
 
 .summary-info {
   font-size: 0.7em; }
@@ -1259,46 +1284,77 @@ blockquote {
     .summary-info p a {
       color: #2b5797; }
 
-.tag {
-  color: white;
-  font-size: 0.8em;
-  float: left;
-  padding: 0.2em 0.5em; }
-
 .message {
   position: absolute;
   z-index: 101;
   top: 0;
   left: 0;
   right: 0;
-  background: #fde073;
   text-align: center;
   line-height: 2.5;
   overflow: hidden;
   -webkit-box-shadow: 0 0 2px black;
   -moz-box-shadow: 0 0 2px black;
   box-shadow: 0 0 2px black;
-  font-size: 1.3em;
+  font-size: 1.5em;
   padding: 0.5em;
-  -webkit-transform: translateY(-55.6px);
+  -webkit-transform: translateY(100%);
   -webkit-animation: slideDown 5s 1 ease forwards;
-  -moz-transform: translateY(-55.6px);
+  -moz-transform: translateY(100%);
   -moz-animation: slideDown 5s 1 ease forwards; }
 
 @-webkit-keyframes slideDown {
   0%, 100% {
-    -webkit-transform: translateY(-55.6px); }
+    -webkit-transform: translateY(-webkit-calc(-100%)); }
   10%, 90% {
     -webkit-transform: translateY(0px); } }
 @-moz-keyframes slideDown {
   0%, 100% {
-    -moz-transform: translateY(-55.6px); }
+    -moz-transform: translateY(-moz-calc(-100%)); }
   10%, 90% {
     -moz-transform: translateY(0px); } }
-.success {
+.success, .success-alert {
   color: white;
-  background: #5cd053 url(../images/success.svg) no-repeat 1% center;
-  background-size: 40px 40px; }
+  background: #5cd053 url(../images/success.svg) no-repeat 2% center;
+  background-size: auto 60%;
+  text-shadow: 1px 1px 0px #53bb4b; }
+
+.error, .error-alert, .login_error {
+  color: white;
+  background: #d45252 url(../images/error.svg) no-repeat 1.2em center;
+  background-size: auto 60%;
+  text-shadow: 1px 1px 0px #bf4a4a; }
+
+.warning, .warning-alert, .info-alert {
+  color: white;
+  background: #dba013 url(../images/warning.svg) no-repeat 1.2em center;
+  background-size: auto 60%;
+  text-shadow: 1px 1px 0px #c59011; }
+
+.info {
+  color: white;
+  background: #008CBA url(../images/info.svg) no-repeat 1.2em center;
+  background-size: auto 60%;
+  text-shadow: 1px 1px 0px #007ea7; }
+
+.success-alert, .error-alert, .login_error, .warning-alert, .info-alert {
+  font-weight: 600;
+  font-size: 1.2em;
+  padding: 1.2em 1.7em;
+  margin-top: 1%;
+  border-radius: 3px 3px 3px 3px; }
+
+.success-alert {
+  border: 1px solid #53bb4b; }
+
+.error-alert, .login_error {
+  border: 1px solid #bf4a4a; }
+
+.warning-alert {
+  border: 1px solid #c59011; }
+
+.info-alert {
+  border: 1px solid #007ea7; }
 
 /* skeleton styles */
 .container {
@@ -1452,17 +1508,7 @@ header {
   border: 1px solid white;
   outline: 3px solid #2b5797; }
 
-.error, .login_error {
-  font-weight: 600;
-  font-size: 1.2em;
-  background: #d45252;
-  border-radius: 3px 3px 3px 3px;
-  color: white;
-  padding: 10px 15px; }
-
 .login_error {
-  margin-top: 10px;
-  background: #d45252 url(../images/warning.png) no-repeat 10px 50%;
   padding-left: 45px; }
 
 nav {
@@ -1539,7 +1585,8 @@ footer {
 
 .block form input, .block form .button, .block form .call-to-action {
   margin-bottom: 1.5%;
-  font-size: 1.5em; }
+  font-size: 1.5em;
+  width: 100%; }
 
 .block form input[type="submit"], .block form [type="submit"].button, .block form [type="submit"].call-to-action {
   margin-top: 1.5%; }

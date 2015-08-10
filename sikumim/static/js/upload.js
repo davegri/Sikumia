@@ -28,19 +28,22 @@ $.ajaxSetup({
     }
 });
 $(document).ready(function(){
-    $('select[name=category]').empty();
-    $('select[name=subcategory]').empty();
     $('select[name=subject]').change(function(){
         $('select[name=subcategory]').empty();
+        $('select[name=category]').empty();
         subject_id = $(this).val();
         request_url = '/get_categories/' + subject_id + '/';
         $.ajax({
             url: request_url,
             dataType: "html",
             success: function(data){
-                    $('select[name=category]').html(data)
+                    $('select[name=category]').html(data);
                     $('select[name=category]').trigger("change");
 
+            },
+            error: function(data){
+               $('select[name=category]').html("<option>בחר מקצוע כדי לבחור נושא</option>");
+               $('select[name=subcategory]').html("<option>בחר נושא כדי לבחור תת נושא</option>");
             }
         })
     });

@@ -13,7 +13,7 @@ from django.contrib import messages
 import datetime
 import operator
 from django.db.models import Q
-from django.utils.translation import activate
+from django.utils.translation import activate, override
 
 
 import json
@@ -97,8 +97,8 @@ def profile(request, user_pk):
     }
     return render(request, 'profile.html', context_dict)
 
+
 def settings(request, user_pk):
-    activate('he')
     if request.user.pk != int(user_pk):
         messages.add_message(
             request, messages.ERROR, 'אין לך הרשאות לבצע פעולה זו. אם הינך חושב שזאת טעות צור קשר עם הנהלת האתר')
@@ -137,6 +137,7 @@ def settings(request, user_pk):
     'change_password_form': change_password_form,
     'change_email_form': change_email_form,
     }
+
     return render(request, 'settings.html', context_dict)
 
 def subject(request, subject):
@@ -279,7 +280,6 @@ def edit_summary(request, subject, category, summary_id):
         messages.add_message(
             request, messages.ERROR, 'אין לך הרשאות לבצע פעולה זו. אם הינך חושב שזאת טעות צור קשר עם הנהלת האתר')
         return redirect(instance)
-    activate('he')
     if request.method == "POST":
         summary_form = EditSummaryForm(request.POST, instance=instance)
         if summary_form.is_valid():
@@ -433,7 +433,6 @@ def upload(request):
         categories = Subject.objects.get(
             pk=subject).category_set.all().values('hebrew_name', 'id')
         return HttpResponse(json.dumps(list(categories)))
-    activate('he')
     if request.method == "POST":
         summary_form = SummaryForm(request.POST)
         if summary_form.is_valid():

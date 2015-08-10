@@ -124,7 +124,17 @@ a {
     text-decoration: none;
 }
 
+/* clearfix */
 
+@mixin clearfix(){
+    &:after {
+    clear: both;
+    content: ".";
+    display: block;
+    height: 0;
+    visibility: hidden;
+}
+}
 
 
 blockquote {
@@ -140,6 +150,13 @@ blockquote {
     color: white;
     padding: 1em;
     text-align: center;
+
+    & + .block{
+        border-top: none;
+        border-top-left-radius: 0px;
+        border-top-right-radius: 0px; 
+    }
+
 }
 
 .block {
@@ -147,6 +164,13 @@ blockquote {
     background-color: $light_grey;
     border: 1px solid $grey;
     padding: 1em;
+    &:after{
+    clear: both;
+    content: ".";
+    display: block;
+    height: 0;
+    visibility: hidden;
+    }
 }
 
 .row {
@@ -164,7 +188,6 @@ blockquote {
     text-align: right;
     color: $dark_blue;
     border-bottom: 3px solid $light_blue;
-    padding: 0.5em;
 
     p {
         font-size: 0.8em;
@@ -172,18 +195,36 @@ blockquote {
 
     font-weight: 400;
     position: relative;
-
+    display: table;
+    width: 100%;
+    border-collapse:separate;
+    border-spacing: 0.5em;
+    .summary-text{
+        display: table-cell;
+        width: 100%;
+    }
     &:hover {
         background: $light_blue;
         color: white;
         border: 1px solid $light_blue;
         border-bottom: 3px solid $dark_blue;
-
         .tag {
+            span{
             background: white!important;
             color: $dark_blue;
         }
+        }
     }
+    .tag {
+    display: table-cell;    
+    vertical-align: middle;
+    span{
+    color: white;
+    font-size: 0.8em;
+    padding: 0.2em 0.5em;
+    margin-right: 1em;
+}
+}
 }
 
 .summary-info{
@@ -196,12 +237,7 @@ blockquote {
     }
 }
 
-.tag {
-    color: white;
-    font-size: 0.8em;
-    float: left;
-    padding: 0.2em 0.5em;
-}
+
 
 .message{
     position: absolute;
@@ -209,35 +245,88 @@ blockquote {
     top: 0;
     left: 0;
     right: 0;
-    background: #fde073;
     text-align: center;
     line-height: 2.5;
     overflow: hidden; 
     -webkit-box-shadow: 0 0 2px black;
     -moz-box-shadow:    0 0 2px black;
     box-shadow:         0 0 2px black;
-    font-size: 1.3em;
+    font-size: 1.5em;
     padding: 0.5em;
-    -webkit-transform: translateY(-55.6px);
+    -webkit-transform: translateY(100%);
     -webkit-animation: slideDown 5s 1 ease forwards;
-    -moz-transform:    translateY(-55.6px);
+    -moz-transform:    translateY(100%);
     -moz-animation:    slideDown 5s 1 ease forwards;
 }
 
 @-webkit-keyframes slideDown {
-    0%, 100% { -webkit-transform: translateY(-55.6px); }
+    0%, 100% { -webkit-transform: translateY(-webkit-calc(-100%));}
     10%, 90% { -webkit-transform: translateY(0px); }
 }
 @-moz-keyframes slideDown {
-    0%, 100% { -moz-transform: translateY(-55.6px); }
+    0%, 100% { -moz-transform: translateY(-moz-calc(-100%)); }
     10%, 90% { -moz-transform: translateY(0px); }
 }
 
-
 .success{
-    color: white;
-    background: $green url(../images/success.svg) no-repeat 1% center;
-    background-size: 40px 40px; 
+    color:white;
+    background: $success-green url(../images/success.svg) no-repeat 2% center;
+    background-size: auto 60%;
+    text-shadow: 1px 1px 0px shade($success-green,90%);
+}
+.error{
+    color:white;
+    background: $error-red url(../images/error.svg) no-repeat 1.2em center;
+    background-size: auto 60%;
+    text-shadow: 1px 1px 0px shade($error-red,90%);
+}
+.warning{
+    color:white;
+    background: $warning-yellow url(../images/warning.svg) no-repeat 1.2em center;
+    background-size: auto 60%;
+    text-shadow: 1px 1px 0px shade($warning-yellow,90%);
+}
+.info{
+    color:white;
+    background: $info-blue url(../images/info.svg) no-repeat 1.2em center;
+    background-size: auto 60%;
+    text-shadow: 1px 1px 0px shade($info-blue,90%);
+}
+
+
+
+%alert{
+    font-weight: 600;
+    font-size: 1.2em;
+    padding: 1.2em 1.7em;
+    margin-top: 1%;
+    border-radius: 3px 3px 3px 3px;
+}
+
+
+.success-alert{
+    @extend %alert;
+    @extend .success;
+    border: 1px solid shade($success-green,90%);
+}
+
+.error-alert{
+    @extend %alert;
+    @extend .error;
+    border: 1px solid shade($error-red,90%);
+
+}
+
+.warning-alert{
+    @extend %alert;
+    @extend .warning;
+    border: 1px solid shade($warning-yellow,90%);
+}
+
+.info-alert{
+    @extend %alert;
+    @extend .warning;
+    border: 1px solid shade($info-blue,90%);
 }
 
 /* skeleton styles */
@@ -445,19 +534,10 @@ header {
     outline: 3px solid $dark_blue;
 }
 
-.error {
-    font-weight: 600;
-    font-size: 1.2em;
-    background: $red;
-    border-radius: 3px 3px 3px 3px;
-    color: white;
-    padding: 10px 15px;
-}
 
 .login_error {
-    @extend .error;
-    margin-top: 10px;
-    background: $red url(../images/warning.png) no-repeat 10px 50%;
+    @extend .error-alert;
+    
     padding-left: 45px;
 }
 

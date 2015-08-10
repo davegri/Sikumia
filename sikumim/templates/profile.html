@@ -23,35 +23,5 @@
 <div class="row">
 <div class="block-header"><h3>הסיכומים של <strong>{{ profile_user.username }}</strong></h3></div>
 </div>
-        {% for summary in summaries.object_list  %}
-                <div class="col-24">
-                    <a href="{{summary.get_absolute_url}}">
-                        <h4 class="summary-header">
-                        {{ summary.title }} - <span class="summary-info">נוסף ע"י {{ summary.author }} {{ summary.date_created | timesince_human }}</span>
-                        <span class='tag' style="background-color:#{{summary.subject.color}};"><span>{{ summary.subject }}</span></span>
-                        </h4>
-                    </a>
-            </div>
-        {% endfor %}
-        <div class="pagination">
-            <ul>
-                {% if summaries.has_previous %}
-                    <li><a href="?{{queries.urlencode}}&amp;page={{ summaries.previous_page_number }}">הקודם</a></li>
-                {% else %}
-                    <li class="disabled">הקודם</li>
-                {% endif %}
-                {% for page in summaries.paginator.page_range  %}
-                    {% if page == summaries.number %}
-                        <li><a class="active" href="?{{queries.urlencode}}&amp;page={{ page }}" >{{ page }}</a></li>
-                    {% else %}
-                        <li><a href="?{{queries.urlencode}}&amp;page={{ page }}" >{{ page }}</a></li>
-                    {% endif %}
-                {% endfor %}
-                {% if summaries.has_next %}
-                    <li><a href="?{{queries.urlencode}}&amp;page={{ summaries.next_page_number }}">הבא</a></li>
-                {% else %}
-                    <li class="disabled">הבא</li>
-                {% endif %}
-            </ul>
-        </div>
+{% include "summaries.html" %}
 {% endblock body %}

@@ -16,18 +16,18 @@
 }
 
 .bad{
-    background-color: $red;
-    border: 1px solid shade($red,80%);
+    background-color: $error-red;
+    border: 1px solid shade($error-red,80%);
     h3{
     color: white;
 }
 }
 
 .good{
-    background-color: $green;
-    border: 1px solid shade($green,80%);
+    background-color: $success-green;
+    border: 1px solid shade($success-green,80%);
     h3{
-    color: shade($green,40%);
+    color: shade($success-green,40%);
 }
 }
 

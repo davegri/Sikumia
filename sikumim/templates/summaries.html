@@ -1,0 +1,34 @@
+{% load website_extras %}
+<div class="row">
+{% for summary in summaries.object_list  %}
+            <a href="{{summary.get_absolute_url}}">
+                <h4 class="summary-header">
+                <span class="summary-text">
+                {{ summary.title }} - <span class="summary-info">נוסף ע"י {{ summary.author }} {{ summary.date_created | timesince_human }}</span>
+                </span>
+                <span class='tag'><span style="background-color:#{{summary.subject.color}};" >{{ summary.subject }}</span></span>
+                </h4>
+            </a>
+{% endfor %}
+</div>
+<div class="pagination">
+        <ul>
+            {% if summaries.has_previous %}
+                <li><a href="?page={{ summaries.previous_page_number }}">הקודם</a></li>
+            {% else %}
+                <li class="disabled">הקודם</li>
+            {% endif %}
+            {% for page in summaries.paginator.page_range  %}
+                {% if page == summaries.number %}
+                    <li><a class="active" href="?page={{ page }}" >{{ page }}</a></li>
+                {% else %}
+                    <li><a href="?page={{ page }}" >{{ page }}</a></li>
+                {% endif %}
+            {% endfor %}
+            {% if summaries.has_next %}
+                <li><a href="?page={{ summaries.next_page_number }}">הבא</a></li>
+            {% else %}
+                <li class="disabled">הבא</li>
+            {% endif %}
+        </ul>
+</div>

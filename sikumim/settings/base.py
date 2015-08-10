@@ -36,6 +36,7 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.humanize',
     'website',
     'ckeditor',
     'widget_tweaks',
@@ -64,7 +65,6 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'django.middleware.security.SecurityMiddleware',
-    'django.middleware.gzip.GZipMiddleware',
 )
 
 ROOT_URLCONF = 'sikumim.urls'
@@ -113,10 +113,6 @@ DATABASES = {
 LANGUAGE_CODE = 'en-us'
 
 TIME_ZONE = 'Israel'
-
-USE_I18N = True
-
-USE_L10N = True
 
 USE_TZ = True
 
