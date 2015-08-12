@@ -73,7 +73,7 @@ class Summary(models.Model):
     subject = models.ForeignKey(Subject)
     category = models.ForeignKey(Category)
     subcategory = models.ForeignKey(Subcategory)
-    content = RichTextField(null=True, blank=True)
+    content = RichTextField(default="ברירת מחדל")
     users_rated_positive = models.ManyToManyField(
         User, blank=True, related_name='summaries_rated_positive')
     users_rated_negative = models.ManyToManyField(

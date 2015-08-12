@@ -98,7 +98,7 @@ WSGI_APPLICATION = 'sikumim.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'sikumim_db',
+        'NAME': 'sikumia_db',
         'USER': 'david',
         'PASSWORD': 'david',
         'HOST': '',
@@ -139,6 +139,9 @@ CKEDITOR_CONFIGS = {
         'contentsLanguage ': 'heb',
         'width': '100%',
         'extraPlugins': 'autogrow',
+        'height': 500,
+        'autoGrow_minHeight' : 500,
+        'autoGrow_maxHeight' : 1000,
     },
 }
 

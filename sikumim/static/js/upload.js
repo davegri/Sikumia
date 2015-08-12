@@ -28,6 +28,8 @@ $.ajaxSetup({
     }
 });
 $(document).ready(function(){
+    $('select[name=category]').html("<option value selected='selected'>בחר מקצוע כדי לבחור נושא</option>");
+    $('select[name=subcategory]').html("<option value selected='selected'>בחר נושא כדי לבחור תת נושא</option>");
     $('select[name=subject]').change(function(){
         $('select[name=subcategory]').empty();
         $('select[name=category]').empty();
@@ -42,8 +44,8 @@ $(document).ready(function(){
 
             },
             error: function(data){
-               $('select[name=category]').html("<option>בחר מקצוע כדי לבחור נושא</option>");
-               $('select[name=subcategory]').html("<option>בחר נושא כדי לבחור תת נושא</option>");
+            $('select[name=category]').html("<option value selected='selected'>בחר מקצוע כדי לבחור נושא</option>");
+            $('select[name=subcategory]').html("<option value selected='selected'>בחר נושא כדי לבחור תת נושא</option>");
             }
         })
     });

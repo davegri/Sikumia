@@ -88,12 +88,16 @@ class ChangeEmailForm(forms.Form):
 
 class SummaryForm(forms.ModelForm):
     new_user = forms.CharField(max_length=30, required=False, label="add as a new user")
-    category = forms.ModelChoiceField(queryset=Category.objects.none(), empty_label="בחר מקצוע כדי לבחור נושא")
-    subcategory = forms.ModelChoiceField(queryset=Subcategory.objects.none(), empty_label="בחר נושא כדי לבחור תת נושא")
+    category = forms.ModelChoiceField(queryset=Category.objects.all(), empty_label="בחר מקצוע כדי לבחור נושא")
+    subcategory = forms.ModelChoiceField(queryset=Subcategory.objects.all(), empty_label="בחר נושא כדי לבחור תת נושא")
     class Meta:
         model = Summary
         fields = ('title','subject', 'content', 'category', 'subcategory')
-
+    def is_valid(self):
+        ret = forms.Form.is_valid(self)
+        for f in self.errors:
+            self.fields[f].widget.attrs.update({'class': 'invalid'})
+        return ret
 
     def __init__(self, *args, **kwargs):
         super(SummaryForm, self).__init__(*args, **kwargs)

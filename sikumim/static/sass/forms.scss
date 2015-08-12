@@ -1,18 +1,18 @@
 @import "colors";
-@import 'base';
 .block{
     padding: 2em;
 }
 
 
 .block form label {
-    @extend h5;
+    font-size: 1.2em;
+    font-weight: bold;
     display:block;
     margin-bottom: 0.2em;
 }
 
-.block form input {
-    margin-bottom: 1.5%;
+.block form input, .block form select {
+    margin-bottom: 0.4em;
     font-size: 1.5em;
     width:100%;
 }
@@ -25,10 +25,8 @@
     border: 1px solid #B3B3B3;
 }
 
-.invalid {
-    background: #fff url(../images/invalid.png) no-repeat 5% center;
+.invalid{
     border: 1px solid #d45252!important;
-    display: block;
     & + span{
         font-size: 1.3em;
         padding: 0.4em 0.7em;
@@ -40,6 +38,7 @@
         width:100%;
     }
 }
+
 
 .block form p {
     position: relative;

@@ -437,7 +437,7 @@ def upload(request):
         summary_form = SummaryForm(request.POST)
         if summary_form.is_valid():
             summary = summary_form.save(commit=False)
-            if summary_form.cleaned_data['new_user'] != None:
+            if summary_form.cleaned_data['new_user'] is not None:
                 if request.user.is_staff:
                     summary.author, created = User.objects.get_or_create(
                         username=summary_form.cleaned_data['new_user'],

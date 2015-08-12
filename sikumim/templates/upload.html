@@ -10,44 +10,43 @@
     <p></p>
 </div>
 <div class="block">
-    {% if uploaded %}
-    <h3>הסיכום שלך נוסף לאתר בהצלחה</h3>
-    {% else %}
     <form method="post" action="/upload/">
+        {% if summary_form.errors %}
+        <div class="error-alert">אופס! יש בעיה בהלעאת הסיכום לאתר - קרא את הודעות השגיאה מתחת לשדות המסומנים באדום כדי לתקן את הבעיה</div>
+        {% endif %}
         {% csrf_token %}
         {{ summary_form.media }}
         <h5>{{ summary_form.title.label_tag }}</h5>
         {{ summary_form.title }}
-        {% if summary_form.title.errors %}<span class="error">{{ summary_form.title.errors.as_text|cut:"* " }}</span>{% endif %}
+        {% if summary_form.title.errors %}<span>{{ summary_form.title.errors.as_text|cut:"* " }}</span>{% endif %}
         <div class="row">
             <div class="col-5">
                 <h5>{{ summary_form.subject.label_tag }}</h5>
                 {{ summary_form.subject }}
-                {% if summary_form.subject.errors %}<p class="error">{{ summary_form.subject.errors.as_text|cut:"* " }}</p>{% endif %}
+                {% if summary_form.subject.errors %}<span>{{ summary_form.subject.errors.as_text|cut:"* " }}</span>{% endif %}
             </div>
             <div class="col-9">
                 <h5>{{ summary_form.category.label_tag }}</h5>
                 {{ summary_form.category }}
-                {% if summary_form.category.errors %}<p class="error">{{ summary_form.category.errors.as_text|cut:"* " }}</p>{% endif %}
+                {% if summary_form.category.errors %}<span>{{ summary_form.category.errors.as_text|cut:"* " }}</span>{% endif %}
             </div>
                 <div class="col-10">
                 <h5>{{ summary_form.subcategory.label_tag }}</h5>
                 {{ summary_form.subcategory }}
-                {% if summary_form.subcategory.errors %}<p class="error">{{ summary_form.subcategory.errors.as_text|cut:"* " }}</p>{% endif %}
+                {% if summary_form.subcategory.errors %}<span>{{ summary_form.subcategory.errors.as_text|cut:"* " }}</span>{% endif %}
             </div>
         </div>
         <div class="row">
             <h5>{{ summary_form.content.label_tag }}</h5>
             {{ summary_form.content }}
-            {% if summary_form.content.errors %}<p class="error">{{ summary_form.content.errors.as_text|cut:"* " }}</p>{% endif %}
+            {% if summary_form.content.errors %}<span>{{ summary_form.content.errors.as_text|cut:"* " }}</span>{% endif %}
         </div>
         {% if user.is_staff %}
             <div class="row">
             <h5>{{ summary_form.new_user.label_tag |cut:":"}}</h5>
             {{ summary_form.new_user }}
-            {% if summary_form.new_user.errors %}<p class="error">{{ summary_form.new_user.errors.as_text|cut:"* " }}</p>{% endif %}
+            {% if summary_form.new_user.errors %}<span>{{ summary_form.new_user.errors.as_text|cut:"* " }}</span>{% endif %}
         </div>
-        {% endif %}
         <input type="submit" name="submit" value="הוספת סיכום">
     </form>
     {% endif %}
