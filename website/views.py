@@ -21,11 +21,6 @@ import json
 from functools import reduce
 
 
-from django.utils.http import urlencode
-
-from django.utils.cache import cache
-from django.http import HttpResponseForbidden
-
 def throttle_post(func, duration=15):
     def inner(request, *args, **kwargs):
         if request.method == 'POST':
@@ -417,7 +412,7 @@ def get_subcategories(request, category_id):
             subcat.pk, subcat.hebrew_name)
     return HttpResponse(html_string, content_type="html")
 
-@throttle_post
+
 def upload(request):
 
     if not request.user.is_authenticated():

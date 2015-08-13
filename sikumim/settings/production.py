@@ -15,13 +15,14 @@ ALLOWED_HOSTS = ['*']
 
 STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
 
-
 # memcache
-CACHES = 'default': {
-            'BACKEND': 'django_pylibmc.memcached.PyLibMCCache',
-            'TIMEOUT': 500,
-            'BINARY': True,
-            'OPTIONS': { 'tcp_nodelay': True }
+CACHES = {
+    'default' : {
+        'BACKEND': 'django_pylibmc.memcached.PyLibMCCache',
+        'TIMEOUT': 500,
+        'BINARY': True,
+        'OPTIONS': { 'tcp_nodelay': True }
+    }
 }
 
 

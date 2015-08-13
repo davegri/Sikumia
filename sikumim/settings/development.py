@@ -11,6 +11,8 @@ EMAIL_USE_TLS = False
 DEFAULT_FROM_EMAIL = 'testing@example.com'
 
 # memcache
-CACHES = 'default': {
-            'BACKEND': 'django.core.cache.backends.locmem.LocMemCache'
+CACHES = {
+    'default' : {
+        'BACKEND': 'django.core.cache.backends.locmem.LocMemCache'
+    }
 }
