@@ -51,6 +51,7 @@ INSTALLED_APPS = (
     'allauth.socialaccount.providers.google',
     'allauth.socialaccount.providers.facebook',
     'debug_toolbar',
+    'captcha',
 )
 
 SITE_ID = 1
@@ -163,3 +164,10 @@ LOGIN_REDIRECT_URL = "/"
 SOCIALACCOUNT_FORMS = {
     'signup': 'website.forms.CustomSignupForm',
 }
+
+
+# recaptcha
+
+RECAPTCHA_PUBLIC_KEY = '6LczPQsTAAAAAAcdDP36MQ7THJX2cx8zdzpc7sMe'
+RECAPTCHA_PRIVATE_KEY = '6LczPQsTAAAAAFrNSDfwpoQYYf_PUzOg6Z2_I45x'
+NOCAPTCHA = True

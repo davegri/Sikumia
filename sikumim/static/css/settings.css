@@ -1079,6 +1079,16 @@
     margin-top: 0.2em;
     width: 100%; }
 
+.error-message {
+  font-size: 1.3em;
+  padding: 0.4em 0.7em;
+  background: #FBE3E4;
+  color: #D12F19;
+  border: 1px solid #FBC2C4;
+  display: inline-block;
+  margin-top: 0.2em;
+  width: 100%; }
+
 .block form p {
   position: relative; }
 

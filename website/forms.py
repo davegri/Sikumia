@@ -10,9 +10,11 @@ from django.utils.translation import activate
 
 from django.contrib.auth.forms import PasswordResetForm
 
+from captcha.fields import ReCaptchaField
 
 
 class UserForm(forms.ModelForm):
+    captcha = ReCaptchaField()
     required_message = "שזה זה הינו חובה"
     username_unique_message = "שם המשתמש שבחרת כבר קיים במערכת, בחר שם אחר"
     email_unique_message = "כתובת האמייל שבחרת כבר קיימת במערכת"
@@ -41,6 +43,10 @@ class UserForm(forms.ModelForm):
     class Meta:
         model = User
         fields = ('username', 'email', 'password')
+
+    def __init__(self, *args, **kwargs):
+        super(UserForm, self).__init__(*args, **kwargs)
+        self.fields['captcha'].error_messages = {'required': 'עלייך לסמן שאתה לא רובוט'}
 
 
 class CommentForm(forms.ModelForm):

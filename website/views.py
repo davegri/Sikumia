@@ -23,25 +23,21 @@ from functools import reduce
 
 from django.utils.http import urlencode
 
+from django.utils.cache import cache
+from django.http import HttpResponseForbidden
 
-def get_query_string(params, new_params=None, remove=None):
-    if new_params is None:
-        new_params = {}
-    if remove is None:
-        remove = []
-    p = params.copy()
-    for r in remove:
-        for k in p.keys():
-            if k.startswith(r):
-                del p[k]
-                break
-    for k, v in new_params.items():
-        if v is None:
-            if k in p:
-                del p[k]
-        else:
-            p[k] = v
-    return '?%s' % urlencode(p)
+def throttle_post(func, duration=15):
+    def inner(request, *args, **kwargs):
+        if request.method == 'POST':
+            remote_addr = request.META.get('HTTP_X_FORWARDED_FOR') or \
+                          request.META.get('REMOTE_ADDR')
+            key = '%s.%s' % (remote_addr, request.get_full_path())
+            if cache.get(key):
+                return HttpResponseForbidden('Try slowing down a little.')
+            else:
+                cache.set(key, 1, duration)
+        return func(request, *args, **kwargs)
+    return inner
 
 
 def index(request):
@@ -421,7 +417,7 @@ def get_subcategories(request, category_id):
             subcat.pk, subcat.hebrew_name)
     return HttpResponse(html_string, content_type="html")
 
-
+@throttle_post
 def upload(request):
 
     if not request.user.is_authenticated():
