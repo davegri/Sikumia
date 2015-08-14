@@ -73,7 +73,7 @@ class Summary(models.Model):
     subject = models.ForeignKey(Subject)
     category = models.ForeignKey(Category)
     subcategory = models.ForeignKey(Subcategory)
-    content = RichTextField(default="ברירת מחדל")
+    content = RichTextField()
     users_rated_positive = models.ManyToManyField(
         User, blank=True, related_name='summaries_rated_positive')
     users_rated_negative = models.ManyToManyField(
@@ -147,20 +147,10 @@ class Comment(models.Model):
         return self.summary.get_absolute_url() + "#%i" % self.id
 
 
-# add get karma to auth user class
-
-def karma(self):
-    summaries_list = self.summaries_authored.all()
-    positive_karma = sum(
-        [summary.users_rated_positive.count() for summary in summaries_list])
-    negative_karma = sum(
-        [summary.users_rated_negative.count() for summary in summaries_list])
-    return positive_karma - negative_karma
 
 
 class UserProfile(models.Model):
     user = models.OneToOneField(User, primary_key=True, related_name='profile')
-    rank = models.IntegerField(null=True,blank=True)
 
     @property
     def karma(self):

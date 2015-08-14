@@ -39,17 +39,17 @@
         <div class="row">
             <h5>{{ summary_form.content.label_tag }}</h5>
             {{ summary_form.content }}
-            {% if summary_form.content.errors %}<span>{{ summary_form.content.errors.as_text|cut:"* " }}</span>{% endif %}
+            {% if summary_form.content.errors %}<span class="error-message">{{ summary_form.content.errors.as_text|cut:"* " }}</span>{% endif %}
         </div>
         {% if user.is_staff %}
-            <div class="row">
+        <div class="row">
             <h5>{{ summary_form.new_user.label_tag |cut:":"}}</h5>
             {{ summary_form.new_user }}
             {% if summary_form.new_user.errors %}<span>{{ summary_form.new_user.errors.as_text|cut:"* " }}</span>{% endif %}
         </div>
+        {% endif %}
         <input type="submit" name="submit" value="הוספת סיכום">
     </form>
-    {% endif %}
 </div>
 <script src="{% static "js/upload.js" %}">
 </script>

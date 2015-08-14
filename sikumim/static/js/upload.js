@@ -28,8 +28,7 @@ $.ajaxSetup({
     }
 });
 $(document).ready(function(){
-    $('select[name=category]').html("<option value selected='selected'>בחר מקצוע כדי לבחור נושא</option>");
-    $('select[name=subcategory]').html("<option value selected='selected'>בחר נושא כדי לבחור תת נושא</option>");
+    $('select[name=subject]').trigger("change");
     $('select[name=subject]').change(function(){
         $('select[name=subcategory]').empty();
         $('select[name=category]').empty();

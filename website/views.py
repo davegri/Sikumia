@@ -19,20 +19,9 @@ from django.utils.translation import activate, override
 import json
 
 from functools import reduce
+from django.core.cache import cache
+from django.http import HttpResponseForbidden
 
-
-def throttle_post(func, duration=15):
-    def inner(request, *args, **kwargs):
-        if request.method == 'POST':
-            remote_addr = request.META.get('HTTP_X_FORWARDED_FOR') or \
-                          request.META.get('REMOTE_ADDR')
-            key = '%s.%s' % (remote_addr, request.get_full_path())
-            if cache.get(key):
-                return HttpResponseForbidden('Try slowing down a little.')
-            else:
-                cache.set(key, 1, duration)
-        return func(request, *args, **kwargs)
-    return inner
 
 
 def index(request):
@@ -413,8 +402,8 @@ def get_subcategories(request, category_id):
     return HttpResponse(html_string, content_type="html")
 
 
-def upload(request):
 
+def upload(request):
     if not request.user.is_authenticated():
         messages.add_message(
             request, messages.ERROR, 'עליך להיות מחובר כדי לבצע פעולה זו!')
@@ -426,9 +415,26 @@ def upload(request):
         return HttpResponse(json.dumps(list(categories)))
     if request.method == "POST":
         summary_form = SummaryForm(request.POST)
+        summary_form.fields["category"].queryset = Category.objects.all()
+        summary_form.fields["subcategory"].queryset = Subcategory.objects.all()
         if summary_form.is_valid():
+            if not request.user.is_staff:
+                duration = 60
+                remote_addr = request.META.get('HTTP_X_FORWARDED_FOR') or \
+                              request.META.get('REMOTE_ADDR')
+                key = '%s.%s' % (remote_addr, request.get_full_path())
+                if cache.get(key):
+                    expire_date = cache.get(key+'_expire_date')
+                    timedelta = expire_date - datetime.datetime.now()
+                    seconds_remaining = int(timedelta.total_seconds())
+                    messages.add_message(
+                    request, messages.ERROR,'אתה לא יכול להעלות סיכומים כל כך מהר! נסה לחכות עוד {} שניות'.format(seconds_remaining))
+                    return render(request, 'upload.html', {'summary_form': summary_form})
+                else:
+                    cache.set(key, 1, duration)
+                    cache.set(key+'_expire_date', datetime.datetime.now()+ datetime.timedelta(seconds = 60))
             summary = summary_form.save(commit=False)
-            if summary_form.cleaned_data['new_user'] is not None:
+            if summary_form.cleaned_data['new_user'] != "":
                 if request.user.is_staff:
                     summary.author, created = User.objects.get_or_create(
                         username=summary_form.cleaned_data['new_user'],
