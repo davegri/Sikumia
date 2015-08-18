@@ -3,15 +3,15 @@ from __future__ import unicode_literals
 
 from django.db import models, migrations
 import ckeditor.fields
-import django.utils.timezone
-import adminsortable.fields
 from django.conf import settings
+import adminsortable.fields
+import django.utils.timezone
 
 
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('auth', '0007_auto_20150812_0010'),
+        ('auth', '0007_auto_20150815_1454'),
         migrations.swappable_dependency(settings.AUTH_USER_MODEL),
     ]
 
@@ -19,8 +19,8 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='Category',
             fields=[
-                ('id', models.AutoField(auto_created=True, verbose_name='ID', serialize=False, primary_key=True)),
-                ('order', models.PositiveIntegerField(editable=False, db_index=True, default=1)),
+                ('id', models.AutoField(verbose_name='ID', serialize=False, primary_key=True, auto_created=True)),
+                ('order', models.PositiveIntegerField(default=1, editable=False, db_index=True)),
                 ('name', models.CharField(max_length=100)),
                 ('hebrew_name', models.CharField(max_length=100)),
             ],
@@ -32,7 +32,7 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='Comment',
             fields=[
-                ('id', models.AutoField(auto_created=True, verbose_name='ID', serialize=False, primary_key=True)),
+                ('id', models.AutoField(verbose_name='ID', serialize=False, primary_key=True, auto_created=True)),
                 ('content', models.TextField(max_length=1000)),
                 ('date_created', models.DateTimeField(auto_now_add=True)),
                 ('date_edited', models.DateTimeField(auto_now=True)),
@@ -41,8 +41,8 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='Subcategory',
             fields=[
-                ('id', models.AutoField(auto_created=True, verbose_name='ID', serialize=False, primary_key=True)),
-                ('order', models.PositiveIntegerField(editable=False, db_index=True, default=1)),
+                ('id', models.AutoField(verbose_name='ID', serialize=False, primary_key=True, auto_created=True)),
+                ('order', models.PositiveIntegerField(default=1, editable=False, db_index=True)),
                 ('name', models.CharField(max_length=100)),
                 ('hebrew_name', models.CharField(max_length=100)),
                 ('category', adminsortable.fields.SortableForeignKey(to='website.Category')),
@@ -55,8 +55,8 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='Subject',
             fields=[
-                ('id', models.AutoField(auto_created=True, verbose_name='ID', serialize=False, primary_key=True)),
-                ('order', models.PositiveIntegerField(editable=False, db_index=True, default=1)),
+                ('id', models.AutoField(verbose_name='ID', serialize=False, primary_key=True, auto_created=True)),
+                ('order', models.PositiveIntegerField(default=1, editable=False, db_index=True)),
                 ('name', models.CharField(max_length=100)),
                 ('hebrew_name', models.CharField(max_length=100)),
                 ('color', models.CharField(max_length=6)),
@@ -70,11 +70,11 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='Summary',
             fields=[
-                ('id', models.AutoField(auto_created=True, verbose_name='ID', serialize=False, primary_key=True)),
+                ('id', models.AutoField(verbose_name='ID', serialize=False, primary_key=True, auto_created=True)),
                 ('title', models.CharField(max_length=128)),
-                ('content', ckeditor.fields.RichTextField(default='ברירת מחדל')),
+                ('content', ckeditor.fields.RichTextField()),
                 ('date_created', models.DateTimeField(default=django.utils.timezone.now)),
-                ('date_edited', models.DateTimeField(blank=True, null=True)),
+                ('date_edited', models.DateTimeField(null=True, blank=True)),
             ],
             options={
                 'ordering': ['-date_created'],
@@ -83,14 +83,13 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='UserProfile',
             fields=[
-                ('user', models.OneToOneField(related_name='profile', serialize=False, primary_key=True, to=settings.AUTH_USER_MODEL)),
-                ('rank', models.IntegerField(blank=True, null=True)),
+                ('user', models.OneToOneField(primary_key=True, serialize=False, related_name='profile', to=settings.AUTH_USER_MODEL)),
             ],
         ),
         migrations.CreateModel(
             name='View',
             fields=[
-                ('id', models.AutoField(auto_created=True, verbose_name='ID', serialize=False, primary_key=True)),
+                ('id', models.AutoField(verbose_name='ID', serialize=False, primary_key=True, auto_created=True)),
                 ('ip', models.CharField(max_length=40)),
                 ('session', models.CharField(max_length=40)),
                 ('date_created', models.DateTimeField(default=django.utils.timezone.now)),
@@ -120,17 +119,17 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='summary',
             name='users_bookmarked',
-            field=models.ManyToManyField(blank=True, to=settings.AUTH_USER_MODEL, related_name='summaries_bookmarked'),
+            field=models.ManyToManyField(related_name='summaries_bookmarked', blank=True, to=settings.AUTH_USER_MODEL),
         ),
         migrations.AddField(
             model_name='summary',
             name='users_rated_negative',
-            field=models.ManyToManyField(blank=True, to=settings.AUTH_USER_MODEL, related_name='summaries_rated_negative'),
+            field=models.ManyToManyField(related_name='summaries_rated_negative', blank=True, to=settings.AUTH_USER_MODEL),
         ),
         migrations.AddField(
             model_name='summary',
             name='users_rated_positive',
-            field=models.ManyToManyField(blank=True, to=settings.AUTH_USER_MODEL, related_name='summaries_rated_positive'),
+            field=models.ManyToManyField(related_name='summaries_rated_positive', blank=True, to=settings.AUTH_USER_MODEL),
         ),
         migrations.AddField(
             model_name='comment',

@@ -22,7 +22,26 @@ from functools import reduce
 from django.core.cache import cache
 from django.http import HttpResponseForbidden
 
-
+def throttle(request, duration=15):
+    """
+        Goal of the function is to throttle requests from a user/bot
+        returns true if user has been throttled
+        returns false if user has not been throttled
+    """
+    if not request.user.is_staff:
+        remote_addr = request.META.get('HTTP_X_FORWARDED_FOR') or \
+                      request.META.get('REMOTE_ADDR')
+        key = '%s.%s' % (remote_addr, request.get_full_path())
+        if cache.get(key):
+            expire_date = cache.get(key+'_expire_date')
+            timedelta = expire_date - datetime.datetime.now()
+            seconds_remaining = int(timedelta.total_seconds())
+            messages.add_message(
+            request, messages.ERROR,'אתה לא יכול לבצע פעולות כל כך מהר! חכה עוד {} שניות'.format(seconds_remaining))
+            return True
+        else:
+            cache.set(key, 1, duration)
+            cache.set(key+'_expire_date', datetime.datetime.now()+ datetime.timedelta(seconds = duration))
 
 def index(request):
     context_dict = {}
@@ -217,7 +236,6 @@ def subcategory(request, subject, category, subcategory):
 
 # summary page
 
-
 def summary(request, subject, category, summary_id):
     try:
         summary = Summary.objects.get(pk=summary_id)
@@ -234,23 +252,29 @@ def summary(request, subject, category, summary_id):
                     session=request.session.session_key)
         view.save()
 
+    context_dict = {
+        'subject': subject,
+        'summary': summary,
+    }
+
     if request.method == 'POST':
         comment_form = CommentForm(data=request.POST)
+        context_dict["comment_form"] = comment_form
         if comment_form.is_valid():
+            if throttle(request):
+                return render(request, "summary.html", context_dict)
             comment = comment_form.save(commit=False)
             comment.user = User.objects.get(id=request.user.id)
             comment.summary = summary
             comment.save()
+            messages.add_message(request, messages.SUCCESS, 'התגובה שלך נוספה בצלחה')
+            return redirect(comment)
         else:
             print(comment_form.errors)
     else:
         comment_form = CommentForm()
+        context_dict["comment_form"] = comment_form
 
-    context_dict = {
-        'subject': subject,
-        'summary': summary,
-        'comment_form': comment_form
-    }
     return render(request, 'summary.html', context_dict)
 
 
@@ -402,7 +426,6 @@ def get_subcategories(request, category_id):
     return HttpResponse(html_string, content_type="html")
 
 
-
 def upload(request):
     if not request.user.is_authenticated():
         messages.add_message(
@@ -415,30 +438,22 @@ def upload(request):
         return HttpResponse(json.dumps(list(categories)))
     if request.method == "POST":
         summary_form = SummaryForm(request.POST)
-        summary_form.fields["category"].queryset = Category.objects.all()
-        summary_form.fields["subcategory"].queryset = Subcategory.objects.all()
+        subject = request.POST["subject"]
+        category = request.POST["category"]
+        summary_form.fields["category"].queryset = Category.objects.filter(subject=subject)
+        summary_form.fields["subcategory"].queryset = Subcategory.objects.filter(category=category)
         if summary_form.is_valid():
-            if not request.user.is_staff:
-                duration = 60
-                remote_addr = request.META.get('HTTP_X_FORWARDED_FOR') or \
-                              request.META.get('REMOTE_ADDR')
-                key = '%s.%s' % (remote_addr, request.get_full_path())
-                if cache.get(key):
-                    expire_date = cache.get(key+'_expire_date')
-                    timedelta = expire_date - datetime.datetime.now()
-                    seconds_remaining = int(timedelta.total_seconds())
-                    messages.add_message(
-                    request, messages.ERROR,'אתה לא יכול להעלות סיכומים כל כך מהר! נסה לחכות עוד {} שניות'.format(seconds_remaining))
-                    return render(request, 'upload.html', {'summary_form': summary_form})
-                else:
-                    cache.set(key, 1, duration)
-                    cache.set(key+'_expire_date', datetime.datetime.now()+ datetime.timedelta(seconds = 60))
+            if throttle(request):
+                return render(request, 'upload.html', {'summary_form': summary_form})
             summary = summary_form.save(commit=False)
             if summary_form.cleaned_data['new_user'] != "":
                 if request.user.is_staff:
                     summary.author, created = User.objects.get_or_create(
                         username=summary_form.cleaned_data['new_user'],
-                        defaults={'email':'%s@gmail.com' % summary_form.cleaned_data['new_user'],'password':'test123'})
+                        defaults={'email':'%s@gmail.com' % summary_form.cleaned_data['new_user']})
+                    if created:
+                        summary.author.set_password('defaultpassword123')
+                        summary.author.save()
             else:
                 summary.author = User.objects.get(id=request.user.id)
             summary.save()

@@ -2334,7 +2334,7 @@ blockquote {
       color: #2b5797; }
 
 .message {
-  position: absolute;
+  position: fixed;
   z-index: 101;
   top: 0;
   left: 0;
