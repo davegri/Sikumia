@@ -139,9 +139,10 @@ def settings(request, user_pk):
 
     return render(request, 'settings.html', context_dict)
 
+
 def subject(request, subject):
     summaries_list = Summary.objects.select_related().filter(
-        subject__name=subject)
+    subject__name=subject)
     subject = get_object_or_404(Subject.objects.prefetch_related('categories'), name=subject)
     category_list = subject.categories.prefetch_related('subcategory_set').all()
     length = len(summaries_list)
@@ -149,7 +150,7 @@ def subject(request, subject):
     if subject.name == 'history_a':
         categories_per_line = 1
     # pagination
-    paginator = Paginator(summaries_list, 12)
+    paginator = Paginator(summaries_list, 10)
 
     # get page number from GET request
     page_num = request.GET.get('page', 1)
@@ -362,8 +363,8 @@ def search(request):
         return HttpResponse("request method needs to be GET")
     else:
         bound_search_form = SearchForm(request.GET)
-        query = request.GET['query']
-        subject = request.GET['subject']
+        query = request.GET.get('query', False)
+        subject = request.GET.get('subject')
         kwargs = {}
         args = []
         if query:
@@ -384,7 +385,7 @@ def search(request):
         length = len(summaries_list)
 
         # pagination
-        paginator = Paginator(summaries_list, 15)
+        paginator = Paginator(summaries_list, 10)
 
         # get page number from GET request
         page_num = request.GET.get('page', 1)
@@ -399,7 +400,7 @@ def search(request):
             'sumAmount': length,
             'summaries': summaries,
             'search_form': bound_search_form,
-            'queries': queries_without_page,
+            'params': queries_without_page,
         }
 
         return render(request, 'search.html', context_dict)
