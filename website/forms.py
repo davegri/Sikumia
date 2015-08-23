@@ -8,7 +8,7 @@ from allauth.socialaccount.forms import SignupForm
 
 from django.utils.translation import activate
 
-from django.contrib.auth.forms import PasswordResetForm
+from django.contrib.auth.forms import PasswordResetForm, SetPasswordForm
 
 from captcha.fields import ReCaptchaField
 
@@ -151,3 +151,10 @@ class CustomPasswordResetForm(PasswordResetForm):
         if not User.objects.filter(email=email).exists():
             raise forms.ValidationError('כתובת אימייל זאת לא קיימת במערכת!')
         return email
+
+class CustomSetPasswordForm(SetPasswordForm):
+    def is_valid(self):
+        ret = forms.Form.is_valid(self)
+        for f in self.errors:
+            self.fields[f].widget.attrs.update({'class': 'invalid'})
+        return ret

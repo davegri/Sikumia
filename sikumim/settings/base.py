@@ -66,6 +66,7 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'django.middleware.security.SecurityMiddleware',
+    'django.middleware.common.BrokenLinkEmailsMiddleware.'
 )
 
 ROOT_URLCONF = 'sikumim.urls'
@@ -178,3 +179,13 @@ EMAIL_HOST = 'smtp.mailgun.org'
 EMAIL_HOST_USER = 'postmaster@sikumia.co.il'
 EMAIL_HOST_PASSWORD = os.environ['MAILGUN_SMTP_PASSWORD']
 EMAIL_PORT = 587
+DEFAULT_FROM_EMAIL = 'Sikumia Team <no-reply@sikumia.co.il>'
+
+
+ADMINS = (
+            ('David Griver', 'dgriver@gmail.com'),
+)
+
+MANAGERS = (
+            ('David Griver', 'dgriver@gmail.com'),
+)
