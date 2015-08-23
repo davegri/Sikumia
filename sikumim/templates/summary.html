@@ -18,12 +18,12 @@
 					<h4>מה אתה חושב על הסיכום הזה?</h4>
 					{% with summary.users_rated_positive.all as users_rated_positive  %}
 					<a class='button positive {% if user in users_rated_positive %}selected{% endif %} '>
-					<img class="svg" height="25" width="25" src="{% static "images/positive.svg" %}">אהבתי  ({{ users_rated_positive | length }})
+					אהבתי  ({{ users_rated_positive | length }})
 					</a>					    
 					{% endwith %}
 					{% with summary.users_rated_negative.all as users_rated_negative  %}
 					<a class='button negative {% if user in users_rated_negative %}selected{% endif %} '>
-					<img class="svg" height="25" width="25" src="{% static "images/negative.svg" %}">לא משהו  ({{ users_rated_negative | length }})
+					לא משהו  ({{ users_rated_negative | length }})
 					</a>
 					{% endwith %}
 				</div>

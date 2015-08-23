@@ -1049,7 +1049,7 @@
 
 .title-block h3 {
   margin-top: 1em;
-  color: #1ba1e2;
+  color: #2b5797;
   text-align: center;
   position: relative; }
   .title-block h3 span {
@@ -1058,7 +1058,7 @@
     position: relative;
     z-index: 1; }
   .title-block h3:before {
-    background: #1ba1e2;
+    background: #2b5797;
     content: "";
     display: block;
     height: 1px;
@@ -1070,17 +1070,35 @@ p {
   font-size: 0.9rem; }
 
 .feature-block {
-  margin-right: 3%;
+  margin-right: 6%;
   float: right;
-  width: 31.33333%;
-  padding: 2em;
-  background-color: #EAEEF0;
-  border: 1px solid #BBBEC0;
-  min-height: 223px; }
+  width: 29.33333%;
+  display: inline-block; }
   .feature-block:nth-of-type(3n+1) {
     margin-right: 0; }
   .feature-block:nth-of-type(n+4) {
-    margin-top: 3%; }
+    margin-top: 6%; }
+
+.steps > ::before {
+  font-size: 4em;
+  font-weight: 900;
+  font-family: 'Open Sans Hebrew', 'sans-serif';
+  color: #1ba1e2;
+  display: block;
+  text-align: center;
+  border-bottom: 1px solid #1ba1e2;
+  margin-bottom: 0.5em; }
+
+.steps > :nth-child(1)::before {
+  content: "1"; }
+
+.steps > :nth-child(2)::before {
+  content: "2";
+  font-size: 4em; }
+
+.steps > :nth-child(3)::before {
+  content: "3";
+  font-size: 4em; }
 
 .register {
   margin-top: 3rem;

@@ -3,8 +3,8 @@
 
 .title-block{
     h3{
-            margin-top: 1em;
-        color: $light_blue;
+        margin-top: 1em;
+        color: $dark_blue;
         text-align: center;
         position: relative;
         span{
@@ -15,7 +15,7 @@
         }
 
         &:before{
-        background: $light_blue;
+        background: $dark_blue;
           content: "";
           display: block;
           height: 1px;
@@ -33,11 +33,31 @@
 
 
 .feature-block {
-    @include part_of(3,3%);
-    padding: 2em;
-    background-color: $light_grey;
-    border: 1px solid $grey;
-    min-height: 223px;
+    @include part_of(3,6%);
+    display: inline-block;
+}
+
+.steps>::before{
+    font-size: 4em;
+    font-weight: 900;
+    font-family: 'Open Sans Hebrew', 'sans-serif';
+    color: $light_blue;
+    display: block;
+    text-align: center;
+    border-bottom: 1px solid $light_blue;
+    margin-bottom: 0.5em;
+}
+
+.steps>:nth-child(1)::before{
+    content:"1";
+}
+.steps>:nth-child(2)::before{
+    content:"2";
+    font-size: 4em;
+}
+.steps>:nth-child(3)::before{
+    content:"3";
+    font-size: 4em;
 }
 
 .block{

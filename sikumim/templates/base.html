@@ -147,7 +147,35 @@
                 {% block body %}{% endblock %}
             </div>
         </div>
-        <footer><span>2013 © כל הזכויות שמורות לסיכומים.נט</span></footer>
+        <footer>
+        <div class="row">
+            <div class="footer-block">
+                <ul>
+                    <h5>עלינו</h5>
+                    <li><a href="{% url 'index' %}">דף הבית</a></li>
+                    <li><a href="{% url 'about' %}">אודות</a></li>
+                    <li><a href="{% url 'sitemap' %}">מפת האתר</a></li>
+                </ul>
+            </div>
+            <div class="footer-block">
+                <ul>
+                    <h5>עזרה</h5>
+                    <li><a href="#">צור קשר</a></li>
+                    <li><a href="#">שאלות נפוצות</a></li>
+                    <li><a href="#">שלח חוות דעת</a></li>
+                </ul>
+            </div>
+            <div class="footer-block">
+                <ul>
+                    <h5>עקוב אחרינו</h5>
+                    <li><a href="#">facebook</a></li>
+                    <li><a href="#">google+</a></li>
+                    <li><a href="#">twitter</a></li>
+                </ul>
+            </div>
+        </div>
+          <div class="©">2013 © כל הזכויות שמורות לסיכומים.נט</div>
+        </footer>
         <script>
         function ColorLuminance(hex, lum) {
         // validate hex string

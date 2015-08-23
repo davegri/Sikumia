@@ -1,3 +1,4 @@
+@charset "UTF-8";
 @import url(https://fonts.googleapis.com/earlyaccess/opensanshebrew.css);
 @import url(http://fonts.googleapis.com/css?family=Arimo:400,700,400italic,700italic&subset=hebrew);
 html, body, div, span, applet, object, iframe,
@@ -1133,7 +1134,6 @@ html {
 
 /* typography */
 body {
-  background: url(../images/bg.png);
   color: #37474f;
   font-size: 12px;
   font-family: 'Arimo', 'sans-serif';
@@ -1358,7 +1358,7 @@ blockquote {
   border: 1px solid #007ea7; }
 
 /* skeleton styles */
-.container {
+.container, footer .row {
   margin: 0 auto;
   padding: 0 1%;
   max-width: 1024px; }
@@ -1458,8 +1458,7 @@ header {
   padding: 1em;
   display: table;
   width: 100%;
-  text-align: left;
-  border: 1px solid #BBBEC0; }
+  text-align: left; }
   .karma-bar .call-to-action-text {
     text-align: right;
     display: table-cell;
@@ -1555,26 +1554,49 @@ html, body {
 .page-wrap {
   min-height: 100%;
   /* equal to footer height */
-  margin-bottom: -60px; }
+  margin-bottom: -240px; }
 
 .page-wrap:after {
   content: "";
   display: block; }
 
 footer, .page-wrap:after {
-  height: 60px; }
+  height: 240px; }
 
 footer {
+  padding-top: 1em;
   margin-top: 4%;
-  display: table;
-  width: 100%;
   color: white;
   background-color: #1ba1e2;
-  text-align: center; }
-  footer span {
-    font-size: 1.5em;
-    display: table-cell;
-    vertical-align: middle; }
+  font-size: 1.5em; }
+  footer .© {
+    text-align: center;
+    padding: 1em 0em;
+    background-color: #34b5e9;
+    width: 100%;
+    margin-top: 2rem; }
+  footer .row .footer-block {
+    margin-right: 6%;
+    float: right;
+    width: 29.33333%; }
+    footer .row .footer-block:nth-of-type(3n+1) {
+      margin-right: 0; }
+    footer .row .footer-block:nth-of-type(n+4) {
+      margin-top: 6%; }
+    footer .row .footer-block h5 {
+      border-bottom: 1px solid white;
+      margin-bottom: 0.5em; }
+    footer .row .footer-block li a {
+      display: block;
+      color: white;
+      padding: 0.3em;
+      -webkit-transition: .1s all linear;
+      -moz-transition: .1s all linear;
+      -o-transition: .1s all linear;
+      transition: .1s all linear; }
+    footer .row .footer-block li:hover a {
+      background-color: white;
+      color: #2b5797; }
 
 /* colors */
 .block {

@@ -26,7 +26,7 @@ html {
 /* typography */
 
 body {
-    background: url(../images/bg.png);
+    //background: url(../images/bg.png);
     color: $dark_grey;
     font-size: 12px;
     font-family: 'Arimo', 'sans-serif';
@@ -340,7 +340,6 @@ blockquote {
 
 .header-container{
     background-color: $light_blue;
-
 }
 
 header {
@@ -465,7 +464,6 @@ header {
     display: table;
     width: 100%;
     text-align: left;
-    border: 1px solid $grey;
     .call-to-action-text{
         text-align: right;
         display: table-cell;
@@ -602,27 +600,56 @@ html, body {
 .page-wrap {
   min-height: 100%;
   /* equal to footer height */
-  margin-bottom: -60px; 
+  margin-bottom: -240px; 
 }
 .page-wrap:after {
   content: "";
   display: block;
 }
 footer, .page-wrap:after {
-  height: 60px; 
+  height: 240px; 
 }
 
-footer {
+footer{
+    padding-top: 1em;
     margin-top: $gutter_percent*4;
-    display: table;
-    width: 100%;
     color: white;
     background-color: $light_blue;
-    text-align: center;
-    span{
     font-size: 1.5em;
-    display: table-cell;
-    vertical-align: middle;
+    .©{
+    text-align: center;
+    padding: 1em 0em;
+    background-color: $light_blue_highlight;
+    width: 100%;
+    margin-top: 2rem;
+    }
+    .row{
+        @extend .container;
+        .footer-block{
+        @include part_of(3,6%);
+        h5{
+            border-bottom: 1px solid white;
+            margin-bottom: 0.5em;
+        }
+        li{
+            a{
+                display:block;
+                color: white;
+                padding: 0.3em;
+                -webkit-transition: .1s all linear;
+-moz-transition: .1s all linear;
+-o-transition: .1s all linear;
+transition: .1s all linear;    
+            }
+            &:hover{
+                a{
+                    background-color: white;
+                    color: $dark_blue;
+                }
+                
+            }
+        }
+        }
     }
 }
 
