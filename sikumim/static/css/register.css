@@ -1140,6 +1140,9 @@ body {
   font-weight: 400;
   line-height: 1.6; }
 
+p {
+  font-size: 1.2em; }
+
 h2, h3, h4, h5 {
   font-family: 'Open Sans Hebrew', 'sans-serif'; }
 
@@ -1160,6 +1163,25 @@ h5 {
 
 strong {
   font-weight: bold; }
+
+.title-block h3 {
+  margin-top: 1em;
+  color: #2b5797;
+  text-align: center;
+  position: relative; }
+  .title-block h3 span {
+    background: #fff;
+    padding: 0 15px;
+    position: relative;
+    z-index: 1; }
+  .title-block h3:before {
+    background: #2b5797;
+    content: "";
+    display: block;
+    height: 1px;
+    position: absolute;
+    top: 50%;
+    width: 100%; }
 
 /* default element styles */
 input, .button, input[type="submit"], .call-to-action {

@@ -14,6 +14,14 @@ ALLOWED_HOSTS = ['*']
 
 STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
 
+# mailgun
+
+EMAIL_USE_TLS = True
+EMAIL_HOST = 'smtp.mailgun.org'
+EMAIL_HOST_USER = 'postmaster@sikumia.co.il'
+EMAIL_HOST_PASSWORD = os.environ['MAILGUN_PASSWORD']
+EMAIL_PORT = 587
+
 # memcache
 os.environ['MEMCACHE_SERVERS'] = os.environ.get('MEMCACHIER_SERVERS', '').replace(',', ';')
 os.environ['MEMCACHE_USERNAME'] = os.environ.get('MEMCACHIER_USERNAME', '')

@@ -1,36 +1,9 @@
 @import "colors";
 @import "grid_system";
 
-.title-block{
-    h3{
-        margin-top: 1em;
-        color: $dark_blue;
-        text-align: center;
-        position: relative;
-        span{
-            background: #fff;
-            padding: 0 15px;
-            position: relative;
-            z-index: 1;
-        }
-
-        &:before{
-        background: $dark_blue;
-          content: "";
-          display: block;
-          height: 1px;
-          position: absolute;
-        top: 50%;
-          width: 100%;
-        }
-    }
-}
-
     p{
         font-size: 0.9rem;
     }
-
-
 
 .feature-block {
     @include part_of(3,6%);

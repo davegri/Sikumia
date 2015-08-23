@@ -1047,25 +1047,6 @@
   height: 0;
   visibility: hidden; }
 
-.title-block h3 {
-  margin-top: 1em;
-  color: #2b5797;
-  text-align: center;
-  position: relative; }
-  .title-block h3 span {
-    background: #fff;
-    padding: 0 15px;
-    position: relative;
-    z-index: 1; }
-  .title-block h3:before {
-    background: #2b5797;
-    content: "";
-    display: block;
-    height: 1px;
-    position: absolute;
-    top: 50%;
-    width: 100%; }
-
 p {
   font-size: 0.9rem; }
 
