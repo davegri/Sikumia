@@ -66,7 +66,7 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'django.middleware.security.SecurityMiddleware',
-    'django.middleware.common.BrokenLinkEmailsMiddleware.'
+    'django.middleware.common.BrokenLinkEmailsMiddleware'
 )
 
 ROOT_URLCONF = 'sikumim.urls'
