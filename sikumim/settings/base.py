@@ -52,6 +52,8 @@ INSTALLED_APPS = (
     'allauth.socialaccount.providers.facebook',
     'debug_toolbar',
     'captcha',
+    'django.contrib.sitemaps',
+    'robots'
 )
 
 SITE_ID = 1

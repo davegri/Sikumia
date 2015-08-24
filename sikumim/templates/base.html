@@ -73,11 +73,12 @@
                                 <form id='logout_form' method="post" action="{% url 'logout' %}">
                                     {% csrf_token %}
                                     <h4 class="welcome_message">ברוך הבא <strong>{{ user.username }}</strong></h4>
+                                    <div class="panel-actions">
                                     <input type="submit" id="logout" name="logout" value="התנתק">
                                     <a href='{% url 'profile' user.pk %}' class="button">פרופיל</a>
                                     <a href='{% url 'settings' user.pk %}' class="button">הגדרות</a>
                                     {% if user.is_staff %}<a href='/admin' class="button">פאנל ניהול</a>{% endif %}
-                                    
+                                    </div>
                                 </form>
                             {% else %}
                                 <form id="login_form" method="post" action='{% url 'login' %}'>

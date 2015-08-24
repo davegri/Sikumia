@@ -1083,24 +1083,26 @@
       header .panel-wrapper .panel {
         width: 100%;
         padding: 2em !important; }
-        header .panel-wrapper .panel form {
+        header .panel-wrapper .panel #login_form {
           width: 57.91667%;
           display: inline-block; }
-          header .panel-wrapper .panel form input[type="text"], header .panel-wrapper .panel form input[type="password"] {
+          header .panel-wrapper .panel #login_form input[type="text"], header .panel-wrapper .panel #login_form input[type="password"] {
             margin: 0;
             margin-right: 1.72662%;
             width: 34.60432%;
             float: right; }
-          header .panel-wrapper .panel form input[type="text"] {
+          header .panel-wrapper .panel #login_form input[type="text"] {
             margin-right: 0; }
-          header .panel-wrapper .panel form input[type="submit"] {
+          header .panel-wrapper .panel #login_form input[type="submit"] {
             margin-right: 1.72662%;
             width: 27.33813%; }
-          header .panel-wrapper .panel form .lock {
+          header .panel-wrapper .panel #login_form .lock {
             background-repeat: no-repeat;
             width: 22.2px !important;
             height: 31.2px !important;
             background-size: 22.2px 31.2px; }
+        header .panel-wrapper .panel .logout_form {
+          width: 100%; }
       header .panel-wrapper .social-logins {
         width: 32.66667%;
         float: left;
@@ -1190,13 +1192,13 @@
     .subsections [class^="part-of-"]:nth-of-type(n+2) {
       margin-top: 1%; }
 
-  header .panel-wrapper .panel form {
+  header .panel-wrapper .panel #login_form {
     margin-right: 1%;
     float: right;
     width: 100%; }
-    header .panel-wrapper .panel form:nth-of-type(1n+1) {
+    header .panel-wrapper .panel #login_form:nth-of-type(1n+1) {
       margin-right: 0; }
-    header .panel-wrapper .panel form:nth-of-type(n+2) {
+    header .panel-wrapper .panel #login_form:nth-of-type(n+2) {
       margin-top: 1%; }
   header .panel-wrapper .panel .social-logins {
     margin-top: 1em !important;
@@ -1223,7 +1225,10 @@
         margin-top: 2%; }
 
   .title-block h3:before {
-    display: none; } }
+    display: none; }
+
+  header .panel-wrapper .panel form .panel-actions > * {
+    width: 32.66667%; } }
 /* mobile layout */
 /* @media screen and (-webkit-min-device-pixel-ratio: 1.5) and (min-resolution: 144dpi) and (orientation: portrait) {
      .part-of-4,.part-of-3,.part-of-5,.part-of-6{

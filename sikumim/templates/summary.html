@@ -16,6 +16,7 @@
 			<div class='options-bar'>
 				<div class="rating-module">
 					<h4>מה אתה חושב על הסיכום הזה?</h4>
+					<div class="rating-buttons">
 					{% with summary.users_rated_positive.all as users_rated_positive  %}
 					<a class='button positive {% if user in users_rated_positive %}selected{% endif %} '>
 					אהבתי  ({{ users_rated_positive | length }})
@@ -26,6 +27,7 @@
 					לא משהו  ({{ users_rated_negative | length }})
 					</a>
 					{% endwith %}
+					</div>
 				</div>
 				<div class="favorites-module">
 				<a href="#comments" class="secondary-button" >לתגובות</a>
@@ -76,6 +78,5 @@
 	<script>
 		var id = {{ summary.id }};
 		var url = {% url 'rate_summary' %} ;
-
 	</script>
 	{% endblock %}

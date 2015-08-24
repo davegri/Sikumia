@@ -58,7 +58,15 @@ $one_col_width: (100 - $gutter_percent * ($col_number - 1)) / $col_number;
 }
 
 
-
+@mixin clearfix(){
+    &:after{
+    clear: both;
+    content: ".";
+    display: block;
+    height: 0;
+    visibility: hidden;
+    }
+}
 
 .row:after {
     clear: both;

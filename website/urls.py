@@ -8,6 +8,14 @@ from . import views
 
 from website.forms import CustomPasswordResetForm, CustomSetPasswordForm
 
+from django.contrib.sitemaps.views import sitemap
+from website.sitemaps import SummarySitemap
+
+
+sitemaps = {
+    'summaries': SummarySitemap()
+}
+
 urlpatterns = [
     url(r'^$', views.index, name='index'),
     url(r'^accounts/', include('allauth.urls')),
@@ -37,7 +45,9 @@ urlpatterns = [
     url(r'^leaderboard/$', views.leaderboard, name='leaderboard'),
     url(r'^get_categories/(?P<subject_id>\d+)/$', views.get_categories, name='get_categories'),
     url(r'^get_subcategories/(?P<category_id>\d+)/$', views.get_subcategories, name='get_subcategories'),
-    url(r'^robots\.txt$', TemplateView.as_view(template_name="robots.txt")),
+    url(r'^sitemap\.xml$', sitemap, {'sitemaps': sitemaps},
+    name='django.contrib.sitemaps.views.sitemap'),
+    url(r'^robots\.txt$', include('robots.urls')),
     url(r'^google2ddce39a89b448a8.html$', lambda r: HttpResponse("google-site-verification: google2ddce39a89b448a8.html", content_type="text/plain")),
 
 ]

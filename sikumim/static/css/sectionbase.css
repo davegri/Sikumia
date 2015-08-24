@@ -2248,8 +2248,10 @@ input, .button, input[type="submit"], .call-to-action {
   background-color: #2b5797;
   padding: 0.5em 1em 0.5em 1em;
   box-shadow: 0px 5px 0px 0px #224679;
+  margin-bottom: 5px;
   border-radius: 3px;
-  line-height: 1.5em; }
+  line-height: 1.5em;
+  text-align: center; }
   .button:hover, input[type="submit"]:hover, .call-to-action:hover {
     background-color: #3765a8;
     color: white;
@@ -2263,7 +2265,8 @@ input, .button, input[type="submit"], .call-to-action {
   padding: 0.5em 1em 0.5em 1em;
   background-color: #0e5171;
   color: white;
-  font-size: 1.3em; }
+  font-size: 1.3em;
+  text-align: center; }
   .secondary-button:hover {
     background-color: #106188; }
 
@@ -2413,7 +2416,7 @@ blockquote {
   font-size: 1.2em;
   padding: 1.2em 1.7em;
   padding-left: 20%;
-  margin-bottom: 1em;
+  margin-top: 1em;
   border-radius: 3px 3px 3px 3px; }
 
 .success-alert {
@@ -2431,7 +2434,7 @@ blockquote {
 /* skeleton styles */
 .container, footer .row {
   margin: 0 auto;
-  padding: 0 1%;
+  padding: 0 4%;
   max-width: 1024px; }
 
 .header-container {

@@ -28,7 +28,7 @@ $.ajaxSetup({
     }
 });
 
-	$(document).ready(function() {
+$(document).ready(function() {
 	$('a.positive').click(function(){
 		if($('a.negative').hasClass('selected')){
 			$( "a.negative" ).trigger( "click" );
