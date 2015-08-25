@@ -2,24 +2,19 @@
 from __future__ import unicode_literals
 
 from django.db import models, migrations
+import django.utils.timezone
 import ckeditor.fields
 import adminsortable.fields
 from django.conf import settings
-import django.utils.timezone
 
 
 class Migration(migrations.Migration):
-
-    dependencies = [
-        ('auth', '0007_auto_20150815_1454'),
-        migrations.swappable_dependency(settings.AUTH_USER_MODEL),
-    ]
 
     operations = [
         migrations.CreateModel(
             name='Category',
             fields=[
-                ('id', models.AutoField(verbose_name='ID', primary_key=True, auto_created=True, serialize=False)),
+                ('id', models.AutoField(verbose_name='ID', serialize=False, primary_key=True, auto_created=True)),
                 ('order', models.PositiveIntegerField(db_index=True, default=1, editable=False)),
                 ('name', models.CharField(max_length=100)),
                 ('hebrew_name', models.CharField(max_length=100)),
@@ -32,7 +27,7 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='Comment',
             fields=[
-                ('id', models.AutoField(verbose_name='ID', primary_key=True, auto_created=True, serialize=False)),
+                ('id', models.AutoField(verbose_name='ID', serialize=False, primary_key=True, auto_created=True)),
                 ('content', models.TextField(max_length=1000)),
                 ('date_created', models.DateTimeField(auto_now_add=True)),
                 ('date_edited', models.DateTimeField(auto_now=True)),
@@ -41,7 +36,7 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='Subcategory',
             fields=[
-                ('id', models.AutoField(verbose_name='ID', primary_key=True, auto_created=True, serialize=False)),
+                ('id', models.AutoField(verbose_name='ID', serialize=False, primary_key=True, auto_created=True)),
                 ('order', models.PositiveIntegerField(db_index=True, default=1, editable=False)),
                 ('name', models.CharField(max_length=100)),
                 ('hebrew_name', models.CharField(max_length=100)),
@@ -55,7 +50,7 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='Subject',
             fields=[
-                ('id', models.AutoField(verbose_name='ID', primary_key=True, auto_created=True, serialize=False)),
+                ('id', models.AutoField(verbose_name='ID', serialize=False, primary_key=True, auto_created=True)),
                 ('order', models.PositiveIntegerField(db_index=True, default=1, editable=False)),
                 ('name', models.CharField(max_length=100)),
                 ('hebrew_name', models.CharField(max_length=100)),
@@ -70,7 +65,7 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='Summary',
             fields=[
-                ('id', models.AutoField(verbose_name='ID', primary_key=True, auto_created=True, serialize=False)),
+                ('id', models.AutoField(verbose_name='ID', serialize=False, primary_key=True, auto_created=True)),
                 ('title', models.CharField(max_length=128)),
                 ('content', ckeditor.fields.RichTextField()),
                 ('date_created', models.DateTimeField(default=django.utils.timezone.now)),
@@ -83,13 +78,13 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='UserProfile',
             fields=[
-                ('user', models.OneToOneField(primary_key=True, serialize=False, to=settings.AUTH_USER_MODEL, related_name='profile')),
+                ('user', models.OneToOneField(serialize=False, related_name='profile', primary_key=True, to=settings.AUTH_USER_MODEL)),
             ],
         ),
         migrations.CreateModel(
             name='View',
             fields=[
-                ('id', models.AutoField(verbose_name='ID', primary_key=True, auto_created=True, serialize=False)),
+                ('id', models.AutoField(verbose_name='ID', serialize=False, primary_key=True, auto_created=True)),
                 ('ip', models.CharField(max_length=40)),
                 ('session', models.CharField(max_length=40)),
                 ('date_created', models.DateTimeField(default=django.utils.timezone.now)),
@@ -119,17 +114,17 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='summary',
             name='users_bookmarked',
-            field=models.ManyToManyField(to=settings.AUTH_USER_MODEL, blank=True, related_name='summaries_bookmarked'),
+            field=models.ManyToManyField(related_name='summaries_bookmarked', blank=True, to=settings.AUTH_USER_MODEL),
         ),
         migrations.AddField(
             model_name='summary',
             name='users_rated_negative',
-            field=models.ManyToManyField(to=settings.AUTH_USER_MODEL, blank=True, related_name='summaries_rated_negative'),
+            field=models.ManyToManyField(related_name='summaries_rated_negative', blank=True, to=settings.AUTH_USER_MODEL),
         ),
         migrations.AddField(
             model_name='summary',
             name='users_rated_positive',
-            field=models.ManyToManyField(to=settings.AUTH_USER_MODEL, blank=True, related_name='summaries_rated_positive'),
+            field=models.ManyToManyField(related_name='summaries_rated_positive', blank=True, to=settings.AUTH_USER_MODEL),
         ),
         migrations.AddField(
             model_name='comment',
