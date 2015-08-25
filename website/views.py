@@ -312,10 +312,6 @@ def rate_summary(request):
     rate_type = request.POST.get('type')
     rate_action = request.POST.get('action')
     summary = get_object_or_404(Summary, pk=summary_id)
-    thisUserPositiveRatings = summary.users_rated_positive.filter(
-        id=request.user.id).count()
-    thisUserNegativeRatings = summary.users_rated_negative.filter(
-        id=request.user.id).count()
     ratings_to_return = -1
     if rate_action == 'rate':
         if rate_type == 'positive':
@@ -326,12 +322,11 @@ def rate_summary(request):
             ratings_to_return = summary.users_rated_negative.count()
         else:
             return HttpResponse("RATING ERROR: rate_type must be either \"positive\" or \"negative\" ")
-
     elif rate_action == 'undo-rate':
-        if rate_type == 'positive' and thisUserPositiveRatings == 1:
+        if rate_type == 'positive' and summary.users_rated_positive.filter(id=request.user.id).exists():
             summary.users_rated_positive.remove(request.user)
             ratings_to_return = summary.users_rated_positive.count()
-        elif rate_type == 'negative' and thisUserNegativeRatings == 1:
+        elif rate_type == 'negative' and summary.users_rated_negative.filter(id=request.user.id).exists():
             summary.users_rated_negative.remove(request.user)
             ratings_to_return = summary.users_rated_negative.count()
         else:
