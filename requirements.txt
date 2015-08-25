@@ -16,6 +16,7 @@ dodge==0.1.9
 gunicorn==19.3.0
 html5lib==0.999999
 mammoth==0.3.18
+newrelic==2.54.0.41
 oauthlib==1.0.0
 parsimonious==0.5
 psycopg2==2.6.1

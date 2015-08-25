@@ -1,1 +1,1 @@
-web: gunicorn sikumim.wsgi
+web: newrelic-admin run-program gunicorn sikumim.wsgi
