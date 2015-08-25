@@ -331,6 +331,19 @@ def rate_summary(request):
             ratings_to_return = summary.users_rated_negative.count()
         else:
             return HttpResponse("RATING ERROR: unkown rating type OR user hasen't rated this summary")
+    elif rate_action == 'change-type':
+        # positive --> negative
+        if rate_type == 'negative' and summary.users_rated_positive.filter(id=request.user.id).exists():
+            summary.users_rated_positive.remove(request.user)
+            summary.users_rated_negative.add(request.user)
+            ratings_to_return = -2
+        # negative --> positive
+        elif rate_type == 'positive' and summary.users_rated_negative.filter(id=request.user.id).exists():
+            summary.users_rated_negative.remove(request.user)
+            summary.users_rated_positive.add(request.user)
+            ratings_to_return = -2
+        else:
+            return HttpResponse("RATING ERROR: unkown rating type OR user hasen't rated this summary")        
     else:
         return HttpResponse("RATING ERROR: bad rate_action")
 
