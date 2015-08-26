@@ -135,8 +135,8 @@ CKEDITOR_CONFIGS = {
     'default': {
          'toolbar': [[ 'Cut','Copy','Paste','PasteText','PasteFromWord','-','Undo','Redo' ],
                     [ 'Bold','Italic','Underline','Strike','Subscript','Superscript','-','RemoveFormat' ],
-                    [ 'NumberedList','BulletedList','-','Outdent','Indent','-','Blockquote','CreateDiv','-','JustifyLeft','JustifyCenter','JustifyRight','JustifyBlock','-','BidiLtr','BidiRtl' ],
-                    [ 'Image','Table','HorizontalRule','Smiley','SpecialChar','PageBreak' ],
+                    [ 'NumberedList','BulletedList','-','Outdent','Indent','-','Blockquote','-','JustifyLeft','JustifyCenter','JustifyRight','JustifyBlock','-','BidiLtr','BidiRtl' ],
+                    [ 'Image','Table','HorizontalRule','SpecialChar','PageBreak' ],
                     [ 'Styles','Format','Font','FontSize' ],
                     [ 'TextColor','BGColor' ]],
         'contentsLangDirection': 'rtl',
@@ -171,8 +171,8 @@ SOCIALACCOUNT_FORMS = {
 
 # recaptcha
 
-RECAPTCHA_PUBLIC_KEY = '6LczPQsTAAAAAAcdDP36MQ7THJX2cx8zdzpc7sMe'
-RECAPTCHA_PRIVATE_KEY = '6LczPQsTAAAAAFrNSDfwpoQYYf_PUzOg6Z2_I45x'
+RECAPTCHA_PUBLIC_KEY = os.environ['RECAPTCHA_PUBLIC_KEY']
+RECAPTCHA_PRIVATE_KEY = os.environ['RECAPTCHA_PRIVATE_KEY']
 NOCAPTCHA = True
 
 # mailgun
