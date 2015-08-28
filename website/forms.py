@@ -92,6 +92,17 @@ class ChangePasswordForm(forms.ModelForm):
 class ChangeEmailForm(forms.Form):
     email = forms.EmailField()
 
+class ContactForm(forms.Form):
+    name = forms.CharField(max_length=50)
+    email = forms.EmailField()
+    subject = forms.CharField(max_length=78)
+    content = forms.CharField(widget=forms.Textarea)
+    def is_valid(self):
+        ret = forms.Form.is_valid(self)
+        for f in self.errors:
+            self.fields[f].widget.attrs.update({'class': 'invalid'})
+        return ret
+
 class SummaryForm(forms.ModelForm):
     new_user = forms.CharField(max_length=30, required=False, label="add as a new user")
     category = forms.ModelChoiceField(queryset=Category.objects.none(), empty_label="בחר מקצוע כדי לבחור נושא")
@@ -138,6 +149,11 @@ class CustomSignupForm(SignupForm):
     def raise_duplicate_email_error(self):
         raise forms.ValidationError("שם משתמש כבר קיים עם כתובת אימייל זאת, נסה להתחבר בראש האתר.")
 
+    def is_valid(self):
+        ret = forms.Form.is_valid(self)
+        for f in self.errors:
+            self.fields[f].widget.attrs.update({'class': 'invalid'})
+        return ret
 
 
 class CustomPasswordResetForm(PasswordResetForm):

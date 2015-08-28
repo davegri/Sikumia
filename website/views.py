@@ -5,7 +5,8 @@ from django.http import HttpResponse
 from django.shortcuts import redirect, get_object_or_404
 from website.models import Summary, View, Subject, Category, Subcategory, UserProfile
 from django.core.paginator import Paginator, InvalidPage, EmptyPage
-from website.forms import UserForm, CommentForm, SearchForm, SummaryForm, EditSummaryForm, CustomSignupForm, ChangePasswordForm, ChangeEmailForm
+from django.core.mail import send_mail
+from website.forms import UserForm, CommentForm, SearchForm, SummaryForm, EditSummaryForm, CustomSignupForm, ChangePasswordForm, ChangeEmailForm, ContactForm
 from django.contrib.auth import authenticate, login as django_login, logout as django_logout
 from django.contrib.auth.models import User
 from django.contrib.auth import update_session_auth_hash
@@ -50,6 +51,29 @@ def index(request):
 def about(request):
     context_dict = {}
     return render(request, 'about.html', context_dict)
+
+def contact(request):
+
+    if request.method == "POST":
+        form = ContactForm(data=request.POST)
+        if form.is_valid():
+            name = request.POST.get("name")
+            user_subject = request.POST.get("subject")
+            subject = "{} (from {})".format(user_subject,name)
+            content = request.POST.get("content")
+            from_email = request.POST.get("email")
+            send_mail(subject, content, from_email, ["contact@sikumia.co.il"], fail_silently=False)
+            messages.add_message(
+                request,messages.SUCCESS,'הודעתך נשלחה בהצלחה')
+            return redirect('contact')
+    else:
+        form = ContactForm()
+
+
+    context_dict = {
+        "form": form,
+    }
+    return render(request, 'contact.html', context_dict)
 
 def sitemap(request):
     context_dict = {}
@@ -456,8 +480,10 @@ def upload(request):
         summary_form = SummaryForm(request.POST)
         subject = request.POST["subject"]
         category = request.POST["category"]
-        summary_form.fields["category"].queryset = Category.objects.filter(subject=subject)
-        summary_form.fields["subcategory"].queryset = Subcategory.objects.filter(category=category)
+        if request.POST["subject"]:
+            summary_form.fields["category"].queryset = Category.objects.filter(subject=subject)
+        if request.POST["category"]:
+            summary_form.fields["subcategory"].queryset = Subcategory.objects.filter(category=category)
         if summary_form.is_valid():
             if throttle(request):
                 return render(request, 'upload.html', {'summary_form': summary_form})

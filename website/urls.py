@@ -9,11 +9,15 @@ from . import views
 from website.forms import CustomPasswordResetForm, CustomSetPasswordForm
 
 from django.contrib.sitemaps.views import sitemap
-from website.sitemaps import SummarySitemap
+from website.sitemaps import SummarySitemap, SubjectSitemap, CategorySitemap, SubcategorySitemap, StaticViewSitemap
 
 
 sitemaps = {
-    'summaries': SummarySitemap()
+    'summaries': SummarySitemap(),
+    'subjcts': SubjectSitemap(),
+    'categories': CategorySitemap(),
+    'subcategory': SubcategorySitemap(),
+    'staticpages': StaticViewSitemap()
 }
 
 urlpatterns = [
@@ -34,6 +38,7 @@ urlpatterns = [
     url(r'^search/$', views.search, name='search'),
     url(r'^upload/$', views.upload, name='upload'),
     url(r'^about/$', views.about, name='about'),
+    url(r'^contact/$', views.contact, name='contact'),
     url(r'^sitemap/$', views.sitemap, name='sitemap'),
     url(r'^leaderboard/$', views.leaderboard, name='leaderboard'),
     url(r'^get_categories/(?P<subject_id>\d+)/$', views.get_categories, name='get_categories'),

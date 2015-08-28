@@ -2313,8 +2313,6 @@ blockquote {
 
 .row {
   margin-top: 1rem; }
-  .row .row {
-    margin-top: 0; }
 
 .summary-header {
   margin-top: 0.3em;

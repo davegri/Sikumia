@@ -8,11 +8,11 @@
     font-size: 1.2em;
     font-weight: bold;
     display:block;
-    margin-bottom: 0.2em;
+    margin-top: 0.2em;
 }
 
-.block form input, .block form select {
-    margin-bottom: 0.4em;
+.block form input, .block form select, .block form textarea {
+    margin-top: 0.4em;
     font-size: 1.5em;
     width:100%;
 }
@@ -21,7 +21,7 @@
     margin-top: 1.5%;
 }
 
-.block form input[type="text"],input[type="password"],input[type="email"] {
+.block form input[type="text"], input[type="password"], input[type="email"], textarea{
     border: 1px solid #B3B3B3;
 }
 
@@ -34,7 +34,7 @@
         color: #D12F19;
         border: 1px solid #FBC2C4;
         display: inline-block;
-        margin-top: 0.2em;
+        margin-top: 0.6em;
         width:100%;
     }
 }

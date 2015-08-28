@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% block title %}
+     צור קשר | סיכומים לבגרות | הסיכומיה
+{% endblock title %}
+{% block head %}
+<link href="{% static 'css/forms.css' %}" rel="stylesheet" type="text/css">
+{% endblock %}
+{% block body %}
+<div class="block-header row">
+    <h2>רוצה לדבר איתנו?</h2>
+    <p></p>
+</div>
+<div class="block">
+    <form id="user_form" method="post" action="/contact/" class="row">
+    {% csrf_token %}
+    <div class="row">
+    <div class="field col-8">
+    <label for="id_name">שם</label>
+    <p>
+        {{ form.name}}
+        {% if form.name.errors %}<span>{{ form.name.errors.as_text|cut:"* " }}</span>{% endif %}
+    </p>
+    </div>
+    <div class="field col-8">
+    <label for="id_email">כתובת אימייל</label>
+    <p>
+        {{ form.email}}
+        {% if form.email.errors %}<span>{{ form.email.errors.as_text|cut:"* " }}</span>{% endif %}
+    </p>
+    </div>
+    <div class="field col-8">
+    <label for="id_subject">נושא</label>
+    <p>
+        {{ form.subject}}
+        {% if form.subject.errors %}<span>{{ form.subject.errors.as_text|cut:"* " }}</span>{% endif %}
+    </p>
+    </div>
+    </div>
+    <div class="field col-24 row">
+    <label for="id_content">מה אתה רוצה להגיד לנו?</label>    
+    <p>
+        {{ form.content}}
+        {% if form.content.errors %}<span>{{ form.content.errors.as_text|cut:"* " }}</span>{% endif %}
+    </p>
+    </div>
+    <input type="submit" name="submit" value="שליחה" class="col-3">
+    
+</div>
+{% endblock %}

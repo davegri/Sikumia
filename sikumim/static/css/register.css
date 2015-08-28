@@ -1264,8 +1264,6 @@ blockquote {
 
 .row {
   margin-top: 1rem; }
-  .row .row {
-    margin-top: 0; }
 
 .summary-header {
   margin-top: 0.3em;
@@ -1631,17 +1629,17 @@ footer {
   font-size: 1.2em;
   font-weight: bold;
   display: block;
-  margin-bottom: 0.2em; }
+  margin-top: 0.2em; }
 
-.block form input, .block form .button, .block form .call-to-action, .block form select {
-  margin-bottom: 0.4em;
+.block form input, .block form .button, .block form .call-to-action, .block form select, .block form textarea {
+  margin-top: 0.4em;
   font-size: 1.5em;
   width: 100%; }
 
 .block form input[type="submit"], .block form [type="submit"].button, .block form [type="submit"].call-to-action {
   margin-top: 1.5%; }
 
-.block form input[type="text"], .block form [type="text"].button, .block form [type="text"].call-to-action, input[type="password"], [type="password"].button, [type="password"].call-to-action, input[type="email"], [type="email"].button, [type="email"].call-to-action {
+.block form input[type="text"], .block form [type="text"].button, .block form [type="text"].call-to-action, input[type="password"], [type="password"].button, [type="password"].call-to-action, input[type="email"], [type="email"].button, [type="email"].call-to-action, textarea {
   border: 1px solid #B3B3B3; }
 
 .invalid {
@@ -1653,7 +1651,7 @@ footer {
     color: #D12F19;
     border: 1px solid #FBC2C4;
     display: inline-block;
-    margin-top: 0.2em;
+    margin-top: 0.6em;
     width: 100%; }
 
 .error-message {

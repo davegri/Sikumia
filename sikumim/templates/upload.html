@@ -10,10 +10,10 @@
     <p></p>
 </div>
 <div class="block">
-    <form method="post" action="/upload/">
         {% if summary_form.errors %}
         <div class="error-alert">אופס! יש בעיה בהלעאת הסיכום לאתר - קרא את הודעות השגיאה מתחת לשדות המסומנים באדום כדי לתקן את הבעיה</div>
         {% endif %}
+    <form method="post" action="/upload/" class="row">
         {% csrf_token %}
         {{ summary_form.media }}
         <h5>{{ summary_form.title.label_tag }}</h5>

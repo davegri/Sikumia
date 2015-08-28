@@ -1,13 +1,11 @@
-<!DOCTYPE html>
-<html>
-<head>
-	<title>ERROR</title>
-</head>
-<body>
-<div>
-	<h2><strong>זה לא אתה, זה אנחנו</strong></h2>
-	<h3>נראה שאתה מנסה לגשת לעמוד שלא קיים!</h3>
-</div>
-</body>
-</html>
+{% extends 'base.html' %}
 
+
+{% block body %}
+    
+<div class="block-header row">
+    <h2>זה לא אתה זה אנחנו!</h2>
+    <h3>אירעה שגיאה בשרת שלנו :( אנחנו עושים מאמצים לתקן את זה בהקדם</h3>
+</div>
+
+{% endblock body %}
