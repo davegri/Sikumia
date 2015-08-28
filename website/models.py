@@ -93,7 +93,7 @@ class Summary(models.Model):
         return self.title
 
     def get_absolute_url(self):
-        return "/subject/%s/%s/%i/" % (self.subject.name, self.category.name, self.id)
+        return reverse('summary', args=[self.subject.name, self.category.name, self.subcategory.name ,self.id])
 
     def get_score(self):
         ups = self.users_rated_positive.count()
