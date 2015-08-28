@@ -9,7 +9,7 @@ import bleach
 from django.dispatch import receiver
 from django.db.models.signals import post_save
 from django.db.models.signals import pre_delete
-
+from django.core.urlresolvers import reverse
 
 
 # monkey patching to make email field unique
@@ -28,7 +28,7 @@ class Subject(Sortable):
         return self.hebrew_name
 
     def get_absolute_url(self):
-        return "/subject/%s/" % (self.name)
+        return reverse('subject', args=[self.name])
 
 
 class Category(Sortable):
@@ -43,7 +43,7 @@ class Category(Sortable):
         return self.hebrew_name
 
     def get_absolute_url(self):
-        return "/subject/%s/%s" % (self.subject.name, self.name)
+        return reverse('category', args=[self.subject.name ,self.name])
 
 
 class Subcategory(Sortable):
@@ -58,7 +58,7 @@ class Subcategory(Sortable):
         return self.hebrew_name
 
     def get_absolute_url(self):
-        return "/subject/%s/%s/%s" % (self.category.subject.name, self.category.name, self.name)
+        return reverse('subcategory', args=[self.category.subject.name, self.category.name, self.name])
 
 
 class SummaryManager(models.Manager):
