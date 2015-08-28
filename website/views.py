@@ -244,7 +244,7 @@ def subcategory(request, subject, category, subcategory):
 
 # summary page
 
-def summary(request, subject, category, summary_id):
+def summary(request, subject, category, subcategory, summary_id):
     try:
         summary = Summary.objects.get(pk=summary_id)
     except Summary.DoesNotExist:
