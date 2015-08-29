@@ -1412,6 +1412,7 @@ header {
     display: table-cell;
     position: relative; }
     header .panel-wrapper .panel {
+      float: left;
       background-color: #34b5e9;
       padding: 1.5em; }
       header .panel-wrapper .panel form {
@@ -1439,10 +1440,6 @@ header {
           display: block;
           margin-left: 10px;
           margin-bottom: 10px; }
-      header .panel-wrapper .panel #logout_form {
-        width: 100%; }
-        header .panel-wrapper .panel #logout_form .panel-actions > * {
-          width: 32.66667%; }
       header .panel-wrapper .panel .social-logins {
         font-size: 1.2em;
         margin-top: 18px;
@@ -1595,12 +1592,6 @@ footer {
   color: white;
   background-color: #1ba1e2;
   font-size: 1.5em; }
-  footer .© {
-    text-align: center;
-    padding: 1em 0em;
-    background-color: #34b5e9;
-    width: 100%;
-    margin-top: 2rem; }
   footer .row .footer-block {
     margin-right: 6%;
     float: right;
@@ -1646,7 +1637,13 @@ footer {
       background-color: white;
       color: #2b5797; }
 
-/* colors */
+.© {
+  text-align: center;
+  color: white;
+  padding: 1em 0em;
+  background-color: #34b5e9;
+  width: 100%; }
+
 .block {
   padding: 2em; }
 

@@ -1096,7 +1096,7 @@ p {
   margin-right: 1%;
   float: right;
   width: 32.66667%;
-  height: 21em; }
+  min-height: 21em; }
   .feature-block:nth-of-type(3n+1) {
     margin-right: 0; }
   .feature-block:nth-of-type(n+4) {

@@ -2,7 +2,7 @@
 @import "colors";
 @media only screen and (max-width: 1050px) {
 
-header{
+header, footer{
 padding: $gutter_percent*4;
 }
 
@@ -24,7 +24,6 @@ padding: 0 $gutter_percent*4;
         .search-box{
             width: $one_col_width * 24 + $gutter_percent * (24 - 1)!important;
             margin-right: 0;
-            margin-top: $gutter_percent*2;
         }
 
         .col-16{
@@ -74,9 +73,12 @@ padding: 0 $gutter_percent*4;
                         background-size: 22.2px 31.2px;
                     }
                 }
-                .logout_form{
-                    width:100%;
-                }
+        #logout_form{
+            width: 100%;
+            .panel-actions > *{
+                @include cols(8);
+            }
+        }
             }
 
             .social-logins{
@@ -119,6 +121,41 @@ padding: 0 $gutter_percent*4;
         @include part_of(1,3%);
         min-height: 0px;
     }
+    .feature-block{
+        @include part_of(1,3%);
+        min-height: 0px;
+        display:table;
+        border-spacing: 2vw;
+        padding: 0;
+        img{
+            vertical-align: middle;
+            display:table-cell;
+            width: 80%;
+        }
+        .text{
+            vertical-align: middle;
+            text-align: right;
+            display:table-cell;
+            width:80%;
+            h4{
+                margin-top: 0;
+            }
+        }
+    }
+}
+
+.karma-bar{
+    .call-to-action-text{
+        display: block;
+        @include cols(24);
+    }
+    .call-to-action{
+        display: inline-block;
+        @include part_of(2,3%);
+        margin-top: 3%;
+        line-height: 50px;
+        height: 60px;
+    }
 }
 
 }
@@ -144,19 +181,7 @@ padding: 0 $gutter_percent*4;
 }
 
 @media only screen and (max-width: 700px) {
-.karma-bar{
-    .call-to-action-text{
-        display: block;
-        @include cols(24);
-    }
-    .call-to-action{
-        display: inline-block;
-        @include part_of(2,3%);
-        margin-top: 3%;
-        line-height: 50px;
-        height: 60px;
-    }
-}
+
 
 
 }
@@ -227,6 +252,33 @@ header{
             form .panel-actions > *{
                 @include cols(8);
             }
+        }
+    }
+}
+
+.row{
+    .search-box{
+        height:auto;
+        border: none;
+        &.focused{
+            outline: none;
+        }
+        input[type="text"]{
+            width: 100%;
+            margin-bottom: 1em;
+            padding: 1em;
+            border: 1px solid $grey;
+            &:focus{
+            outline: 2px solid $dark-blue;
+        }
+        }
+        select, input[type="submit"]{
+            width:49%;
+        }
+        select{
+            margin-left: 2%;
+            padding: 0.94em;
+            height:100%;
         }
     }
 }

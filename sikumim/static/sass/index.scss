@@ -52,7 +52,7 @@
     color: white;
     padding: 1.3em;
     @include part_of(3);
-    height: 21em;
+    min-height: 21em;
     h4{
         margin-top: 1em;
     }

@@ -396,8 +396,9 @@ header {
         vertical-align: middle;
         display: table-cell;
         position: relative;
-
         .panel{
+                    float: left;
+
     background-color: $light_blue_highlight;
             padding: 1.5em;
         form {
@@ -437,12 +438,7 @@ header {
             }
         }
 
-        #logout_form{
-            width: 100%;
-            .panel-actions > *{
-                @include cols(8);
-            }
-        }
+
 
          .social-logins{
             font-size: 1.2em;
@@ -650,13 +646,6 @@ footer{
     color: white;
     background-color: $light_blue;
     font-size: 1.5em;
-    .©{
-    text-align: center;
-    padding: 1em 0em;
-    background-color: $light_blue_highlight;
-    width: 100%;
-    margin-top: 2rem;
-    }
     .row{
         @extend .container;
         .footer-block{
@@ -713,5 +702,10 @@ footer{
         }
     }
 }
-
-/* colors */
+    .©{
+    text-align: center;
+    color:white;
+    padding: 1em 0em;
+    background-color: $light_blue_highlight;
+    width: 100%;
+    }
