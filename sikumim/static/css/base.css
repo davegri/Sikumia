@@ -1617,6 +1617,28 @@ footer {
       -moz-transition: .1s all linear;
       -o-transition: .1s all linear;
       transition: .1s all linear; }
+    footer .row .footer-block li .facebook-link, footer .row .footer-block li .google-link {
+      text-align: left;
+      padding: 0.3em 0.6em;
+      border-radius: 3px;
+      color: white; }
+    footer .row .footer-block li .facebook-link {
+      background-color: #3b5998;
+      background: url(../images/facebook.svg) no-repeat 93% center;
+      background-color: #3b5998;
+      background-size: 28px 28px; }
+      footer .row .footer-block li .facebook-link:hover {
+        background-color: #4f6aa2;
+        color: white; }
+    footer .row .footer-block li .google-link {
+      background-color: #d34836;
+      background: url(../images/google.svg) no-repeat 93% center;
+      background-color: #d34836;
+      background-size: 28px 28px;
+      margin-top: 0.5em; }
+      footer .row .footer-block li .google-link:hover {
+        background-color: #d75a4a;
+        color: white; }
     footer .row .footer-block li:hover a {
       background-color: white;
       color: #2b5797; }

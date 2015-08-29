@@ -465,11 +465,11 @@ header {
                     border-radius:3px;
                     color: white;
                     background: url(../images/google.svg) no-repeat 7% center;
-                    background-color: #d34836;
+                    background-color: $google-orange;
                     background-size: 28px 28px;
                     padding: 1em 2em 1em 3.5em;
                     &:hover{
-                    background-color: tint(#d34836, 90%);
+                    background-color: tint($google-orange, 90%);
                     color:white;
                     }
                 }
@@ -477,11 +477,11 @@ header {
                     border-radius:3px;
                     color: white;
                     background: url(../images/facebook.svg) no-repeat 7% center;
-                    background-color: #3b5998;
+                    background-color: $facebook-blue;
                     background-size: 28px 28px;
                     padding: 1em 2em 1em 3.5em;
                                         &:hover{
-                    background-color: tint(#3b5998, 90%);
+                    background-color: tint($facebook-blue, 90%);
                     color:white;
                     }
                 }
@@ -665,9 +665,36 @@ footer{
                 color: white;
                 padding: 0.3em;
                 -webkit-transition: .1s all linear;
--moz-transition: .1s all linear;
--o-transition: .1s all linear;
-transition: .1s all linear;    
+                -moz-transition: .1s all linear;
+                -o-transition: .1s all linear;
+                transition: .1s all linear;    
+            }
+            .facebook-link, .google-link{
+                text-align: left;
+                padding: 0.3em 0.6em;
+                border-radius:3px;
+                color: white;
+            }
+            .facebook-link{
+                background-color: $facebook-blue;
+                background: url(../images/facebook.svg) no-repeat 93% center;
+                background-color: $facebook-blue;
+                background-size: 28px 28px;
+                &:hover{
+                background-color: tint($facebook-blue, 90%);
+                color:white;
+                }
+            }
+            .google-link{
+                background-color: $google-orange;
+                background: url(../images/google.svg) no-repeat 93% center;
+                background-color: $google-orange;
+                background-size: 28px 28px;
+                &:hover{
+                background-color: tint($google-orange, 90%);
+                color:white;
+                }
+                margin-top: 0.5em;
             }
             &:hover{
                 a{

@@ -1,3 +1,4 @@
+
 $light_grey:#EAEEF0;
 $light_grey_shadow:#D3D6D8;
 $grey: #BBBEC0;
@@ -20,6 +21,8 @@ $gold: #f3b215;
 $silver: #C0C0C0;
 $bronze: #CD7F32;
 
+$facebook-blue: #3b5998;
+$google-orange: #d34836;
 @function tint($color, $percentage) {
   @return mix($color, white, $percentage);
 }
