@@ -36,6 +36,7 @@ body {
 
 p{
     font-size: 1.2em;
+    margin-top: 0.2em;
 }
 
 h2, h3, h4, h5 {
@@ -362,7 +363,6 @@ blockquote {
 
 .container {
     margin: 0 auto;
-    padding: 0 $gutter_percent*4;
     max-width: 1024px;
 }
 
@@ -376,7 +376,7 @@ header {
     color: white;
     overflow: hidden;
     width: 100%;
-    padding: 3em 1%;
+    padding: 3em 0em;
     margin: 0 auto;
     .logo_wrapper {
         display: table-cell;
@@ -399,7 +399,6 @@ header {
 
         .panel{
     background-color: $light_blue_highlight;
-        float: left;
             padding: 1.5em;
         form {
         position: relative;
@@ -435,6 +434,13 @@ header {
                 display: block;
                 margin-left: 10px;
                 margin-bottom: 10px;
+            }
+        }
+
+        #logout_form{
+            width: 100%;
+            .panel-actions > *{
+                @include cols(8);
             }
         }
 

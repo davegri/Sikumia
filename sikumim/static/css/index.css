@@ -1050,14 +1050,14 @@
 p {
   font-size: 0.9rem; }
 
-.feature-block {
+.step-block {
   margin-right: 6%;
   float: right;
   width: 29.33333%;
   display: inline-block; }
-  .feature-block:nth-of-type(3n+1) {
+  .step-block:nth-of-type(3n+1) {
     margin-right: 0; }
-  .feature-block:nth-of-type(n+4) {
+  .step-block:nth-of-type(n+4) {
     margin-top: 6%; }
 
 .steps > ::before {
@@ -1086,5 +1086,25 @@ p {
   text-align: center; }
   .register .call-to-action {
     text-align: center; }
+
+.feature-block {
+  text-align: center;
+  background-color: #1ba1e2;
+  border: 1px solid #1681B5;
+  color: white;
+  padding: 1.3em;
+  margin-right: 1%;
+  float: right;
+  width: 32.66667%;
+  height: 21em; }
+  .feature-block:nth-of-type(3n+1) {
+    margin-right: 0; }
+  .feature-block:nth-of-type(n+4) {
+    margin-top: 1%; }
+  .feature-block h4 {
+    margin-top: 1em; }
+  .feature-block img {
+    display: block;
+    margin: 0 auto; }
 
 /*# sourceMappingURL=index.css.map */

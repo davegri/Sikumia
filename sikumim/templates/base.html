@@ -72,7 +72,6 @@
                             {% if user.is_authenticated %}
                                 <form id='logout_form' method="post" action="{% url 'logout' %}">
                                     {% csrf_token %}
-                                    <h4 class="welcome_message">ברוך הבא <strong>{{ user.username }}</strong></h4>
                                     <div class="panel-actions">
                                     <input type="submit" id="logout" name="logout" value="התנתק">
                                     <a href='{% url 'profile' user.pk %}' class="button">פרופיל</a>
@@ -109,23 +108,10 @@
                 </header>
             </div>
             <div class="container">
-        {% if user.is_authenticated %}
-                <div class="row col-24 karma-bar">
-                <div class="call-to-action-text">
-                <h3>כרגע יש לך <strong>{{ user.profile.karma }}</strong> קארמה</h3>
-                <h4>הוסף סיכומים איכותיים לאתר והגדל את הקארמה שלך</h4>
-                </div>
-                    <a class="call-to-action" href="{% url 'upload' %}">
-                        הוספת סיכום לאתר
-                    </a>
-                    <a class="call-to-action" href="{% url 'leaderboard' %}">
-                        טבלת המובילים
-                    </a>
-                </div>
-                {% endif %}
-                            <div class="row">
+
+                    <div class="row">
                     <nav class="col-24">
-                        <ol class="row">
+                        <ol>
                             {% for subject in subjects  %}
                                 <li class='part-of-{{ subjects | length }}'>
                                     <a  href="{{ subject.get_absolute_url }}"  style="background-color: #{{subject.color}}" class="nav-button">{{ subject.hebrew_name }}</a>

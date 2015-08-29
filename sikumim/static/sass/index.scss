@@ -5,7 +5,7 @@
         font-size: 0.9rem;
     }
 
-.feature-block {
+.step-block {
     @include part_of(3,6%);
     display: inline-block;
 }
@@ -44,4 +44,22 @@
     text-align: center;
 }
 } 
+
+.feature-block{
+    text-align: center;
+    background-color: $light_blue;
+    border: 1px solid $light_blue_shadow;
+    color: white;
+    padding: 1.3em;
+    @include part_of(3);
+    height: 21em;
+    h4{
+        margin-top: 1em;
+    }
+    img{
+        display:block;
+        margin: 0 auto;
+    }
+}
+
 

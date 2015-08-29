@@ -3,7 +3,11 @@
 @media only screen and (max-width: 1050px) {
 
 header{
-    padding: 3em;
+padding: $gutter_percent*4;
+}
+
+.container{
+padding: 0 $gutter_percent*4;
 }
 
 }
@@ -48,7 +52,7 @@ header{
             overflow: auto;
             .panel{
                 width: 100%;
-                padding:2em!important;
+                padding: $gutter_percent*4;
                 #login_form{
                     @include cols(14);
                     display: inline-block;
@@ -111,7 +115,7 @@ header{
 
 
 .row{
-    .feature-block{
+    .step-block{
         @include part_of(1,3%);
         min-height: 0px;
     }

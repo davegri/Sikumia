@@ -1049,7 +1049,10 @@
 
 @media only screen and (max-width: 1050px) {
   header {
-    padding: 3em; } }
+    padding: 4%; }
+
+  .container {
+    padding: 0 4%; } }
 @media only screen and (max-width: 930px) {
   .row nav {
     margin-top: 0; }
@@ -1082,7 +1085,7 @@
       overflow: auto; }
       header .panel-wrapper .panel {
         width: 100%;
-        padding: 2em !important; }
+        padding: 4%; }
         header .panel-wrapper .panel #login_form {
           width: 57.91667%;
           display: inline-block; }
@@ -1136,14 +1139,14 @@
       margin: 0;
       width: 75%; }
 
-  .row .feature-block {
+  .row .step-block {
     margin-right: 3%;
     float: right;
     width: 100%;
     min-height: 0px; }
-    .row .feature-block:nth-of-type(1n+1) {
+    .row .step-block:nth-of-type(1n+1) {
       margin-right: 0; }
-    .row .feature-block:nth-of-type(n+2) {
+    .row .step-block:nth-of-type(n+2) {
       margin-top: 3%; } }
 @media only screen and (max-width: 775px) {
   .regular-register {

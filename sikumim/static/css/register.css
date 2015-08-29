@@ -1141,7 +1141,8 @@ body {
   line-height: 1.6; }
 
 p {
-  font-size: 1.2em; }
+  font-size: 1.2em;
+  margin-top: 0.2em; }
 
 h2, h3, h4, h5 {
   font-family: 'Open Sans Hebrew', 'sans-serif'; }
@@ -1383,7 +1384,6 @@ blockquote {
 /* skeleton styles */
 .container, footer .row {
   margin: 0 auto;
-  padding: 0 4%;
   max-width: 1024px; }
 
 .header-container {
@@ -1395,7 +1395,7 @@ header {
   color: white;
   overflow: hidden;
   width: 100%;
-  padding: 3em 1%;
+  padding: 3em 0em;
   margin: 0 auto; }
   header .logo_wrapper {
     display: table-cell;
@@ -1413,7 +1413,6 @@ header {
     position: relative; }
     header .panel-wrapper .panel {
       background-color: #34b5e9;
-      float: left;
       padding: 1.5em; }
       header .panel-wrapper .panel form {
         position: relative; }
@@ -1440,6 +1439,10 @@ header {
           display: block;
           margin-left: 10px;
           margin-bottom: 10px; }
+      header .panel-wrapper .panel #logout_form {
+        width: 100%; }
+        header .panel-wrapper .panel #logout_form .panel-actions > * {
+          width: 32.66667%; }
       header .panel-wrapper .panel .social-logins {
         font-size: 1.2em;
         margin-top: 18px;
