@@ -210,9 +210,6 @@ def category(request, subject, category):
     length = len(summaries_list)
     category = get_object_or_404(Category, name=category)
     subcategory_list = category.subcategory_set.all()
-    subcategories_per_line = len(subcategory_list)
-    if subject.name == 'history_a':
-        subcategories_per_line = 1
     # pagination
     paginator = Paginator(summaries_list, 12)
 
@@ -231,7 +228,6 @@ def category(request, subject, category):
         'subject': subject,
         'sumAmount': length,
         'summaries': summaries,
-        'subcategories_per_line': subcategories_per_line,
     }
 
     return render(request, 'category.html', context_dict)

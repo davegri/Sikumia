@@ -35,6 +35,7 @@ class Category(Sortable):
     name = models.CharField(max_length=100)
     hebrew_name = models.CharField(max_length=100)
     subject = SortableForeignKey(Subject, related_name='categories')
+    subcategories_per_line = models.IntegerField(default=4)
 
     class Meta(Sortable.Meta):
         pass
@@ -112,9 +113,9 @@ class Summary(models.Model):
             '*': ['style']
         }
         ALLOWED_TAGS = ['h1','h2','h3','h4','h5','h6','p', 'em', 'strong', 'blockquote', 'code', 'strike',
-         'br', 'td', 'tr', 'small', 'hr', 'table','tbody', 'b', 'u', 'ul', 'ol', 'li', 'img', 'pre', 'span',
+         'br', 'td', 'tr','th' 'small', 'hr', 'table','tbody', 'b', 'u', 'ul', 'ol', 'li', 'img', 'pre', 'span',
          'strong', 'sub', 'i', 'del', 'dd', 'dl', 'sup']
-        ALLOWED_STYLES = ['color', 'font-weight', 'font-size']
+        ALLOWED_STYLES = ['color','background-color','text-align', 'font-weight', 'font-size']
         self.content = bleach.clean(self.content,tags=ALLOWED_TAGS, attributes=ALLOWED_ATTRIBUTES,
           styles=ALLOWED_STYLES,strip=False)
         # check if object is new

@@ -9,7 +9,7 @@
 
 {% block subsections %}
     {% for subcategory in subcategories  %}
-        <h4 class="part-of-{{ subcategories_per_line}} subcategory"><a href="{{ subcategory.get_absolute_url }}">{{ subcategory }}</a></h4>
+        <h4 class="part-of-{{ category.subcategories_per_line }} subcategory"><a href="{{ subcategory.get_absolute_url }}">{{ subcategory }}</a></h4>
     {% endfor %}
 {% endblock subsections %}
 
