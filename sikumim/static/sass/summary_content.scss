@@ -1,136 +1,18 @@
-html {
-    color: #000;
-    background: #FFF;
+@import "colors";
+
+
+*{
+    color: $dark_grey!important;
 }
 
-body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fieldset, legend, input, textarea, p, blockquote, th, td {
-    margin: 0;
-    padding: 0;
-}
-
-table {
-    border-collapse: collapse;
-    border-spacing: 0;
-}
-
-fieldset, img {
-    border: 0;
-}
-
-address, caption, cite, code, dfn, em, strong, th, var {
-    font-style: normal;
-    font-weight: normal;
-}
-
-ol, ul {
-    list-style: none;
-}
-
-caption, th {
-    text-align: left;
-}
-
-h1, h2, h3, h4, h5, h6 {
-    font-size: 100%;
-    font-weight: normal;
-}
-
-q:before, q:after {
-    content: '';
-}
-
-abbr, acronym {
-    border: 0;
-    font-variant: normal;
-}
-
-sup {
-    vertical-align: text-top;
-}
-
-sub {
-    vertical-align: text-bottom;
-}
-
-input, textarea, select {
-    font-family: inherit;
-    font-size: inherit;
-    font-weight: inherit;
-    *font-size: 100%;
-}
-
-legend {
-    color: #000;
-}
-
-#yui3-css-stamp.cssreset {
-    display: none;
-}
-
-html, body, div, span, applet, object, iframe,
-h1, h2, h3, h4, h5, h6, p, blockquote, pre,
-a, abbr, acronym, address, big, cite, code,
-del, dfn, em, font, img, ins, kbd, q, s, samp,
-small, strike, strong, sub, sup, tt, var,
-b, u, i, center,
-dl, dt, dd, ol, ul, li,
-fieldset, form, label, legend,
-table, caption, tbody, tfoot, thead, tr, th, td {
-    margin: 0;
-    padding: 0;
-    border: 0;
-    outline: 0;
-    font-size: 100%;
-    vertical-align: baseline;
-    background: transparent;
-}
-
-body {
-    line-height: 1;
-}
-
-ol, ul {
-    list-style: none;
-}
-
-blockquote, q {
-    quotes: none;
-}
-
-blockquote:before, blockquote:after,
-q:before, q:after {
-    content: '';
-    content: none;
-}
-
-/* remember to define focus styles! */
-:focus {
-    outline: 0;
-}
-
-/* remember to highlight inserts somehow! */
-ins {
-    text-decoration: none;
-}
-
-del {
-    text-decoration: line-through;
-}
-
-/* tables still need 'cellspacing="0"' in the markup */
-table {
-    border-collapse: collapse;
-    border-spacing: 0;
-}
-
-
-* {
-    font-family: "Segoe UI", Frutiger, "Frutiger Linotype", "Dejavu Sans", "Helvetica Neue", Arial, sans-serif !important;
-}
-
-td {
+td,th{
     padding: 15px !important;
     vertical-align: middle !important;
+    border: 1px solid $grey;
+}
+
+th{
+    font-weight: bolder;
 }
 
 tr:nth-child(odd) {
@@ -143,11 +25,9 @@ tr:nth-child(even) {
 
 table {
     width: 100% !important;
+    border: 1px solid $grey;
 }
 
-th {
-    background-color: #3765a8 !important;
-}
 
 li {
     line-height: 2em !important;
@@ -166,7 +46,6 @@ pre {
     white-space: -pre-wrap;      /* Opera 4-6 */
     white-space: -o-pre-wrap;    /* Opera 7 */
     word-wrap: break-word;       /* Internet Explorer 5.5+ */
-
     border-style: solid !important;
     border-width: 1px !important;
     line-height: 1.8em !important;
@@ -176,44 +55,48 @@ pre {
     background-color: rgb(249, 249, 249) !important;
 }
 
-body {
-    color: $dark_grey;
-    font-size: 12px;
-    font-family: 'Arimo', 'sans-serif';
-    font-weight: 400;
-    line-height: 1.6;
+p,span {
+    color: $dark_grey!important;
+    font-size: 16px !important;
+    font-family: 'Arimo', 'sans-serif'!important;
+    line-height: 1.6!important;
 }
 
-h1,h2, h3, h4, h5 {
+h1,h2,h3,h4,h5 {
     font-family: 'Open Sans Hebrew', 'sans-serif'!important;
 }
 
-p,h1,h2, h3, h4, h5,table{
-        margin-bottom: 0.5em;
-
+p,h1,h2, h3, h4, h5,table,ul,ol{
+    margin-top: 1em!important;
 }
 
 h1{
-    font-size: 2em;
-    font-weight: 700;
-    border-bottom: 1px solid $dark_grey;
+    font-size: 2.5em!important;
+    font-weight: 400!important;
+    border-bottom: 1px solid $dark_grey!important;
 }
 
 h2 {
-    font-size: 1.5em;
-    font-weight: 700;
-    border-bottom: 1px solid $dark_grey;
+    font-size: 2em!important;
+    font-weight: 400!important;
+    border-bottom: 1px solid $dark_grey!important;
 }
 
 h3 {
-    font-size: 1.2em;
-    font-weight: 700;
-    border-bottom: 1px solid $dark_grey;
+    font-size: 1.7em!important;
+    font-weight: 400!important;
+    border-bottom: 1px solid $dark_grey!important;
+}
+
+h4{
+    font-size: 1.5em!important;
+    font-weight: 600!important;
+    text-decoration: underline!important;
 }
 
 
 strong {
-    font-weight: bold;
+    font-weight: bolder!important;
 }
 
 img {

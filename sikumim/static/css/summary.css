@@ -1063,97 +1063,22 @@
   direction: ltr; }
 
 .content {
-  padding: 2em;
-  /* remember to define focus styles! */
-  /* remember to highlight inserts somehow! */
-  /* tables still need 'cellspacing="0"' in the markup */ }
-  .content html {
-    color: #000;
-    background: #FFF; }
-  .content body, .content div, .content dl, .content dt, .content dd, .content ul, .content ol, .content li, .content h1, .content h2, .content h3, .content h4, .content h5, .content h6, .content pre, .content code, .content form, .content fieldset, .content legend, .content input, .content textarea, .content p, .content blockquote, .content th, .content td {
-    margin: 0;
-    padding: 0; }
-  .content table {
-    border-collapse: collapse;
-    border-spacing: 0; }
-  .content fieldset, .content img {
-    border: 0; }
-  .content address, .content caption, .content cite, .content code, .content dfn, .content em, .content strong, .content th, .content var {
-    font-style: normal;
-    font-weight: normal; }
-  .content ol, .content ul {
-    list-style: none; }
-  .content caption, .content th {
-    text-align: left; }
-  .content h1, .content h2, .content h3, .content h4, .content h5, .content h6 {
-    font-size: 100%;
-    font-weight: normal; }
-  .content q:before, .content q:after {
-    content: ''; }
-  .content abbr, .content acronym {
-    border: 0;
-    font-variant: normal; }
-  .content sup {
-    vertical-align: text-top; }
-  .content sub {
-    vertical-align: text-bottom; }
-  .content input, .content textarea, .content select {
-    font-family: inherit;
-    font-size: inherit;
-    font-weight: inherit;
-    *font-size: 100%; }
-  .content legend {
-    color: #000; }
-  .content #yui3-css-stamp.cssreset {
-    display: none; }
-  .content html, .content body, .content div, .content span, .content applet, .content object, .content iframe,
-  .content h1, .content h2, .content h3, .content h4, .content h5, .content h6, .content p, .content blockquote, .content pre,
-  .content a, .content abbr, .content acronym, .content address, .content big, .content cite, .content code,
-  .content del, .content dfn, .content em, .content font, .content img, .content ins, .content kbd, .content q, .content s, .content samp,
-  .content small, .content strike, .content strong, .content sub, .content sup, .content tt, .content var,
-  .content b, .content u, .content i, .content center,
-  .content dl, .content dt, .content dd, .content ol, .content ul, .content li,
-  .content fieldset, .content form, .content label, .content legend,
-  .content table, .content caption, .content tbody, .content tfoot, .content thead, .content tr, .content th, .content td {
-    margin: 0;
-    padding: 0;
-    border: 0;
-    outline: 0;
-    font-size: 100%;
-    vertical-align: baseline;
-    background: transparent; }
-  .content body {
-    line-height: 1; }
-  .content ol, .content ul {
-    list-style: none; }
-  .content blockquote, .content q {
-    quotes: none; }
-  .content blockquote:before, .content blockquote:after,
-  .content q:before, .content q:after {
-    content: '';
-    content: none; }
-  .content :focus {
-    outline: 0; }
-  .content ins {
-    text-decoration: none; }
-  .content del {
-    text-decoration: line-through; }
-  .content table {
-    border-collapse: collapse;
-    border-spacing: 0; }
+  padding: 2em; }
   .content * {
-    font-family: "Segoe UI", Frutiger, "Frutiger Linotype", "Dejavu Sans", "Helvetica Neue", Arial, sans-serif !important; }
-  .content td {
+    color: #37474f !important; }
+  .content td, .content th {
     padding: 15px !important;
-    vertical-align: middle !important; }
+    vertical-align: middle !important;
+    border: 1px solid #BBBEC0; }
+  .content th {
+    font-weight: bolder; }
   .content tr:nth-child(odd) {
     background-color: #f9f9f9 !important; }
   .content tr:nth-child(even) {
     background-color: #e0dfdf !important; }
   .content table {
-    width: 100% !important; }
-  .content th {
-    background-color: #3765a8 !important; }
+    width: 100% !important;
+    border: 1px solid #BBBEC0; }
   .content li {
     line-height: 2em !important;
     margin-right: 16px; }
@@ -1179,30 +1104,33 @@
     border: 1px dashed #2f6fab !important;
     color: black !important;
     background-color: #f9f9f9 !important; }
-  .content body {
-    color: #37474f;
-    font-size: 12px;
-    font-family: 'Arimo', 'sans-serif';
-    font-weight: 400;
-    line-height: 1.6; }
+  .content p, .content span {
+    color: #37474f !important;
+    font-size: 16px !important;
+    font-family: "Arimo", "sans-serif" !important;
+    line-height: 1.6 !important; }
   .content h1, .content h2, .content h3, .content h4, .content h5 {
     font-family: "Open Sans Hebrew", "sans-serif" !important; }
-  .content p, .content h1, .content h2, .content h3, .content h4, .content h5, .content table {
-    margin-bottom: 0.5em; }
+  .content p, .content h1, .content h2, .content h3, .content h4, .content h5, .content table, .content ul, .content ol {
+    margin-top: 1em !important; }
   .content h1 {
-    font-size: 2em;
-    font-weight: 700;
-    border-bottom: 1px solid #37474f; }
+    font-size: 2.5em !important;
+    font-weight: 400 !important;
+    border-bottom: 1px solid #37474f !important; }
   .content h2 {
-    font-size: 1.5em;
-    font-weight: 700;
-    border-bottom: 1px solid #37474f; }
+    font-size: 2em !important;
+    font-weight: 400 !important;
+    border-bottom: 1px solid #37474f !important; }
   .content h3 {
-    font-size: 1.2em;
-    font-weight: 700;
-    border-bottom: 1px solid #37474f; }
+    font-size: 1.7em !important;
+    font-weight: 400 !important;
+    border-bottom: 1px solid #37474f !important; }
+  .content h4 {
+    font-size: 1.5em !important;
+    font-weight: 600 !important;
+    text-decoration: underline !important; }
   .content strong {
-    font-weight: bold; }
+    font-weight: bolder !important; }
   .content img {
     -webkit-box-shadow: inset 0 0 2px black, inset 0 2px 0 rgba(255, 255, 255, 0.3), inset 0 -1px 0 rgba(0, 0, 0, 0.5), 0 1px 3px rgba(0, 0, 0, 0.4);
     -moz-box-shadow: inset 0 0 2px black, inset 0 2px 0 rgba(255, 255, 255, 0.3), inset 0 -1px 0 rgba(0, 0, 0, 0.5), 0 1px 3px rgba(0, 0, 0, 0.4);
