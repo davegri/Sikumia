@@ -1093,7 +1093,11 @@ a {
     color: #1681B5; }
 
 table {
-  width: 100%; }
+  width: 100%;
+  border-collapse: separate;
+  font-size: 1.166666666666667em;
+  background-color: #EAEEF0;
+  border: 1px solid #BBBEC0; }
   table tr:nth-of-type(even) {
     background-color: #D3D6D8; }
   table td, table th {

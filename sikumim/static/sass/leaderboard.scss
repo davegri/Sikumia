@@ -15,7 +15,10 @@ a{
 }
 table{
 width: 100%;
-
+border-collapse: separate;
+    font-size: 1.166666666666667em;
+    background-color: $light_grey;
+    border: 1px solid $grey;
 tr{
 	&:nth-of-type(even){
 		background-color: $light_grey_shadow;
