@@ -112,7 +112,7 @@ class Summary(models.Model):
             '*': ['style']
         }
         ALLOWED_TAGS = ['h1','h2','h3','h4','h5','h6','p', 'em', 'strong', 'blockquote', 'code', 'strike'
-         'br', 'td', 'tr', 'small', 'hr', 'table','tbody', 'b', 'u', 'ul', 'ol', 'li', 'img', 'pre'
+         'br', 'td', 'tr', 'small', 'hr', 'table','tbody', 'b', 'u', 'ul', 'ol', 'li', 'img', 'pre', 'span'
          'strong', 'sub', 'i', 'del', 'dd', 'dl', 'sup']
         ALLOWED_STYLES = ['color', 'font-weight', 'font-size']
         self.content = bleach.clean(self.content,tags=ALLOWED_TAGS, attributes=ALLOWED_ATTRIBUTES,

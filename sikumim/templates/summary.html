@@ -32,7 +32,7 @@
 				<div class="favorites-module">
 				<a href="#comments" class="secondary-button" >לתגובות</a>
 					{% if user.id == summary.author.id %}
-					<a class='secondary-button' href="{% url 'edit_summary' summary.subject.name summary.category.name summary.id %}">ערוך סיכום</a>
+					<a class='secondary-button' href="{% url 'edit_summary' summary.subject.name summary.category.name summary.subcategory.name summary.id %}">ערוך סיכום</a>
 					{% endif %}
 				</div>
 			</div>
