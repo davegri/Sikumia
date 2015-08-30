@@ -310,7 +310,7 @@ def summary(request, subject, category, subcategory, summary_id):
     return render(request, 'summary.html', context_dict)
 
 
-def edit_summary(request, subject, category, summary_id):
+def edit_summary(request, subject, category, subcategory, summary_id):
     instance = Summary.objects.get(pk=summary_id)
     if not request.user.pk == instance.author.pk:
         messages.add_message(

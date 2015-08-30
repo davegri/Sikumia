@@ -111,12 +111,12 @@ class Summary(models.Model):
         ALLOWED_ATTRIBUTES = {
             '*': ['style']
         }
-        ALLOWED_TAGS = ['h1','h2','h3','h4','h5','h6','p', 'em', 'strong', 'blockquote', 'code', 'strike'
-         'br', 'td', 'tr', 'small', 'hr', 'table','tbody', 'b', 'u', 'ul', 'ol', 'li', 'img', 'pre', 'span'
+        ALLOWED_TAGS = ['h1','h2','h3','h4','h5','h6','p', 'em', 'strong', 'blockquote', 'code', 'strike',
+         'br', 'td', 'tr', 'small', 'hr', 'table','tbody', 'b', 'u', 'ul', 'ol', 'li', 'img', 'pre', 'span',
          'strong', 'sub', 'i', 'del', 'dd', 'dl', 'sup']
         ALLOWED_STYLES = ['color', 'font-weight', 'font-size']
         self.content = bleach.clean(self.content,tags=ALLOWED_TAGS, attributes=ALLOWED_ATTRIBUTES,
-          styles=ALLOWED_STYLES,strip=True)
+          styles=ALLOWED_STYLES,strip=False)
         # check if object is new
         if self.pk is not None:
                 # get original content
