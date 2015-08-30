@@ -45,10 +45,10 @@ padding: 1em;
             border-bottom: 3px solid $light_blue;
             margin-bottom: 0.3em;
             padding: 0.05em 0.3em;
--webkit-transition: .1s all linear;
--moz-transition: .1s all linear;
--o-transition: .1s all linear;
-transition: .1s all linear;     
+            -webkit-transition: .1s all linear;
+            -moz-transition: .1s all linear;
+            -o-transition: .1s all linear;
+            transition: .1s all linear;     
             border-radius:10px 10px 0px 0px;
         &:hover{
             background-color: $light_blue;
@@ -58,16 +58,18 @@ transition: .1s all linear;
     }
 
     li{
-                    padding: 0.6em 0.3em 0.3em 0.3em;
-
         a{
+                        -webkit-transition: .1s all linear;
+            -moz-transition: .1s all linear;
+            -o-transition: .1s all linear;
+            transition: .1s all linear;     
+            display:block;
+            padding: 0.6em 0.3em;
             color: $dark_blue;
             font-size: 1.3em;
             line-height: 1em;
-        }
-        &:hover{
-                        background-color: $light_blue;
-            a{
+            &:hover{
+            background-color: $light_blue;
             color: white;
         }
         }
@@ -81,17 +83,17 @@ transition: .1s all linear;
         display: block;
         color:$light_blue;
         border:3px solid $light_blue;
--webkit-transition: .1s all linear;
--moz-transition: .1s all linear;
--o-transition: .1s all linear;
-transition: .1s all linear;    
-  white-space: -moz-pre-wrap; /* Mozilla */
-  white-space: -hp-pre-wrap; /* HP printers */
-  white-space: -o-pre-wrap; /* Opera 7 */
-  white-space: -pre-wrap; /* Opera 4-6 */
-  white-space: pre-wrap; /* CSS 2.1 */
-  white-space: pre-line; /* CSS 3 (and 2.1 as well, actually) */
-  word-wrap: break-word; /* IE */
+        -webkit-transition: .1s all linear;
+        -moz-transition: .1s all linear;
+        -o-transition: .1s all linear;
+        transition: .1s all linear;    
+          white-space: -moz-pre-wrap; /* Mozilla */
+          white-space: -hp-pre-wrap; /* HP printers */
+          white-space: -o-pre-wrap; /* Opera 7 */
+          white-space: -pre-wrap; /* Opera 4-6 */
+          white-space: pre-wrap; /* CSS 2.1 */
+          white-space: pre-line; /* CSS 3 (and 2.1 as well, actually) */
+          word-wrap: break-word; /* IE */
         &:hover{
             background-color: $light_blue;
             border: 3px solid $light_blue_highlight;

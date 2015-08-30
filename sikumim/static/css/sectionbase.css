@@ -2781,16 +2781,19 @@ h2 {
     .category h3 a:hover {
       background-color: #1ba1e2;
       color: white; }
-  .category li {
-    padding: 0.6em 0.3em 0.3em 0.3em; }
-    .category li a {
-      color: #2b5797;
-      font-size: 1.3em;
-      line-height: 1em; }
-    .category li:hover {
-      background-color: #1ba1e2; }
-      .category li:hover a {
-        color: white; }
+  .category li a {
+    -webkit-transition: .1s all linear;
+    -moz-transition: .1s all linear;
+    -o-transition: .1s all linear;
+    transition: .1s all linear;
+    display: block;
+    padding: 0.6em 0.3em;
+    color: #2b5797;
+    font-size: 1.3em;
+    line-height: 1em; }
+    .category li a:hover {
+      background-color: #1ba1e2;
+      color: white; }
 
 .subcategory a {
   text-align: center;
