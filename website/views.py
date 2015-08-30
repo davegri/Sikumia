@@ -241,7 +241,7 @@ def subcategory(request, subject, category, subcategory):
     summaries_list = Summary.objects.all().filter(
         subcategory__name__icontains=subcategory)
     subject = get_object_or_404(Subject, name__icontains=subject)
-    subcategory = get_object_or_404(Subcategory, name=subcategory)
+    subcategory = get_object_or_404(Subcategory, name=subcategory, category__name=category)
     length = len(summaries_list)
 
     # pagination

@@ -283,7 +283,19 @@ header{
     }
 }
 
+footer{
+    .row{
+        .footer-block{
+            @include part_of(2,6%);
+        }
+        & :nth-child(3){
+            @include part_of(1);
+        }
 }
+}
+
+}
+
 
 
 
