@@ -1078,7 +1078,8 @@
     background-color: #e0dfdf !important; }
   .content table {
     width: 100% !important;
-    border: 1px solid #BBBEC0; }
+    border: 1px solid #BBBEC0;
+    table-layout: fixed; }
   .content li {
     line-height: 2em !important;
     margin-right: 16px; }
@@ -1115,23 +1116,35 @@
       text-decoration: none; }
   .content p, .content h1, .content h2, .content h3, .content h4, .content h5, .content table, .content ul, .content ol {
     margin-top: 1em !important; }
-  .content h1, .content h1 * {
+  .content h1 {
     font-size: 2.5em !important;
     font-weight: 400 !important;
     border-bottom: 1px solid #37474f !important; }
-  .content h2, .content h2 * {
+    .content h1 * {
+      font-size: 2.5rem !important;
+      font-weight: 400 !important; }
+  .content h2 {
     font-size: 2em !important;
     font-weight: 400 !important;
     border-bottom: 1px solid #37474f !important; }
-  .content h3, .content h3 * {
+    .content h2 * {
+      font-size: 2rem !important;
+      font-weight: 400 !important; }
+  .content h3 {
     font-size: 1.7em !important;
     font-weight: 400 !important;
     border-bottom: 1px solid #37474f !important; }
-  .content h4, .content h4 * {
+    .content h3 * {
+      font-size: 1.7rem !important;
+      font-weight: 400 !important; }
+  .content h4 {
     font-size: 1.5em !important;
     font-weight: 600 !important;
     text-decoration: underline !important; }
-  .content strong, .content strong * {
+    .content h4 * {
+      font-size: 1.5rem !important;
+      font-weight: 600 !important; }
+  .content strong {
     font-weight: bolder !important; }
   .content img {
     -webkit-box-shadow: inset 0 0 2px black, inset 0 2px 0 rgba(255, 255, 255, 0.3), inset 0 -1px 0 rgba(0, 0, 0, 0.5), 0 1px 3px rgba(0, 0, 0, 0.4);

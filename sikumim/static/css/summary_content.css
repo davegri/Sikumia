@@ -17,7 +17,8 @@ tr:nth-child(even) {
 
 table {
   width: 100% !important;
-  border: 1px solid #BBBEC0; }
+  border: 1px solid #BBBEC0;
+  table-layout: fixed; }
 
 li {
   line-height: 2em !important;
@@ -61,27 +62,39 @@ h1, h2, h3, h4, h5 {
 p, h1, h2, h3, h4, h5, table, ul, ol {
   margin-top: 1em !important; }
 
-h1, h1 * {
+h1 {
   font-size: 2.5em !important;
   font-weight: 400 !important;
   border-bottom: 1px solid #37474f !important; }
+  h1 * {
+    font-size: 2.5rem !important;
+    font-weight: 400 !important; }
 
-h2, h2 * {
+h2 {
   font-size: 2em !important;
   font-weight: 400 !important;
   border-bottom: 1px solid #37474f !important; }
+  h2 * {
+    font-size: 2rem !important;
+    font-weight: 400 !important; }
 
-h3, h3 * {
+h3 {
   font-size: 1.7em !important;
   font-weight: 400 !important;
   border-bottom: 1px solid #37474f !important; }
+  h3 * {
+    font-size: 1.7rem !important;
+    font-weight: 400 !important; }
 
-h4, h4 * {
+h4 {
   font-size: 1.5em !important;
   font-weight: 600 !important;
   text-decoration: underline !important; }
+  h4 * {
+    font-size: 1.5rem !important;
+    font-weight: 600 !important; }
 
-strong, strong * {
+strong {
   font-weight: bolder !important; }
 
 img {
