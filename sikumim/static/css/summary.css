@@ -1111,6 +1111,8 @@
     line-height: 1.6 !important; }
   .content h1, .content h2, .content h3, .content h4, .content h5 {
     font-family: "Open Sans Hebrew", "sans-serif" !important; }
+    .content h1 *, .content h2 *, .content h3 *, .content h4 *, .content h5 * {
+      text-decoration: none; }
   .content p, .content h1, .content h2, .content h3, .content h4, .content h5, .content table, .content ul, .content ol {
     margin-top: 1em !important; }
   .content h1 {

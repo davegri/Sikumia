@@ -55,6 +55,8 @@ p, span {
 
 h1, h2, h3, h4, h5 {
   font-family: "Open Sans Hebrew", "sans-serif" !important; }
+  h1 *, h2 *, h3 *, h4 *, h5 * {
+    text-decoration: none; }
 
 p, h1, h2, h3, h4, h5, table, ul, ol {
   margin-top: 1em !important; }
