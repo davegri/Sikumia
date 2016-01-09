@@ -186,10 +186,10 @@ EMAIL_PORT = 587
 DEFAULT_FROM_EMAIL = 'Sikumia Team <no-reply@sikumia.co.il>'
 
 
-ADMINS = (
-            ('David Griver', 'dgriver@gmail.com'),
-)
+# ADMINS = (
+#             ('David Griver', 'dgriver@gmail.com'),
+# )
 
-MANAGERS = (
-            ('David Griver', 'dgriver@gmail.com'),
-)
+# MANAGERS = (
+#             ('David Griver', 'dgriver@gmail.com'),
+# )
